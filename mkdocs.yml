@@ -12,6 +12,7 @@ theme:
     primary: black
   features:
     - navigation.top
+    - navigation.tabs
 
 # Extension
 markdown_extensions:
