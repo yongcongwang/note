@@ -1,5 +1,8 @@
+# Sorting algorithms
+
 ## Assumption
 To simplify matters, we will assume that the algorithms we describe will all be interchangeable:
+
 1. All array positions contain data to be sorted;
 2. The `N` is the number of elements passed to our sorting routines;
 3. the `>` and `<` operators exists, which can be used to place a consistant ordering on the input.
@@ -163,6 +166,7 @@ The running time of mergesort, when compared with other $O(NlogN)$ alternatives,
 As its name implies for C++, quicksort has historically been the fastest known generic sorting algorithm in practice. Its average running time is $O(NlogN)$. It is very fast, mainly due to a very tight and highly optimized inner loop. It has $O(N^2)$ worst-case performance, but this can be made exponentially unlikely with a little effort. By combining quicksort with heapsort, we can achieve quicksort’s fast running time on almost all inputs, with heapsort’s $O(NlogN)$ worst-case running time.
 The quicksort algorithm is simple to understand and prove correct, although for many years it had the reputation of being an algorithm that could in theory be highly optimized but in practice was impossible to code correctly. Like mergesort, quicksort is a divide-and-conquer recursive algorithm.
 The classic quicksort algorithm to sort an array S consists of the following four easy steps:
+
 1. If the number of elements in S is 0 or 1, then return;
 2. Pick any element v in S. This called the pivot;
 3. Partition S-{v}(the remaining elements in S) into two disjoint groups: $S_1 = {x \in S - {v} | x \le v}$, and $S_x = {x \in S - {v} | x \ge v}$;

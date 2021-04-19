@@ -25,7 +25,8 @@ markdown_extensions:
   - meta
   - toc:
       permalink: true
-  - pymdownx.arithmatex
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.caret
   - pymdownx.critic
   - pymdownx.details

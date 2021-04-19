@@ -1,4 +1,7 @@
+# Basic graph algorithms
+
 A `Graph` consists of:
+
 - `node`s(vertices) and
 - `edge`s which connecting these `node`s.
 
@@ -6,11 +9,12 @@ Graphs are mathematical structures uesed to model pairwise relations between obj
 ![graph definition](images/graph/graph_def.png)
 
 A distinction is made between:
+
 - `undirected graph`: where edges link two nodes symmetrically;
 - `directed graph`: where edges link two nodes asymmetrically.
 
 
-# Breadth-first Search(BFS)
+## Breadth-first Search(BFS)
 BFS is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root(or some arbitrary node of a graph, sometimes referred as a `search key`), and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
 
 ![bfs](images/graph/bfs.gif)
@@ -30,7 +34,7 @@ void bfs(Graph& graph, int start) {
 }
 ```
 
-# Depth-first Search(DFS)
+## Depth-first Search(DFS)
 DFS is an algorithm for traversing or searching tree or graph data structure. The algorithm starts at the root node(selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 
 ![dfs](images/graph/dfs.gif)
@@ -43,8 +47,9 @@ void dfs(Graph& graph, unordered_set<int>& visited, int root) {
 }
 ```
 
-# Shortest Path
+## Shortest Path
 In graph theory, the `shortest path problem` is the problem of finding a path between two nodes in a graph such that the sum of the weights of its constituent edges is minimized. The mainly used algorihtms are:
+
 - Floyd
 - Bellman-Ford
 - Dijkstra
@@ -55,7 +60,7 @@ In graph theory, the `shortest path problem` is the problem of finding a path be
 | Not negtive cycle graph | any graph | Not negtive edge graph |
 | $O(N^3)$ | $O(NM)$ | $O(MlogM)$ |
 
-## Floyd
+### Floyd
 Floyd algorithm compares all possible paths through the graph between each pair of vertices.
 ```C++
 vector<vector<int>> floyd(Graph& graph, int node) {
@@ -74,7 +79,7 @@ vector<vector<int>> floyd(Graph& graph, int node) {
 }
 ```
 
-## Bellman-Ford
+### Bellman-Ford
 Bellman-Ford is an algorithm that computes shortest paths from a single source node to all of the other nodes in a weighted digraph. It is capable of handling graphs in which some of the edge weights are negtive numbers.
 ```C++
 int bellman_ford(Graph& graph, int src, int tar) {
@@ -105,7 +110,7 @@ int bellman_ford(Graph& graph, int src, int tar) {
 }
 ```
 
-## Dijkstra
+### Dijkstra
 Dijkstra is an algorithm that computes shortest paths from a single source node to all of the other nodes in a weighted digraph. It is not able to handle graphs in which some of the edge weights are negtive numbers.
 ![dijkstra](images/graph/dijkstra.gif)
 
@@ -137,10 +142,10 @@ int dijkstra(Graph& graph, int src, int tar) {
 }
 ```
 
-# Topological Sorting
+## Topological Sorting
 A topological sort of a directed graph is a linear ordering of its nodes such that for every directed edge $(u, v)$, $u$ comes before $v$ in the ordering.
 
-## BFS
+### BFS
 ```C++
 vector<int> res{};
 bool topo_sort(Graph& graph, vector<int>& in_degree) {
@@ -163,7 +168,7 @@ bool topo_sort(Graph& graph, vector<int>& in_degree) {
 }
 ```
 
-## DFS
+### DFS
 ```C++
 vector<int> color{};  // 0: white; 1: gray; 2: black
 vector<int> topo{};
@@ -191,11 +196,11 @@ bool topo_sort(Graph& graph) {
 }
 ```
 
-# Minimum Spanning Tree(MST)
+## Minimum Spanning Tree(MST)
 A minimum spanning tree(MST) is a subset of the edges of a connected, edge-weighted undirected graph that connects all the nodes together, without any cycles and with the minimum possible total edge weight. That is, it is a spanning tree whose sum of the edge weights is as small as possible. More generallly, any edge-weighted undirected graph(not neccessarily connected) has a minimum spanning forest, which is a union of the minimum spanning trees for its connected components.
 ![graph definition](images/graph/mst.png)
 
-## Kruskal
+### Kruskal
 Kruscal's algorithm finds a minimum spanning forest of an undirected edge-weighted graph. If the graph is connected, it finds a minimum spanning tree. For a disconnected graph, a minimum spanning forest is composed of a minimum spanning tree for each connected component. It is a greedy algorithm in graph theory as in each step it adds the next lowest-weight edge that will not form a cycle to the minimum spanning forest.
 ![kruskal](images/graph/kruskal.gif)
 
@@ -256,19 +261,19 @@ int kruskal(vector<Edge>& edges, int n) {
 
 ```
 
-## Prim
+### Prim
 Prim algorithm is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. This means it finds a subset of the edges that forms a tree that includes every nodes, where the total weight of all the edges in the tree is minimized. The algorithm operates by building this tree one node at a time, from an arbitrary starting node, at each step adding the cheapest possible connection from the tree to another node.
 ![prim](images/graph/prim.gif)
 
-# Strongly Connected Components(SCC)
-## Tarjan
-## Kosaraju
+## Strongly Connected Components(SCC)
+### Tarjan
+### Kosaraju
 
-# Euler Graph
-## Fleury
-## Hierholzer
+## Euler Graph
+### Fleury
+### Hierholzer
 
-# Union-Find
+## Union-Find
 A `union-find` is a data structure that stores a collection of disjoint(non-overlapping) setting. Equivalently, it stores a partition of a set into disjoint subsets. It provides operations for adding new sets, merging sets and finding a representative member of a set.
 ```C++
 class UnionFind {
@@ -300,6 +305,6 @@ class UnionFind {
 ```
 
 
-# Reference
+## Reference
 - [10 Graph Algorithms Visually Explained](https://towardsdatascience.com/10-graph-algorithms-visually-explained-e57faa1336f3)
 - [OI WIKI/Graph](https://oi-wiki.org/graph/)

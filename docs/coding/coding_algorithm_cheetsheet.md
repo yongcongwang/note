@@ -1,7 +1,8 @@
 This is a summary of algorithms which solve problems in coding interview.
 
-# Data structure
+## Data structure
 For any data structure, the basic operation is no more than `traversal` and `access`, and more specific point are:
+
 - Add;
 - Delete;
 - Search;
@@ -13,7 +14,7 @@ How to `traverse` and `access`? For the reason that data stored in two form:
 
 So the frame to solve the data structure problems is to traverse all the elements.
 
-## Array
+### Array
 ```C++
 void traverse(int[] arr) {
   for (int i = 0; i < arr.length; i++) {
@@ -22,7 +23,7 @@ void traverse(int[] arr) {
 }
 ```
 
-## Linked list
+### Linked list
 Linked list has both iterative and recursive structure:
 ```C++
 /* Basic node of the single linked list */
@@ -43,7 +44,7 @@ void traverse(ListNode head) {
 }
 ```
 
-## Binary tree
+### Binary tree
 Binary tree typically is nonlinear recursive traversal structure:
 ```C++
 /* Basic node of the binary tree */
@@ -61,7 +62,7 @@ void traverse(TreeNode root) {
 }
 ```
 
-# Dynamic planning
+## Dynamic planning
 The normal for of dynamic programming problem is to `calculate the maximum or minimum`.
 
 The core of the problem is `enumeration`. We are asked to calculate the max or min, so we enumerate all the posible answers and find the the max/min answer.
@@ -69,6 +70,7 @@ The core of the problem is `enumeration`. We are asked to calculate the max or m
 But the enumeration of dynamic programming is a bit special, because they may contains `overlapped subproblems`, which make the enumeration low efficiency. We need a `memo` or `dp table` to optimize the process of enumeration to avoid unneccessary calculations.
 
 The hardest part of this process is to write out the `state transition equation`. We can use the following steps to consider the state transition equation:
+
 1. Find out [state] which changes every iteration;
 2. Define dp array `dp[state1][state2][...]` value meanings;
 3. Find out [option] which we can choose to change the state;
@@ -76,17 +78,18 @@ The hardest part of this process is to write out the `state transition equation`
 
 The normal frame is:
 ```C++
-# Init base case
+## Init base case
 dp[0][0][...] = base
-# State transition
+## State transition
 for state1 in all_values_state1_can_be:
     for state2 in all_values_state2_can_be:
         for ...
             dp[state1][state2][...] = extremum(option1, option2...)
 ```
 
-# Backtracking
+## Backtracking
 Solving a backtracking problem is actually a traversal process of a decision tree. You only need to think about following steps:
+
 1. Path: the selection that have been made;
 2. Selection list: the selection you can currently make;
 3. End condition: under which you reach the bottom of the decision tree.
@@ -105,7 +108,7 @@ def backtrack(Path, SeletionList):
         deselect
 ````
 
-# Bread First Search
+## Bread First Search
 The problem BFS solved is to find the `shortest path` from `start` to `end` in a `graph`.
 ```C++
 // Calculate the shortest path from start to end
@@ -138,8 +141,9 @@ int BFS(Node start, Node target) {
 }
 ```
 
-# Binary Search
+## Binary Search
 We can use binary search to search:
+
 - A single value;
 - Left boundary;
 - Right boundary.
@@ -204,8 +208,9 @@ int right_bound(int[] nums, int target) {
 
 ```
 
-# Slide window
+## Slide window
 The sliding window algorithm idea is like this:
+
 1. We start with two pointers, left and right initially pointing to the first element of the string S;
 2. We use the right pointer to expand the window [left, right] until we get a desirable window that contains all of the characters of T;
 3. Once we have a window with all the characters of T;

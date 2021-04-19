@@ -1,7 +1,7 @@
 To solve geometry problems in 2D with computers, we need some basic knowledge about geometry relationships and equations.
 
-# Notion
-## Point
+## Notion
+### Point
 In Cartesian Coordinate System, we use coordinates $(x, y)$ to represent a point, for example, $(2, 3)$, $(-7, 0)$.
 ```C++
 struct Point {
@@ -10,13 +10,13 @@ struct Point {
 };
 ```
 
-## Vector
+### Vector
 The representation of vector is like point, we use $(x, y)$ to represent a vector.
 ```C++
 using Vector = Point;
 ```
 
-## Line
+### Line
 There are many variant ways to write the equation of a line:
 - Normal form: $ax + by + c = 0$;
 - Slope-intercept form: $y = kx + b$;
@@ -32,7 +32,7 @@ struct Line {
 };
 ```
 
-## Line Segment
+### Line Segment
 We use two end points $(x_1, y_1), (x_2, y_2)$of the line segment to represent it.
 
 ```C++
@@ -42,7 +42,7 @@ struct LineSegment {
 };
 ```
 
-## Polygon
+### Polygon
 We record all vertices of the polygon to represent it.
 ```C++
 struct Polygon {
@@ -50,7 +50,7 @@ struct Polygon {
 };
 ```
 
-## Curve
+### Curve
 Some special curves like Bezier curve and Bell curve, we use its analytical expressions to represent them. For simple curve like circle, we can use the central point and radius of the circle to represent it.
 ```C++
 struct Circle {
@@ -59,9 +59,9 @@ struct Circle {
 };
 ```
 
-# Basic Equations
-## Triangle
-### Law of sines
+## Basic Equations
+### Triangle
+#### Law of sines
 ![law of sines](images/2d_geometry/law_of_sines.png)
 $$
 \frac{a}{\sin{A}} = \frac{b}{\sin{B}} = \frac{c}{\sin{C}} = 2R
@@ -71,7 +71,7 @@ where:
 - $A, B, C$ are the opposite angle of $a, b, c$;
 - $R$ is the radius of the triangle's circumcircle.
 
-### Law of cosines
+#### Law of cosines
 ![law of cosines](images/2d_geometry/law_of_cosines.png)
 $$
 a^2 = b^2 + c^2 - 2bc\cos{A}
@@ -83,8 +83,8 @@ $$
 c^2 = a^2 + b^2 - 2ab\cos{C}
 $$
 
-## Vector
-### Addition and Subtraction
+### Vector
+#### Addition and Subtraction
 The sum of two vectors is a third vector, represented as the diagonal of the parallelogram constructed with the two original vectors as sides. As for subtraction, set the second vector coordinates with its opposite number and use the same equation.
 ![vector addition](images/2d_geometry/vector_addition.png)
 $$
@@ -109,7 +109,7 @@ Vector operator/(const Vector& A, const double k) {
 }
 ```
 
-### Dot Production
+#### Dot Production
 The dot product, also called the scalar product, is a scalar real number equal to the product of the lengths of vector $|\vec{a}|$ and $|\vec{b}|$ and the cosine of the angle $\theta$ between them:
 $$
 \vec{a} \cdot \vec{b} = |\vec{a}||\vec{b}|\cos{\theta} 
@@ -136,7 +136,7 @@ double Angle(const Vector& A, const Vector& B) {
 }
 ```
 
-### Cross Production
+#### Cross Production
 The cross product, also called the vector product, is a third vector $\vec{c}$, perpendicular to the plane of the original vectors. The magnitude of $\vec{c}$ is equal to the product of the lengths of vectorss $\vec{a}$ and $\vec{b}$ and the sine of the angle $\theta$ between them:
 $$
 |\vec{c}| = |\vec{a}||\vec{b}|\sin{\theta}
@@ -160,7 +160,7 @@ double Cross(const Vector& A, const Vector& B) {
 }
 ```
 
-### Rotation of Vector
+#### Rotation of Vector
 ![rotation of vector](images/2d_geometry/rotation_vector.png)
 
 Let's say that we have a point $(x_1, y_1)$, which also defines the vector $\vec{a_1}$. The angle of $\vec{a_1}$ is $\beta$. The vector $\vec{a_1}$ has length $L$. We rotate this vector anticlockwise around the origin by $\alpha$ degrees, the new vector $\vec{a_2}$ has coordinates $(x_2, y_x)$. The length $L$ is not changed, so we have:
@@ -205,8 +205,8 @@ Vector Rotate(Vector A, double alpha) {
 }
 ```
 
-# Basic Problems
-## Area of Triangle
+## Basic Problems
+### Area of Triangle
 ![area triangle](images/2d_geometry/area_triangle.png)
 
 When we know the base and height, the area of triangle is:`
@@ -232,7 +232,7 @@ double TriangleArea(const Point& A, const Point& B, const Point& C) {
 }
 ```
 
-## Area of Polygon
+### Area of Polygon
 ![area polygon](images/2d_geometry/area_polygon.png)
 
 We can divide a polygon to multiple triagnles and calculate the sum of their areas.
@@ -248,7 +248,7 @@ double PolygonArea(const Polygon& poly) {
 }
 ```
 
-## Point on Line Side
+### Point on Line Side
 ![point line side](images/2d_geometry/point_line_side.png)
 We can use the cross product to check a point on wihch side of the line:
 if the cross product is 
@@ -261,7 +261,7 @@ bool IsPointOnLineLeft(const Line& L, const Point& P) {
 }
 ```
 
-## Point and Line Distance
+### Point and Line Distance
 The result of cross product is the area of parallelogram, we divide this by parallelogram's base to get height, which is the distance from point to line.
 
 ```C++
@@ -272,7 +272,7 @@ double DistanceFromPointToLine(const Point& P, const Line& L) {
 }
 ```
 
-## Point and Line Segment Distance
+### Point and Line Segment Distance
 If the point is not in the rectangle of line segment, we should calculate the distance from point to nearest line segment point; otherwise we can use the line distance to get the result.
 
 ```C++
@@ -286,7 +286,7 @@ double DistanceFromPointToLineSegment(const Point& P, const LineSegment& L) {
 }
 ```
 
-## Point on Line Segment
+### Point on Line Segment
 If a point is on line segment, it should meet:
 - the point is on the line;
 - the point is between two end points of line segment.
@@ -302,7 +302,7 @@ bool IsPointOnSegment(const LineSegment& L, const Point A) {
 }
 ```
 
-## Point in Polygon
+### Point in Polygon
 There are two methods to check if the point is in polygon:
 - Ray casting algorithm, a general mind can be described as [PNPOLY](https://wrf.ecse.rpi.edu/Research/Short_Notes/pnpoly.html)
 - Winding number algorithm, which links the point to all points of the polygon and calculate the sum of all the angles, if the angle is: 
@@ -324,7 +324,7 @@ There are two methods to check if the point is in polygon:
  }
  ```
 
-## Line Segment Intersection
+### Line Segment Intersection
 ![line segment intersection](images/2d_geometry/line_segment_intersection.png)
 There are three relationships between two line segments:
 - no intersection;
@@ -371,6 +371,6 @@ bool IsLineSegmentIntersection(const LineSegment& L1, const LineSegment& L2) {
 }
 ```
 
-# Reference
+## Reference
 - [Geometry](https://oi-wiki.org/geometry/2d/)
 - [Computer Geometry Tutorial](https://oi-wiki.org/geometry/2d/)

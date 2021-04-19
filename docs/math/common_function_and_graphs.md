@@ -1,8 +1,11 @@
+# Common function and their graphs
 A `function` is a rule for transforming an object into another object. The object you start with is called the `input`, and comes from some set called the `domain`. Waht you get back is called the `output`; it comes from some set called the `domain`, and the output's value is within a `range`. A function must assign a unique output for each valid input.
 
 We say that:
+
 - a function $f$ is `even` if $f(-x) = f(x)$ for all $x$ in the domain of $f$; 
 - a function $f$ is `odd` if $f(-x) = -f(x)$ for all $x$ in the domain of $f$.
+
 The graph of an even function has mirror symmetry about the y-axis and the graph of an odd function has $180^\circ$ point symmetry about the origin.
 
 Let's look at some common functions and their graphs.
@@ -13,10 +16,9 @@ Functions of the form $f(x) = mx + b$ are called `linear`. There's a good reason
 ![linear function](images/function_graph/linear_function.png)
 
 ## Polynomials
-These are functions built out of nonnegative integer powers of $x$. You start with the building blocks $1, x, x^2, x^3$, and so on, and you are allowed to multiply these basic functions by numbers and add a finite number of them together. The amount that you multiply the building block $x^n$ by is called the `coefficient` of $x^n$. The highest number $n$ such that $x^n$ has a non zero coefficient is called the `degree` of the polynomial. The mathematical way to write a general polynomial of degree $n$ is:
-
+These are functions built out of nonnegative integer powers of $x$. You start with the building blocks $1$, $x$, $x^2$, $x^3$, and so on, and you are allowed to multiply these basic functions by numbers and add a finite number of them together. The amount that you multiply the building block $x^n$ by is called the `coefficient` of $x^n$. The highest number $n$ such that $x^n$ has a non zero coefficient is called the `degree` of the polynomial. The mathematical way to write a general polynomial of degree $n$ is:
 $$
-p(x) = a_nx^n + a_{n - 1}x^{n - 1} + ... + a_2x^2 + a_1x + a_0
+p(x) = a_n x^n + a_{n - 1}x^{n - 1} + ... + a_2x^2 + a_1x + a_0
 $$
 
 where $a_n$ is the coefficient of $x^n$, $a_{n - 1}$ is the coefficient of $x^{n - 1}$, ans so on down to $a_0$, which is the coefficient of $1$.

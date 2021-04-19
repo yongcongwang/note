@@ -1,3 +1,5 @@
+# Abstract datas
+
 An `abstract data type`(ADT) is a set of objects together with a set of operations. Objects such as lists, sets, and graphs along with their operations can be viewed as ADTs, just as integers, reals, and boolens are data types.
 
 There is no rule telling us which operations must be supported for each ADT; this is a design decision. In this article we only discuss about three ADT:
@@ -5,8 +7,9 @@ There is no rule telling us which operations must be supported for each ADT; thi
 - Stack;
 - Queue.
 
-# The List ADT
+## The List ADT
 We will deal with a general list of the form $A_0, A_1, A_2, \cdots, A_{N-1}$. We say that:
+
 - the size of this list is $N$;
 - $A_i$ follows(or succecds) A_{i-1}($i < N$) and $A_{i-1}$ precedes $A_{i}$($i > 0$);
 - the first element of the List is $A_0$;
@@ -14,6 +17,7 @@ We will deal with a general list of the form $A_0, A_1, A_2, \cdots, A_{N-1}$. W
 - the position of $A_i$ is $i$;
 
 Associate with these `definations` is a set of operations that we would like to perform on the List ADT:
+
 - printList: print each element of the List;
 - makeEmpty: clear the List;
 - find: return the position of the first occurrence of an iterm;
@@ -25,9 +29,10 @@ There are generally two ways to implement the List ADT:
 - array;
 - linked list.
 
-## Array(Vector) implementation of List
+### Array(Vector) implementation of List
 All these instructions can be implemented just using an array. Although arrays are created with a fixed capacity, the `vector` class, which internally stores an array, allows the array to grow by doubling its capacity when needed.
 The time complexity of array is:
+
 - insertion and deletion: $O(N)$;
 - search and access: $O(1)$.
 
@@ -182,10 +187,11 @@ class Vector {
 };
 ```
 
-## Linked list implementation of List
+### Linked list implementation of List
 In order to avoid the linear cost of insertion and deletion, we need to ensure that the list is not stored contiguously, since otherwise entire parts of the list will need to be moved.
 The linked list consists of a series of nodes, which are not necessarily adjacent in memory. Each node contains the element and a link to a node containing its successor. We call this the `next` link.
 The time complexity of linked list operation is:
+
 - insertion and deletion: $O(1)$;
 - search and access: $O(N)$.
 
@@ -441,9 +447,10 @@ class List {
 };
 ```
 
-# The Stack ADT
+## The Stack ADT
 A `stack` is a list with the restriction that insertions and deletions can be performed in only one position, namely, the end of the list, called the `top`.
 The foundamental operations on a stack are:
+
 - push, which is equivalent to an insert;
 - pop, which deletes the most recently inserted element.
 
@@ -451,10 +458,11 @@ Since a stack is a list, any list implementation will do. Clearly `array` and `l
 
 All the operations the Stack needed are supported by `Vector` and `List`, so I do not show the implementation here.
 
-# The Queue ADT
+## The Queue ADT
 Like stack, `queues` are lists. With a queue, however, insertion is done at one end whereas deletion is performed at the other end.
 
 The basic operations on a queue are:
+
 - enqueue, which inserts an element at the end of the list(called the rear);
 - dequeue, which deletes(and returns) the element at the start of the list(known as the front).
 
@@ -470,5 +478,6 @@ For each queue data structure, we keep an `array` as:
 
 and the position `front` and `end`, which represent the ends of the queue.
 We alse keep track of the number of elements that are actually in the queue, `currentSize`.
+
 - To `enqueue` an element `x`, we increment the `currentSize` and `back`, then set `array[back] = x`;
 - To `dequeue` an element `x`, we return the value `array[front]`, decrement the `currentSize` and then increment `front`.
