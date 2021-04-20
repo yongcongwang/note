@@ -25,6 +25,7 @@ There are lots of algorithms that run on graphs and find the path, the simplest 
 The main process is:
 
 Loop:
+
  - Pick and remove a `location` from the `frontier`;
  - Expand it by looking at its `neighbors`, any neighbors we haven't visited yet we add to the `frontier`, and also to the `visited` set;
  - if `frontier` is empty or reach the target node, break.
@@ -34,6 +35,7 @@ So far we assume that every step has the same `cost`, however, in some scenarios
 ### Dijkstra's Algorithm
 Dijkstra's Algorithm tracks movement cost from the start location. The pathfinder may visit a location multiple times, with different costs. Instead of visit every node in `frontier`, we visit the lowest cost node at the beginning of the loop.
 The main process is below:
+
 - Create a priority queue `frontier` and put the init node into `frontier`.
 - Loop:
   - choose the lowest cost node from `frontier`
@@ -89,6 +91,7 @@ The `A* Algorithm` uses a `open lsit` and a `close list`, `open list` stores nod
 
 ### Heuristics
 The heuristic function $h(n)$ tells A* an estimate of the minimum cost from any vetex $n$ to the goal, it can be used to control A*'s behavior.
+
 - At one extreme, if $h(n)$ is 0, then only $g(n)$ plays a role, and A* turns into Dijkstra’s Algorithm, which is guaranteed to find a shortest path.
 - If $h(n)$ is always lower than (or equal to) the cost of moving from $n$ to the goal, then A* is guaranteed to find a shortest path. The lower $h(n)$ is, the more node A* expands, making it slower.
 - If $h(n)$ is exactly equal to the cost of moving from $n$ to the goal, then A* will only follow the best path and never expand anything else, making it very fast. Although you can’t make this happen in all cases, you can make it exact in some special cases. It’s nice to know that given perfect information, A* will behave perfectly.
