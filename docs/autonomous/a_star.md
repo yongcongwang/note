@@ -64,7 +64,7 @@ Its process can be described as:
 ![greedy_best_first](images/a_star/best_first.gif)
 
 The algorithm is really fast, but in complex map it may not find the shortest path, shown as below.
-![in_complex_case](images/a_star/best_first2.gif)
+![in_complex_case](images/a_star/best_first_2.gif)
 
 ## A* Algorithm
 Dijkstra’s Algorithm works well to find the shortest path, but it wastes time exploring in directions that aren’t promising. Greedy Best First Search explores in promising directions but it may not find the shortest path. The A* algorithm uses both the actual distance from the start and the estimated distance to the goal.
