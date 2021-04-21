@@ -46,6 +46,7 @@ Becuase of the nested loops, each of which can take N iterations, insertion sort
 Shellsort, named after its inventor, Donald Shell, was one of the first algorithms to break the quadratic time barrier, althoungh it was not until several years after its initial discovery that a subquadratic time bound was proven.
 It works by comparing elements that are distant; the distance between comparisons decreases as the algorithm runs until the last phase, in which adjacent elements are compared. For this reason, Shellsort is sometimes referred to as diminishing increment sort.
 Shellsort uses a sequence, h1, h2,…, ht, called increment sequence. Any increment sequence will do as long as h1 = 1, but some choices are better than others.
+
 A popular(but poor) choice for increment sequence is to use the sequence suggested by Shell: $h_t = [N / 2]$ and $h_k = [h_{k + 1} / 2]$.
 ```C++
 template <typename T>
@@ -67,8 +68,11 @@ The performance of Shellsort is quite acceptable in practice, even for N in the 
 
 ## Heapsort
 Priority queues can be used to sort in $O(NlogN)$ time. The algorithm based on this idea is known as heapsort and gives the best Big-Oh running time we have seen so far. The basic strategy is to build a binary heap of N elements. This stage takes $O(N)$ time. We then preform N deleteMin operations. The elements leave the heap smallest first, in sorted order. By recording these elements in a second array and then copying the array back, we sort N elements. Since each deleteMin takes $O(logN)$ time, the total running time is $O(NlogN)$.
+
 The main problem with this algorithm is that it uses an extra array. Thus, the memory requirement is doubled. This could be a problem in some instances. Notice that the extra time spent copying the second array back to the first is only $O(N)$, so that this is not likely to affect the running time significantly. The problem is space.
+
 A clever way to avoid using a second array makes use of the fact that after each deleteMin, the heap shrinks by 1. Thus the cell that was last in the heap can be used to store the element that was just deleted.
+
 Using this strategy, after the last deleteMin the array will contain the elements in decreasing sorted order. If we want the elements in the more typical increasing sorted order, we can change the ordering property so that the parent has a larger elements than the child. Thus, we have a max-heap.
 
 ```C++
@@ -110,7 +114,9 @@ void heapSort(std::vector<T> &arr) {
 
 ## Mergesort
 Mergesort runs in $O(NlogN)$ worse-case running time, and the number of comparisons used is nearly optimal. It is a fine example of a recursive algorithm.
+
 The fundamental operation in this algorithm is merging two sorted lists. Because the lists are sorted, this can be done in one pass through the input, if the output is put in a third list. The basic merging algorithm takes two input array A and B, an output array C, and three counters, Actr, Bctr, and Cctr, which are initially set to the beginning of their respective arrays. The smaller of A[Actr] and B[Bctr] is copied to the next entry in C, and the appropriate counters are advanced. When either input list is exhausted, the remainder of the other list is copied to C.
+
 ```C++
 template <typename T>
 void merge(vector<T> &arr, vector<T> &temp_arr,
@@ -156,7 +162,9 @@ void MergeSort(vector<T> &arr) {
 ```
 
 Mergesort is a classic example of the techniques used to analyze recursive routines: We have to write a recurrence relation for the running time. We will assume that N is a power of 2 so that we always split into even halves. For N = 1, the time to mergesort is constant, which we will denote by 1. Otherwise, the time to mergesort N numbers is equal to the time to do two recursive mergesort of size N/2, plus the time to merge, which is linear:
+
 $$T(1) = 1$$
+
 $$T(N) = 2T(N/2) + N$$
 
 Although mergesort’s running time is $O(NlogN)$, it has the significant problem that merging two sorted lists uses linear extra memory. The additional work involved in copying to the temporary array and back, throughtout the algorithm, slows the sort considerably. This copying can be avoided by judiciously switching the roles of a and tmpArray at alternate levels of the recursion.
@@ -165,6 +173,7 @@ The running time of mergesort, when compared with other $O(NlogN)$ alternatives,
 ## Quicksort
 As its name implies for C++, quicksort has historically been the fastest known generic sorting algorithm in practice. Its average running time is $O(NlogN)$. It is very fast, mainly due to a very tight and highly optimized inner loop. It has $O(N^2)$ worst-case performance, but this can be made exponentially unlikely with a little effort. By combining quicksort with heapsort, we can achieve quicksort’s fast running time on almost all inputs, with heapsort’s $O(NlogN)$ worst-case running time.
 The quicksort algorithm is simple to understand and prove correct, although for many years it had the reputation of being an algorithm that could in theory be highly optimized but in practice was impossible to code correctly. Like mergesort, quicksort is a divide-and-conquer recursive algorithm.
+
 The classic quicksort algorithm to sort an array S consists of the following four easy steps:
 
 1. If the number of elements in S is 0 or 1, then return;
@@ -173,6 +182,7 @@ The classic quicksort algorithm to sort an array S consists of the following fou
 4. Return {quicksort($S_1$) followed by v followed by quicksort($S_2$)}.
 
 For very small arrays($N \le 20$), quicksort does not perform as well as insertion sort. Furthermore, because quicksort is recursive, these cases will occur frequently. A comman solution is not to sue quicksort recursively for small arrays, but instead use a sorting algorithm that is efficient for small arrays, such as insertion sort. Using this strategy can actually save about 15 percent in the running time(over doing no cutoff at all). A good cutoff range is $N = 10$, although any cutoff between 5 and 20 is likely to produce similar results. This also saves nastly degenerate cases, such as taking the median of three elements when there are only one or two.
+
 ```C++
 template <typename T>
 int partition(vector<T>& arr, int left, int right) {

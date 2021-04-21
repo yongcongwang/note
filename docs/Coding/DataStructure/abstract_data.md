@@ -3,6 +3,7 @@
 An `abstract data type`(ADT) is a set of objects together with a set of operations. Objects such as lists, sets, and graphs along with their operations can be viewed as ADTs, just as integers, reals, and boolens are data types.
 
 There is no rule telling us which operations must be supported for each ADT; this is a design decision. In this article we only discuss about three ADT:
+
 - List;
 - Stack;
 - Queue.
@@ -26,6 +27,7 @@ Associate with these `definations` is a set of operations that we would like to 
 - findKth: return the element in kth position.
 
 There are generally two ways to implement the List ADT:
+
 - array;
 - linked list.
 

@@ -4,14 +4,16 @@
 Moving an object means to transfer ownership of some resource it manage to another object.
 
 Benefits:
+
 - Performance optimization: while copying a temporary object(for example, a `vector`) to a list, without `std::move` you have to copy every element in vector and store them in new place. `Moving` a vector is just copying some pointer and internal state over to the new one.
 - Make it possible to have only one instance at a time: for example, `std::unique_ptr` is non-copyable, but you can use `move` to transfer an instance between scopes at the language level.
-<!-- more -->
+
 ## Rvalue references
 `Rvalue reference` is a new reference. It's a non-template type(such as `int`) and can be created with the syntax `T &&`. It can be binded only to rvalues.
 
 ## Forwarding references
 `Forwarding reference` is also known as `universal references`.
+
 - It can be created by `T&&` when `T` is a template type or `auto&&`.
 - This enables `perfect forwarding`: the ability to pass arguments while maintaining their value category(e.g. lvalue stay as lvalue, temporaries are forwarded as rvalue).
 
@@ -80,10 +82,13 @@ add(1.0, 2.0);  // double
 
 ## Lambda expressions
 A `lambda` is an unnamed function object capable of capturing variable in scope. It features:
+
 - a *capture list*
 - an optional set of parameters with an optional trailing return type
 - a body
+
 An example of `capture list`:
+
 - `[]`: capture nothing
 - `[=]`: capture local objects(local variables, parameters) in scope by value
 - `[&]`: cpature local objects(local variables, parameters) in scope by reference
@@ -159,6 +164,7 @@ foo(nullptr); // calls foo(char*)
 
 ## Strongly-typed enums
 Type-safe enums that solve a variable of problems with C-style enums:
+
 - implicit conversions
 - inability to specify the underlying type
 - scope pollutions
@@ -188,6 +194,7 @@ constexpr const int& y = x; // error -- constexpr variable `y` must be initializ
 ```
 
 The difference to `const`:
+
 - `const` variables can be initialized at run-time, but `constexp` variables must be initialized at compile-time
 
 ## Delegating constructors
@@ -574,9 +581,11 @@ static_assert(std::is_same<std::conditional<true, int, double>::type, int>::valu
 
 ## Smart pointers
 C++11 introduces new smart pointers: 
+
 - `std::unique_ptr`
 - `std::shared_ptr`
 - `std::weak_ptr`
+
 `std::auto_ptr` now becomes deprecated and then eventually removed in C++17
 
 `std::unique_ptr` is a non-copyable, movable pointer that manages its own heap-allocated memory. 
@@ -664,6 +673,7 @@ for (int& x : a) x *= 2; // a == { 2, 4, 6 }
 
 ## Unordered container
 These containers maintain average constant-time complexity for search, insert, and remove operations. In order to achieve constant-time complexity, sacrifices order for speed by hashing elements into buckets. There are four unordered containers:
+
 - `unordered_set`
 - `unordered_multiset`
 - `unordered_map`
@@ -671,9 +681,11 @@ These containers maintain average constant-time complexity for search, insert, a
 
 ## std::make_shared
 `std::make_shared` is the recommanded way to create instance of `std::shared_ptr` due to the following reasons:
+
 - Avoid having to use the new operator.
 - Prevents code repetition when specifying the underlying type the pointer shall hold.
 - It provides exception-safety. Suppose we were calling a function `foo` like:
+
 ```C++
 foo(std::shared_ptr<T>{new T{}}, function_that_throws(), std::shared_ptr<T>{new T{}});
 ```
@@ -681,6 +693,7 @@ The compiler is free to call `new T{}`, then `function_that_throw()`, and so on.
 ```C++
 foo(std::make_shared<T>(), function_that_throws(), std::make_shared<T>());
 ```
+
 - Prevents having to do two allocations. When calling `std::shared_ptr{new T{}}`, we have to allocate memory for `T`, then in the shared pointer we have to allocate memory for the control block within the pointer.
 
 ## std::ref
@@ -704,10 +717,13 @@ C++11 introduces a memory model for C++, which means library support for threadi
 
 ## std::async
 `std::async` runs the given function either asynchronously or lazily-evaluated, then returns a `std::future` which holds the result of that function call.
+
 The first parameter is the policy which can be:
+
 1. `std::launch::async` | `std::launch::deferred` It is up to the implementation whether to perform asynchronous execution or lazy evaluation.
 2. `std::launch::async` Run the callable object on a new thread.
 3. `std::launch::deferred` Perform lazy evaluation on the current thread.
+
 ```C++
 int foo() {
   /* Do something here, then return the result. */

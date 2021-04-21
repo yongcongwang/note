@@ -18,11 +18,13 @@ using Vector = Point;
 
 ### Line
 There are many variant ways to write the equation of a line:
+
 - Normal form: $ax + by + c = 0$;
 - Slope-intercept form: $y = kx + b$;
 - Intercept form: $\frac{x}{a} + \frac{y}{b} = 1$;
 
 Consider that we just want to know where the line locates and how the line slopes, we can use the form of:
+
 - a point on line and the unit vector of the line.
 
 ```C++
@@ -67,6 +69,7 @@ $$
 \frac{a}{\sin{A}} = \frac{b}{\sin{B}} = \frac{c}{\sin{C}} = 2R
 $$
 where:
+
 - $a, b, c$ are the lengths of the sides of a triangle;
 - $A, B, C$ are the opposite angle of $a, b, c$;
 - $R$ is the radius of the triangle's circumcircle.
@@ -116,8 +119,10 @@ $$
 $$
 
 We use dot product to:
+
 - check if the two vectors are perpendicular: 
 $$a \cdot b = 0$$
+
 - calculate the angle between two vectors:
 $$\cos{\theta} = \frac{\vec{a} \cdot \vec{b}}{|\vec{a}||\vec{b}|}$$
 
@@ -147,6 +152,7 @@ We can find the direction of cross product with right-hand rule:
 
 The cross product $\vec{c} = \vec{a} \times \vec{b}$ (vertical, in purple) changes as the angle between the vector $\vec{a}$(blue) and $\vec{b}$(red) changes. 
 The cross product is:
+
 - always orthogonal to both vectors;
 - has magnitude $0$ when the vectors are parallel;
 - has maximum magnitude $|\vec{a}||\vec{b}|$ when they are orthogonal.
@@ -252,6 +258,7 @@ double PolygonArea(const Polygon& poly) {
 ![point line side](images/2d_geometry/point_line_side.png)
 We can use the cross product to check a point on wihch side of the line:
 if the cross product is 
+
 - $> 0$, point is on line left;
 - $< 0$, point is on line right.
 
@@ -288,6 +295,7 @@ double DistanceFromPointToLineSegment(const Point& P, const LineSegment& L) {
 
 ### Point on Line Segment
 If a point is on line segment, it should meet:
+
 - the point is on the line;
 - the point is between two end points of line segment.
 
@@ -304,6 +312,7 @@ bool IsPointOnSegment(const LineSegment& L, const Point A) {
 
 ### Point in Polygon
 There are two methods to check if the point is in polygon:
+
 - Ray casting algorithm, a general mind can be described as [PNPOLY](https://wrf.ecse.rpi.edu/Research/Short_Notes/pnpoly.html)
 - Winding number algorithm, which links the point to all points of the polygon and calculate the sum of all the angles, if the angle is: 
  - $\ne 0$, the point is not in polygon;
@@ -327,6 +336,7 @@ There are two methods to check if the point is in polygon:
 ### Line Segment Intersection
 ![line segment intersection](images/2d_geometry/line_segment_intersection.png)
 There are three relationships between two line segments:
+
 - no intersection;
 - intersection;
 - overlaps.
@@ -372,5 +382,6 @@ bool IsLineSegmentIntersection(const LineSegment& L1, const LineSegment& L2) {
 ```
 
 ## Reference
+
 - [Geometry](https://oi-wiki.org/geometry/2d/)
 - [Computer Geometry Tutorial](https://oi-wiki.org/geometry/2d/)

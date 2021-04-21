@@ -5,7 +5,7 @@ Binary literals provide a convenient way to represent a number in binary. It is 
 0b110  // == 6
 0b1111'1111 // == 255
 ```
-<!-- more -->
+
 ## Generic lambda expressions
 C++14 now allows the `auto` type-specifier in the param list, enabling polymorphic lambdas.
 ```C++
@@ -69,6 +69,7 @@ int& z = g(y); // reference to `y`
 
 ## decltype(auto)
 The `decltype(auto)` type-specifier also deduces a type like `auto` does. The difference is:
+
 - `decltype(auto)` keeps the reference and cv-qulifiers while `auto` not.
 
 ```C++
@@ -102,6 +103,7 @@ static_assert(std::is_same<const int&, decltype(g(x))>::value == 1);
 
 ## Relaxing constraints on constexpr functions
 In C++11 `constexpr` function bodies can only contain a very limited set of syntaxes, including(but not limited to):
+
 - `typedef`
 - `using`
 - `return`
@@ -149,6 +151,7 @@ std::chrono::duration_cast<std::chrono::minutes>(day).count(); // == 1440
 
 ## Compile-time integar sequence
 The class template `std::integar_sequence` represents a compile-time sequence of integar. There are a few helpers built on top:
+
 - `std::make_integar_sequence<T, N>`: creates a sequence of `0, ..., N - 1` with type `T`.
 - `std::index_sequence_for<T...>`: converts a template parameter pack into an integar sequence.
 
@@ -166,6 +169,7 @@ decltype(auto) a2t(const std::array<T, N>& a) {
 
 ## std::make_unique
 `std::make_unique` is the recommanded way to create instances of `std::unique_ptr`s due to the following reasons:
+
 - Avoid having to use the `new` operator.
 - Prevents code repetition when specifying the underlying type the pointer shall hold.
 - Most importantly, it provides exception-safety. Suppose we were calling a function `foo` like:

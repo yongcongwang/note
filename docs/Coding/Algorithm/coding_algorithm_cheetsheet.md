@@ -9,6 +9,7 @@ For any data structure, the basic operation is no more than `traversal` and `acc
 - Modify.
 
 How to `traverse` and `access`? For the reason that data stored in two form:
+
 - linear(e.g., array);
 - nonlinear(e.g., linked list).
 

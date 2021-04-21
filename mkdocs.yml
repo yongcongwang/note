@@ -18,7 +18,7 @@ theme:
 markdown_extensions:
   - admonition
   - codehilite:
-      guess_lang: false
+      guess_lang: true
       linenums: true
   - def_list
   - footnotes

@@ -14,13 +14,12 @@ sudo make install
 ```bash
 bash <(curl -s https://raw.githubusercontent.com/yongcongwang/dotfiles/master/deploy.sh) Vim
 ```
-<!-- more -->
 
 ## General Usage
 ### New To Vim
 #### Start Vim
 To start Vim, type the command `Vim file.txt` at any command prompt. Because this is a new file, you get a blank window:
-```
+```c++
         +---------------------------------------+
         |#                                      |
         |~                                      |
@@ -30,6 +29,7 @@ To start Vim, type the command `Vim file.txt` at any command prompt. Because thi
         |"file.txt" [New file]                  |
         +---------------------------------------+
 ```
+
 - `#` is the cursor position;
 - `~` indicates lines not in the file;
 - at the bottom of Vim is a message line that indicates the file is named file.txt and shows you are creating a new file.
@@ -37,6 +37,7 @@ To start Vim, type the command `Vim file.txt` at any command prompt. Because thi
 #### Insert Text
 The Vim editor is a modal editor, which means that the editor behaves differently depending on which mode you are in.
 The two basic modes are:
+
 - Normal mode, the characters you type are treated as commands;
 - Insert mode, the characters you type are treated as text.
 
@@ -44,7 +45,7 @@ To get in insert mode you should type `i`(for Insert), and to get in normal mode
 
 #### Moving Around
 In `Normal`mode, to move the cursor, press the `h, j, k, l` keys as indicated.
-```
+```C++
              ^
              k              Hint:  The h key is at the left and moves left.
        < h       l >               The l key is at the right and moves right.
@@ -54,6 +55,7 @@ In `Normal`mode, to move the cursor, press the `h, j, k, l` keys as indicated.
 
 #### Delete Charactors
 In `Normal` mode, you can delete characters with following commands:
+
 - `x`: delete a character. Move the cursor over a character and type `x` to delete it. (This is a throwback to the old days of the typewriter, when you deleted things by typing xxxx over them.)
 - `dd`: delete a line.
 - `J`: delete a line break.
@@ -63,6 +65,7 @@ If you delete too much, you can type `u` to undo the last edit.
 And if you **undo** too much, you can press `CTRL-r` to **redo** them.
 
 #### Other Editing Commands
+
 - `a`: since `i` **inserts** a character before the cursor, you can use `a` to **append** a character after the cursor.
 - `o`: creates a new and empty line below the cursor and puts Vim in `Insert` mode.
 - `O`: creates a new and empty line above the cursor and puts Vim in `Insert` mode.
@@ -70,6 +73,7 @@ And if you **undo** too much, you can press `CTRL-r` to **redo** them.
 
 #### Getting Out
 After modifying the file, you can use:
+
 - `:w`: to **write** the file;
 - `:q`: to **quite** the Vim;
 - `:wq`: to **write** the file and then **quit**  the Vim;
@@ -77,6 +81,7 @@ After modifying the file, you can use:
 
 #### Find Help
 Everything you always wanted to know can be found in the Vim help files. To get help on **something**, use the command:
+
 - `:help {something}`
 
 ### Move Faster
@@ -84,22 +89,23 @@ Everything you always wanted to know can be found in the Vim help files. To get 
 #### Charactor Based Movement
 One of the most useful movement commands is the single-character search command `fx`(Find x) which search forward in the line for the character `x`. 
 For example, you are at the beginning of the following line. Suppose you want to go to the h of human, just execute the command `fh` and the cursor will be positioned over the h:
-```
+```c++
         To err is human.  To really foul up you need a computer. 
         ---------->--------------->
             fh           fy
 ```
 And you can specify a count:
-```
+```c++
         To err is human.  To really foul up you need a computer. 
                   --------------------->
                            3fl
 ```
 Other similar commands:
+
 - `F`, to find backward:
 
 
-```
+```bash
         To err is human.  To really foul up you need a computer. 
                   <---------------------
                             Fh
@@ -115,20 +121,26 @@ Other similar commands:
 
 #### Word Based Movement
 You can also move the cursor based on words:
+
 - `w`, to move forward a **word**;
+
 ```
         This is a line with example text 
           --->-->->----------------->
            w  w  w    3w
 ```
+
 - `b`, to move **backward** a word;
+
 ```
         This is a line with example text 
         <----<--<-<---------<---
            b   b b    2b      b
 ```
+
 - `e`, to the **end** of a word;
 - `ge`, to the end of a previous word.
+
 ```
         This is a line with example text 
            <-   <--- ----->   ---->
@@ -136,6 +148,7 @@ You can also move the cursor based on words:
 ```
 
 #### Line Based Movement
+
 - `0`, to move to the start of a line;
 - `^`, to move to the first character of the line;
 - `$`, to move to the end of the line;
@@ -155,6 +168,7 @@ If the cursor is on a `(` it will movet to the matching `)`. If it's on a `)` it
 ```
 
 #### Scrolling Around
+
 - `CTRL-U`, to scroll **up** half a screen of text;
 - `CTRL-D`, to scroll **down** half a screen of text;
 - `CTRL-F`, to scroll **forward** a screen of text;
@@ -193,6 +207,7 @@ If the cursor is on a `(` it will movet to the matching `)`. If it's on a `)` it
 ```
 
 #### Search
+
 - `/{string}`, to search forward `string` in the whole file;
 - `*`, pressing `*` at the word you want to search works just like `/{string}`;
 - `?{string}`, to search word `string` in the whole file;
@@ -202,6 +217,7 @@ Once you searched something, you can use `n` to jump to **next** item, and `N` t
 
 #### Marks
 Vim enables you to place your own marks in the text:
+
 - `mx`, to mark a the place under the cursor as `x`, x can be `a to z`;
 - ``x`, to go to the marked place;
 - `marks`, to place all the marks you can go to.
@@ -217,6 +233,7 @@ You can use the pattern `[operator][count][range]` to change more characters. Fo
         To err is human. you need a computer.
 ```
 And similar usages are:
+
 - `d2e`, means delete 2 words' end;
 
 ```
@@ -240,6 +257,7 @@ And similar usages are:
 
 #### Change Text
 Another operator is `c`, change. It acts just like the `d` operator, but it leaves you in `Insert` mode:
+
 - `cw`, changes a word;
 
 ```
@@ -249,6 +267,7 @@ Another operator is `c`, change. It acts just like the `d` operator, but it leav
 
         To be human
 ```
+
 - `cc`, changes a line and leaves you in `Insert` mode;
 
 
@@ -329,6 +348,7 @@ The `yy` command yanks a whole line, just like `dd` deletes a whole line.
 And stil, you can first use visual mode to select some characters and then yank them.
 
 ##### Other Useful Commands
+
 - `~`: Change case of the character under the cursor;
 - `u`(visual mode): Make selected characters lower case;
 - `U`(visual mode): Make selected characters upper case;
@@ -343,6 +363,7 @@ And stil, you can first use visual mode to select some characters and then yank 
 
 #### Record
 You can record your multiple operators to a register `{0-9a-zA-Z}`.
+
 1. `q{0-9a-zA-Z}` to start recording operators and commands to register `{0-9a-zA-Z}a;` 
 2. `q` to stop recording;
 3. `@{0-9a-zA-Z}` to replay the operators and commands saved in register `{0-9a-zA-Z}`.
@@ -352,12 +373,14 @@ You can record your multiple operators to a register `{0-9a-zA-Z}`.
 Use the pattern `:[range]s/origin_str/replace_str/[flag]` to replace `origin_str` with `replace_str` in `[range]`.
 For example, you can use `:%s/one/two/g` to replace all `one` in the file with `two`.
 The `[range]` can be:
+
 - `%`, means in all lines;
 - `1, 15`, means in `1-15` lines;
 - `., +5`, means from `current` line to `current + 5` line;
 - `5, $`, means from line `5` to the end of file.
 
 And the `[flag]` can be:
+
 - ` `(empty), means only replacing once;
 - `g`, means replacing all;
 - `c`, means you need to comfirm each replacement;
@@ -372,6 +395,7 @@ So far you had to start Vim for every file you wanted to edit. To edit another f
 
 #### Jump Between Files
 After editing another file, the file you edited just now is not closed. Instead, it's stored in a `buff`, you can use:
+
 - `:buffers` or `:ls` to show all the buffers;
 - `:bnext` to jump to next buff;
 - `:bprevious` to jump to previous buff;
@@ -517,6 +541,7 @@ Structured text can be separated in sections. Folding allows you to display a se
 The advantage of folding is that you can get a better overview of the structure of text, by folding lines of a section and replacing it with a line that indicates that there is a section.
 
 Try:
+
 - `zc` to **close** a fold;
 - `zo` to **open** a fold;
 - `zr` to **release** a fold and its sub-fold;
@@ -526,6 +551,7 @@ Try:
 
 ### Code Complete
 Vim can auto complete words according to text.
+
 - `CTRL-n` to complete anything;
 - `CTRL-x CTRL-n` to complete in this file;
 - `CTRL-x CTRL-f` to complete filenames;
@@ -541,6 +567,7 @@ sudo apt install exuberant-ctags
 You can use `ctags -R .` to generate tags of a repo.
 
 Try:
+
 - `CTRL-]` to jump to tag under the cursor;
 - `CTRL-o` or `CTRL-t` to jump back;
 - `:ts` to show all matching items.
@@ -548,6 +575,7 @@ Try:
 ### Communicate With Terminal
 #### Execute Bash Commands
 You can excute a bash command with the pattern `:! [command]`:
+
 - `:! bash build.sh` to build the project;
 - `:! git status` to check the file change.
 
@@ -557,6 +585,7 @@ Some builtin commands are available and useful.
 ##### grep
 `:grep [pattern] -r .` will grep all `pattern` lines and put them in `quickfix` window.
 You can use
+
 - `:cw` to open `quickfix` window;
 - `:cn` to jump to next matching item;
 - `:cp` to jump to previous matching item;
@@ -564,6 +593,7 @@ You can use
 ##### read
 `:read ! [command]` will read the command executing result to cursor position.
 Try:
+
 - `:r ! ls` to copy all filenames to current file;
 - `:r ! date` to copy date to the file.
 
@@ -574,6 +604,7 @@ Try:
 #### Terminal Mode
 The `terminal` feature is supported after `Vim 8.2`. This feature is for running a terminal emulator in a Vim window.
 You can use:
+
 - `:terminal` to create a new terminal window;
 - `:vertical terminal` to create a new vertical terminal window;
 - `CTRL-w h/j/k/l` to jump between terminal windows;
@@ -587,6 +618,7 @@ Generally, if you want to compile a single cpp file, you can use g++. For a larg
 ```
 :! g++ % -g -o out
 ```
+
 - `%` represents for current file, you can replace it with its real name;
 - `-g` to generate symbols for `gdb`;
 - `-o out` to place output to the file `out`;
@@ -601,6 +633,7 @@ If errors were generated, they are captured and the editor positions you where t
 
 For example, `:make -directory=build` will make the project in the folder `build` and put the warnings and errors to `quickfix` window.
 You can use
+
 - `:cw` to open `quickfix` window;
 - `:cn` to jump to next error;
 - `:cp` to jump to previous error;
@@ -618,6 +651,7 @@ After loading source code in current window, you can load the plugin with:
 ```
 
 This will open two other windows:
+
 - gdb window: A terminal window in which `gdb` is executed.
 - program window: A terminal window for the executed program. The output of program will appear here.
 
@@ -640,6 +674,7 @@ This will open two other windows:
 ### General Debug(gdb)
 Firstly, make sure the program you generated contains symbols. 
 If you compile the program with:
+
 - g++, you should add the `-g` option;
 - make, you should add the `-ggdb` option.
 
@@ -651,6 +686,7 @@ file program
 This works the same as any command a gdb running in a terminal.
 
 Some gdb commands:
+
 - `b`: set a break point;
 - `d`: delete a break point;
 - `set args`: set running args;

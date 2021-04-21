@@ -28,6 +28,7 @@ auto seq2 = my_integer_sequence<0, 1, 2>();
 
 ## Folding expressions
 A fold expression performs a fold of a template parameter pack over a binary operator.
+
 - An expression of the form `(... op e)` or `(e op ...)`, where `op` is a fold-operator and `e` is an unexpanded parameter pack, are called unary folds.
 - An expression of the form `(e1 op ... op e2)`, where `op` are fold-operators, is called a binary fold. Either `e1` or `e2` is an unexpanded parameter pack, but not both.
 
@@ -218,6 +219,7 @@ byte e = byte{256}; // ERROR
 
 ## fallthrough, nodiscard, maybe_unused attributes
 C++17 introduces threee new attributes:
+
 - `[[fallthrough]]`: indicates to the compiler that falling through in a switch statement is intended behavior.
 ```C++
 switch (n) {

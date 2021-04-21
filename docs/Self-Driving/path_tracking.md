@@ -12,7 +12,7 @@ The simplest vehicle model for path tracking is the bicycle model, which followi
 These simplifications result in a simple geometric relationship between the front wheel steering angle and the curvature that the rear axle will follow.
 
 Following is the geometri bicycle model:
-![BicycleModel](/images/2019/path_tracking/bicycle_model.png?raw=true)
+![BicycleModel](images/path_tracking/bicycle_model.png)
 
 This simple relationship between front wheel angle and curvature is:
 
@@ -22,15 +22,17 @@ $$
 
 where $\delta$ is the front wheel steering angle, $L$ is the distance between the front axle to rear axle(wheelbase) and $R$ is the radius of the circle that the rear axle will travel along at the given steering angle.
 The bicycle model approximates the motion of a car reasonably well at:
+
 - low speed;
 - moderate steering angle.
 
 ### Control Law
-![Pure Pursuit](/images/2019/path_tracking/pure_pursuit.png?raw=true)
+![Pure Pursuit](images/path_tracking/pure_pursuit.png)
 
 The pure pursuit method consists of geometrically calculating the curvature of a circular arc that connects the rear axle location to a goal point on the path ahead of the vehicle. The goal point is determined from a look-ahead distance $l_d$ from the current rear axle position to the desired path. The goal point $(g_x, g_y)$ is illustrated in the figure. The vehicle's steering angle $\delta$ can be determined using only the goal point location and the angle $\alpha$ between the vehicle's heading vector and the look-ahead vector.
 
 According to the law of sines:
+
 $$
 \frac{l_d}{\sin(2\alpha)} = \frac{R}{\sin(\frac{\pi}{2} - \alpha)}
 $$
@@ -44,6 +46,7 @@ $$
 $$
 
 Using $(1)$ and $(2)$, the pure-pursuit control law is given as:
+
 $$
 \delta = arctan(\frac{2L\sin(\alpha)}{l_d}) \tag3
 $$
@@ -62,11 +65,12 @@ where $l_d$ is the goal point distance, $l_min$ is the minimum look ahead distan
 A short look-ahead distance provides more accurate tracking while a longer distance provides smoother tracking.
 
 Advantage:
+
 - high level robustness;
 - needs little calculation.
 
-
 Disadvantage:
+
 - look-ahead distance is too small will cause instability and too large will cause bigger cross tracking error, the trade off between stability and tracking performance is difficult to balance;
 - a sufficient look-ahead distance will result in `cutting corners` while executting turns on the path;
 - a constant look-ahead distance will only fit a certain curvature and speed.
@@ -76,22 +80,27 @@ The Stanley steering controller was deveoped by the Stanford Racing Team and imp
 
 ### Kinematic Model
 Following is the kinematic model which assumes the vehicle has negligible inertia. This assumption is effective for low speed driving.
-![Kinematic Model](/images/2019/path_tracking/kinematic_model.png?raw=true)
+![Kinematic Model](images/path_tracking/kinematic_model.png)
 
 $v$ is the automobile's speed; $e$ is the cross-track error between desire path and the guiding wheels; $\psi$ is the heading with respect to the closet trajectory segment; $\delta$ is the front wheel steering angle.
 For forward driving, the guiding wheels are front wheels, and the derivative of the cross-track error is:
+
 $$
 \dot e = v \cdot \sin(\psi - \delta) \tag4
 $$
+
 while the steering is mechanically limited to $|\delta| < \delta_{max}$
 The derivative of the yaw angle, the yaw rate, is 
+
 $$
 \dot \psi = - \frac{v \cdot \sin(\delta)} {a + b} \tag5
 $$
+
 where $a$ and $b$ are the distance from the center of gravity(CG) to the front and rear axle.
 
 ### Partial Control Law
 By inspecting Equation (1) and (2), a controller is selected such that the resulting differential equation has a global asymptotically stable equilibrium at zero cross-track error:
+
 $$
 \delta = 
 \begin{cases}
@@ -105,6 +114,7 @@ $$
 
 ### Proof of the Global Asymptotically Stable Equilibrium
 Using the steering control law, there are three regions in the phase space of $e$ and $\psi$: input saturated high, input saturated low and norminal control. When steering command ($\psi + \arctan(\frac{k \cdot e}{v})$) is at the steering limit, the equation of this boundary is as a function of $e$:
+
 $$
 \psi_b = -\arctan(\frac{k \cdot e}{v}) \pm \delta_{max}
 $$
@@ -115,6 +125,7 @@ At this condition, the steering wheel angle is $-\delta_{max}$, considering Equa
 $$
 \dot e = v \cdot \sin(\psi + \delta_{max}) 
 $$
+
 $$
 \dot \psi = \frac{v \cdot \sin(\delta_{max})} {a + b} 
 $$
@@ -127,6 +138,7 @@ At this condition, the steering wheel angle is $\delta_{max}$, considering Equat
 $$
 \dot e = v \cdot \sin(\psi - \delta_{max}) 
 $$
+
 $$
 \dot \psi = -\frac{v \cdot \sin(\delta_{max})} {a + b} 
 $$
@@ -135,6 +147,7 @@ Because $\delta_{max} > 0$, $\dot\psi < 0$ in this region, and is constant, $\ps
 
 #### For the Nominal Region
 Substituting Equation (5) into Equation (1) we get:
+
 $$
 \dot e = - v \cdot \sin(\arctan(\frac{ke}{v})) = \frac{-ke}{\sqrt{1 + {\frac{ke}{v}}^2}} \tag7
 $$
@@ -146,18 +159,23 @@ Inside the nominal region, the sign of $\dot e$ is always opposite to $e$, and f
 #### Yaw Damping
 Using the controller as Equation (6), the tires act as dampers, providing reaction forces to sideways velocities. At low speeds, this stabilities the yaw dynamics, however the magnitude of this reaction is inversely proportional to speed. As speed increase, the damping effect diminishes, creating a need for active damping.
 Thus 
+
 $$k_{d,yaw}(r_{meas} - r_{traj})$$ 
+
 is added to the steering command, where the $k_{d,yaw}$ is a tuned gain, $r_{traj}$ is the yaw rate for the trajectory, and $r_{meas}$ is the measured yaw rate.
 
 #### Actuator
 The controller commands a steering servo, but time delay and overshot in the servo can cause instablility. One way to prevent this is to add 
+
 $$
 k_{d,steer}(\delta_{meas}(i) - \delta_{meas}(i + 1))
 $$
+
 to the steering command, where $\delta_{meas}$ is the discrete time measurement of the steering angle, and i is the index of the measurement one control period earlier. This provides lead control on the software side. The value of $k_{d,steer}$ is tuned to be large enough to damp the steering wheel response, but small enough to have minimal effect on performance.
 
 #### Curvy Road
 Automobiles point inward on curves, to generate lateral acceleration with the front and rear tires. The controller yaw setpoint should be non-zero. The steady state yaw, $\psi_{ss}$, relative to a constant curvature path, can be found using sums of forces and moments, yielding
+
 $$
 \psi_{ss} = \frac{mvr_{traj}}{C_y(1 + \frac{a}{b})} = k_{ag}vr_{traj} /tag8
 $$
@@ -167,9 +185,11 @@ One final modification for driving at low speed prevents the gain term $\frac{k}
 
 ### Final Control Law
 So, the complete steering law is
+
 $$
 \delta = (\psi - \psi_{ss}) + \arctan(\frac{ke}{k_{soft} + v}) + k_{d,yaw}(r_{meas} - r_{traj}) + k_{d,steer}(\delta_{meas}(i) - \delta_{meas}(i + 1))
 $$
+
 with saturation at $\pm\delta_{max}$.
 
 

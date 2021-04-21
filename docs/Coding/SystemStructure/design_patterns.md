@@ -4,6 +4,7 @@ You can't just find a pattern and copy it into your problem, the way you can wit
 
 ## Benefits
 Why should we spend time learning design patterns?
+
 - Design patterns are a toolkit of `tried and tested solutions` to common problems in software design. Even if you never encounter those problems, knowing patterns is still useful because it teaches you how to solve all sorts of problems using principles of object-oriented design.
 - Design patterns define a common language that you and your teammates can use to communicate more efficiently. You can say "just use a Singleton for that", and everyone will understand the idea behind your suggestion. No need to explain what a singleton is if you know the pattern and its name.
 
@@ -15,6 +16,7 @@ The most basic and low-level patterns are often called `idioms`. They usually ap
 The most universal and high-level patterns are architectural patterns. Developers can implement these patterns in virtually any language. Unlike other patterns, they can be used to design the architecture of an entire application.
 
 In addition, all patterns can be categorized by their `intent`, we cover three main groups of patterns:
+
 - `Creational patterns`, provide object creation mechanisms that increase flexibility and reuse of existing code.
 - `Structural patterns`, explain how to assemble objects and classes into large structures, while keeping the structures flexible and efficient.
 - `Behavioral patterns`, take care of effective communication and the assignment of responsibilities between objects.
@@ -37,11 +39,13 @@ Note, despite its name, product creation is not the primary responsibility of th
 Note that the factory method doesn’t have to create new instances all the time. It can also return existing objects from a cache, an object pool, or another source.
 
 #### Advantage
+
 - You avoid tight coupling between the creator and the concrete products.
 - `Single Responsiblity Principle`. You can move the product creation code into one place in the program, making the code easier to support.
 - `Open/Close Principle`. You can introduce new types of products into the program without breaking existing client code.
 
 #### Disadvantage
+
 - The code may become more complicated since you need to introduce a lot of new subclasses to implement the pattern. The best case scenario is when you're introducing the pattern into an existing hierarchy of creator classes.
 
 ### Abstract Factory
@@ -49,6 +53,7 @@ Abstract Factory is a creational design pattern that lets you produce families o
 
 #### Structure
 ![abstract_factory](images/design_pattern/abstract_factory.png?raw=true)
+
 - `Abstract Products` declare interfaces for a set of distinct but related products which make up a product family.
 - `Concrete Products` are various implementations of abstract products, grouped by variants. Each abstract product (chair/sofa) must be implemented in all given variants (Victorian/Modern).
 - The `Abstract Factory` interface declares a set of methods for creating each of the abstract products.
@@ -56,12 +61,14 @@ Abstract Factory is a creational design pattern that lets you produce families o
 - Although concrete factories instantiate concrete products, signatures of their creation methods must return corresponding abstract products. This way the client code that uses a factory doesn’t get coupled to the specific variant of the product it gets from a factory. The Client can work with any concrete factory/product variant, as long as it communicates with their objects via abstract interfaces.
 
 #### Advantage
+
 - You can be sure that the products you're getting from a factory are compatible with each other.
 - You avoid tight coupling between the creator and the concrete products.
 - `Single Responsiblity Principle`. You can move the product creation code into one place in the program, making the code easier to support.
 - `Open/Close Principle`. You can introduce new types of products into the program without breaking existing client code.
 
 #### Disadvantage
+
 - The code may become more complicated since you need to introduce a lot of new subclasses to implement the pattern. The best case scenario is when you're introducing the pattern into an existing hierarchy of creator classes.
 
 ### Builder
@@ -69,6 +76,7 @@ Builder is a creational design pattern that lets you construct complex objects s
 
 #### Structure
 ![builder](images/design_pattern/builder.png?raw=true)
+
 - The `Builder` interface declares product construction steps that are common to all types of builders.
 - `Concrete Builders` provide different implementations of the construction steps. Concrete builders may produce products that don’t follow the common interface.
 - `Products` are resulting objects. Products constructed by different builders don’t have to belong to the same class hierarchy or interface.
@@ -76,11 +84,13 @@ Builder is a creational design pattern that lets you construct complex objects s
 - The `Client` must associate one of the builder objects with the director. Usually, it’s done just once, via parameters of the director’s constructor. Then the director uses that builder object for all further construction. However, there’s an alternative approach for when the client passes the builder object to the production method of the director. In this case, you can use a different builder each time you produce something with the director.
 
 #### Advantage
+
 - You can construct objects step-by-step, defer construction steps or run steps recursively.
 - You can reuse the same construction code when building various representations of products.
 - `Single Responsibility Principle`. You can isolate complex construction code from the business logic of the product.
 
 #### Disadvantage
+
 - The overall complexity of the code increases since the pattern requires creating multiple new classes.
 
 ### Prototype
@@ -88,17 +98,20 @@ Prototype is a creational design pattern that lets you copy existing objects wit
 
 #### Structure
 ![prototype](images/design_pattern/prototype.png?raw=true)
+
 - The `Prototype` interface declares the cloning methods. In most cases, it’s a single `clone` method.
 - The `Concrete Prototype` class implements the cloning method. In addition to copying the original object’s data to the clone, this method may also handle some edge cases of the cloning process related to cloning linked objects, untangling recursive dependencies, etc.
 - The `Client` can produce a copy of any object that follows the prototype interface.
 
 #### Advantage
+
 - You can clone objects without coupling to their concrete classes.
 - You can get rid of repeated initialization code in favor of cloning pre-built prototypes.
 - You can produce complex objects more conveniently.
 - You get an alternative to inheritance when dealing with configuration presets for complex objects.
 
 #### Disadvantage
+
 - Cloning complex objects that have circular references might be very tricky.
 
 ### Singleton
@@ -106,15 +119,18 @@ Signleton is a creational design pattern that lets you ensure a class has only o
 
 #### Structure
 ![singleton](images/design_pattern/singleton.png?raw=true)
+
 - The `Singleton` class declares the static method `getInstance` that returns the same instance of its own class.
 The Singleton's constructor should be hidden from the client code. Calling the `getInstance` method should be the only way of getting the Singleton object.
 
 #### Advantage
+
 - You can be sure that a class has only a single instance.
 - You gain a global access point to that instance.
 - The singleton object is initialized only when it's requested for the first time.
 
 #### Disadvantage
+
 - Violates the `Single Responsibility Principle`. The pattern solves two problems at the time.
 - The Singleton pattern can mask bad design, for instance, when components of the program know too much about each other.
 - The pattern requires special treatment in a multithreaded environment so that multiple threads won't create a singleton object several times.
@@ -128,6 +144,7 @@ Adapter allows objects with incompatible interfaces to collaborate.
 
 #### Strucure
 ![adapter](images/design_pattern/adapter.png?raw=true)
+
 - The `Client` is a class that contains the existing business logic of the program.
 - The `Client Interface` describes a protocol that other classes must follow to be able to collaborate with the client code.
 - The `Service` is some useful class (usually 3rd-party or legacy). The client can’t use this class directly because it has an incompatible interface.
@@ -135,10 +152,12 @@ Adapter allows objects with incompatible interfaces to collaborate.
 - The client code doesn’t get coupled to the concrete adapter class as long as it works with the adapter via the client interface. Thanks to this, you can introduce new types of adapters into the program without breaking the existing client code. This can be useful when the interface of the service class gets changed or replaced: you can just create a new adapter class without changing the client code.
 
 #### Advantage
+
 - `Single Responsibility Principle`.
 - `Open/Close Principle`.
 
 #### Disadvantage
+
 - The overall complexity of the code increases becuase you need to introduce a set of new interfaces and classes. Sometimes it's simpler just to change the service class so that it matches the rest of your code.
 
 ### Bridge
@@ -146,6 +165,7 @@ Bridge lets you split a large class or a set of closely related classes into two
 
 #### Structure
 ![bridge](images/design_pattern/bridge.png?raw=true)
+
 - The `Abstraction` provides high-level control logic. It relies on the implementation object to do the actual low-level work.
 - The `Implementation` declares the interface that’s common for all concrete implementations. An abstraction can only communicate with an implementation object via methods that are declared here.
 The abstraction may list the same methods as the implementation, but usually the abstraction declares some complex behaviors that rely on a wide variety of primitive operations declared by the implementation.
@@ -154,12 +174,14 @@ The abstraction may list the same methods as the implementation, but usually the
 - Usually, the `Client` is only interested in working with the abstraction. However, it’s the client’s job to link the abstraction object with one of the implementation objects.
 
 #### Advantage
+
 - You can create platform-independent classes and apps.
 - The client code works with high-level abstractions. It isn't exposed to the platform details.
 - `Open/Close Principle`.
 - `Single Responsibility Principle`.
 
 #### Disadvantage
+
 - You might make the code more complicated by applying the pattern to a highly cohesive class.
 
 ### Composite
@@ -167,6 +189,7 @@ Composite lets you compose objects into tree structures and then work with these
 
 #### Structure
 ![composite](images/design_pattern/composite.png?raw=true)
+
 - The `Component` interface describes operations that are common to both simple and complex elements of the tree.
 - The `Leaf` is a basic element of a tree that doesn’t have sub-elements.
 Usually, leaf components end up doing most of the real work, since they don’t have anyone to delegate the work to.
@@ -175,10 +198,12 @@ Upon receiving a request, a container delegates the work to its sub-elements, pr
 - The `Client` works with all elements through the component interface. As a result, the client can work in the same way with both simple or complex elements of the tree.
 
 #### Advantage
+
 - You can work with complex tree structures more conveniently: use polymorphism and recursion to your advantage.
 - `Open/Close Principle`.
 
 #### Disadvantage
+
 - It might be difficult to provide a common interface for classes whose functionality differs too much. In certain scenarios, you'd need to overgeneralize the component interface, making it harder to comprehend.
 
 ### Decrator(Wrapper)
@@ -186,6 +211,7 @@ Decorator lets you attach new behaviors to objects by placing these objects insi
 
 #### Structure
 ![decorator](images/design_pattern/decorator.png?raw=true)
+
 - The `Component` declares the common interface for both wrappers and wrapped objects.
 - `Concrete Component` is a class of objects being wrapped. It defines the basic behavior, which can be altered by decorators.
 - The `Base Decorator` class has a field for referencing a wrapped object. The field’s type should be declared as the component interface so it can contain both concrete components and decorators. The base decorator delegates all operations to the wrapped object.
@@ -193,12 +219,14 @@ Decorator lets you attach new behaviors to objects by placing these objects insi
 - The `Client` can wrap components in multiple layers of decorators, as long as it works with all objects via the component interface.
 
 #### Advantage
+
 - You can extand an object's behavior without making a new subclass.
 - You can add or remove resonsibilities from an object at runtime.
 - You can combine several behaviors by wrapping an object into multiple decorates.
 - `Single Responsibility Principle`.
 
 #### Disadvantage
+
 - It's hard to remove a specific wrapper from the wrapper stack.
 - It's hard to implement a decorator in such a way that its behavior doesn't depend on the order in the decorators stack.
 - The initial configuration code of layers might look pretty ugly.
@@ -208,6 +236,7 @@ Facade provides a simplified interface to a library, a framework, or any other c
 
 #### Structure
 ![facade](images/design_pattern/facade.png?raw=true)
+
 - The `Facade` provides convenient access to a particular part of the subsystem’s functionality. It knows where to direct the client’s request and how to operate all the moving parts. 
 - An `Additional Facade` class can be created to prevent polluting a single facade with unrelated features that might make it yet another complex structure. Additional facades can be used by both clients and other facades.
 - The `Complex Subsystem` consists of dozens of various objects. To make them all do something meaningful, you have to dive deep into the subsystem’s implementation details, such as initializing objects in the correct order and supplying them with data in the proper format.
@@ -225,6 +254,7 @@ Flyweight lets you fit more objects into the available amount of RAM by sharing 
 
 #### Structure
 ![flyweight](images/design_pattern/flyweight.png?raw=true)
+
 - The Flyweight pattern is merely an optimization. Before applying it, make sure your program does have the RAM consumption problem related to having a massive number of similar objects in memory at the same time. Make sure that this problem can’t be solved in any other meaningful way.
 - The `Flyweight` class contains the portion of the original object’s state that can be shared between multiple objects. The same flyweight object can be used in many different contexts. The state stored inside a flyweight is called *intrinsic*. The state passed to the flyweight’s methods is called *extrinsic*.
 - The `Context class` contains the extrinsic state, unique across all original objects. When a context is paired with one of the flyweight objects, it represents the full state of the original object.
@@ -244,6 +274,7 @@ Proxy lets you provide a substitute or placeholder for another object. A proxy c
 
 #### Structure
 ![proxy](images/design_pattern/proxy.png?raw=true)
+
 - The `Service Interface` declares the interface of the Service. The proxy must follow this interface to be able to disguise itself as a service object.
 - The `Service` is a class that provides some useful business logic.
 - The `Proxy` class has a reference field that points to a service object. After the proxy finishes its processing (e.g., lazy initialization, logging, access control, caching, etc.), it passes the request to the service object.
@@ -251,6 +282,7 @@ Usually, proxies manage the full lifecycle of their service objects.
 - The `Client` should work with both services and proxies via the same interface. This way you can pass a proxy into any code that expects a service object.
 
 #### Advantage
+
 - You can control the service object without clients knowing about it.
 - You can manage the lifecycle of the service object when clients don't care about it.
 - The proxy works even if the service object isn't ready or is not available.
@@ -267,6 +299,7 @@ Chain of Responsibility is a behavioral design pattern that lets you pass reques
 
 #### Structure
 ![chain](images/design_pattern/chain.png?raw=true)
+
 - The `Handler` declares the interface, common for all concrete handlers. It usually contains just a single method for handling requests, but sometimes it may also have another method for setting the next handler on the chain.
 - The `Base Handler` is an optional class where you can put the boilerplate code that’s common to all handler classes.
 Usually, this class defines a field for storing a reference to the next handler. The clients can build a chain by passing a handler to the constructor or setter of the previous handler. The class may also implement the default handling behavior: it can pass execution to the next handler after checking for its existence.
@@ -287,6 +320,7 @@ Command turns a request into a stand-alone object that contains all information 
 
 #### Structure
 ![command](images/design_pattern/command.png?raw=true)
+
 - The `Sender` class (aka invoker) is responsible for initiating requests. This class must have a field for storing a reference to a command object. The sender triggers that command instead of sending the request directly to the receiver. Note that the sender isn’t responsible for creating the command object. Usually, it gets a pre-created command from the client via the constructor.
 - The `Command` interface usually declares just a single method for executing the command.
 - `Concrete Commands` implement various kinds of requests. A concrete command isn’t supposed to perform the work on its own, but rather to pass the call to one of the business logic objects. However, for the sake of simplifying the code, these classes can be merged.
@@ -309,6 +343,7 @@ Iterator lets you traverse elements of a collection without exposing its underly
 
 #### Structure
 ![iterator](images/design_pattern/iterator.png?raw=true)
+
 - The `Iterator` interface declares the operations required for traversing a collection: fetching the next element, retrieving the current position, restarting iteration, etc.
 - `Concrete Iterators` implement specific algorithms for traversing a collection. The iterator object should track the traversal progress on its own. This allows several iterators to traverse the same collection independently of each other.
 - The `Collection` interface declares one or multiple methods for getting iterators compatible with the collection. Note that the return type of the methods must be declared as the iterator interface so that the concrete collections can return various kinds of iterators.
@@ -331,6 +366,7 @@ Mediator lets you reduce chaotic dependencies between objects. The pattern restr
 
 #### Structure
 ![mediator](images/design_pattern/mediator.png?raw=true)
+
 - `Components` are various classes that contain some business logic. Each component has a reference to a mediator, declared with the type of the mediator interface. The component isn’t aware of the actual class of the mediator, so you can reuse the component in other programs by linking it to a different mediator.
 - The `Mediator` interface declares methods of communication with components, which usually include just a single notification method. Components may pass any context as arguments of this method, including their own objects, but only in such a way that no coupling occurs between a receiving component and the sender’s class.
 - `Concrete Mediators` encapsulate relations between various components. Concrete mediators often keep references to all components they manage and sometimes even manage their lifecycle.
@@ -351,6 +387,7 @@ Memento lets you save and restore the previous state of an object without reveal
 
 #### Structure
 ![memento](images/design_pattern/memento.png?raw=true)
+
 - The `Originator` class can produce snapshots of its own state, as well as restore its state from snapshots when needed.
 - The `Memento` is a value object that acts as a snapshot of the originator’s state. It’s a common practice to make the memento immutable and pass it the data only once, via the constructor.
 - The `Caretaker` knows not only “when” and “why” to capture the originator’s state, but also when the state should be restored.
@@ -370,6 +407,7 @@ A caretaker can keep track of the originator’s history by storing a stack of m
 Observer lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they're observing. 
 #### Structure
 ![observer](images/design_pattern/observer.png?raw=true)
+
 - The `Publisher` issues events of interest to other objects. These events occur when the publisher changes its state or executes some behaviors. Publishers contain a subscription infrastructure that lets new subscribers join and current subscribers leave the list.
 - When a new event happens, the publisher goes over the subscription list and calls the notification method declared in the subscriber interface on each subscriber object.
 - The `Subscriber` interface declares the notification interface. In most cases, it consists of a single `update` method. The method may have several parameters that let the publisher pass some event details along with the update.
@@ -388,6 +426,7 @@ State lets an object alter its behavior when its internal state changes. It appe
 
 #### Structure
 ![state](images/design_pattern/state.png?raw=true)
+
 - `Context` stores a reference to one of the concrete state objects and delegates to it all state-specific work. The context communicates with the state object via the state interface. The context exposes a setter for passing it a new state object.
 - The `State` interface declares the state-specific methods. These methods should make sense for all concrete states because you don’t want some of your states to have useless methods that will never be called.
 - `Concrete States` provide their own implementations for the state-specific methods. To avoid duplication of similar code across multiple states, you may provide intermediate abstract classes that encapsulate some common behavior.
@@ -407,6 +446,7 @@ Strategy lets you define a family of algorithms, put each of them into a separat
 
 #### Structure
 ![strategy](images/design_pattern/strategy.png?raw=true)
+
 - The `Context` maintains a reference to one of the concrete strategies and communicates with this object only via the strategy interface.
 - The `Strategy` interface is common to all concrete strategies. It declares a method the context uses to execute a strategy.
 - `Concrete Strategies` implement different variations of an algorithm the context uses.
@@ -429,6 +469,7 @@ Template Method defines the skeleton of an algorithm in the superclass but lets 
 
 #### Structure
 ![template](images/design_pattern/template.png?raw=true)
+
 - The `Abstract Class` declares methods that act as steps of an algorithm, as well as the actual template method which calls these methods in a specific order. The steps may either be declared `abstract` or have some default implementation.
 - `Concrete Classes` can override all of the steps, but not the template method itself.
 
@@ -446,6 +487,7 @@ Visitor lets you separate algorithms from the objects on which they operate.
 
 #### Structure
 ![visitor](images/design_pattern/visitor.png?raw=true)
+
 - The `Visitor` interface declares a set of visiting methods that can take concrete elements of an object structure as arguments. These methods may have the same names if the program is written in a language that supports overloading, but the type of their parameters must be different.
 - Each `Concrete Visitor` implements several versions of the same behaviors, tailored for different concrete element classes.
 - The `Element` interface declares a method for “accepting” visitors. This method should have one parameter declared with the type of the visitor interface.

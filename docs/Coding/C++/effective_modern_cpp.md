@@ -18,18 +18,19 @@ This is a summary of the book "Effective Modern C++" which gives 42 specific way
 - C++14 supports `decltype(auto)`, which, like auto, deduces a type from its initializer, but it performs the type deduction using the `decltype` rules.
 
 ## 4. Know how to view deduced types.
+
 - Deduced types can often be seen using:
- - IDE editors,
- - compiler error messages,
- - Boost TypeIndex library.
+    - IDE editors,
+    - compiler error messages,
+    - Boost TypeIndex library.
 - The results of some tools may be neither helpful nor accurate, so an understanding of C++'s type deduction rules remains essential.
 
 ## 5. Prefer `auto` to explicit type declarations.
 - The advances are:
- - `auto` variables must be initialized,
- - immune to type mismatches that can lead to portability or efficiency problems,
- - can ease the process of refactoring,
- - require less typing than variables with explicitly specified types.
+    - `auto` variables must be initialized,
+    - immune to type mismatches that can lead to portability or efficiency problems,
+    - can ease the process of refactoring,
+    - require less typing than variables with explicitly specified types.
 - `auto`-typed variables are subject to the pitfalls described in iterm 2 and 6.
 
 ## 6. Use the explicitly typed initializer idiom when auto deduces undesired types.
@@ -84,12 +85,12 @@ This is a summary of the book "Effective Modern C++" which gives 42 specific way
 
 ## 17. Understand special member function generation.
 - The special member functions are those compilers may generate on their own:
- - default constructor,
- - destructor,
- - copy constructor,
- - copy operator,
- - move constructor,
- - move operator
+    - default constructor,
+    - destructor,
+    - copy constructor,
+    - copy operator,
+    - move constructor,
+    - move operator
 - Move operations are generated only for classes lacking explicitly declared move operations, copy operations and a destructor.
 - The copy operations are generated only for classes lacking an explicitly declared copy operations, and it's deleted if a move operation is declared.
 - Member function templates never suppress generation of special member functions.
@@ -113,8 +114,8 @@ This is a summary of the book "Effective Modern C++" which gives 42 specific way
 - Compared to direct use of `new`, `make` functions eliminate source code duplication, improve exception safety, and, for `std::make_shared` and `std::allocate_shared, generate coee that's smaller and faster.`
 - Situations where use of `make` functions is inappropriate include the need to specify custom deleters and a desire to pass braced initializers.
 - For `std::shared_ptr`s, additional situations where `make` functions may be ill-advised include:
- - classes with custom memory management,
- - systems with memory concerns, very large objects, and `std::weak_ptr`s that outlive the corresponding `std::shared_ptr`s.
+    - classes with custom memory management,
+    - systems with memory concerns, very large objects, and `std::weak_ptr`s that outlive the corresponding `std::shared_ptr`s.
 
 ## 22. When using the Pimpl(Pointer to implementation) Idiom, define special member functions in the implementation file.
 - The Pimpl Idiom decreases build times by reducing compilation dependencies between class clients and class implementations.
@@ -142,19 +143,19 @@ This is a summary of the book "Effective Modern C++" which gives 42 specific way
 
 ## 27. Familiarize yourselff with alternatives to overloading on universal references.
 - Alternatives to the combination of universal references and overloading include:
- - the use of distinct function names,
- - passing parameters by lvalue-reference-to-cost,
- - passing parameters by value,
- - using tag dispatch.
+    - the use of distinct function names,
+    - passing parameters by lvalue-reference-to-cost,
+    - passing parameters by value,
+    - using tag dispatch.
 - Constraining template via `std::enable_if` permits the use of universal references and  overloading together, but it controls the conditions under which compilers may use the universal reference overloads.
 - Universal reference parameters often have efficiency advantages, but they typically have usability diadvantages.
 
 ## 28. Understand reference collapsing.
 - Reference collapsing occurs in four contexts:
- - template instantiation,
- - `auto` type generation,
- - creation and use of `typedef`s and alias declarations,
- - `decltype`
+    - template instantiation,
+    - `auto` type generation,
+    - creation and use of `typedef`s and alias declarations,
+    - `decltype`
 - When compilers generate a reference to a reference in a reference collapsing context, the result becomes a single reference. If either of the original references is an lvalue reference, the result is an lvalue reference. Otherwise it's an rvalue reference.
 - Universaal references are rvalue references in contexts where type deduction distinguishes lvalues from rvalues and where reference collapsing occurs.
 
@@ -165,11 +166,11 @@ This is a summary of the book "Effective Modern C++" which gives 42 specific way
 ## 30. Familiarize yourself with perfect forwarding failure cases.
 - Perfect forwarding fails when template type deduction fails or when it deduces the wrong type.
 - The kinds of arguments that lead to perfect forwarding failure are:
- - braced initializers,
- - null pointers expressed as `0` or `NULL`,
- - declaration-only integral `const static` data members,
- - template and overloaded function names,
- - bitfields.
+    - braced initializers,
+    - null pointers expressed as `0` or `NULL`,
+    - declaration-only integral `const static` data members,
+    - template and overloaded function names,
+    - bitfields.
 
 ## 31. Avoid default capture modes.
 - Default by-reference capture can lead to dangling references.
@@ -178,8 +179,8 @@ This is a summary of the book "Effective Modern C++" which gives 42 specific way
 ## 32. Use init capture to move objects into closures.
 - Use C++14's init capture to move objects into closures.
 - In C++11, emulate init capture via:
- - hand-written classes,
- - `std::bind`
+    - hand-written classes,
+    - `std::bind`
 
 ## 33. Use `decltype` on `auto&&` parameters to `std::forward` them.
 - Use `decltype` on `auto&&` parameters to `std::forward` them.
@@ -225,9 +226,9 @@ This is a summary of the book "Effective Modern C++" which gives 42 specific way
 ## 42. Consider emplacement instead of insertion.
 - In principle, emplacement functions should sometimes be more efficient than their insertion counterparts, and they should never be less efficient.
 - In practice, they're most likely to be faster when:
- - the value being added is constructed into the container, not assigned;
- - the argment types passed differ from the type held by the container;
- - the container won't reject the value being added due to it being a duplicate.
+    - the value being added is constructed into the container, not assigned;
+    - the argment types passed differ from the type held by the container;
+    - the container won't reject the value being added due to it being a duplicate.
 - Emplacement functions may perfrom type conversions that would be rejected by insertion functions.
 
 ## Reference

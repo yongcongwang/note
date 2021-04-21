@@ -2,7 +2,7 @@ For self-driving vehicle, it's important to reliably predict the movement of tra
 
 We have many neural networks to predict obstacle on lane, but for obstacles which are not on lane, we now have poor method to predict them.
 
-# Current predictor for obstacles not on lane
+## Current predictor for obstacles not on lane
 If an obstacle(vehicle/bicycle/pedestrian) is not on lane, we use a `FreeMovePredictor` to predict its trajectory. `FreeMovePredictor` assumes that the obstacle always moves with constant acceleration, the state is:
 $$
 \begin{bmatrix}
@@ -33,12 +33,12 @@ To solve these problems and imporve the prediction accuracy off lane, we use
 - constant velocity kalman filter to predict pedestrian;
 - interacting multiple model(IMM) of constant velocity(cv), constant acceleration(ca) and constant turn rate(ct) to predict vehicle and bicycle.
 
-# Kalman filter
+## Kalman filter
 In 1960, R.E. Kalman published his famous paper describing a recursive solution to the discent-data linear filtering problem. Since that time, due in large part to advances in digital computing, the Kalman filter has been the subject of extensive research and application, particularly in the area of autonomous or assisted navigation.
 
 The Kalman filter is a set of mathematical equations that provides an efficient computational (recursive) means to estimate the state of a process, in a way that minimizes the mean of the squared error. The filter is very powerful in several aspects: it supports estimations of past, present, and even future states, and it can do so even when the precise nature of the modeled system is unknown.
 
-## The process to be estimated
+### The process to be estimated
 The Kalman filter addresses the general problem of trying to estimate the state $x \in \Re^n$ of a discrete-time controlled process that is governed by the linear stochastic difference equation:
 $$
 x_k = Ax_{k-1} + Bu_{k-1} + w_{k-1} \tag1
@@ -60,7 +60,7 @@ p(v) \sim N(0, R) \tag4
 $$
 where the $Q$ is `process noise covariance` and R is `measurement noise convariance`, they might change with each time step or measurement, but we assume that they are constant.
 
-## The computational origin of the filter
+### The computational origin of the filter
 We define $\hat{x}\_k^- \in \Re^n$ to be our `priori state` estimate at step $k$ given knowledge of the process prior to step $k$ and $\hat{x}\_k \in \Re^n$ to be our `posteriori state` estimate at step $k$ given measurement $z_k$. We can then define a `priori` and a `posteriori` estimate errors as:
 $$
 e\_k^- \equiv x\_k - \hat{x}\_k^- \tag5
@@ -112,7 +112,7 @@ $$
 
 Another way of thinking about the weighting by $K$ is that as the measurement error covariance $R \to 0$, the actual measurement $z_k$ is `trusted` more and more, while the predicted measurement $H\hat{x}_k^-$ is trusted less and less. On the other hand, as the `priori` estimate error covariance $P_k^- \to 0$ the actual measurement $z_k$ is trusted less and less, while the predicted measurement $H\hat{x}_k^-$ is trusted more and more.
 
-## The discrete kalman filter algorithm
+### The discrete kalman filter algorithm
 The Kalman filter estimate a process by using a form of feedback control: the filter estimates the process state at some time and then obtains feedback in the form of (noisy) measurement. As such, the equations for the Kalman filter falls into two groups:
 - `time update`(predict) equations;
 - `measurement update`(correct) equations.
@@ -166,20 +166,20 @@ where:
 - $\hat{x}_k$ is the `posteriori` state from time step $k$;
 - $P_k$ is the `posteriori` estimate error covariance from time step $k$.
 
-## Filter prameters and tunning
+### Filter prameters and tunning
 In the actual implementation of the filter, the measurement noise covariance $R$ is usually measured prior to operation of the filter. Measuring the measurement error covariance $R$ is generally practical (possible) because we need to be able to measure the process anyway (while operating the filter) so we should generally be able to take some off-line sample measurements in order to determine the variance of the measurement noise.
 
 The determination of the process noise covariance $Q$ is generally more difficult as we typically do not have the ability to directly observe the process we are estimating. Sometimes a relatively simple (poor) process model can produce acceptable results if one “injects” enough uncertainty into the process via the selection of $Q$. Certainly in this case one would hope that the process measurements are reliable.
 
 In either case, whether or not we have a rational basis for choosing the parameters, often times superior filter performance (statistically speaking) can be obtained by `tuning` the filter parameters $Q$ and $R$. The tuning is usually performed off-line, frequently with the help of another (distinct) Kalman filter in a process generally referred to as `system identification`.
 
-# Dynamic model
+## Dynamic model
 The motion of a target object(pedestrian or vehicle) can be modeled as:
 - Moving with constant speed(CV) in straight;
 - Moving with constant acceleration(CA) in straight;
 - Moving with constant turn(CT).
 
-## CV model
+### CV model
 For this model, the states under consideration are:
 $$
 X = \begin{bmatrix} x \\\\ \dot{x} \\\\ y \\\\ \dot{y} \end{bmatrix}
@@ -202,7 +202,7 @@ A_{CV} =
 \end{bmatrix}
 $$
 
-## CA model
+### CA model
 For this model, the states under consideration are:
 $$
 X = \begin{bmatrix} 
@@ -236,7 +236,7 @@ A_{CA} =
 \end{bmatrix}
 $$
 
-## CT model
+### CT model
 For this model, the states under consideration are:
 $$
 X = \begin{bmatrix} 
@@ -267,10 +267,10 @@ A_{CT} =
 \end{bmatrix}
 $$
 
-## Simulation for kalman filter
+### Simulation for kalman filter
 To check if the algorithm is correct, we build the equation of kalman in python.
 
-### Kalman filter
+#### Kalman filter
 ```python
 class kalman_filter:
     def __init__(self, A, B, H, Q, R):
@@ -303,7 +303,7 @@ class kalman_filter:
         self.P = self.P_pre - np.dot(np.dot(K, self.H), self.P_pre)
 ```
 
-### Constant velocity model
+#### Constant velocity model
 ```python
 def kf_cv():
     A = np.array([
@@ -328,7 +328,7 @@ def kf_cv():
 The simulation result:
 ![cv](/images/2020/imm/cv.png)
 
-### Constant acceleration model
+#### Constant acceleration model
 ```python
 def kf_ca():
     A = np.array([
@@ -355,7 +355,7 @@ def kf_ca():
 The simulation result:
 ![ca](/images/2020/imm/ca.png)
 
-### Constant turn rate model
+#### Constant turn rate model
 ```python
 def kf_ct():
     dtheta = math.pi / 180 * 15
@@ -382,7 +382,7 @@ def kf_ct():
 The simulation result:
 ![ct](/images/2020/imm/ct.png)
 
-# Interacting multiple model
+## Interacting multiple model
 The IMM estimator was originally proposed by Bloom in [An efficient filter for abruptly changing systems](https://ieeexplore.ieee.org/document/4047965). It is one of the most cost-effective class of estimators for a single maneuvering target. The IMM has been receiving special attention in the last few years, due to its capability of being combined with other algorithms to resolve the multiple target tracking problem.
 
 The main idea of imm is the identification and transition between different models: at every tracking moment, by setting weight-coefficient and probability for each filter, and finally weighting calculation, we obtain the current optimal estimation state.
@@ -422,7 +422,7 @@ $$
 U = \begin{bmatrix} u_1 & \cdots & u_{r} \end{bmatrix}
 $$
 
-## Step1: Input mix
+### Step1: Input mix
 $$
 X^{0j}\_{k-1|k-1} = \sum_{i=1}^{r}{X^j_{k-1|k-1}\mu^{ij}\_{k-1|k-1}}
 $$
@@ -446,10 +446,10 @@ where
 - $\mu_{k-1}^j$ is the probabiltiy of model $j$ at time $k-1$;
 - $p_{ij}$ is the probability of a transition from model $i$ to $j$.
 
-## Step2: Model estimate
+### Step2: Model estimate
 It's the same as normal kalman filter.
 
-## Step3: Probability update
+### Step3: Probability update
 With the use of the latest measurement $z_k$, the likelihood function value of the model $j$ at time $k$ is given by:
 $$
 \Lambda_k^j = N(z_k;z_{k|k-1}^j,v_k^j) = \begin{vmatrix} 2\pi S_k^j\end{vmatrix}^{-\frac{n_z}{2}} \cdot e^{-\frac{1}{2}(z_k - z_{k|k-1}^j)^T S_k^j (z_k-z_{k|k-1}^j)}
@@ -469,7 +469,7 @@ $$
 C = \sum_{i=1}^r{\Lambda_k^jCi}
 $$
 
-## Step4: Output Integration
+### Step4: Output Integration
 Finally, the state estimate $\hat{x}\_{k|k}$ and corresponding covariance $P_{k|k}$ are obtained by the model-conditional estimates and covariances of different models:
 $$
 \hat{x}\_{k|k} = \sum_{j=1}^r{\mu_{k|k}^j\hat{x}\_{k|k}^j}
@@ -479,10 +479,10 @@ $$
 P_{k|k} = \sum_{j=1}^r{\mu_{k|k}^j}(P_{k|k}^j + (\hat{x}\_{k|k}^j-\hat{x}\_{k|k})(\hat{x}\_{k|k}^j-\hat{x}\_{k|k})^T)
 $$
 
-## Simulation for imm
+### Simulation for imm
 To volidate the performance of the proposed algorithm, a simulation in python is operated.
 
-### Imm algorithm
+#### Imm algorithm
 ```python
 class Imm:
     def __init__(self, models, model_trans, P_trans, U_prob):
@@ -535,7 +535,7 @@ class Imm:
 
         return self.U_prob
 ```
-### Input
+#### Input
 To test the algorithm performance, following curves are used:
 - generated constant velocity curve + constant turn rate curve + constant acceleration;
 - vehicle pose data from real autonomous car;
@@ -598,8 +598,8 @@ def ct_z(x0, dx, y0, dy, dtheta, dt, cnt):
     return Z
 ```
 
-### Simulation result
-#### CV + CT + CA
+#### Simulation result
+##### CV + CT + CA
 ![imm_cvctca](/images/2020/imm/imm_cvctca.png)
 
 From the figure we can see:
@@ -607,18 +607,18 @@ From the figure we can see:
 - it's more difficult to figure out the $CA$ model, because the acceleration information is not in the observation vector;
 - it's not easy to distinguish $CV$ and $CA$ model.
 
-#### Real vehicle data
+##### Real vehicle data
 ![imm_real](/images/2020/imm/imm_real.png)
 
 The result is not so good, because its characteristics do not fit any model.
 
-#### Argoverse data
+##### Argoverse data
 ![imm_argoverse](/images/2020/imm/imm_argoverse.png)
 I choose a turning vehicle's path and add it's velocity information, we can say:
 - it takes 2.5s to predict the right model;
 - after test, I found that if we set the inital probability a more precise number, it can predict the right model more quickly(within 0.5s).
 
-# Generate prediction trajectory
+## Generate prediction trajectory
 With the right model probabilities, we can predict the obstacle's trajectory in longer time.
 We use the probabilities and three models to generate trajectory:
 
@@ -630,11 +630,11 @@ We can see that:
 - At the beginning it can not figure out the right model, so it mixes them up to generate trajectory;
 - After figure out the CT model, the trajectory is getting closer to the real trajectory.
  
-# Cpp class diagram
+## Cpp class diagram
 After testing the correctness of the algorithm, we designed the class diagram of the code:
 ![class diagram](/images/2020/imm/imm_cd.png)
 
-## LRT class
+### LRT class
 We should create a filter(kalman filter or imm) for every obstacle, it's important to construct and deconstruct the filters dynamiclly.
 
 We already have a `LRU`(Latest Recently Used) class, which will destroy the oldest node when it's capacity is to reach maximum. But it has the following problems:
@@ -643,7 +643,7 @@ We already have a `LRU`(Latest Recently Used) class, which will destroy the olde
 
 So we add the time limit to `LRU` structure and names it `LRT`. If a node is not used for a given time, it will be destroyed.
 
-## KalmanFilter
+### KalmanFilter
 To fit with different filter parameters, we use a template to generate instance.
 ```C++
 //!
@@ -661,7 +661,7 @@ class KalmanFilter {
  public:
 ```
 
-## ImmKf
+### ImmKf
 To fit with different kalman filters, we use a parameter pack to input all filters.
 ```C++
 //!
