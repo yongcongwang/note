@@ -3,7 +3,7 @@
 Nowdays we spend a lot of time in bash shell, typing long and complex commands. You can use the arrow keys `up/down/left/right` to move the cursor and select commands, but that's not so efficient.
 
 By default, bash command line uses the shortcuts of `emacs`, so the following commands are mostly from `emacs`, you can also use the shortcuts of `vim` by setting `set -o vi`.
-<!-- more -->
+
 ## Move
 
 ### Move in Charactor

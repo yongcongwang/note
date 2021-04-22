@@ -37,7 +37,6 @@ To establish notation for future use, we use:
 - $x_i$ to denote the "input" variables(also called input features);
 - $y_i$ to denote the "output" variables we are trying to predict.
 
-<!-- more -->
 A pair $(x_i, y_i)$ is called a training example and a list of training example is called a training set.
 
 We also use:
