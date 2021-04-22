@@ -1,4 +1,4 @@
-# Sorting algorithms
+# Sorting
 
 ## Assumption
 To simplify matters, we will assume that the algorithms we describe will all be interchangeable:

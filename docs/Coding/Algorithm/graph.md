@@ -1,4 +1,4 @@
-# Basic graph algorithms
+# Graph
 
 A `Graph` consists of:
 
