@@ -1,10 +1,10 @@
-# Common function and their graphs
+# Functions
 A `function` is a rule for transforming an object into another object. The object you start with is called the `input`, and comes from some set called the `domain`. Waht you get back is called the `output`; it comes from some set called the `domain`, and the output's value is within a `range`. A function must assign a unique output for each valid input.
 
-We say that:
+We say that a function $f$ is:
 
-- a function $f$ is `even` if $f(-x) = f(x)$ for all $x$ in the domain of $f$; 
-- a function $f$ is `odd` if $f(-x) = -f(x)$ for all $x$ in the domain of $f$.
+- `even`, if $f(-x) = f(x)$ for all $x$ in the domain of $f$; 
+- `odd`, if $f(-x) = -f(x)$ for all $x$ in the domain of $f$.
 
 The graph of an even function has mirror symmetry about the y-axis and the graph of an odd function has $180^\circ$ point symmetry about the origin.
 
@@ -17,6 +17,7 @@ Functions of the form $f(x) = mx + b$ are called `linear`. There's a good reason
 
 ## Polynomials
 These are functions built out of nonnegative integer powers of $x$. You start with the building blocks $1$, $x$, $x^2$, $x^3$, and so on, and you are allowed to multiply these basic functions by numbers and add a finite number of them together. The amount that you multiply the building block $x^n$ by is called the `coefficient` of $x^n$. The highest number $n$ such that $x^n$ has a non zero coefficient is called the `degree` of the polynomial. The mathematical way to write a general polynomial of degree $n$ is:
+
 $$
 p(x) = a_n x^n + a_{n - 1}x^{n - 1} + ... + a_2x^2 + a_1x + a_0
 $$
@@ -25,7 +26,7 @@ where $a_n$ is the coefficient of $x^n$, $a_{n - 1}$ is the coefficient of $x^{n
 
 Since the functions $x^n$ are the building blocks of all polynomials, you should know what their graphs look like. The even powers mostly look similar to each other, and the same can be said for the odd powers. Here's what the graphs look like, from $x^0$ up to $x^7$:
 
-![polynomials(images/function_graph/polynomials.png)
+![polynomials](images/function_graph/polynomials.png)
 
 Sketching the graphs of more general polynomials is more difficult. Even finding the x-intercepts is often impossible unless the polynomial is very simple. There is one aspect of the graph that is fairly straightforward, which is what happens at the far left and right sides of the graph. This is determined by the so-called `leading coefficient`, which is the coefficient of the highest-degree term.In fact, it only matters whether the leading coefficient is positive or negative. It also matters whether the degree of the polynomial is odd or even; so there are four possibilities for what the edges of the graph can look like:
 ![polynomials](images/function_graph/polynomials_all.png)
@@ -205,6 +206,3 @@ $$
 $$
 \cos(2x) = 2\cos^2(x) - 1 = 1 - 2\sin^2(x)
 $$
-
-## Reference
-[The Calculus Life Saver](http://www.astronomia.edu.uy/progs/calculo/The_Calculus_Lifesaver.pdf)
