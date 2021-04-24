@@ -26,9 +26,9 @@ The main process is:
 
 Loop:
 
- - Pick and remove a `location` from the `frontier`;
- - Expand it by looking at its `neighbors`, any neighbors we haven't visited yet we add to the `frontier`, and also to the `visited` set;
- - if `frontier` is empty or reach the target node, break.
+- Pick and remove a `location` from the `frontier`;
+- Expand it by looking at its `neighbors`, any neighbors we haven't visited yet we add to the `frontier`, and also to the `visited` set;
+- if `frontier` is empty or reach the target node, break.
 
 So far we assume that every step has the same `cost`, however, in some scenarios there are difference costs for different types of movements. For example, a diagonal movement on a grid costs more than axial movement. We'd like the pathfinder to take these costs into account. For this purpose, we use `Dijkstra's Algorithm`
 
@@ -38,12 +38,12 @@ The main process is below:
 
 - Create a priority queue `frontier` and put the init node into `frontier`.
 - Loop:
-  - choose the lowest cost node from `frontier`
-  - if `frontier` is empty or current node is goal node, break;
-  - get current node's neighbours, for each neighbour:
-    - if the neighbour node has not been visited yet or its cost is lower than current node:
-      - put the neighbour node into `frontier`
-      - set the cost so far as the neighbour node's cost
+    - choose the lowest cost node from `frontier`
+    - if `frontier` is empty or current node is goal node, break;
+    - get current node's neighbours, for each neighbour:
+        - if the neighbour node has not been visited yet or its cost is lower than current node:
+            - put the neighbour node into `frontier`
+            - set the cost so far as the neighbour node's cost
 
 ![breadth_first](images/a_star/dijkstra.gif)
 
@@ -55,11 +55,11 @@ Its process can be described as:
 
 - Create a priority queue `frontier` and put the init node into `frontier`.
 - Loop:
-  - choose the node with lowest distance to goad node from `frontier`
-  - if `frontier` is empty or current node is goal node, break;
-  - get current node's neighbours, for each neighbour:
-    - if the neighbour node has not been visited yet: 
-      - put the neighbour node into `frontier`
+    - choose the node with lowest distance to goad node from `frontier`
+    - if `frontier` is empty or current node is goal node, break;
+    - get current node's neighbours, for each neighbour:
+        - if the neighbour node has not been visited yet: 
+            - put the neighbour node into `frontier`
 
 ![greedy_best_first](images/a_star/best_first.gif)
 
@@ -80,13 +80,13 @@ The `A* Algorithm` uses a `open lsit` and a `close list`, `open list` stores nod
 
 1. Put start node into `open list`
 2. Loop:
-  - Take the node A with lowest `F` from `open lsit`;
-  - Put the node A into `close list`;
-  - Search A's neighbours:
-    - if the neighbour node is goal node, break;
-    - if the neighbour node is unreachable or it's in `close list`, ignore it;
-    - if the neighbour node is not in `open list`, put it into `open list`;
-    - if the neighbour node is in `open list` but its new `G` is lower than its older, set its parent to A and reset its `G` and `H`
+    - Take the node A with lowest `F` from `open lsit`;
+    - Put the node A into `close list`;
+    - Search A's neighbours:
+        - if the neighbour node is goal node, break;
+        - if the neighbour node is unreachable or it's in `close list`, ignore it;
+        - if the neighbour node is not in `open list`, put it into `open list`;
+        - if the neighbour node is in `open list` but its new `G` is lower than its older, set its parent to A and reset its `G` and `H`
 3. From the goal node link all nodes' parent, we get the best path.
 
 ### Heuristics

@@ -47,7 +47,7 @@ void dfs(Graph& graph, unordered_set<int>& visited, int root) {
 }
 ```
 
-## Shortest Path
+## Shortest Path(SP)
 In graph theory, the `shortest path problem` is the problem of finding a path between two nodes in a graph such that the sum of the weights of its constituent edges is minimized. The mainly used algorihtms are:
 
 - Floyd
@@ -112,6 +112,7 @@ int bellman_ford(Graph& graph, int src, int tar) {
 
 ### Dijkstra
 Dijkstra is an algorithm that computes shortest paths from a single source node to all of the other nodes in a weighted digraph. It is not able to handle graphs in which some of the edge weights are negtive numbers.
+
 ![dijkstra](images/graph/dijkstra.gif)
 
 ```C++
@@ -119,9 +120,9 @@ int dijkstra(Graph& graph, int src, int tar) {
   vector distance(graph.size() + 1, INT_MAX);
   distance[src] = 0;
 
-  auto lt = [](auto& a, auto& b) { return a.second < b.second; };
+  auto gt = [](auto& a, auto& b) { return a.second > b.second; };
   usint PII = pair<int, int>;
-  priority_queue<PII, vector<PII>, decltype(lt)> q(lt);
+  priority_queue<PII, vector<PII>, decltype(gt)> q(gt);
 
   auto relax = [&](auto src, auto tar) -> bool {
     if (distance[src] + graph[src][tar] > distance[tar]) return false;
@@ -141,6 +142,11 @@ int dijkstra(Graph& graph, int src, int tar) {
   return distance[tar];
 }
 ```
+
+## K Shortest Path(KSP)
+The `KSP` problem is a generalization of the `SP` problem in a given network. It asks not only about a shortest path but also about next $k - 1$ shortest path (which may be longer than the shortest path). A variant of the problem is the loopless k shortest paths.
+
+### A*
 
 ## Topological Sorting
 A topological sort of a directed graph is a linear ordering of its nodes such that for every directed edge $(u, v)$, $u$ comes before $v$ in the ordering.
