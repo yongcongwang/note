@@ -13,6 +13,50 @@ A distinction is made between:
 - `undirected graph`: where edges link two nodes symmetrically;
 - `directed graph`: where edges link two nodes asymmetrically.
 
+A `Graph` can be defined as:
+```C++
+template <typename T>
+struct Vertex {
+  T id{};
+  double cost{0.};
+};
+
+template <typename T>
+struct Edge {
+  Vertex<T>* from{nullptr};
+  Vertex<T>* to{nullptr};
+  double cost{0.};
+};
+
+template <typename T>
+class Graph {
+ public:
+  void AddVertex(const T& v, double cost = 0.) {
+    vs[v] = Vertex<T>{v, cost};
+  }
+
+  void AddEdge(const T& from, const T& to, double cost = 0.) {
+    if (!vs.count(from)) AddVertex(from);
+    if (!vs.count(to)) AddVertex(to);
+    if (!es.count(from)) es[from] = {};
+    es[from].push_back({&vs[from], &vs[to], cost});
+  }
+
+  const vector<Edge<T>>& GetEdges(const T& v) {
+    return es[v];
+  }
+
+  const size_t GetVertexSize() const {
+    return vs.size();
+  }
+
+ private:
+  unordered_map<T, Vertex<T>> vs{};
+  unordered_map<T, vector<Edge<T>>> es{};
+};
+
+```
+
 
 ## Breadth-first Search(BFS)
 BFS is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root(or some arbitrary node of a graph, sometimes referred as a `search key`), and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
