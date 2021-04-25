@@ -192,6 +192,38 @@ The `KSP` problem is a generalization of the `SP` problem in a given network. It
 
 ### A*
 
+```C++
+double a_star(Graph<int> graph, vector<double>& h, int src,
+                           int tar, int k) {
+  int m = graph.GetVertexSize();
+  vector<double> g(m, 1e7);
+  g[src] = 0;
+
+  auto gt = [](auto& a, auto& b) -> bool { return a.second > b.second; };
+  using PID = pair<int, double>;
+  priority_queue<PID, vector<PID>, decltype(gt)> q(gt);
+  q.emplace(src, h[src]);
+
+  unordered_map<int, int> parent{};
+  int cnt{0};
+
+  while (!q.empty()) {
+    auto [node, f] = q.top();
+    q.pop();
+
+    if (node == tar) cnt++;
+    if (cnt == k) return g[node];
+
+    for (auto& [from, to, cost]: graph.GetEdges(node)) {
+      g[to->id] = g[node] + cost;
+      q.emplace(to, g[to->id] + h[to->id]);
+    }
+  }
+
+  return -1;
+}
+```
+
 ## Topological Sorting
 A topological sort of a directed graph is a linear ordering of its nodes such that for every directed edge $(u, v)$, $u$ comes before $v$ in the ordering.
 
