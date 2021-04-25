@@ -1,5 +1,5 @@
 # Functions
-A `function` is a rule for transforming an object into another object. The object you start with is called the `input`, and comes from some set called the `domain`. Waht you get back is called the `output`; it comes from some set called the `domain`, and the output's value is within a `range`. A function must assign a unique output for each valid input.
+A `function` is a rule for transforming an object into another object. The object you start with is called the `input`, and comes from some set called the `domain`. Waht you get back is called the `output`; it comes from some set called the `codomain`, and the output's value is within a `range`. A function must assign a unique output for each valid input.
 
 We say that a function $f$ is:
 
@@ -72,7 +72,7 @@ Logarithm functions are the inverse functions of the exponential functions. Usin
 ### Definitions
 
 #### Radians
-The first thing we need to know is the notion of `radian`. Instead of saying that there are 360 degrees in a full revolution, we'll say that there are $2\pi radians$. The arc length of a wedge of the circle is the angle of the wedge:
+The first thing we need to know is the notion of `radian`. Instead of saying that there are 360 degrees in a full revolution, we'll say that there are $2\pi$ *radians*. The arc length of a wedge of the circle is the angle of the wedge:
 
 ![radian](images/function_graph/radians.png)
 
