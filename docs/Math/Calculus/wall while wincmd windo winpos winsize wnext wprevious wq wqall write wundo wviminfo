@@ -79,57 +79,9 @@ $$
 Let's set $h = z - x$ then we see that as $z \to x$, we have $h \to 0$, so we also have:
 
 $$
-slope\_of\_tangent\_line\_through (x, f(x)) = \lim_{h \to 0} \frac{f(x + h) - f(x)} {h}
+slope of tangent line through (x, f(x)) = \lim_{h \to 0} \frac{f(x + h) - f(x)} {h}
 $$
 
 ### The Derivative Function
 In the following picture, I've drawn in the tangent lines through three different points on the curve:
-![tangents](images/con_and_diff/tangents.png)
-
-These lines have different slopes. That is, the slope of the tangent line `depends` on which value of $x$ you start with. Another way of saying this is that the slope of the tangent line through $(x, f(x))$ is itself a function of $x$. This function is called the `derivative` of $f$ and is witten as $f'$:
-
-$$
-f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)} {h}
-$$
-
-If $y = f(x)$, then you can write $\frac{dy}{dx}$ instead of $f'(x)$. For example, if $y = x^2$, then $\frac{dy}{dx} = 2x$. In fact, if you replace $y$ by $x^2$, you get a variety of different ways of expressing the same thing:
-
-$$
-f'(x) = \frac{dy}{dy}{dx} = \frac{d(x^)} {dy} = \frac{d}{dx}(x^2) = 2x
-$$
-
-### Differentiability and Continuity
-Now it's time to relate the two big concepts in this chapter:
-> If a function $f$ is differentiable at $x$, then it's continuous at $x$.
-
-To prove this claim, we have known that $f$ is continuous at $x$:
-
-$$
-\lim_{u \to x} f(u) = f(x)
-$$
-
-as $u \to x$ we can also replace above equation as:
-
-$$
-\lim_{h \to 0} f(x + h) = f(x)
-$$
-
-Now we are aware of our destination, let's start with what we actually know that $f$ is differentiable at $x$, which means that $f'(x)$ exists:
-
-$$
-\lim_{h \to 0} \frac{f(x + h) - f(x)}{h} = f'(x)
-$$
-
-$$
-\lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \times h = \lim_{h \to 0}f'(x) \times h
-$$
-
-$$
-\lim_{h \to 0} f(x + h) - f(x) = \lim_{h \to 0}f'(x) \times h = 0
-$$
-
-so we got:
-
-$$
-\lim_{h \to 0} f(x + h) = f(x)
-$$
+![tangents](images/con_and_diff/tangets.png)
