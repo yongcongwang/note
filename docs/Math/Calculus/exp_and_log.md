@@ -44,7 +44,7 @@ A long time ago, a dude named Bernoulli answers a question about compound intere
 
 Now suppose you find another bank that also offers an annual interest rate of $12%$, but now it compounds twice a year. Of course you aren't going to get $12%$ for half a year; you have to divide that by $2$. Basically this means that you are getting $6%$ interest for every 6 months. So if you put money into this bank account, then after one year it has compounded twice at $6%$; the result is that your fortune has expanded by a factor of $(1 + 0.06)^2 = 1.1236$. So if you started with $100, you'd finish with $112.36.
 
-The second account is a little better than the first. It makes sense when you think about it--compounding is beneficial, so compounding more often at the same annual rate should be better. Let's try 3 times a year at the annual rate of $12%$. We take $12%$ and divide by $3$ to get $4%$, then compound three times; our fortune has increased by $(1 + 0.04)^3$, which works out to be $1.124864$. This is a little higher still. How about 4 times a year? That'd be $(1 + 0.03)^$, which is approximately $1.1255$. That's even higher. Now, the question is, where does it stop? If you compound more and more often at the same annual rate, do you get wads and wads of cash after a year, or is there some limitation on all this?
+The second account is a little better than the first. It makes sense when you think about it--compounding is beneficial, so compounding more often at the same annual rate should be better. Let's try 3 times a year at the annual rate of $12%$. We take $12%$ and divide by $3$ to get $4%$, then compound three times; our fortune has increased by $(1 + 0.04)^3$, which works out to be $1.124864$. This is a little higher still. How about 4 times a year? That'd be $(1 + 0.03)^4$, which is approximately $1.1255$. That's even higher. Now, the question is, where does it stop? If you compound more and more often at the same annual rate, do you get wads and wads of cash after a year, or is there some limitation on all this?
 
 ### The answer to our question
 
@@ -91,4 +91,118 @@ $$
 e = 2.71828182845904523...
 $$
 
-The 
+The base $e$ logarithm is called the `natural logarithm`. Since we have a new base $e$, and a new way of writing logarithms in that base, the basic rules of logarithm can be rewritten as:
+
+- $e^{\ln(x)} = x$
+- $\ln(e^x) = x$
+- $\ln(1) = 0$
+- $\ln(e) = 1$
+- $\ln(xy) = \ln(x) + \ln(y)$
+- $\ln(\frac{x}{y}) = \ln(x) - \ln(y)$
+- $\ln(x^y) = y\ln(x)$
+
+## Differentiation of Logs and Exponentials
+
+With the definition of limit, we can find the derivatives of logs and exponentials:
+
+- $(\ln(x))' = \frac{1}{x}$
+- $(\log_b(x))' = \frac{1}{x\ln(b)}$
+- $(e^x)' = e^x$
+- $(b^x)' = b^xln(b)$
+
+### Behavior of exponentials near 0
+In fact, we know that:
+
+$$
+\lim_{x \to 0} e^{x^2} = e^0 = 1
+$$
+
+But what about the limit:
+
+$$
+\lim_{h \to 0} \frac{e^h - 1} {h}
+$$
+
+Well, try setting $f(x) = e^x$, we have:
+
+$$
+f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)} {h} = \lim_{h \to 0} \frac{e^{x + h} - e^x} {h} = e^x
+$$
+
+Simplify the equation, we have:
+
+$$
+\lim_{h \to 0} \frac{e^h - 1} {h} = 1
+$$
+
+### Behavior of logarithms near 1
+
+It turns out that the situation is pretty simillar to the case of exponentials near 0:
+
+$$
+\lim_{h \to 0} \frac{\ln(1 + h)} {h} = 1
+$$
+
+### Behavior of exponentials near $\infty$ or $-\infty$
+
+Let's take a look at the graph of $y = e^x$:
+
+![exponential](images/exp_and_log/exponential.png)
+
+and get the conclusion:
+
+$$
+\lim_{x \to \infty} e^x = \infty
+$$
+
+and
+
+$$
+\lim_{x \to -\infty} e^x = 0
+$$
+
+What if we the base $e$ is replaced by some other base?
+
+$$
+\lim_{x \to \infty} r^x = 
+\begin{cases}
+\infty, & if \quad r > 1, \\
+1, & if \quad r = 1, \\
+0, & if \quad r < 1.
+\end{cases}
+$$
+
+In addtion to all equations above, as `Exponentials grow quickly`:
+
+$$
+\lim_{x \to \infty} \frac{x^n}{e^x} = 0
+$$
+
+no matter how large $n$ is.
+
+### Behavior of logs near $\infty$
+
+The sage continues. Here is the graph of $y = \ln(x)$:
+
+![log](images/exp_and_log/log.png)
+
+$$
+\lim_{x \to \infty} \ln(x) = \infty
+$$
+
+And as the logs grow slowly, if $a > 0$:
+
+$$
+\lim_{x \to \infty} \frac{\ln(x)} {x^a} = 0
+$$
+
+no matter how small $a$ is.
+
+### Behavior of logs near 0
+Logs grow slowly at $0$, so if $a > 0$:
+
+$$
+\lim_{x \to 0^+} x^a\ln(x) = 0
+$$
+
+no matter how small $a$ is.
