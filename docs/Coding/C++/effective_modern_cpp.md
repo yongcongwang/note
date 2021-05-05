@@ -1,4 +1,4 @@
-# Effective modern c++
+# Effective modern C++
 
 This is a summary of the book "Effective Modern C++" which gives 42 specific ways to imporve your programs and designs by Scott Meyers.
 
