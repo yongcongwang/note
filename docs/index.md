@@ -1,17 +1,11 @@
+## Welcome to my blog
 
-# Welcome to 
+My name is **yongcong.wang**, an algorithm engineer focusing on `PnC` of self-driving technique.
 
-``` python hl_lines="0-9"
+This is the website I used to take notes while learning or working.
 
- /$$   /$$             /$$               /$$                           /$$
-| $$$ | $$            | $$              | $$                          | $$
-| $$$$| $$  /$$$$$$  /$$$$$$    /$$$$$$ | $$$$$$$   /$$$$$$   /$$$$$$ | $$   /$$
-| $$ $$ $$ /$$__  $$|_  $$_/   /$$__  $$| $$__  $$ /$$__  $$ /$$__  $$| $$  /$$/
-| $$  $$$$| $$  \ $$  | $$    | $$$$$$$$| $$  \ $$| $$  \ $$| $$  \ $$| $$$$$$/
-| $$\  $$$| $$  | $$  | $$ /$$| $$_____/| $$  | $$| $$  | $$| $$  | $$| $$_  $$
-| $$ \  $$|  $$$$$$/  |  $$$$/|  $$$$$$$| $$$$$$$/|  $$$$$$/|  $$$$$$/| $$ \  $$
-|__/  \__/ \______/    \___/   \_______/|_______/  \______/  \______/ |__/  \__/
+More about me:
 
-```
-
-which records my learning/working notes.
+- [Email](mailto:yongcong.wang@outlook.com)
+- [Github](https://github.com/yongcongwang)
+- [Leetcode](https://leetcode-cn.com/u/yongcongwang)
