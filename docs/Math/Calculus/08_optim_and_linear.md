@@ -69,10 +69,30 @@ $$
 
 The above formula is related to the Mean Value Theorem.
 
-- if $f'' > 0$, 
+- if $f'' > 0$ between a and x, then using the linearization leads to an **underestimate**($L(x) < f(x)$).
+- if $f'' < 0$ between a and x, then using the linearization leads to an **overestimate**($L(x) > f(x)$).
 
 If we find the maximum M in $[a, x]$, we get the folowing:
 
 $$
 |error| \le \frac{1}{2} M |x - a|^2
 $$
+
+In summary, the basic strategy for estimating, or approximating, anasty number:
+
+1. Write down the mmain formula:
+
+$$
+f(x) \cong L(x) = f(a) + f'(a)(x - a)
+$$
+
+2. Choose a function $f$, and a number $x$ such that the nasty number is equal to $f(x)$. Also, choose $a$ to $x$ such that $f(a)$ can easily be computed.
+3. Differentiate $f$ to find $f'$
+4. In the above formula, replace $f$ and $f'$ by the actual functions, and $a$ by the actual number you've chosen.
+5. Finally, plug in the value of $x$ from step 2 above. Also note that the differential $df$ is the quantity $f'(a)(x - a)$
+
+## Newton's Method
+
+Here's another useful application of linearization. Suppose that you have an equation of the form $f(x) = 0$ that you'd like to solve, but you just can't solve the darned thing. So you do the next best thing: you take a guess at a solution, which you can call $a$. The situation might look like this:
+
+
