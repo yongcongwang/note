@@ -1,4 +1,4 @@
-# Compile optimization of cpp project
+# Compile Optimization of C++ Project
 
 ## Compilation Process
 
@@ -18,21 +18,21 @@ Preprocessor directives are one of the unique feature of C++. Before a C++ progr
 There are different preprocessor directives that perform different tasks.
 
 - Inclusion Directives:
-  - `#include`: specifies the files to be included, especially header-file
+    - `#include`: specifies the files to be included, especially header-file
 - Macro Definition Directive:
- - `#define`: define a macro substitution
- - `#undef`: undefine a macro
+    - `#define`: define a macro substitution
+    - `#undef`: undefine a macro
 - Conditional Compilation Directive:
- - `#if`: test a condition
- - `#elif`: else if condition
- - `#endif`: end of `#if`
- - `#ifdef`: used to test for macro definition
- - `#ifndef`: used to test for whether a macro is not defined
- - `#else`: it provides an alternative option when `#if` fails
+    - `#if`: test a condition
+    - `#elif`: else if condition
+    - `#endif`: end of `#if`
+    - `#ifdef`: used to test for macro definition
+    - `#ifndef`: used to test for whether a macro is not defined
+    - `#else`: it provides an alternative option when `#if` fails
 - Other directives:
- - `#error`: syntax "#error err_msg", shows the given error message and renders the program ill-formed
- - `#line`: Supplies a line number for compiler message
- - `#pragma`: Supplies implementation-defined instructions to the compiler
+    - `#error`: syntax "#error err_msg", shows the given error message and renders the program ill-formed
+    - `#line`: Supplies a line number for compiler message
+    - `#pragma`: Supplies implementation-defined instructions to the compiler
 
 Some macros C++ predefined are:
 
