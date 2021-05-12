@@ -1,5 +1,9 @@
 # Compile Optimization of C++ Project
 
+## Why Doing This Work
+- We change our platform from `x86` to `arm`, the cpu performance is getting weaker;
+- Every time we debug on the vehicle, we suffer from the slow compilation time.
+
 ## Compilation Process
 
 In general, the compilation of a C++ program involves these four steps:
@@ -77,6 +81,7 @@ At this stage the most common erros are:
 - duplicate definitions, which means that the same symbol was defined in two different object files or libraries
 
 ## Optimization Methods and Results
+The origin compilation time:
 
 | compile step | preprocessing | compiling | assembling | linking | total |
 |---|---|---|---|---|---|
@@ -166,7 +171,8 @@ function build_onboard(){
 }
 ```
 
-#### Result
+Result:
+
 | | Before optimization | After optimization |
 |---|---|---|
 | time(s) | 81 | 66 |
@@ -181,7 +187,8 @@ In Linux platform we use `GNU/Make` tool to compile code. When we execute make c
 make -C build -j$(nproc) install
 ```
 
-##### Result
+Result:
+
 | | Before optimization(`j8`) | After optimization(`j12`) |
 |---|---|---|
 | time(s) | 70 | 66 |
@@ -201,7 +208,8 @@ Here are some option levels:
 - `-Ofast`: Disregard strict standards compliance. -Ofast enables all -O3 optimizations. It also enables optimizations that are not valid for all standard-compliant programs.
 - `-Og`: Optimize debugging experience.
 
-##### Results
+Results:
+
 | Compilation option | Assume time(`s`) | Shared library size(`M`) |
 |---|---|---|
 | `-O0` | 49 | 29 |
@@ -236,7 +244,8 @@ What we should know is that producing debug symbols will increase both executabl
 - if you don't need to debug with gdb, do not add `-g` option to g++ flags;
 - if you need to debug with gdb, use `-Og -g` option to get better debugging experience.
 
-##### Results
+Results:
+
 | Compilation option | Assume time(`s`) | Shared library size(`M`) |
 |---|---|---|
 | `-O0 -g` | 66 | 151 |
@@ -366,11 +375,134 @@ make -C build -j$(nproc) 2> build/iwyu.log &&
 python2 fix_includes.py < /build/iwyu.log
 ```
 
-##### Results
+Results:
+
 | | Before optimization | After optimization |
 |---|---|---|
 | time(s) | 66 | 65 |
 | size(M) | 151 | 151 |
+
+#### Other solutions
+
+##### Forward-declaration
+The compiler wants to ensure you haven't made spelling mistakes or passed the wrong number of arguments to the function. So, it insists that it first sees a declaration of a `type` before it used.
+
+If you didn't have to forward declare things, the compiler would produce an object file that would have to contain information about all the possible guesses as to what the `type` might be. This may take a lot of time.
+
+And if other file includes this header, expand the header may waste space and time.
+
+A general class may be like this:
+
+```C++
+// in obstacle.h
+#include "feature_a.h"
+#include "feature_b.h"
+
+class Obstacle {
+  FeatureA feature_a{};
+  FeatureB feature_b{};
+ public:
+  void MethodA() const;
+};
+
+// in obstacle.cc
+#include "obstacle.h"
+
+void Obstacle::MethodA() const {
+  feature_a.MethodA();
+  feature_b.MethodB();
+}
+```
+
+Using forward-declaration, we can rewrite it as:
+
+```C++
+// in obstacle.h
+class FeatureA;
+class FeatureB;
+
+class Obstacle {
+  FeatureA* feature_a{nullptr};
+  FeatureB* feature_b{nullptr};
+ public:
+  void MethodA() const;
+};
+
+// in obstacle.cc
+#include "obstacle.h"
+#include "feature_a.h"
+#include "feature_b.h"
+
+void Obstacle::MethodA() const {
+  feature_a->MethodA();
+  feature_b->MethodB();
+}
+```
+
+##### `extern template`
+We can use the C++11 new feature `extern template` to force the compiler to **not** instantiate a template when **you know** that it instantiated somewhere else. It is used to reduce compile time and object file size.
+
+For example:
+```C++
+// in function.h
+template <typename T>
+void function() {
+  // do something
+}
+
+// in source1.cpp
+#include "function.h"
+void function1() {
+  function<double>();
+}
+
+// in source2.cpp
+#include "function.h"
+void function2() {
+  function<double>();
+}
+```
+
+This will result in the following object files:
+```C++
+// source1.o
+void function1()
+void function<double>()  // compile first time
+
+// source2.o
+void function2()
+void function<double>()  // compile second time
+```
+
+If both files are linked together, one `void function<double>()` will be discarded, resulting in wasted comile time and object file size.
+
+To not waste compile time and object file size, there is an `extern` keyword which makes the compiler **not** compile a template function. You should use this **if and only if you know** it is used in the same binary somewhere else.
+
+```C++
+// in function.h
+template <typename T>
+void function() {
+  // do something
+}
+
+// in source1.cpp
+#include "function.h"
+void function1() {
+  function<double>();
+}
+
+// in source2.cpp
+#include "function.h"
+extern template void function<double>();  // you know it's initialized somewhere
+void function2() {
+  function<double>();
+}
+```
+
+##### Replace boost library
+The main disadvantage of boost library is that it add declaration and definition in one `hpp`file, which makes the file size explore after expending it in a `.cc` file. 
+
+We can remove the `boost` library from project to reduce the time and size of compilation.
 
 ## Reference
 - [C++ Preprocessor](https://www.w3schools.in/cplusplus-tutorial/preprocessor/)
@@ -379,3 +511,4 @@ python2 fix_includes.py < /build/iwyu.log
 - [Open source tools to examine and adjust include dependencies](https://gernotklingler.com/blog/open-source-tools-examine-and-adjust-include-dependencies/)
 - [include-what-you-use](https://github.com/include-what-you-use/include-what-you-use)
 - [C++服务编译耗时优化原理及实践](https://tech.meituan.com/2020/12/10/apache-kylin-practice-in-meituan.html)
+- [What are forward-declaration in C++](https://stackoverflow.com/questions/4757565/what-are-forward-declarations-in-c)
