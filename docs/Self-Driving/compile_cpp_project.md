@@ -1,4 +1,4 @@
-# Compile Optimization of C++ Project
+# Compilation Optimization of C++ Project
 
 ## Why Doing This Work
 - We change our platform from `x86` to `arm`, the cpu performance is getting weaker;
