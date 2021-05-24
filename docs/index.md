@@ -1,6 +1,6 @@
 ## Welcome to my blog
 
-My name is **yongcong.wang**, an algorithm engineer focusing on `PnC` of self-driving technique.
+I'm **yongcong.wang**, an algorithm engineer focusing on `PnC` of self-driving technique.
 
 This is the website I used to take notes while learning or working.
 
