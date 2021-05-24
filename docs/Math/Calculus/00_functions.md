@@ -33,6 +33,7 @@ Sketching the graphs of more general polynomials is more difficult. Even finding
 
 ## Rational functions
 The functions with the form:
+
 $$
 f(x) = \frac{p(x)}{q(x)}
 $$
@@ -45,6 +46,7 @@ The odd powers look similar to each other, and the even powers look similar to e
 
 ## Exponential functions
 Functions with the form:
+
 $$
 f(x) = a \cdot b^x
 $$
@@ -60,9 +62,11 @@ If $a$ is negtive, the graph will be the reflection of its positive one.
 
 ## Logarithm functions
 When a functions has the form:
+
 $$
 f(x) = a \cdot \log_b(x)
 $$
+
 we called it a `logarithm function`.
 Logarithm functions are the inverse functions of the exponential functions. Using the line $y = x$ as a mirror, the graph of $y = \log_{2}(x)$ looks like this:
 ![polynomials](images/function_graph/logarithm.png)
@@ -82,14 +86,17 @@ Suppose you have a right-angled triangle and one of the angles, other than the r
 ![triangle](images/function_graph/triangle.png)
 
 the formulas are defined:
+
 $$
 \sin(\theta) = \frac{opposite}{hypotenuse}, \cos(\theta) = \frac{adjacent}{hypotenuse}, \tan(\theta) = \frac{opposite}{adjacent}
 $$
 
 We'll also be using the reciprocal functions, which are defined as:
+
 $$
 \csc(x) = \frac{1}{\sin(x)}, \sec(x) = \frac{1}{\cos(x)}, \cot(x) = \frac{1}{\tan(x)}
 $$
+
 ### Value of Trigonometry
 Now it's time to figure out the value of trig functions.
 
@@ -143,6 +150,7 @@ There are relations between trig functions which will come in handy.
 
 #### $tan$ and $cot$
 First, tan and cot may be expressed in terms of sin and cos as follows:
+
 $$
 \tan(x) = \frac{\sin(x)}{\cos(x)}, \cot(x) = \frac{\cos(x)}{\sin(x)}
 $$
@@ -155,17 +163,20 @@ $$
 $$
 
 Now divide this equation by $\cos^2(x)$, we got:
+
 $$
 1 + \tan^2(x) = \sec^2(x)
 $$
 
 If you dived the `Pythagorean equation` above by $\sin^2(x)$, you got:
+
 $$
 \cot^2(x) + 1 = \csc^2(x)
 $$
 
 #### trig functions and co-trig functions
 There are some more relationships between trig functions. Have you noticed that some of the names begin with the syllable `co`? This is short for the word `complementary`. The fact is that we have the following general relationship:
+
 $$
 trig functions(x) = co-trig functions(\frac{\pi}{2} - x)
 $$
@@ -184,25 +195,31 @@ $$
 
 #### Sums of Angles
 Specifically, you should remember that:
+
 $$
 \sin(A + B) = \sin(A)\cos(B) + \cos(A)\sin(B)
 $$
+
 $$
 \cos(A + B) = \cos(A)\cos(B) - \sin(A)\sin(B)
 $$
 
 It's useful to remember that you can switch all the plues and minues to get some related formulas:
+
 $$
 \sin(A - B) = \sin(A)\cos(B) - \cos(A)\sin(B)
 $$
+
 $$
 \cos(A - B) = \cos(A)\cos(B) + \sin(A)\sin(B)
 $$
 
 And if $A = B$, we got:
+
 $$
 \sin(2x) = 2\sin(x)\cos(x)
 $$
+
 $$
 \cos(2x) = 2\cos^2(x) - 1 = 1 - 2\sin^2(x)
 $$
