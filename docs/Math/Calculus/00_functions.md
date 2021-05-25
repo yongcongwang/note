@@ -33,6 +33,7 @@ Sketching the graphs of more general polynomials is more difficult. Even finding
 
 ## Rational functions
 The functions with the form:
+
 $$
 f(x) = \frac{p(x)}{q(x)}
 $$
