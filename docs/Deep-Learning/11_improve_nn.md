@@ -16,7 +16,7 @@ Generally, we divid the data into three parts:
 
 - Train set, which used to train the neural network and is usually the largest set;
 - Develop(dev) set, which is used to validate the traing result;
-- Testi set, which is used to test the trained neural network.
+- Test set, which is used to test the trained neural network.
 
 You will try to build a model upon `train set` then try to optimize hyperparamters on `dev set` as much as possible. After your model is ready, you can evaluate the model with `test set`.
 
@@ -257,7 +257,7 @@ Suppose we have a data set with the size of `50m`, training it will take a huge 
 - Split $X$(with the size `m`) into `mini-batch` of size `b`:
     - $X^{ \\{ 1 \\} } = 0,  \cdots, b$
     - $X^{ \\{ 2 \\} } = b + 1, \cdots, 2b$
-    - $ \cdots $
+    - $\cdots$
     - $X^{ \\{ \frac{m}{b} \\} } = (\frac{m}{b} - 1) * b, \cdots, \frac{m}{b} * b\cdots 2b$
 - Split $Y$ into `mini-batch` of size `b`, so we get the definition of `mini-batch`: $t: X^{\\{ t \\}}, Y^{\\{ t \\}}$
 - Like old `batch gradient descent`, with `mini-batch gradient descent` we run the gradient descent on the mini datasets:
@@ -276,12 +276,13 @@ Unlike batch gradient descent where cost function decreases each iteration, mini
 ![mini-batch](images/deep_learning/mini_batch.png)
 
 The gradient descent type depends on mini-batch size:
-- $mini-batch-size = m$: batch gradient descent, which is too long per iteration(epoch);
-- $mini-batch-size = 1$: stochastic gradient descent(SGD), which:
+
+- mini-batch-size = m: batch gradient descent, which is too long per iteration(epoch);
+- mini-batch-size = 1: stochastic gradient descent(SGD), which:
     - is too noisy regarding cost minimization(can be reduced by using smaller learning rate);
     - won't ever converge(reach the minimum cost);
     - loses speedup from vectorization.
-- $mini-batch-size = (1, m)$: mini-batch gradient descent, which:
+- mini-batch-size = (1, m): mini-batch gradient descent, which:
     - has faster learning speed:
         - it can take the advantage of vectorization;
         - it makes progress without waiting to process the entire training set.
@@ -289,7 +290,7 @@ The gradient descent type depends on mini-batch size:
 
 How to choose the `mini-batch` size? Here are the suggestions:
 
-- $m < 2000$: Batch gradient descent;
+- m < 2000: Batch gradient descent;
 - It has to be the power of $2$(64, 128, ..., 1024, ...), because of the way computer memory is layed and accessed your code might run faster;
 - Make sure that the `mini-batch` fits in CPU/GPU memory.
 

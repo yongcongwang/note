@@ -206,7 +206,7 @@ As we discussed before, deeper networks are getting into vanishing gradient prob
 The conclusion is:
 > RNNs are not good at long-term dependencies.
 
-Exploding gradients can be easily seen when your weight values become `Nan`. So one of the methods to solve exploding gradient is to apply `gradient clipping`, which means if your gradient is more than some threshold, rescale some of your gradient vecotr so that it's not too big.
+Exploding gradients can be easily seen when your weight values become `Nan`. So one of the methods to solve exploding gradient is to apply `gradient clipping`, which means if your gradient is more than some threshold, rescale some of your gradient vector so that it's not too big.
 
 The solution for `exploding gradient` problems:
 
