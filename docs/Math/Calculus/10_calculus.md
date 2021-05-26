@@ -69,3 +69,37 @@ $$
 $$
 \int_{a}^{b} (f(x) + g(x)) dx = \int_{a}^{b} f(x) dx + \int_{a}^{b} g(x) dx
 $$
+
+## Averages and the Mean Value Theorem for Integrals
+Let's return to average velocities. All you have to do is to find the displacement and divide it by the total time. If the time interval goes from a to b, and the velocity at time t is $v(t)$, then we've already seen that:
+
+$$
+displacement = \int_{a}^{b} v(t) dt
+$$
+
+Since the total time is $b - a$, we have
+
+$$
+average \quad velocity = \frac{displacement} {total time} = \frac{1}{b - a} \int_a^b v(t) dt
+$$
+
+More general, we can define the **average value** of an integrable function $f$ on the interval $[a, b]$ as follow:
+
+$$
+average \quad value \quad of \quad f \quad on \quad [a, b] = \frac{1}{b - a} \int_a^b f(x) dx
+$$
+
+As for a function, the average theorem actually says that the following two areas are equal:
+
+![average](images/integral/average.png)
+
+Let's label the correspongding point on the x-axis as c, like this:
+
+![mean_value](images/integral/mean_value.png)
+
+So we have $f(x) = f_{av}$. It turns out that if $f$ is continuous, then there is always such a number c(**Mean Value Theorem for integral**):
+>  If $f$ is continous on $[a, b]$, then there exists c in $(a, b)$ such that:
+
+$$
+f(c) = \frac{1}{b - a} \int_{a}^{b} f(x) dx
+$$
