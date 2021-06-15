@@ -114,6 +114,7 @@ Before defining a new type, be sure to consider all these issues:
 
 ## 27. Minimize casting.
 C++ offers four new cast froms:
+
 - `const_cast<T>(expression)`: used to cast away constness of objects.
 - `dynamic_cast<T>(expression)`: used to perform "safe downcasting", i.e., to determine whether an object is of a particular type in an inheritance hierarchy.
 - `reinterpret_cast<T>(expression)`: used for low-level casts that yield implementation-dependent results, e.g., casting a pointer to an int.
@@ -154,6 +155,7 @@ C++ offers four new cast froms:
 
 ## 35. Consider alternatives to virtual functions.
 Here are some alternatives of virtual function:
+
 - Use the non-virtual interface idiom(NVI idiom), a form of the Template Method design pattern that wraps public non-virtual member functions around less accessible virtual functions.
 - Replace virtual functions with `function pointer data member`, a stripped-down manifestation of the `Strategy` design pattern.
 - Replace virtual functions with `std::function` data member, thus allowing use of any callable entity with a signature compatible with what you ned. This, too is a form of the `Strategy` design pattern.
@@ -193,9 +195,9 @@ Here are some alternatives of virtual function:
 
 ## 43. Know how to access names in templatized base classes.
 - In derived class templates, refer to names in base class templates via:
- - `this->` prefix;
- - `using` declaration;
- - explicit base class qualification.
+    - `this->` prefix;
+    - `using` declaration;
+    - explicit base class qualification.
 
 ## 44. Factor parameter-independent code out of templates.
 - Templates generate multiple classes and multiple functions, so any template code not dependent on a template parameter causes bloat.
@@ -223,6 +225,7 @@ Here are some alternatives of virtual function:
 
 ## 50. Understand when it makes sense to replace `new` and `delete`.
 There are many valid reasons for writting custom versions of `new` and `delete`:
+
 - To detect usage errors.
 - To collect statistics about the use of dynamically allocated memory.
 - To increase the speed of allocation and deallocation.
@@ -232,27 +235,30 @@ There are many valid reasons for writting custom versions of `new` and `delete`:
 - To obtain unconventional behavior.
 
 ## 51. Adhere to convention when writing `new` and `delete`.
+
 - operator `new` should 
- - contain an infinite loop trying to allocate memory,
- - call the new-handler if it can't satisfy a memory request, 
- - handle requests from zero bytes,
- - class-specific versions should requests for larger blocks than expected.
+    - contain an infinite loop trying to allocate memory,
+    - call the new-handler if it can't satisfy a memory request, 
+    - handle requests from zero bytes,
+    - class-specific versions should requests for larger blocks than expected.
 - operator `delete` should do nothing if passed a pointer that is null. Class-specific versions should handle blocks that are larger than expected.
 
 ## 52. Write placement `delete` if you write placement `new`.
+
 - When you write a placement version of operator new, be sure to write the corresponding placement version of operator delete. If you don't, your program may experience subtle, intermittent memory leaks.
 - When you declare placement version of new and delete, be sure not to unintentionally hide the normal versions of those functions.
 
 ## 53. Pay attention to compiler warnings.
+
 - Take compiler warnings seriously, and strive to compile warning-free at the maximum warning level supported by your compilers.
 - Don't become dependent on compiler warnings, because different compilers warn about different things. Porting to a new compiler may eliminate warning messages you've come to rely on.
 
 ## 54. Familiarize yourself with the standard library.
 - The primary standard C++ library functionality consists of:
- - STL,
- - iostreams,
- - locales,
- - C89 standard library.
+    - STL,
+    - iostreams,
+    - locales,
+    - C89 standard library.
 
 ## 55. Familiarize yourself with Boost.
 - Boost is a community and website for the development of free, open source, peer-reviewed C++ libraries. Boost plays an influential role in C++ standardization.
