@@ -72,6 +72,7 @@ This is a summary of the book "Effective C++" which gives 55 specific ways to im
 
 ## 19. Treak class design as type design.
 Before defining a new type, be sure to consider all these issues:
+
 - How should objects of your new type be created and destroyed?
 - How should object initialization differ from object assignment?
 - What does it mean for objects of your new type to be passed by value?
