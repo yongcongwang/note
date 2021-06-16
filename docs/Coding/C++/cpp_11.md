@@ -186,7 +186,7 @@ Attributes provide a universal syntax over `__attribute__(...)`, `__declspec`, e
 }
 ```
 
-## constexp
+## constexpr
 `constexp` is the expression that evaluated by the compiler at compile-time. It must be a const expression that compiler can evaluate at compile-time and can be used to indicate the variables, functions, etc.
 ```C++
 const int x = 123;
@@ -315,7 +315,7 @@ for (int x : a) x *= 2;
 ```
 If you want to change element's value, don't forget to use reference.
 
-## Special member functi[on for move sementics
+## Special member function for move sementics
 The copy constructor and copy assignment operator are called when copies are made, and with C++11's introduction of move semantics, there is now a move constructor and move assignment operator for moves.
 ```C++
 struct A {
