@@ -1,6 +1,6 @@
 # The Geometry of Linear Equations
 
-The fundamental problem of linear *n* linear equations in *n* unknowns, for example:
+The fundamental problem of *n* linear equations in *n* unknowns, for example:
 
 $$
 \begin{align}
@@ -39,7 +39,7 @@ $$
 
 Given two vector $\mathbf{c}$ and $\mathbf{d}$ and scalars $x$ and $y$, the sum $x\mathbf{c} + y\mathbf{d}$ is called a `linear combination` of $\mathbf{c}$ and $\mathbf{d}$. Linear combinations are important throughout this course.
 
-Geomerically, we want to find numbers $x$ and $y$ so that $x$ copies of vector $\begin{bmatrix} 2 \\ -1 \end{bmatrix}$ added to $y$ copies of vector $\bein{bmatrix} -1 \\ 2 \end{bmatrix}\$ equals the vector $\begin{bmatrix} 0 \\ 3 \end{bmatrix}$. As we see from the figure below, $x = 1$ and $x = 2$, agreeing with the row picture.
+Geometrically, we want to find numbers $x$ and $y$ so that $x$ copies of vector $\begin{bmatrix} 2 \\ -1 \end{bmatrix}$ added to $y$ copies of vector $\begin{bmatrix} -1 \\ 2 \end{bmatrix}$ equals the vector $\begin{bmatrix} 0 \\ 3 \end{bmatrix}$. As we see from the figure below, $x = 1$ and $x = 2$, agreeing with the row picture.
 
 ![column picture](images/geometry/column.png)
 
@@ -55,13 +55,14 @@ $$
 -x + 2y = 3
 \end{align}
 $$
+
 as a single equation by using matrices and vectors:
 
 $$
 \begin{bmatrix} 2 & -1 \\ -1 & 2\end{bmatrix} \begin{bmatrix} x \\ y\end{bmatrix} = \begin{bmatrix} 0 \\ 3\end{bmatrix}
 $$
 
-The matrix $A = \begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$ is called the `coefficient matrix`. The vector $x = \begin{matrix} x \\ y\end{matrix}$ is the vector of unknowns. The values on the right hand side of the equations form the vector $\mathbf{b}$:
+The matrix $A = \begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$ is called the `coefficient matrix`. The vector $x = \begin{bmatrix} x \\ y\end{bmatrix}$ is the vector of unknowns. The values on the right hand side of the equations form the vector $\mathbf{b}$:
 
 $$
 A \mathbf{x} = \mathbf{b}
@@ -70,7 +71,7 @@ $$
 The three dimensional matrix picture is very like the two dimensional one, except that the vectors and matrices increase in size.
 
 ### Matrix Multiplication
-How do we multiply a matrix $A$ by a vector $mathbf{x}$?
+How do we multiply a matrix $A$ by a vector $\mathbf{x}$?
 
 $$
 \begin{bmatrix} 2 & 5 \\ 1 & 3\end{bmatrix} \begin{bmatrix} 1 \\ 2\end{bmatrix} = ?
