@@ -111,7 +111,7 @@ This is a summary of the book "Effective Modern C++" which gives 42 specific way
 - Potential use cases for `std::weak_ptr` includes caching, observer lists, and the prevention of `std::shared_ptr` cycles.
 
 ## 21. Prefer `std::make_unique` and `std::make_shared` to direct use of `new`.
-- Compared to direct use of `new`, `make` functions eliminate source code duplication, improve exception safety, and, for `std::make_shared` and `std::allocate_shared, generate coee that's smaller and faster.`
+- Compared to direct use of `new`, `make` functions eliminate source code duplication, improve exception safety, and, for `std::make_shared` and `std::allocate_shared`, generate code that's smaller and faster.
 - Situations where use of `make` functions is inappropriate include the need to specify custom deleters and a desire to pass braced initializers.
 - For `std::shared_ptr`s, additional situations where `make` functions may be ill-advised include:
     - classes with custom memory management,
