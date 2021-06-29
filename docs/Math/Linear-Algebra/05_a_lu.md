@@ -53,3 +53,54 @@ $$
 2 & 1 \\ 0 & 7
 \end{bmatrix}
 $$
+
+The matrix $U$ is `upper triangular` with pivots on the diagonal. The matrix $L$ is `lower triangular` and has ones on the diagonal. Sometimes we will also want to factor out a diagonal matrix whose entries are the pivots:
+
+$$
+A \qquad = \qquad L \qquad D \qquad U'
+$$
+
+$$
+\begin{bmatrix}
+2 & 1 \\ 8 & 7
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 \\ 4 & 1
+\end{bmatrix}
+\begin{bmatrix}
+2 & 0 \\ 0 & 3
+\end{bmatrix}
+\begin{bmatrix}
+1 & 1/2 \\ 0 & 1
+\end{bmatrix}
+$$
+
+In the three dimensional case, if $E_{32}E_{31}E_{21}A = U$ then $A = E_{21}^{-1}E_{31}^{-1}E_{32}^{-1}U = LU$.
+
+For example, suppose $E_{31}$ is the identity matrix and $E_{32}$ and $E_{21}$ are as shown below:
+
+$$
+E_{32} \qquad E_{21} \qquad = \qquad E
+$$
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & -5 & 1
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 & 0 \\
+-2 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 0 \\
+-2 & 1 & 0 \\
+10 & -5 & 1
+\end{bmatrix}
+$$
+
+The $10$ in the below left corner arises because we subtracted twice the first row from the second row from the second row, then subtracted five times the new second row from the third.
