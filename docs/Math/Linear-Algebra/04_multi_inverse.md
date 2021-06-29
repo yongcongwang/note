@@ -49,7 +49,7 @@ Here $C_1 = A_1B_1 + A_2B_3$
 ## Inverses
 
 ### Square Matrices
-If $A$ is a square matrix, the most important question you can ask it is whether it has an inverse $A^{-1}$. If if does, then $A^{-1}A = I = AA^{-1}$ and we say that $A$ is `invertible` or `nonsigular`.
+If $A$ is a square matrix, the most important question you can ask it is whether it has an inverse $A^{-1}$. If it does, then $A^{-1}A = I = AA^{-1}$ and we say that $A$ is `invertible` or `nonsingular`.
 
 If $A$ is `singular`, its determinant is zero and we can find some non-zero vector $\mathbf{x}$ for which $A\mathbf{x} = 0$. For example:
 
@@ -69,7 +69,7 @@ $$
 A A^{-1} = I
 $$
 
-can be read as saying "A times column j of $A^{-1}$ equals column j of the identity matrixx". This is just a special form of the equation $A\mathbf{x} =\mathbf{b}$.
+can be read as saying "A times column j of $A^{-1}$ equals column j of the identity matrix". This is just a special form of the equation $A\mathbf{x} =\mathbf{b}$.
 
 ### Gauss-Jordan Elimination
 We can use the method of elimination to solve two or more linear equations at the same time. Just augment the matrix with the whole identity matrix $I$:
@@ -78,10 +78,10 @@ $$
 \begin{bmatrix} 1 & 3 & \vdots & 1 & 0 \\ 2 & 7 & \vdots & 0 & 1 \end{bmatrix} \to \begin{bmatrix} 1 & 3 & \vdots & 1 & 0 \\ 0 & 1 & \vdots & -2 & 1 \end{bmatrix} \to \begin{bmatrix} 1 & 0 & \vdots & 7 & -3 \\ 0 & 1 & \vdots & -2 & 1 \end{bmatrix}
 $$
 
-Once we have used Gauss's elimination method to convert the origin matrix to upper triangular form, we go on to use Jorden's idea of eliminating entries  in the upper right portion of the matrixx.
+Once we have used Gauss's elimination method to convert the origin matrix to upper triangular form, we go on to use Jorden's idea of eliminating entries  in the upper right portion of the matrix.
 
 $$
 A^{-1} = \begin{bmatrix} 7 & -3 \\ -2 & 1 \end{bmatrix}
 $$
 
-As in the last lecture, we can write the results of the elimination method as the product of a number of elimination matrix $E_{ij}$ whith the matrixx $A$. Letting $E$ be the product of all $E_{ij}$, we write the result of this Guass-Jorden elimination using block matrix $E [A | I] = [I | E]$. But if $EA = I$, then $E = A^{-1}$.
+As in the last lecture, we can write the results of the elimination method as the product of a number of elimination matrix $E_{ij}$ whith the matrix $A$. Letting $E$ be the product of all $E_{ij}$, we write the result of this Guass-Jorden elimination using block matrix $E [A | I] = [I | E]$. But if $EA = I$, then $E = A^{-1}$.
