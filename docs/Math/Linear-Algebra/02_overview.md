@@ -149,7 +149,7 @@ $$
 
 we get the entire space $\mathbb{R}^3$; the equation $A\mathbf{x} = \mathbf{b}$ has a solution for every $\mathbf{b}$ in $\mathbb{R}^3$. We say that $\mathbf{u}$, $\mathbf{v}$ and $\mathbf{w}$ form a `basis` for $\mathbb{R}^3$.
 
-A `basis` for $\mathbb{R}^3$ is a collection of $n$ independent vectors in $\mathbb{R}^n$. Equaivalently, a `basis` is a collection of $n$ vectors whose combinations cover the whole space. Or, a collection of vectors forms a basis whenever a matrix which has those vectors as its columns is invertible.
+A `basis` for $\mathbb{R}^n$ is a collection of $n$ independent vectors in $\mathbb{R}^n$. Equaivalently, a `basis` is a collection of $n$ vectors whose combinations cover the whole space. Or, a collection of vectors forms a basis whenever a matrix which has those vectors as its columns is invertible.
 
 A `vector space` is a collection of vectors that is closed under linear combinations. A `subspace` is a vector space inside another vector space; a plane through the origin in $\mathbb{R}^3$ is an example of a subspace. A subspace could be equal to the space it's contained in; the smallest subspace contians only the zero vector.
 
