@@ -100,4 +100,4 @@ $$
 
 for every possible vector $\mathbf{b}$? In other words, do the linear combination of the column vectors fill the $xy$-plane(or space, in the three dimensional case)?
 
-If the answer if "no", we say that $A$ is a `singular matrix`. In this singular case its column vectors are `linear dependent`; all linear combinations of those vectors lie on a point or line(in two dimensions) or on a point, line or plane(in three dimensions). The combinations don't fill the whole space.
+If the answer is "no", we say that $A$ is a `singular matrix`. In this singular case its column vectors are `linear dependent`; all linear combinations of those vectors lie on a point or line(in two dimensions) or plane(in three dimensions). The combinations don't fill the whole space.
