@@ -144,7 +144,7 @@ This plane of combinations of $\mathbf{u}$, $\mathbf{v}$ and $\mathbf{w}$ can be
 If we take all combinations of:
 
 $$
-\mathbf{u} = \begin{bmatrix} 1 & -1 & 0\end{bmatrix}, \mathbf{v} = \begin{bmatrix} 0 & 1 & -1\end{bmatrix}, \mathbf{w} = \begin{bmatrix} 0 & 0 & 1\end{bmatrix}
+\mathbf{u} = \begin{bmatrix} 1 \\ -1 \\ 0\end{bmatrix}, \mathbf{v} = \begin{bmatrix} 0 \\ 1 \\ -1\end{bmatrix}, \mathbf{w} = \begin{bmatrix} 0 \\ 0 \\ 1\end{bmatrix}
 $$
 
 we get the entire space $\mathbb{R}^3$; the equation $A\mathbf{x} = \mathbf{b}$ has a solution for every $\mathbf{b}$ in $\mathbb{R}^3$. We say that $\mathbf{u}$, $\mathbf{v}$ and $\mathbf{w}$ form a `basis` for $\mathbb{R}^3$.
