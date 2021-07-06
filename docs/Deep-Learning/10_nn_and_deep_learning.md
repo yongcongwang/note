@@ -146,7 +146,7 @@ Neural Network is a stack of logistic regression objects.
 ### Neural network notations
 
 #### General comments
-- Superscript $(i)$ will denote the $i^{th}$ training example while the superscript $[i]$ will denote the $l^{th}$ layer.
+- Superscript $(i)$ will denote the $i^{th}$ training example while the superscript $[l]$ will denote the $l^{th}$ layer.
 
 #### Sizes
 - $m$: number of examples in the dataset;
