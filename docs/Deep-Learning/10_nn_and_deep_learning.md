@@ -5,7 +5,7 @@
 
 At a very simple level, neurons are basically computational units that take inputs(dendrites) as electrical inputs(called "spikes") that are channeled to outputs(axons). A single neuron will calculate weighted sum of input($W.T \cdot X$) and we can set a threshold to predict output in a perceptron. If weighted sum of input across the threshold, perceptron fires and if not then perceptron doesn't predict.
 
-The disadvantage of perceptron is that it only outputs binary values. To make output of perceptron flips we add a bias, here comes: $W.T \cdot X + b$. We need some system which can modify the output slightly accordding to small change in weight and bias, here comes activation functions($g(X.T \cdot X + b)$).
+The disadvantage of perceptron is that it only outputs binary values. To make output of perceptron flips we add a bias, here comes: $W.T \cdot X + b$. We need some system which can modify the output slightly accordding to small change in weight and bias, here comes activation functions($g(W.T \cdot X + b)$).
 
 `Sigmoid` is a kind of activation functions, we can make slight change in output with sigmoid function, and the single neuron with sigmoid activation function will act as `Logistic Regression`.
 
@@ -61,7 +61,7 @@ y = sigmoid(w^Tx + b)
 $$
 
 ### Logistic regression cost function
-The cost function can be the square root error:
+The cost function can be the one half a square error:
 
 $$
 L(\hat{y}, y) = \frac{1}{2} \cdot (\hat{y} - y)^2
@@ -83,7 +83,7 @@ this leads to two cases:
 Then the cost function will be:
 
 $$
-J(w, b) = \frac{1}{m}\sum^{m}\_{i=1}{(L(\hat{y}^{[i]}, y^{[i]}))}
+J(w, b) = \frac{1}{m} \sum_{i=1}^{m} {(L(\hat{y}^{[i]}, y^{[i]}))}
 $$
 
 The difference between loss function and cost function:
