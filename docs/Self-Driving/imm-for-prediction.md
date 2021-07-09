@@ -326,7 +326,7 @@ def kf_cv():
     return kf
 ```
 The simulation result:
-![cv](/images/2020/imm/cv.png)
+![cv](images/2020/imm/cv.png)
 
 #### Constant acceleration model
 ```python

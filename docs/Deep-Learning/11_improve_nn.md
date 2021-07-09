@@ -23,7 +23,7 @@ You will try to build a model upon `train set` then try to optimize hyperparamte
 The ratio of splitting the models is:
 
 - `6:2:2`, if the size of the dataset is $100$ to $1000000$;
-- `98:1:1 or 99.5:0.25:0.25`, if the size of the dataset is $> 1000000$.
+- `98:1:1` or `99.5:0.25:0.25`, if the size of the dataset is $> 1000000$.
 
 You should make sure the `dev set` and `test set` comes from the same distribution.
 
