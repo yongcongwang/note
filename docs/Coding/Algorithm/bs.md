@@ -4,6 +4,14 @@ In computer science, `binary search`, also known as *half-interval search*, *log
 
 Binary search can be used to solve a wider range of problems, such as finding the next-smallest or next-largest element in the array relative to the target even if it is absent from the array.
 
+## Problems
+
+## Code
+
+## Complexity
+
+## Practice
+
 ## Reference
 - [Wikipedia binary search algorithm](https://en.wikipedia.org/wiki/Binary_search_algorithm)
 - [OI-Wiki binary](https://oi-wiki.org/basic/binary/)
