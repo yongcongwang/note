@@ -28,3 +28,7 @@ There are two ways for the deployment:
 2. Manually with the command: `mkdocs gh-deploy --force`
 
 And I prefer the first one.
+
+## Images
+
+I create all figures with [diagram](app.diagrams.net), and all images can be modified with it.
