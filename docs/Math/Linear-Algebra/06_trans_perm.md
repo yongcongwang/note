@@ -1,4 +1,4 @@
-# Transpose, permutations, spaces $R^n$
+# Transpose, permutations, spaces R^n
 
 In this lecture we introduce vector spaces and their subspaces.
 

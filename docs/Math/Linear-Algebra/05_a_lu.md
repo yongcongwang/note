@@ -1,4 +1,4 @@
-# Factorization into $A=LU$
+# Factorization into A=LU
 
 One goal of today's lecture is to understand Gaussian elimination int terms of matrices; to find a matrix $L$ such that $A = LU$. We start with some useful facts about matrix multiplication.
 
