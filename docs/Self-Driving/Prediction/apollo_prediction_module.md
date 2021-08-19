@@ -1,4 +1,4 @@
-# Introduce to Apollo Prediction Module
+# Introduce to Apollo(3.5) Prediction Module
 The prediction module studies and predicts the behavior of all the obstacles detected by the perception module. Prediction receives data of obstacles along with basic perception information including positions, headings, velocities, accelerations and then generates predicted trajectories with probabilities for those obstacles.
 
 ## Input
@@ -304,7 +304,7 @@ The model has $23 + 5 * 9 + 8 + 20 * 4 = 146$ inputs, $23$ of which are obstacle
 - $\theta_{mean}$, the average of all the heading values in an obstacle's history;
 - $\theta_{filter} - \theta_{mean}$;
 - $\theta_{diff} = \theta_{curr} - \theta_{prev}$, where $\theta_{curr}$ is the average of the latest $0 \to 4$ heading values in an obstacle's history, $\theta_{prev}$ is the average of the latest $5 \to 9$ heading values;
-- $\theta_{diff}'$, $\theta_{diff}' = \frac{\theta_{diff}}{\Delta_t} $;
+- $\theta_{diff}'$, $\theta'_{diff} = \frac{\theta_{diff}}{\Delta_t}$;
 - $l_{filter}$, the average of the latest 5 lateral distance values in an obstacle's history;
 - $l_{mean}$, the average of all the lateral distance values in an obstacle's history;
 - $l_{filter} - l_{mean}$;
