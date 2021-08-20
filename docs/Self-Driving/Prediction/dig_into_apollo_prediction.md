@@ -195,3 +195,89 @@ In the equation:
 - $W_{lane}$ is the width of lane;
 - $W_{l}$ is the lateral distance from lane reference line to obstacle's location;
 - $P_{cost}$ is the probability, calculated by a [Sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function).
+
+### CruiseMLPEvaluator
+
+![cruise mlp](images/prediction/cruise_mlp.png)
+
+The model has $23 + 5 * 9 + 8 + 20 * 4 = 146$ inputs, $23$ of which are obstacle features:
+
+- $\theta_{filter}$, the average of the latest 5 heading values in an obstacle's history;
+- $\theta_{mean}$, the average of all the heading values in an obstacle's history;
+- $\theta_{filter} - \theta_{mean}$;
+- $\theta_{diff} = \theta_{curr} - \theta_{prev}$, where $\theta_{curr}$ is the average of the latest $0 \to 4$ heading values in an obstacle's history, $\theta_{prev}$ is the average of the latest $5 \to 9$ heading values;
+- $\theta_{diff}'$, $\theta'_{diff} = \frac{\theta_{diff}}{\Delta_t}$;
+- $l_{filter}$, the average of the latest 5 lateral distance values in an obstacle's history;
+- $l_{mean}$, the average of all the lateral distance values in an obstacle's history;
+- $l_{filter} - l_{mean}$;
+- $l_{diff} = l_{curr} - l_{prev}$, where $l_{curr}$ is the average of the latest $0 \to 4$ lateral distance values in an obstacle's history, $l_{prev}$ is the average of the latest $5 \to 9$ lateral distance values;
+- $v$, the velocity of the obstacle;
+- $a$, the acceleration of the obstacle;
+- $j$, the jerk of the obstacle;
+- $D_{lb}$, the distance from obstacle to left lane boundary;
+- $D_{lb}' = \frac{D_{first} - D_{last}}{dt}$, where $D_{first}$ is the first $D_{lb}$ of the history, $D_{last}$ is the last $D_{lb}$ of the history, $dt$ is the duration of the history;
+- $D_{lb diff}' = D_{lb curr} - D_{lb prev}$, where $D_{lb curr}$ is the average of the latest $0 \to 4$ $D_{lb}$ values in an obstacle's history, $D_{lb prev}$ is the average of the latest $5 \to 9$ $D_{lb}$ values;
+- $D_{rb}$, the distance from obstacle to right lane boundary;
+- $D_{rb}' = \frac{D_{first} - D_{last}}{dt}$, where $D_{first}$ is the first $D_{rb}$ of the history, $D_{last}$ is the last $D_{rb}$ of the history, $dt$ is the duration of the history;
+- $D_{rb diff}' = D_{rb curr} - D_{rb prev}$, where $D_{rb curr}$ is the average of the latest $0 \to 4$ $D_{rb}$ values in an obstacle's history, $D_{rb prev}$ is the average of the latest $5 \to 9$ $D_{rb}$ values;
+- `is_curr_lane_no_turn`, this value is $1$ if current lane is `NoTurn`, or it's $0$;
+- `is_curr_lane_left_turn`, this value is $1$ if current lane is `LeftTurn`, or it's $0$;
+- `is_curr_lane_right_turn`, this value is $1$ if current lane is `RightTurn`, or it's $0$;
+- `is_curr_lane_uturn`, this value is $1$ if current lane is `UTurn`, or it's $0$.
+
+And $5 * 9$ features are obstacle history features, we search $5$ frames of history, each frame has $9$ fearures:
+
+- `is_curr_frame_has_hisotry`, the value is $1$ if current frame and previous frame all have position/velocity/acceleration/velocity_heading information, otherwise it's $0$;
+- $x$, in local coordinate system;
+- $y$, in local coordiante system;
+- $x^{\prime}$;
+- $y^{\prime}$;
+- $x^{\prime\prime}$;
+- $y^{\prime\prime}$;
+- $\theta_{v}$, the heading of velocity;
+- $\theta_{v}^{\prime}$.
+
+$8$ features are for forward and backward obstacles:
+
+- $s_{forward}$, the forward obstacle's distance;
+- $l_{forward}$, the forward obstacle's lateral distance;
+- $L_{forward}$, the forward obstacle's length;
+- $v_{forward}$, the forward obstacle's velocity;
+- $s_{backward}$, the backward obstacle's distance;
+- $l_{backward}$, the backward obstacle's lateral distance;
+- $L_{backward}$, the backward obstacle's length;
+- $v_{backward}$, the backward obstacle's velocity;
+
+And the other $20 * 4$ features are lane features, we choose $20$ points from the reference line, each of them has 4 features:
+
+- $s_{point}$, the lane point's distance;
+- $l_{point}$, the lane point's lateral distance;
+- $\psi_{point}$: the heading of the lane point;
+- $\kappa_{point}$: the curvature of the lane point.
+
+The result of `CruiseMLPEvaluator` is:
+
+- the probability of an obstacle on a lane;
+- the time of an obstacle to travel to reference line.
+
+### JunctionMLPEvaluator
+
+![junction_mlp](images/prediction/junction_mlp.png)
+
+This model has 3 obstacle features:
+
+- $v$, the velocity of an obstacle;
+- $a$, the acceleration of an obstacle;
+- $S_{junction}$, the area of the junction.
+
+The other $12 * 5$ features are junction features. We divide area aroud the vehicle to 12 regions and calculate the probability of each exit.
+![junction](images/prediction/junction.png)
+Each exit has 5 features:
+
+- `is_exit_exist`, it's 1 if the exit of junction exists;
+- $x_{diff} / S_{junction}$, $x_{diff}$ is the deviation between obstacle and exit in x direction;
+- $y_{diff} / S_{junction}$, $y_{diff}$ is the deviation between obstacle and exit in y direction;
+- $L_{diff} / S_{junction}$, $L_{diff}$ is the distance between obstacle and exit;
+- $\theta_{diff}$, the heading difference between obstacle and exit.
+
+And the output of the model is the probability of an obstacle to exit in 12 directions.
