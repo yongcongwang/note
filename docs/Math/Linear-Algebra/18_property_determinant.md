@@ -154,7 +154,7 @@ because $A^{-1}A = 1$. (Note that if $A$ is singular then $A^{-1}$ does not exis
 ### 10. $\det A^T = \det A$
 
 $$
-\begin{vmatrix} a & b \\ c & d \end{bmatrix} = \begin{vmatrix} a & c \\ b & d \end{bmatrix} = ad - bc
+\begin{vmatrix} a & b \\ c & d \end{vmatrix} = \begin{vmatrix} a & c \\ b & d \end{vmatrix} = ad - bc
 $$
 
 This lets us translate properties(2, 3, 4, 5, 6) involving rows into statements about columns. For instance, if a column of a matrix is all zeros then then the determinant of that matrix is zero.
