@@ -79,7 +79,7 @@ These examples are particularly nice because they don't include complicated squa
 Suppose $Q$ has orthonormal columns, The matrix that projects onto the column space of $Q$ is:
 
 $$
-P = Q^T(Q^TQ)^{-1}Q^T
+P = Q(Q^TQ)^{-1}Q^T
 $$
 
 If the columns of $Q$ are orthonormal, then $Q^TQ = I$ and $P = QQ^T$. If $Q$ is square, then $P = I$ because the columns of $Q$ span the entire space.
