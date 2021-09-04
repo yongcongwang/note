@@ -140,3 +140,27 @@ a(d - \frac{c}{a}b) = ad - bc
 $$
 
 ### 9. $\det AB = (\det A)(\det B)$
+
+This is very useful. Although the determinant of a sum does not equal the sum of the determinants, it is true that the determinant of a product equals the product of the determinants.
+
+For example:
+
+$$
+\det A^{-1} = \frac{1}{\det A}
+$$
+
+because $A^{-1}A = 1$. (Note that if $A$ is singular then $A^{-1}$ does not exist and $\det A^{-1}$ is undefined.) Also, $\det A^2 = (\det A)^2$ and $\det 2A = 2^n \det A$ (applying property 3 to each row of the matrix). This reminds us of volume, if we double the length, width and height of a tree dimensional box, we increase its volume by a multiple of $2^3 = 8$.
+
+### 10. $\det A^T = \det A$
+
+$$
+\begin{vmatrix} a & b \\ c & d \end{bmatrix} = \begin{vmatrix} a & c \\ b & d \end{bmatrix} = ad - bc
+$$
+
+This lets us translate properties(2, 3, 4, 5, 6) involving rows into statements about columns. For instance, if a column of a matrix is all zeros then then the determinant of that matrix is zero.
+
+To see why $|A^T| = |A|$, use elimination to write $A = LU$. The statement becomes $|U^TL^T| = |LU|$. Rule 9 then tells us $|U^T||L^T| = |L||U|$.
+
+Matrix $L$ is a lower triangular matrix with $1$'s on the diagonal, so rule 5 tells us that $|L| = |L^T| = 1$. Because $U$ is upper triangular, rule 5 tells us that $|U| = |U^T|$. Therefore $|U^T||L^T| = |L||U|$ and $|A^T| = |A|$.
+
+We have one loose end to worry about. Rule 2 told us that a row exchange changes the sign of the determinant. If it's possible to do seven row exchanges and get the same matrix you would by doging ten row changes, then we could prove that the determinant equals its negative. To complete the proof that the determinant is well defined by properties 1, 2 and 3 we'd need to show that the result of an odd number of row exchanges (odd permutation) can never be the same as the result of an even number of row exchanges(even permutation).
