@@ -17,11 +17,23 @@ You can use
 
 to implement a `stack`.
 
-## Usage
+## Problems
 
-### Syntax Parsing
+### Implementation
 
-### Expression Evaluation
+- [155. Min Stack](https://leetcode-cn.com/problems/min-stack/)
+- [225. Implement Stack using Queues](https://leetcode-cn.com/problems/implement-stack-using-queues/)
+
+### Expression Evaluation and Syntax Parsing
+
+- [20. Valid Parentheses](https://leetcode-cn.com/problems/valid-parentheses/)
+- [71. Simplify Path](https://leetcode-cn.com/problems/simplify-path/)
+- [150. Evaluate Reverse Polish Notation](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
+- [224. Basic Calculator](https://leetcode-cn.com/problems/basic-calculator/)
+- [227. Basic Calculator II](https://leetcode-cn.com/problems/basic-calculator-ii/)
 
 ### Monotonous Stack
+
+- [42. Trapping Rain Water](https://leetcode-cn.com/problems/trapping-rain-water/)
+- [84. Largest Rectangle in Histogram](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
 
