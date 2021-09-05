@@ -1,4 +1,4 @@
-# The 10 object-oriented-principles(OOP)
+# The 10 Object-Oriented-Principles(OOP)
 
 The Object-Oriented Design Principles are the core of OOP programming, and we programmer should pay more attention to them.
 It's important to learn the basics of Object-Oriented Programming like `Abstraction`, `Encapsulation`, `Polymorphism` and `Inheritance`, and meanwhile, it's equally important to know object-oriented design principles.

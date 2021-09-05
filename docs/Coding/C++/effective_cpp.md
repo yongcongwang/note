@@ -1,4 +1,5 @@
 # Effective C++
+
 This is a summary of the book "Effective C++" which gives 55 specific ways to imporve your programs and designs by Scott Meyers.
 
 ## 1. View C++ as a federation of languages.

@@ -755,38 +755,38 @@ To do so:
 1. Given training set ${(x^{(1), y^{(1)}}) \cdots (x^{(m)}, y^{(m)})}$,
     - Set $\Delta_{i, j}^{(l)} := 0$ for all $(l, i, j)$(hence you end up having a matrix full of zeros)
 2. For training example $t = 1 \to m$:
-    1. Set $a^{(1)} := x^{(t)}$
-    2. Perform `forward propagation` to compute $a^{(l)}$ for $l=2,3,\cdots,L$
+    a. Set $a^{(1)} := x^{(t)}$
+    b. Perform `forward propagation` to compute $a^{(l)}$ for $l=2,3,\cdots,L$ ![forward propagation](images/deep_learning/forward_propagation.png)
 
-![forward propagation](images/deep_learning/forward_propagation.png)
-
-$$
-\begin{array}{lcl}
-a^{(1)} & = & x \\\\
-z^{(2)} & = & \Theta^{(1)}a^{(1)} \\\\
-a^{(2)} & = & g(z^{(2)}) \quad (add \quad a_{0}^{(2)}) \\\\
-z^{(3)} & = & \Theta^{(2)}a^{(2)} \\\\
-a^{(3)} & = & g(z^{(3)}) \quad (add \quad a_{0}^{(3)}) \\\\
-z^{(4)} & = & \Theta^{(3)}a^{(3)} \\\\
-a^{(4)} & = & h_{\Theta}(x) = g(z^{(4)}) \\\\
-\end{array}
-$$
-
-    3. Using $y^{(t)}$ to compute $\delta^{(L)} = a^{(L)} - y^{(t)}$.
-    4. Where $L$ is our total number of layers and $a^{(L)}$ is the vector of outputs of the activation units for the last layer. So our "error values" for the last layer are simply the differences of our actual results in the last layer and the correct outputs in $y$. To get the $\delta$ values of the layers before the last layer, we can use an equation that steps us back from right to left.
-    5. Computing $\delta^{(L-1)},\delta^{(L-2)},\cdots,\delta^{(2)}$ using
+    c. Using $y^{(t)}$ to compute $\delta^{(L)} = a^{(L)} - y^{(t)}$.
+    d. Where $L$ is our total number of layers and $a^{(L)}$ is the vector of outputs of the activation units for the last layer. So our "error values" for the last layer are simply the differences of our actual results in the last layer and the correct outputs in $y$. To get the $\delta$ values of the layers before the last layer, we can use an equation that steps us back from right to left.
+    e. Computing $\delta^{(L-1)},\delta^{(L-2)},\cdots,\delta^{(2)}$ using
 
 $$
 \delta^{(l)}=((\Theta^{(l)})^{T}\delta^{(l+1)}).*a^{(l)}.*(1-a^{(l)})
 $$
 
+The equation for b.:
+
+$$
+\begin{array}{lcl}
+a^{(1)} & = & x \\
+z^{(2)} & = & \Theta^{(1)}a^{(1)} \\
+a^{(2)} & = & g(z^{(2)}) \quad (add \quad a_{0}^{(2)}) \\
+z^{(3)} & = & \Theta^{(2)}a^{(2)} \\
+a^{(3)} & = & g(z^{(3)}) \quad (add \quad a_{0}^{(3)}) \\
+z^{(4)} & = & \Theta^{(3)}a^{(3)} \\
+a^{(4)} & = & h_{\Theta}(x) = g(z^{(4)}) \\
+\end{array}
+$$
+
 We then element-wise multiple that with a function called $g'$ which is the derivative of the activation function $g$ evaluated with the input values given by $z^{(l)}$:
 
 $$
-g'(z^{(l)}) = a^{(l)}.\*(1-a^{(l)})
+g'(z^{(l)}) = a^{(l)}.*(1-a^{(l)})
 $$
 
-    - $\Delta_{i,j}^{(l)} := \Delta_{i,j}^{(l)} + a_{j}^{(l)}\delta_{i}^{(l+1)}$ or with vectorization:
+$\Delta_{i,j}^{(l)} := \Delta_{i,j}^{(l)} + a_{j}^{(l)}\delta_{i}^{(l+1)}$ or with vectorization:
 
 $$
 \Delta^{(1)} := \Delta^{(l)} + \delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T

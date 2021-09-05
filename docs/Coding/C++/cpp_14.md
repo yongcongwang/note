@@ -1,12 +1,15 @@
-# C++14 New Features
-## Binary literals
+# C++14 New Features and Libraries
+
+## New Features
+
+### Binary Literals
 Binary literals provide a convenient way to represent a number in binary. It is possible to separate digits with `'`.
 ```C++
 0b110  // == 6
 0b1111'1111 // == 255
 ```
 
-## Generic lambda expressions
+### Generic Lambda Expressions
 C++14 now allows the `auto` type-specifier in the param list, enabling polymorphic lambdas.
 ```C++
 auto identity = [](auto x) { return x; };
@@ -14,7 +17,7 @@ int three = identity(3);  // == 3
 std::string foo = identity("foo");  // == "foo"
 ```
 
-## Lambda capture initializers
+### Lambda Capture Initializers
 This allows creating lambda captures initialized whith arbitrary expressions. The name given to the captured value does not need to be related to any variables in the enclosing scopes and introduces a new name inside the lambda body. The initializing expression is evaluated when the lambda is **created**(not **invoked**).
 ```C++
 int factory(int i) { return i * 10; }
@@ -49,7 +52,7 @@ auto f = [&r = x, x = x * 10] {
 f(); // sets x to 2 and returns 12
 ```
 
-## Return type deduction
+### Return Type Deduction
 Using an `auto` return type in C++14, the compiler will attempt to deduce the type for you. With lambdas, you can now deduce its return type using `auto`, which makes returning a deduced reference or rvalue reference possible.
 ```C++
 // Deduce return type as `int`.
@@ -67,7 +70,7 @@ int y = 123;
 int& z = g(y); // reference to `y`
 ```
 
-## decltype(auto)
+### `decltype(auto)`
 The `decltype(auto)` type-specifier also deduces a type like `auto` does. The difference is:
 
 - `decltype(auto)` keeps the reference and cv-qulifiers while `auto` not.
@@ -101,7 +104,7 @@ static_assert(std::is_same<int, decltype(f(x))>::value == 1);
 static_assert(std::is_same<const int&, decltype(g(x))>::value == 1);
 ```
 
-## Relaxing constraints on constexpr functions
+### Relaxing Constraints on Constexpr Functions
 In C++11 `constexpr` function bodies can only contain a very limited set of syntaxes, including(but not limited to):
 
 - `typedef`
@@ -121,7 +124,7 @@ constexpr int factorial(int n) {
 factorial(5); // == 120
 ```
 
-## Variable templates
+### Variable Templates
 C++14 allows variables to be templated:
 ```C++
 template<class T>
@@ -130,7 +133,7 @@ template<class T>
 constexpr T e  = T(2.7182818284590452353);
 ```
 
-## [[deprecated]] attribute
+### `[[deprecated]]` Attribute
 C++14 introduces the `[[deprecated]]` attribute to indicate that a unit (function, clss, etc) is discouraged and likely yield conpilation warnings. If a reason is provided, it will be included in the warning.
 ```C++
 [[deprecated]]
@@ -139,8 +142,8 @@ void old_method();
 void legacy_method();
 ```
 
-# C++14 New Libraries
-## User-defined literals for standard library types
+## New Libraries
+### User-defined Literals for Standard Library Types
 New user-defineqd literals for standard library types, include new built-in literals for `chrono` and `basic_string`. These can be `constexpr` meaning that they can be used at compile-time. Some uses for these literals include compile-time integar parsing, binary literals, and imaginary number literals.
 ```C++
 using namespace std::chrono_literals;
@@ -149,7 +152,7 @@ day.count(); // == 24
 std::chrono::duration_cast<std::chrono::minutes>(day).count(); // == 1440
 ```
 
-## Compile-time integar sequence
+### Compile-time Integar Sequence
 The class template `std::integar_sequence` represents a compile-time sequence of integar. There are a few helpers built on top:
 
 - `std::make_integar_sequence<T, N>`: creates a sequence of `0, ..., N - 1` with type `T`.
@@ -167,7 +170,7 @@ decltype(auto) a2t(const std::array<T, N>& a) {
 }
 ```
 
-## std::make_unique
+### `std::make_unique`
 `std::make_unique` is the recommanded way to create instances of `std::unique_ptr`s due to the following reasons:
 
 - Avoid having to use the `new` operator.

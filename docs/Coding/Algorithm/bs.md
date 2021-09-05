@@ -57,7 +57,7 @@ There are many kinds of problems, but if the range of problem can be divided int
 
 it can be solved with binary search.
 
-### Binary search in an array
+### Binary Search in an Array
 
 - [704. Binary Search](https://leetcode-cn.com/problems/binary-search/)
 - [34. Find First and Last Position of Element in Sorted Array](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
@@ -72,14 +72,14 @@ it can be solved with binary search.
 - [4. Median of Two Sorted Arrays](https://leetcode-cn.com/problems/median-of-two-sorted-arrays/)
 - [658. Find K Closest Elements](https://leetcode-cn.com/problems/find-k-closest-elements/)
 
-### Binary search in a range
+### Binary Search in a Range
 
 - [69. Sqrt(x)](https://leetcode-cn.com/problems/sqrtx/)
 - [287. Find the Duplicate Number](https://leetcode-cn.com/problems/find-the-duplicate-number/)
 - [374. Guess Number Higher or Lower](https://leetcode-cn.com/problems/guess-number-higher-or-lower/)
 - [1300. Sum of Mutated Array Closest to Target](https://leetcode-cn.com/problems/sum-of-mutated-array-closest-to-target/)
 
-### Binary search with implicit relations
+### Binary Search with Implicit Relations
 
 - [410. Split Array Largest Sum](https://leetcode-cn.com/problems/split-array-largest-sum/)
 - [875. Koko Eating Bananas](https://leetcode-cn.com/problems/koko-eating-bananas/)

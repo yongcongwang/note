@@ -1,6 +1,9 @@
 # Neural Network and Deep Learning
+
 ## Introduce to deep learning
+
 ### What is a Neural Network
+
 ![nn](images/deep_learning/neuron.jpg)
 
 At a very simple level, neurons are basically computational units that take inputs(dendrites) as electrical inputs(called "spikes") that are channeled to outputs(axons). A single neuron will calculate weighted sum of input($W.T \cdot X$) and we can set a threshold to predict output in a perceptron. If weighted sum of input across the threshold, perceptron fires and if not then perceptron doesn't predict.

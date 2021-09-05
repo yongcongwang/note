@@ -1,4 +1,4 @@
-# Abstract datas
+# Abstract Datas
 
 An `abstract data type`(ADT) is a set of objects together with a set of operations. Objects such as lists, sets, and graphs along with their operations can be viewed as ADTs, just as integers, reals, and boolens are data types.
 
@@ -31,7 +31,7 @@ There are generally two ways to implement the List ADT:
 - array;
 - linked list.
 
-### Array(Vector) implementation of List
+### Array(Vector) Implementation of List
 All these instructions can be implemented just using an array. Although arrays are created with a fixed capacity, the `vector` class, which internally stores an array, allows the array to grow by doubling its capacity when needed.
 The time complexity of array is:
 
@@ -189,7 +189,7 @@ class Vector {
 };
 ```
 
-### Linked list implementation of List
+### Linked List Implementation of List
 In order to avoid the linear cost of insertion and deletion, we need to ensure that the list is not stored contiguously, since otherwise entire parts of the list will need to be moved.
 The linked list consists of a series of nodes, which are not necessarily adjacent in memory. Each node contains the element and a link to a node containing its successor. We call this the `next` link.
 The time complexity of linked list operation is:
@@ -450,6 +450,7 @@ class List {
 ```
 
 ## The Stack ADT
+
 A `stack` is a list with the restriction that insertions and deletions can be performed in only one position, namely, the end of the list, called the `top`.
 The foundamental operations on a stack are:
 
@@ -461,6 +462,7 @@ Since a stack is a list, any list implementation will do. Clearly `array` and `l
 All the operations the Stack needed are supported by `Vector` and `List`, so I do not show the implementation here.
 
 ## The Queue ADT
+
 Like stack, `queues` are lists. With a queue, however, insertion is done at one end whereas deletion is performed at the other end.
 
 The basic operations on a queue are:

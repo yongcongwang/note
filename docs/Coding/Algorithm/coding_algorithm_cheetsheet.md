@@ -1,6 +1,8 @@
+# Coding Algorithm Cheetsheet
+
 This is a summary of algorithms which solve problems in coding interview.
 
-## Data structure
+## Data Structure
 For any data structure, the basic operation is no more than `traversal` and `access`, and more specific point are:
 
 - Add;
@@ -63,7 +65,7 @@ void traverse(TreeNode root) {
 }
 ```
 
-## Dynamic planning
+## Dynamic Planning
 The normal for of dynamic programming problem is to `calculate the maximum or minimum`.
 
 The core of the problem is `enumeration`. We are asked to calculate the max or min, so we enumerate all the posible answers and find the the max/min answer.
@@ -209,7 +211,7 @@ int right_bound(int[] nums, int target) {
 
 ```
 
-## Slide window
+## Slide Window
 The sliding window algorithm idea is like this:
 
 1. We start with two pointers, left and right initially pointing to the first element of the string S;

@@ -1,6 +1,8 @@
-# C++11 New Features
+# C++11 New Features and Libraries
 
-## Move segmentics
+## New Features
+
+### Move Segmentics
 Moving an object means to transfer ownership of some resource it manage to another object.
 
 Benefits:
@@ -8,16 +10,16 @@ Benefits:
 - Performance optimization: while copying a temporary object(for example, a `vector`) to a list, without `std::move` you have to copy every element in vector and store them in new place. `Moving` a vector is just copying some pointer and internal state over to the new one.
 - Make it possible to have only one instance at a time: for example, `std::unique_ptr` is non-copyable, but you can use `move` to transfer an instance between scopes at the language level.
 
-## Rvalue references
+### Rvalue References
 `Rvalue reference` is a new reference. It's a non-template type(such as `int`) and can be created with the syntax `T &&`. It can be binded only to rvalues.
 
-## Forwarding references
+### Forwarding References
 `Forwarding reference` is also known as `universal references`.
 
 - It can be created by `T&&` when `T` is a template type or `auto&&`.
 - This enables `perfect forwarding`: the ability to pass arguments while maintaining their value category(e.g. lvalue stay as lvalue, temporaries are forwarded as rvalue).
 
-## Variadic templates
+### Variadic Templates
 The `...` syntax creates a `parameter pack` or expands one. A template `parameter pack` is a template parameter that accepts zero or more template arguments. A template with at least one parameter pack is called a `variadic template`.
 An exmple is as following:
 ```C++
@@ -29,7 +31,7 @@ static_assert(arity<>::value == 0);
 static_assert(arity<char, short, int>::value == 3);
 ```
 
-## Initializer lists
+### Initializer Lists
 A lightweight array-like container of elements created using a "braced list" syntax. For example, `1, 2, 3` creates a sequences of integars, that has type `std::initializer_list<int>`. Useful as a replacement to passing a vector of objects to a function.
 ```C++
 int sum(const std::initializer_list<int> &list) {
@@ -50,7 +52,7 @@ It can also be used to initialize a vector, for example:
 const std::vector<int> test({1, 2, 3, 4});
 ```
 
-## Static assertions
+### Static Assertions
 Assertions that are evaluated at compile-time.
 Usage: `static_assert(condition, string)`. For example:
 ```C++
@@ -60,7 +62,7 @@ static_assert(x == y, "x != y");
 ```
 If `x == y` is true, compiler will do nothing, else the compiler will report an error, the error message is `x != y`.
 
-## auto
+### `auto`
 `auto` typed variables are deduced by the compiler according to the type of their initializer. However, if the compiler cannot determine the type of variable, it will report an error.
 ```C++
 auto pi = 3.14;  // double
@@ -80,7 +82,7 @@ add(1.0, 2);  // double
 add(1.0, 2.0);  // double
 ```
 
-## Lambda expressions
+### Lambda Expressions
 A `lambda` is an unnamed function object capable of capturing variable in scope. It features:
 
 - a *capture list*
@@ -119,7 +121,7 @@ auto f2 = [x] { x = 2; }; // ERROR: the lambda can only perform const-operations
 auto f3 = [x]() mutable { x = 2; }; // OK: the lambda can perform any operations on the captured value
 ```
 
-## decltype
+### `decltype`
 `decltype` is an operator which returns the *declared type* of an expression passed to it.
 ```C++
 int a = 1; // `a` is declared as type `int`
@@ -138,7 +140,7 @@ auto add(X x, Y y) -> decltype(x + y) {
 add(1, 2.0); // `decltype(x + y)` => `decltype(3.0)` => `double`
 ```
 
-## Type aliases
+### Type Aliases
 Semantically similar to using a `typedef` but `using` of *type aliases* is easier to read and are compatible with templates.
 ```C++
 int x = 1;
@@ -153,7 +155,7 @@ auto getXRef = [&]() -> int& { return x; };
 getXRef(); // int& to `x`
 ```
 
-## nullptr
+### `nullptr`
 C++11 introduces a new null pointer to replace C's `NULL` macro. `nullptr` is of type `std::nullptr_t` and can be implicitly converted into pointer types, and unlike `NULL`, not convertible to integral types except `bool`.
 ```C++
 void foo(int);
@@ -162,7 +164,7 @@ foo(NULL); // error -- ambiguous
 foo(nullptr); // calls foo(char*)
 ```
 
-## Strongly-typed enums
+### Strongly-typed Enums
 Type-safe enums that solve a variable of problems with C-style enums:
 
 - implicit conversions
@@ -177,7 +179,7 @@ enum class Alert : bool { Red, Green };
 Color c = Color::Red;
 ```
 
-## Attributes
+### Attributes
 Attributes provide a universal syntax over `__attribute__(...)`, `__declspec`, etc
 ```C++
 // `noreturn` attribute indicates `f` doesn't return.
@@ -186,7 +188,7 @@ Attributes provide a universal syntax over `__attribute__(...)`, `__declspec`, e
 }
 ```
 
-## constexpr
+### `constexpr`
 `constexp` is the expression that evaluated by the compiler at compile-time. It must be a const expression that compiler can evaluate at compile-time and can be used to indicate the variables, functions, etc.
 ```C++
 const int x = 123;
@@ -197,7 +199,7 @@ The difference to `const`:
 
 - `const` variables can be initialized at run-time, but `constexp` variables must be initialized at compile-time
 
-## Delegating constructors
+### Delegating Constructors
 Constructors can now call other constructors in the same class using an initializer list.
 ```C++
 struct Foo {
@@ -210,7 +212,7 @@ Foo foo;
 foo.foo; // == 0
 ```
 
-## User-defined literals
+### User-defined Literals
 User-defined literals allow you to extend the language and add your own syntax. To create a literal, define:
 ```C++
 T operator ""X(...) {}
@@ -229,7 +231,7 @@ int operator "" _int(const char* str, std::size_t) {
 "123"_int; // == 123, with type `int`
 ```
 
-## Explicit virtual overrides
+### Explicit Virtual Overrides
 Specifies that a virtual function overrides another virtual function. If the virtual function does not override a parent's virtual function, throw a compiler error.
 ```C++
 struct A {
@@ -244,7 +246,7 @@ struct B : A {
 };
 ```
 
-## Final specifier
+### Final Specifier
 Specifies that a virtual function cannot be overridden in a derived class or that a class cannot be inherited from.
 ```C++
 struct A {
@@ -263,7 +265,7 @@ struct A final {};
 struct B : A {}; // error -- base 'A' is marked 'final'
 ```
 
-## Default functions
+### Default Functions
 A more elegant, efficient way to provide a default implementation of a funtion, such as a constructor.
 ```C++
 struct A {
@@ -287,7 +289,7 @@ struct C : B {
 C c; // c.x == 1
 ```
 
-## Deleted functions
+### Deleted Functions
 A more elegant, efficient way to provide a deleted implementation of a function. Useful for preventing copied on objects.
 ```C++
 class A {
@@ -304,7 +306,7 @@ A y = x; // error -- call to deleted copy constructor
 y = x; // error -- operator= deleted
 ```
 
-## Range-based for loops
+### Range-based For Loops
 Syntactic sugar for iterating over a container's elements.
 ```C++
 std::array<int, 5> a {1, 2, 3, 4, 5};
@@ -315,7 +317,7 @@ for (int x : a) x *= 2;
 ```
 If you want to change element's value, don't forget to use reference.
 
-## Special member function for move sementics
+### Special Member Function for Move Sementics
 The copy constructor and copy assignment operator are called when copies are made, and with C++11's introduction of move semantics, there is now a move constructor and move assignment operator for moves.
 ```C++
 struct A {
@@ -340,7 +342,7 @@ a2 = std::move(a3); // move-assignment using std::move
 a1 = f(A{}); // move-assignment from rvalue temporary
 ```
 
-## Converting constructors
+### Converting Constructors
 Converting constructors will convert values of braced list syntax into constructor arguments.
 ```C++
 struct A {
@@ -380,7 +382,7 @@ A c = {0, 0}; // calls A::A(std::initializer_list<int>)
 A d {0, 0, 0}; // calls A::A(std::initializer_list<int>)
 ```
 
-## Explicit convertion functions
+### Explicit Convertion Functions
 Conversion functions can now be made explicit using the `explicit` specifier.
 ```C++
 struct A {
@@ -400,7 +402,7 @@ if (b); // OK calls B::operator bool()
 bool bb = b; // error copy-initialization does not consider B::operator bool()
 ```
 
-## Inline namespaces
+### Inline Namespaces
 All members of an inline namespace are treated as if they were part of its parent namespace, allowing specialization of functions and easing the process of versioning. This is a transitive property, if A contains B, which in turn contains C and both B and C are inline namespace, C's member can be used as if they were on A.
 ```C++
 namespace Program {
@@ -418,7 +420,7 @@ int oldVersion {Program::Version1::getVersion()}; // Uses getVersion() from Vers
 bool firstVersion {Program::isFirstVersion()};    // Does not compile when Version2 is added
 ```
 
-## Non-static data member initializers
+### Non-static Data Member Initializers
 Allows non-static members to be initialized where they are declared, potentially cleaning up constructors of default initializations.
 ```C++
 // Default initialization prior to C++11
@@ -434,14 +436,14 @@ class Human {
 };
 ```
 
-## Right angle brackets
+### Right Angle Brackets
 C++11 is now able to infer when a series of right angle brackets is used as an operator or as a closing statement of typedef, without having to add whitespaces.
 ```C++
 typedef std::map<int, std::map <int, std::map <int, int> > > cpp98LongTypedef;
 typedef std::map<int, std::map <int, std::map <int, int>>>   cpp11LongTypedef;
 ```
 
-## Ref-qualified member functions
+### Ref-qualified Member Functions
 Member functions can now be qualified depending on whether `*this` is an lvalue or rvalue reference.
 ```C++
 struct Bar {
@@ -469,7 +471,7 @@ std::move(foo).getBar(); // calls `Bar Foo::getBar() &&`
 std::move(foo2).getBar(); // calls `Bar Foo::getBar() const&&`
 ```
 
-## Trailing return types
+### Trailing Return Types
 C++11 allows functions and lambdas an alternative syntax for specifying their return types.
 ```C++
 int f() {
@@ -500,7 +502,7 @@ auto add(T a, U b) -> decltype(a + b) {
 }
 ```
 
-## Noexcept specifier
+### Noexcept Specifier
 The `noexcept` specifier specifies whether a function could throw exceptions. It is an improved version of `throw()`.
 ```C++
 void func1() noexcept;        // does not throw
@@ -518,9 +520,9 @@ void g() noexcept {
 }
 ```
 
-# C++11 New Libraries
+## New Libraries
 
-## std::move
+### `std::move`
 `std::move` indicates that the object passed to it may have its resources transferred. Using objects that have been moved from should be used with care, as they can be left in an unspecified state.
 ```C++
 std::unique_ptr<int> p1 {new int{0}}; // in practice, use std::make_unique
@@ -529,7 +531,7 @@ std::unique_ptr<int> p3 = std::move(p1); // move `p1` into `p3`
                                          // now unsafe to dereference object held by `p1`
 ```
 
-## std::forward
+### `std::forward`
 Return the arguments passed to it while maintaining their value category and cv-qualifiers. Useful for generic code and factories. Used in conjunction with `forward reference`
 ```C++
 struct A {
@@ -549,7 +551,7 @@ wrapper(a); // copied
 wrapper(std::move(a)); // moved
 ```
 
-## std::thread
+### `std::thread`
 The `std::thread` library provides a standard way to control threads, such as spawning and killing them. In the example below, multiple threads are spawned to do different calculations and then the program waits for all of them to finish.
 ```C++
 void foo(bool clause) { /* do something... */ }
@@ -564,14 +566,15 @@ for (auto& thread : threadsVector) {
 }
 ```
 
-## std::to_string
+### std::to_string
 Converts a numeric argument to a `std::string`
 ```C++
 std::to_string(1.2);  // == "1.2"
 std::to_string(123);  // == "123"
 ```
 
-## Type traits
+### Type Traits
+
 Type trait defines a compile-time template-based interfaces to query or modify the properties of types.
 ```C++
 static_assert(std::is_integral<int>::value);
@@ -579,7 +582,8 @@ static_assert(std::is_same<int, int>::value);
 static_assert(std::is_same<std::conditional<true, int, double>::type, int>::value);
 ```
 
-## Smart pointers
+### Smart Pointers
+
 C++11 introduces new smart pointers: 
 
 - `std::unique_ptr`
@@ -629,7 +633,7 @@ bar(p1);
 baz(p1);
 ```
 
-## std::chrono
+### `std::chrono`
 The chrono library contains a set of utility functions and types that deal with durations, clocks, and time points. One use case of this library is benchmarking code:
 ```C++
 std::chrono::time_point<std::chrono::steady_clock> start, end;
@@ -641,7 +645,7 @@ std::chrono::duration<double> elapsed_seconds = end - start;
 double t = elapsed_seconds.count(); // t number of seconds, represented as a `double`
 ```
 
-## Tuples
+### Tuples
 Tuples are a fixed-size collection of heterogeneous values. Access the elements of a `std::tuple` by unpacking using `std::tie` or `std::get`.
 ```C++
 // `playerProfile` has type `std::tuple<int, const char*, const char*>`.
@@ -651,7 +655,7 @@ std::get<1>(playerProfile); // "Frans Nielsen"
 std::get<2>(playerProfile); // "NYI"
 ```
 
-## std::tie
+### `std::tie`
 Creates a tuple of lvalue references. Useful for unpacking `std::pair` and `std::tuple` objects. Use `std::ignore` as a placeholder for ignored values. In C++17, structured bindings shouhld be used instead.
 ```C++
 // With tuples...
@@ -663,7 +667,7 @@ std::string yes, no;
 std::tie(yes, no) = std::make_pair("yes", "no");
 ```
 
-## std::array
+### `std::array`
 `std::array` is a container built on top of a C-style array. Supports common container   operations such as sorting.
 ```C++
 std::array<int, 3> a = {2, 1, 3};
@@ -671,7 +675,7 @@ std::sort(a.begin(), a.end()); // a == { 1, 2, 3 }
 for (int& x : a) x *= 2; // a == { 2, 4, 6 }
 ```
 
-## Unordered container
+### Unordered Container
 These containers maintain average constant-time complexity for search, insert, and remove operations. In order to achieve constant-time complexity, sacrifices order for speed by hashing elements into buckets. There are four unordered containers:
 
 - `unordered_set`
@@ -679,7 +683,7 @@ These containers maintain average constant-time complexity for search, insert, a
 - `unordered_map`
 - `unordered_multimap`
 
-## std::make_shared
+### `std::make_shared`
 `std::make_shared` is the recommanded way to create instance of `std::shared_ptr` due to the following reasons:
 
 - Avoid having to use the new operator.
@@ -696,7 +700,7 @@ foo(std::make_shared<T>(), function_that_throws(), std::make_shared<T>());
 
 - Prevents having to do two allocations. When calling `std::shared_ptr{new T{}}`, we have to allocate memory for `T`, then in the shared pointer we have to allocate memory for the control block within the pointer.
 
-## std::ref
+### `std::ref`
 `std::ref(val)` is used to create object of type `std::reference_wrapper` that holds reference of val. Used in cases when usual reference passing using `&` does not compile or `&` is dropped due to type deduction. `std::cref` is similar but created reference wrapper holds a const reference to val.
 ```C++
 // create a container to store reference of objects.
@@ -712,10 +716,10 @@ cout << vec[0] << endl; // prints 100
 cout << _cref; // prints 100
 ```
 
-## Memory model
+### Memory Model
 C++11 introduces a memory model for C++, which means library support for threading and atomic operations. Some of these operations include (but aren't limited to) atomic loads/stores, compare-and-swap, atomic flags, promises, futures, locks, and condition variables.
 
-## std::async
+### `std::async`
 `std::async` runs the given function either asynchronously or lazily-evaluated, then returns a `std::future` which holds the result of that function call.
 
 The first parameter is the policy which can be:
@@ -734,7 +738,7 @@ auto handle = std::async(std::launch::async, foo);  // create an async task
 auto result = handle.get();  // wait for the result
 ```
 
-## std::begin/end
+### `std::begin/end`
 `std::begin` and `std::end` free functions were added to return begin and end iterators of a container generically. These functions also work with raw arrays which do not have begin and end member functions.
 ```C++
 template <typename T>
