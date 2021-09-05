@@ -2,7 +2,7 @@
 
 Path-planning is an important primitive for autonomous mobile robots that lets robots find the shortest(or otherwise optimal) path between two points. Otherwise optimal paths could be paths that minimize the amount of turning, the amount of braking or whatever a specific application requires. Algorithms to find a shortest path are important not only in robotics, but also in network routing, video games and gene sequencing.
 
-## Basic requirements
+## Basic Requirements
 
 There are three basic requirements for motion planning:
 
@@ -10,7 +10,7 @@ There are three basic requirements for motion planning:
 - Smoothness: energy saving and comfortable 
 - Kinodynamic feasibility: executable, controllable
 
-## Methods for motion planning
+## Methods for Motion Planning
 
 The old-school pipeline of motion planing is:
 
@@ -58,3 +58,7 @@ And the general methods includes:
     - Model Prediction Control for robotics Planning
         - Linear MPC
         - Non-linear MPC
+
+## Reference
+
+- [Motion Planning for Mobile Robots](https://www.shenlanxueyuan.com/course/268)
