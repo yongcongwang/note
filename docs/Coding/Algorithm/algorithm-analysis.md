@@ -49,3 +49,15 @@ And then we can solve the equation and analysis the approximate running time.
 
 ### Logarithms in the Running Time
 An algorithm is $O(N)$ if it take constant time to cut the problem size by a fraction (which is usually $\frac{1}{2}$). Otherwise, if constant time is required to merely reduce the problem by a constant amount(such as 1), the algorithm is $O(N)$.
+
+### General Rule for Input Size and Maximum Time Complexity
+
+| Input Size(N) | Worst Accepted Algorithm | Algorithm Type |
+| --- | --- | --- |
+| $< 10$ | $O(N!)$ | Permutation |
+| $< 15$ | $O(2^N)$ | Combination |
+| $< 50$ | $O(N^4)$ | DP |
+| $< 200$ | $O(N^3)$ | DP |
+| $< 1000$ | $O(N^2)$ | DP |
+| $< 10^6$ | $O(N)$ or $O(N\log(N))$ | DP, Greedy, Heap, Divide&Conquer |
+| $< 10^8$ | $O(log(N))$ or $O(1)$ | Binary Search, Math |
