@@ -476,6 +476,249 @@ We can calculate the determinant of $C(p)$ and take all positive root to equatio
 
 This is a solver in `Eigen`, more in [example](http://www.ce.unipr.it/people/medici/eigen-poly.html).
 
+### Partial Free Final State
+
+The previous process is about fixed final state problem, you may notice that the boundary contidtion (10):
+
+$$
+\dot{\lambda}(t) = - \nabla H(S^*(t), u^*(t), \lambda(t))
+$$
+
+is not used. That's because that:
+
+$$
+h(s(T)) =
+\begin{cases}
+0, & \text{if } s = s(T) \\
+\infty, & otherwise \\
+\end{cases}
+$$
+
+is not differentialble, so we discard this condition and use given $S(T)$ to directly solve for unknown variables.
+
+We will solve this again with fixed final $p$ and free $v$ and $a$.
+
+#### 1. Modeling
+
+a. Cost Function:
+
+$$
+J_{\sum} = \sum_{k=1}^{3}J_{k}, J_{k} = \frac{1}{T} \int_0^T j_{k}^2(t) dt
+$$
+
+b. State:
+
+$$
+S_{k} = \begin{bmatrix} p_{k} \\ v_{k} \\ a_{k} \end{bmatrix}
+$$
+
+c. Input:
+
+$$
+u_{k} = j_{k}
+$$
+
+d. System Model:
+
+$$
+\dot {S_{k}} = f_s(s_k, u_K) = \begin{bmatrix} v_k \\ a_k \\ j_k \end{bmatrix}
+$$
+
+e. Start and End State:
+
+$$
+S(0) = \begin{bmatrix} p(0) \\ v(0) \\ a(0) \end{bmatrix}
+$$
+
+$$
+S(f) = \begin{bmatrix} p(f) \\ v(f) \\ a(f) \end{bmatrix}
+$$
+
+The $k$ in equation is the dimension(x, y, z) of state, and we assume that three dimensions are independent, so we throw away the $k$ in the following equations.
+
+And we also define that the quadratic must arrive the final position with the state of $S(f)$, which causes some difference with undefined dimensions' case, we'll discuss this condition later.
+
+- [A Computationally Efficient Motion Primitive for Quadrocopter Trajectory Generation](https://ieeexplore.ieee.org/document/7299672)
+- [Dynamic Programming and Optimal Control](http://www.athenasc.com/dpbook.html)
+
+#### 2. Solving
+
+By `Pontryain's minimum principle`, we first inctroduce the `costate`:
+
+$$
+\lambda = \begin{bmatrix} \lambda_1 \\ \lambda_2 \\ \lambda_3 \end{bmatrix}
+$$
+
+And define the `Hamiltonian function`:
+
+$$
+\begin{align}
+H(s, u, \lambda) &= \frac{1}{T} j^2 + \lambda^T f_s(s, u) \\
+                 &= \frac{1}{T} j^2 + \lambda_1v + \lambda_2a + \lambda_3j \\ 
+\end{align}
+$$
+
+The `Pontryain's minimum principle` says:
+
+$$
+\dot {S}^*(t) = f(S^*(t), u^*(t))
+$$
+
+with $S^*(0) = S(0)$, where:
+
+- `*`, means optimal.
+
+And $\lambda(t)$ is the solution of:
+
+$$
+\dot{\lambda}(t) = - \nabla H(S^*(t), u^*(t), \lambda(t))
+$$
+
+with the boundary condition of:
+
+$$
+\lambda(T) = - \nabla h(S^*(T))
+$$
+
+and the optimal control input is:
+
+$$
+u^*(t) = arg \min_{u(t)} H(S^*(t), u(t), \lambda(t))
+$$
+
+#### 3. Details
+
+From equation (8) and (10), calculating the partial derivatives of $(p, v, a)$, we get:
+
+$$
+\dot{\lambda}(t) = \begin{bmatrix} 0 \\ -\lambda_1 \\ -\lambda_2 \end{bmatrix}
+$$
+
+We define $\lambda_1 = -\frac{1}{T} 2 \alpha$, and calculate the integration of $\lambda_2$ and $\lambda_3$:
+
+$$
+\lambda (t) = \frac{1}{T} \begin{bmatrix} -2 \alpha \\ 2 \alpha t + 2 \beta  \\ - \alpha t^2 - 2 \beta t - 2 \gamma \end{bmatrix}
+$$
+
+Using the boundary condition (10), we know that the $v$ and $a$ are free, so the function $h$ has no relationships with $v, a$ at $T$. Then:
+
+$$
+\lambda_2(T) = 0
+$$
+
+$$
+\lambda_3(T) = 0
+$$
+
+With the formula about $\lambda (t)$, we have:
+
+$$
+\begin{cases}
+\beta = - \alpha T \\
+\gamma = \frac{\alpha}{2} T^2 \\
+\end{cases}
+$$
+
+So the equation can be simplified to:
+
+$$
+\lambda(t) = \frac{1}{T}
+\begin{bmatrix}
+-2\alpha \\
+-2\alpha (t - T) \\
+-\alpha t^2 + 2 \alpha T t - \alpha T^2 \\
+\end{bmatrix}
+$$
+
+The optimal input can be solve:
+
+$$
+u^*(t) = - \frac{\lambda_3 T} {2} = -\frac{T}{2} \frac{1}{T}(-\alpha t^2 + 2 \alpha Tt - \alpha T^2) = \frac{1}{2}(\alpha t^2 - 2 \alpha Tt + \alpha T^2)
+$$
+
+Integrating the $u^\star(t) = j$, we have:
+
+$$
+S^\star (t) =
+\begin{bmatrix}
+\frac{1}{120} \alpha t^5 - \frac{1}{24} \alpha Tt^4 + \frac{1}{12} \alpha T^2t^3 + \frac{a(0)}{2} t^2 + v(0) t + p(0) \\
+\frac{1}{24} \alpha t^4 - \frac{1}{6} \alpha Tt^3 + \frac{1}{4} \alpha T^2 t^2 + a(0) t + v(0) \\
+\frac{1}{6} \alpha t^3 - \frac{1}{2} \alpha T t^2 + \frac{1}{2} \alpha T^2 t + a_0
+\end{bmatrix}
+$$
+
+We have the final $p(f)$, so:
+
+$$
+\frac{1}{120} \alpha T^5 - \frac{1}{24} \alpha T^5 + \frac{1}{12} \alpha T^5 + \frac{a(0)}{2} T^2 + v(0) T + p(0) = p(f)
+$$
+
+so:
+
+$$
+\alpha = frac{20 \Delta p} {T^5}
+$$
+
+where:
+
+$$
+\Delta p = p(f) - p(0) - v(0)T - \frac{1}{2} a(0) T^2
+$$
+
+Finally, we get:
+
+$$
+u^\star(t) = \frac{1}{2}(\alpha t^2 - 2 \alpha Tt + \alpha T^2) = 
+$$
+
+$$
+J = \frac{1}{T} \int_0^T (u^\star(t))^2 dt = \frac{20 (\Delta p)^2} {T^6}
+$$
+
+$J$ is the function about $T$, to minimize $J$, we calculate the result of $J' = 0$:
+
+$$
+(p(f) - p(0) - v(0) T - \frac{1}{2} T^2)(a(0) T^2 + 4 v(0) T - 6p(f) + 6p(0)) = 0
+$$
+
+So:
+
+$$
+T^\star = \frac{-v(0) \pm \sqrt{v(0)^2 + 2a(0)(p(f) - p(0))}} {a(0)}
+$$
+
+or 
+
+$$
+T^\star = \frac{-2v(0) \pm \sqrt{4v(0)^2 + 6a(0)(p(f) - p(0))}} {a(0)}
+$$
+
+- [A Computationally Efficient Motion Primitive for Quadrocopter Trajectory Generation](https://ieeexplore.ieee.org/document/7299672)
+
+
+### Wheeled Robots
+
+- [Optimal Rough Terrain Trajectory Generation for Wheeled Mobile Robot](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.375.9234&rep=rep1&type=pdf)
+- Maximum Likelihood Path Planning for Fast Aerial Maneuvers and Collision Avoidance
+
+### Heuristic Design
+
+We can design the heuristic in practice, the principle is:
+
+> Solve an easier problem
+
+There are mainly two methods:
+
+- Assume no obstacle existence
+- Assume no dynamic existence
+
+Ref:
+
+- Planning Long Dynamically Feasible Maneuvers for Autonomous Vehicle
+- Path Planning for Autonomous Vehicles in Unknown Semi-structured Environment
+
+### Planning in Frenet-serret Frame
+
 ## Kinodynamic RRT*
 
 ## Hybrid A*
