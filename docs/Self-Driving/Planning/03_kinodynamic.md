@@ -198,12 +198,12 @@ c_5 \\ c_4 \\ c_3 \\ c_2 \\ c_1 \\ c_0
 \end{bmatrix}
 $$
 
-But if $T$ is a variable, we can get not only one solution. This is an optimal boundary value problem.
+But if $T$ is a variable, we can get more than one solutions. This is an optimal boundary value problem.
 
 The general step for this problem is:
 
 1. Modelling
-2. Solving with Pontryain's minimum principle
+2. Solving with `Pontryain's Minimum Principle`
 
 We take the quadratic as an example.
 
@@ -211,40 +211,38 @@ We take the quadratic as an example.
 
 #### 1. Modeling
 
-We define the:
-
 a. Cost Function:
 
 $$
-J_{\sum} = \sum_{k=1}^{3}J_{k}, J_{k} = \frac{1}{T} \int_0^T j_{k}^2(t) dt
+J_{\sum} = \sum_{k=1}^{3}J_{k}, J_{k} = \frac{1}{T} \int_0^T j_{k}^2(t) dt \tag{1}
 $$
 
 b. State:
 
 $$
-S_{k} = \begin{bmatrix} p_{k} \\ v_{k} \\ a_{k} \end{bmatrix}
+S_{k} = \begin{bmatrix} p_{k} \\ v_{k} \\ a_{k} \end{bmatrix} \tag{2}
 $$
 
 c. Input:
 
 $$
-u_{k} = j_{k}
+u_{k} = j_{k} \tag{3}
 $$
 
 d. System Model:
 
 $$
-\dot {S_{k}} = f_s(s_k, u_K) = \begin{bmatrix} v_k \\ a_k \\ j_k \end{bmatrix}
+\dot {S_{k}} = f_s(s_k, u_K) = \begin{bmatrix} v_k \\ a_k \\ j_k \end{bmatrix} \tag{4}
 $$
 
 e. Start and End State:
 
 $$
-S(0) = \begin{bmatrix} p(0) \\ v(0) \\ a(0) \end{bmatrix}
+S(0) = \begin{bmatrix} p(0) \\ v(0) \\ a(0) \end{bmatrix} \tag{5}
 $$
 
 $$
-S(f) = \begin{bmatrix} p(f) \\ v(f) \\ a(f) \end{bmatrix}
+S(f) = \begin{bmatrix} p(f) \\ v(f) \\ a(f) \end{bmatrix} \tag{6}
 $$
 
 The $k$ in equation is the dimension(x, y, z) of state, and we assume that three dimensions are independent, so we throw away the $k$ in the following equations.
@@ -259,7 +257,7 @@ And we also define that the quadratic must arrive the final position with the st
 By `Pontryain's minimum principle`, we first inctroduce the `costate`:
 
 $$
-\lambda = \begin{bmatrix} \lambda_1 \\ \lambda_2 \\ \lambda_3 \end{bmatrix}
+\lambda = \begin{bmatrix} \lambda_1 \\ \lambda_2 \\ \lambda_3 \end{bmatrix} \tag{7}
 $$
 
 And define the `Hamiltonian function`:
@@ -267,37 +265,216 @@ And define the `Hamiltonian function`:
 $$
 \begin{align}
 H(s, u, \lambda) &= \frac{1}{T} j^2 + \lambda^T f_s(s, u) \\
-                 &= \frac{1}{T} j^2 + \lambda_1v + \lambda_2a + \lambda_3j \\
-\end{align}
+                 &= \frac{1}{T} j^2 + \lambda_1v + \lambda_2a + \lambda_3j \\ 
+\end{align} \tag{8}
 $$
 
 The `Pontryain's minimum principle` says:
 
 $$
-\dot {S}^*(t) = f(S^*(t), u^*(t)) 
+\dot {S}^*(t) = f(S^*(t), u^*(t)) \tag{9}
 $$
 
 with $S^*(0) = S(0)$, where:
 
-- `*`, means the optimal value.
+- `*`, means optimal.
 
 And $\lambda(t)$ is the solution of:
 
 $$
-\dot{\lambda}(t) = - \Delta H(S^*(t), u^*(t), \lambda(t))
+\dot{\lambda}(t) = - \nabla H(S^*(t), u^*(t), \lambda(t)) \tag{10}
 $$
 
 with the boundary condition of:
 
 $$
-\lambda(T) = - \Delta(S^*(T))
+\lambda(T) = - \nabla h(S^*(T)) \tag{11}
 $$
 
 and the optimal control input is:
 
 $$
-u^*(t) = arg \min_{u(t)} H(S^*(t), u(t), \lambda(t))
+u^*(t) = arg \min_{u(t)} H(S^*(t), u(t), \lambda(t)) \tag{12}
 $$
+
+#### 3. Details
+
+From equation (8) and (10), calculating the partial derivatives of $(p, v, a)$, we get:
+
+$$
+\dot{\lambda}(t) = \begin{bmatrix} 0 \\ -\lambda_1 \\ -\lambda_2 \end{bmatrix}
+$$
+
+We define $\lambda_1 = \alpha$, and calculate the integration of $\lambda_2$ and $\lambda_3$:
+
+$$
+\lambda (t) = \begin{bmatrix} \alpha \\ -\alpha t + \beta  \\ \frac{1}{2} \alpha t^2 + \beta t + \gamma \end{bmatrix}
+$$
+
+As for that $\alpha$, $\beta$ and $\gamma$ are all unknown variables, we can organize the formula above to:
+
+$$
+\lambda (t) = \frac{1}{T} \begin{bmatrix} -2 \alpha \\ 2 \alpha t + 2 \beta  \\ - \alpha t^2 - 2 \beta t - 2 \gamma \end{bmatrix}
+$$
+
+According to (12), $u^*(t)$ is the $u(t)$ value when formula (8) get minimum value with the costate $[\lambda_1, \lambda_2, \lambda_3]'$, so:
+
+$$
+u(t) = \frac{1}{T} (j^2 -(\alpha t^2 + 2\beta t + 2\gamma) j + - 2\alpha v + 2\alpha ta + 2 \beta a)
+$$
+
+As we have known (3), to minimize the $u(t)$, we let the derivative of $j$ to $0$:
+
+$$
+2j - (\alpha t^2 + 2\beta t + 2\gamma) = 0
+$$
+
+$$
+u^*(t) = j^* = \frac{1}{2} + \beta t + \gamma \tag{13}
+$$
+
+We already have the start state (5), according to (2), $S^{*}(t)$ is the `1/2/3` order integration of $u^{*}(t) = j$:
+
+$$
+S^{\star}(t) = 
+\begin{bmatrix}
+\frac{1}{120} \alpha t^5 + \frac{1}{24} \beta t^4 + \frac{1}{6} \gamma t^3 + \frac{1}{2} a_0 t^2 + v_0 t + p_0 \\
+\frac{1}{24} \alpha t^4 + \frac{1}{6} \beta t^3 + \frac{1}{2} \gamma t^2 + a_0 T + v_0 \\
+\frac{1}{6} \alpha t^3 + \frac{1}{2} \beta t^2 + \gamma t + a_0 \\
+\end{bmatrix} \tag{14}
+$$
+
+The optimal $S^\star (t)$ should meet the end state (6), so:
+
+$$
+\begin{bmatrix}
+\frac{1}{120} \alpha T^5 + \frac{1}{24} \beta T^4 + \frac{1}{6} \gamma T^3 + \frac{1}{2} a_0 T^2 + v_0 T + p_0 \\
+\frac{1}{24} \alpha T^4 + \frac{1}{6} \beta T^3 + \frac{1}{2} \gamma T^2 + a_0 T + v_0 \\
+\frac{1}{6} \alpha T^3 + \frac{1}{2} \beta T^2 + \gamma T + a_0 \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+p_f \\
+v_f \\
+a_f \\
+\end{bmatrix} \tag{15}
+$$
+
+The equation above is actually a combination of three independent equations, we can move some iterms from left of equal sign to right:
+
+$$
+\begin{bmatrix}
+\frac{1}{120} \alpha T^5 + \frac{1}{24} \beta T^4 + \frac{1}{6} \gamma T^3 \\
+\frac{1}{24} \alpha T^4 + \frac{1}{6} \beta T^3 + \frac{1}{2} \gamma T^2 \\
+\frac{1}{6} \alpha T^3 + \frac{1}{2} \beta T^2 + \gamma T\\
+\end{bmatrix}
+=
+\begin{bmatrix}
+p_f - \frac{1}{2} a_0 T^2 - v_0 T - p_0 \\
+v_f - a_0 T - v_0 \\
+a_f - a_0 \\
+\end{bmatrix}
+$$
+
+we let:
+
+$$
+\begin{bmatrix}
+\Delta p \\
+\Delta v \\
+\Delta a \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+p_f - \frac{1}{2} a_0 T^2 - v_0 T - p_0 \\
+v_f - a_0 T - v_0 \\
+a_f - a_0 \\
+\end{bmatrix}
+$$
+
+in linear algebra form:
+
+$$
+\begin{bmatrix}
+\frac{1}{120} T^5 & \frac{1}{24} T^4 & \frac{1}{6} T^3 \\
+\frac{1}{24} T^4 & \frac{1}{6} T^3 & \frac{1}{2} T^2 \\
+\frac{1}{6} T^3 & \frac{1}{2} T^2 & \gamma T\\
+\end{bmatrix}
+\begin{bmatrix}
+\alpha \\
+\beta \\
+\gamma \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\Delta p \\
+\Delta v \\
+\Delta a \\
+\end{bmatrix}
+$$
+
+We can calculate the inverse of first matrix with [Gauss-Jordan Elimination](https://blog.yongcong.wang/Math/Linear-Algebra/04_multi_inverse/#gauss-jordan-elimination):
+
+$$
+\begin{bmatrix}
+\alpha \\
+\beta \\
+\gamma \\
+\end{bmatrix}
+=
+\frac{1}{T^5}
+\begin{bmatrix}
+720 & -360T & 60T^2 \\
+-360T & 168T^2 & -24T^3 \\
+60T^2 & -24T^3 & 3T^4
+\end{bmatrix}
+\begin{bmatrix}
+\Delta p \\
+\Delta v \\
+\Delta a \\
+\end{bmatrix} \tag{16}
+$$
+
+And then take the result to (1), we will get the equation about $J$:
+
+$$
+J = \gamma ^ 2 + \beta \gamma T + \frac{1}{3} \beta ^ 2 T ^ 2 + \frac{1}{3} \alpha \gamma T^2 + \frac{1}{4} \alpha \beta T ^ 3 + \frac{1}{20} \alpha ^ 2 T ^ 4 \tag{17}
+$$
+
+$J$ only depends on $T$, and the boundary states are known, so we can get the optimal T.
+
+This is a polynomial function root finding problem, we can solve it with:
+
+##### 1. Quartic Equation Root Finding
+
+There are many methods to find roots of [quartic equation](https://en.wikipedia.org/wiki/Quartic_equation), we need to ignore negtive and virtual root. But the root is very complex. Not recommanded.
+
+##### 2. Use Companion Matrix to Find Determinant
+
+In linear algebra, the Frobenius companion matrix of the monic polynomial:
+
+$$
+p(t) = c_0 + c_1 t + \cdots + c_{n - 1} t^{n - 1} + t^n
+$$
+
+is the square matrix defined as
+
+$$
+C(p) =
+\begin{bmatrix}
+0 & 0 & \cdots & 0 & -c_0 \\
+1 & 0 & \cdots & 0 & -c_1 \\
+0 & 1 & \cdots & 0 & -c_2 \\
+\vdots & \vdots  & \vdots & \vdots & \vdots \\
+0 & 0 & \cdots & 1 & -c_{n-1} \\
+\end{bmatrix}
+$$
+
+We can calculate the determinant of $C(p)$ and take all positive root to equation (17) to get the optimal $T$, this can be done within `Eigen` library.
+
+##### 3. Eigen PolynomialSolver
+
+This is a solver in `Eigen`, more in [example](http://www.ce.unipr.it/people/medici/eigen-poly.html).
 
 ## Kinodynamic RRT*
 
