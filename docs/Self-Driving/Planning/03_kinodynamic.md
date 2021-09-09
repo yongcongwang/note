@@ -719,7 +719,126 @@ Ref:
 
 ### Planning in Frenet-serret Frame
 
-## Kinodynamic RRT*
+![frenet-serret frame](images/kinodynamic/frenet.png)
+
+The frenet-serret frame is widely used in autonomous driving, it's a dynamic reference frame.
+
+The lateral and longitudinal motivations of autonomous vehicle are independently, for lane following problem, the lateral and longitudinal motions are decoupled.
+
+We firstly define the motion/control parametrization(quintic polynomial):
+
+$$
+d(t) = a_{d0} + a_{d1}t + a_{d2} t^2 + a_{d3} t^3 + a_{d4} t^4 + a_{d5} t^5
+$$
+
+$$
+s(t) = a_{s0} + a_{s1}t + a_{s2} t^2 + a_{s3} t^3 + a_{s4} t^4 + a_{s5} t^5
+$$
+
+and then solve the optimal control problem.
+
+We only discuss the lateral planning here, for longitudinal planning, please refer to:
+
+- Optimal Trajectory Generation for Dynamic Street Scenarios in a Frenet Frame
+- Optimal trajectoires for time-critical street scenarios using discretized terminal manifolds
+
+![lateral trajectory](images/kinodynamic/lat_traj.png)
+
+We have known the initial state:
+
+$$
+d(0) = \begin{bmatrix} d_{0} \\ \dot d_{0} \\ \ddot d_{0} \end{bmatrix}
+$$
+
+As we need a lane following, the terminate state will be:
+
+$$
+d(T) = \begin{bmatrix} d_{T} \\ \dot d_{T} \\ \ddot d_{T} \end{bmatrix} = \begin{bmatrix} d_{T} \\ 0 \\ 0 \end{bmatrix}
+$$
+
+Use what we have learned from `Partial Free Final State`, we can get everything.
+
+$$
+\begin{bmatrix}
+T^3 & T^4 & T^5 \\
+3T^2 & 4T^3 & 5T^4 \\
+6T & 12T^2 & 20T^3 \\
+\end{bmatrix}
+\begin{bmatrix}
+a_{d3} \\
+a_{d4} \\
+a_{d5} \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+\Delta p \\
+\Delta v \\
+\Delta a \\
+\end{bmatrix}
+$$
+
+where:
+
+$$
+\begin{bmatrix}
+\Delta p \\
+\Delta v \\
+\Delta a \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+d_{f} - (d_{0} + \dot d_{0} T + \frac{1}{2} \ddot d_{0} T^2) \\
+\dot d_{f} - (\dot d_{0} + \ddot d_{0} T) \\
+\ddot d_{f} - \ddot d_{0}
+\end{bmatrix}
+$$
+
+![lateral trajectory](images/kinodynamic/optimal_traj.gif)
+
+- [optimal trajectory in a frenet frame](https://pythonrobotics.readthedocs.io/en/latest/modules/path_planning.html#optimal-trajectory-in-a-frenet-frame)
 
 ## Hybrid A*
+
+### Basic Idea
+
+Online generating a dense lattice costs too much time, so how about `prune` some nodes?
+
+Hybird A star use the grid map to prune the branches.
+
+![hybrid A star](images/kinodynamic/hybird_a_star.png)
+
+If there is no node in the grid, we add the node to grid; if there is a node in grid, we check the cost of the node in grid and new node and reserve the lower one.
+
+Reference:
+
+- Pratical Search Techniques in Path Planning for Autonomous Driving
+- Path Planning for Autonomous Vehicles in Unknown Semi-structured Environments
+
+### Heuristic Design
+
+To accumulate the search process, we can use following methods to design the heuristic:
+
+1. 2D-Euclidean distance
+2. non-holonomic-without-obstacles
+3. non-holonomic-without-obstacles, bad performance in dead ends
+4. non-holonomic-without-obstacles + holonomic-with-obstacles(2D shortest path)
+
+![hybrid heuristic](images/kinodynamic/heu_hybrid.png)
+
+### Other Tricks
+
+Control space sample(discretization) is kind of low-efficient, since no target biasing is encoded. So how about we manually add(try) state space sample?
+
+Here come's the `Analytic Expansions`(One shot): add a state-driven bias towards the searching process, if at some state we can get an optimal path to the final state, the search process is terminated. A trade-off is that if we do this `one-shot` each time visit a node, the cost will be huge. We can do this `one-shot` each $N$ nodes. And as the frontier of graph goes towards the target node, we can decrease the $N$.
+
+![one shot](images/kinodynamic/one_shot.png)
+
+### Application
+
+![self driving](images/kinodynamic/self_driving.png)
+
+- Practical Search Techniques in Path Planning for Autonomous Driving
+- [Robust and Efficient Quadrotor Trajectory Generation for Fast Autonomous](https://github.com/HKUST-Aerial-Robotics/Fast-Planner)
+
+## Kinodynamic RRT*
 
