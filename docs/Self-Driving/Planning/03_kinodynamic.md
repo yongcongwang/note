@@ -842,3 +842,174 @@ Here come's the `Analytic Expansions`(One shot): add a state-driven bias towards
 
 ## Kinodynamic RRT*
 
+Kinodynamic RRT\* is similar to $RRT\star$, but different in details, the main process is:
+
+- **Input**: $E$, $x_{init}$, $x_{goal}$
+- **Output**: A trajectory $T$ from $x_{init}$ to $x_{goal}$
+- T.init()
+- **for** $i = 1 \to n$ **do**:
+    - $x_{rand} \gets Sample(E)$
+    - $x_{near} \gets Near(x_{rand})$
+    - $x_{min} \gets ChooseParent(x_{near}, x_{rand})$
+    - T.addNode($x_{rand}$)
+    - T.rewire()
+
+### How to "Sample"?
+
+System state-space equation:
+
+$$
+\dot{x(t)} = A x(t) + B u(t) + c
+$$
+
+For example for double integrator systems:
+
+$$
+x = \begin{bmatrix} p \\ v \end{bmatrix},
+A = \begin{bmatrix} 0 & I \\ 0 & 0 \end{bmatrix},
+B = \begin{bmatrix} 0 \\ I \end{bmatrix}
+$$
+
+Instead of sampling in Euclidean space like RRT, it requires to `sample in full state space`.
+
+### How to define "Near"?
+
+If without motion constraints, Euclidean distance or Manhattan distance can be used.
+
+In state space with motion constriants, binging in `optimal control`.
+
+We can define `cost funtion` of transferring from states to states, typically, a quadratic form of time energy optimal is adopted.
+
+$$
+c[\tau] = \int^{\tau}_{0} (1 + u(t)^T R u(t)) dt
+$$
+
+where:
+
+- $\tau$ is the arriving time
+- $u(t)$ is the control policy of transferring
+- $R$ is the weight matrix
+
+Two states are `near` if the cost of transferring from one state to the other is small.(Note that the cost may be different if transfer reversely.)
+
+If we know $\tau$ and $u(t)$, we can calculate the cost, it'll in classic optimal control solutions(OBVP).
+
+Reference:
+- Optimal Control
+
+#### Fixed final state x1, fixed final time $\tau$
+
+The optimal control policy $u^{\star}(t)$:
+
+$$
+u^{\star}(t) = R^{-1} B^T e^{A^T(\tau - t)}G(\tau)^{-1}[x_1 - \bar{x}(\tau)]
+$$
+
+Where $G(t)$ is the weighted controllability Gramian:
+
+$$
+G(t) = \int^{t}_0 e^{A(t - t')} BR^{-1} e^{A^T(t - t')} dt'
+$$
+
+Which is the solution to the Lyapunov equation:
+
+$$
+\dot{G}(t) = AG(t) + G(t)A^T + BR^{-1} B^T, G(0) = 0
+$$
+
+And $\bar{x}(t)$ describe what the state x would be at time t if no control input were applied:
+
+$$
+\bar{x}(t) = e^{At} x_0 + \int^t_0 e^{A(t - t')} c dt'
+$$
+
+Which is the solution to the differential equation:
+
+$$
+\dot{\bar{x}}(t) = A\bar{x}(t) + c, \bar{x}(0) = x_0
+$$
+
+#### Fixed final state x1, free final time $\tau$
+
+If we want to find the optimal arrival time $\tau$, we do this by filling in the control policy $u^\star(t)$ into the cost function $c[\tau]$ and evaluating the integral:
+
+$$
+c[\tau] = \tau + [x_{1} - \bar{x}(\tau)]^T G(t)^{-1} [x_{1} - \bar{x}(\tau)]
+$$
+
+The optimal $\tau$ is found by taking the derivative of $\c[\tau]$ with respect to $\tau$:
+
+$$
+\dot{c}[\tau] = 1 - 2(Ax_1 + c)^T d(\tau) - d(\tau)^T B R^{-1} B^T d(\tau)
+$$
+
+where:
+
+$$
+d(\tau) = G(t)^{-1} [x_1 - \bar{x}(\tau)]
+$$
+
+Solve $\dot c [\tau] = 0$ for $\tau^\star$.
+
+Noted that the function $c[\tau]$ may have multiple local minima.
+And for a double integrator system, it's a $4^{th}$ order polynomail.
+
+Given the optimal arrival time $\tau^\star$ as defined above, it again turns into a fixed final state, fixed final time problem.
+
+### How to `ChooseParent`?
+
+Now if we sample a random state, we can calculate control policy and cost from those state-nodes in the tree to the sampled state.
+
+Choose one with the minimal cost and `check x(t) and u(t) are in bounds`. If no qualified parent found, sample another state.
+
+### How to find near nodes efficiently
+
+![ellipsoid](images/kinodynamic/ellipsoid.png)
+
+Every time we sample a random state $x_{rand}$, it requires to check every node in the tree to find its parent, that is solving a `OBVP` for each node, which is not efficient.
+
+If we set a `cost tolerance` $r$, we can actually calculate bounds of the states(forward-reachable set) that can be reached by $x_{rand}$ and bounds of the states (backward-reachable set) that can reach $x_{rand}$ with cost less than $r$.
+
+And if we store nodes in from of a `kd-tree`, we can then do range query in the tree.
+
+$$
+c[\tau] = \tau + [x_{1} - \bar{x}(\tau)]^T G(t)^{-1} [x_{1} - \bar{x}(\tau)]
+$$
+
+This formula describes how cost of transferring from state $x_0$ to state $x_1$ changes with arrval time $\tau$.
+
+We can see that given inital state $x_0$, cost tolerance $r$ and arrival time $\tau$, the forward-reachable set of $x_0$ is:
+
+$$
+\begin{align}
+ &\{x_1 | \tau + [x_1 - \bar{x}(\tau)]^T g(t)^{-1} [x_1 - \bar{x}(\tau)] < r\} \\
+=&\{x_1 | [x_1 - \bar{x}(\tau)^T \frac{G(t)^{-1}}{r - \tau} [x_1 - \bar{x}(\tau)] < 1\} \\
+=& \varepsilon [\bar{x}(\tau), G(t) (r - \tau)]
+\end{align}
+$$
+
+where $\varepsilon[x, M]$ is an `ellipsoid` with center $x$ and positive definite weight matrix $M$, formally defined as:
+
+$$
+\varepsilon[x, M] = \{x' | (x' - x)^T M^{-1} (x' - x) < 1\}
+$$
+
+Hence, the forward-reachable set is the union of high dimensional ellipsoids for all possible arrival times $\tau$.
+
+For simplification, we sample several $\tau$s and calculate axis-aligned bounding boxe of the ellipsoids for each $\tau$ and update the maximum and minimum in each dimension:
+
+$$
+\Pi^n_{k = 1}
+\begin{bmatrix}
+min\{0 < \tau < r\}(\bar{x}(\tau)_k - \sqrt{G[\tau]_{(k, k)}(r - \tau)}), \\
+max\{0 < \tau < r\}(\bar{x}(\tau)_k - \sqrt{G[\tau]_{(k, k)}(r - \tau)}) \\
+\end{bmatrix}
+$$
+
+Simmilar for the calculation of the backward-reachable set.
+
+When do `Near` query and `ChooseParent`, $x_{near}$ can be found from the `backward-reachable set` of $x_{rand}$
+
+### How to `Rewire`?
+
+When `Rewire`, we calculate the `forward-reachable set` of $x_{rand}$, and solve `OBVP`s.
