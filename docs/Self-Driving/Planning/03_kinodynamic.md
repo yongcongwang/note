@@ -13,7 +13,7 @@ We choose kinodynamic planning because:
 
 - Straight-line connections between pairs of states are typically not valid trajectories due to the system's `differential constraints`.
 - The smoother the path we found, the easier we optimize it.
-- Coars-to-fine process
+- Coarse-to-fine process
 - Trajectory only optimizes locally
 - Infeasible path means nothing to nonholonomic system
 
