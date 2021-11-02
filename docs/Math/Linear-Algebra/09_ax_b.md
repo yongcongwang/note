@@ -128,5 +128,5 @@ If $R$ is in row reduced form with pivot columns first(rref), the table below su
 
 |     | r = m = n | r = n < m | r = m < n | r < m, r < n |
 |---|---|---|---|---|
-| R | $I$ | \begin{bmatrix} I \\ 0 \end{bmatrix} | \begin{bmatrix} I & F \end{bmatrix} | \begin{bmatrix} I & F \\\\ 0 & 0 \end{bmatrix} |
+| R | $I$ | \begin{bmatrix} I \\\\ 0 \end{bmatrix} | \begin{bmatrix} I & F \end{bmatrix} | \begin{bmatrix} I & F \\\\ 0 & 0 \end{bmatrix} |
 | #solutions to $Ax = b$ | 1 | 0 or 1 | infinite | 0 or infinite |
