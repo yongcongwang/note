@@ -15,7 +15,7 @@ A =
 \end{bmatrix}
 $$
 
-The third row of $A$ is the sum of its first and secodn rows, so we know that if $A\mathbf{x} = \mathbf{b}$ the third component of $\mathbf{b}$ equals the sum of its first and second components. If $\mathbf{b}$ does not satisfy $b_3 = b_1 + b_2$ the system has no solution. If a combination of the rows of $A$ gives the zero row, then the same combination of the entries of $\mathbf{b}$ must equal zero.
+The third row of $A$ is the sum of its first and second rows, so we know that if $A\mathbf{x} = \mathbf{b}$ the third component of $\mathbf{b}$ equals the sum of its first and second components. If $\mathbf{b}$ does not satisfy $b_3 = b_1 + b_2$ the system has no solution. If a combination of the rows of $A$ gives the zero row, then the same combination of the entries of $\mathbf{b}$ must equal zero.
 
 One way to find out whether $A\mathbf{x} = \mathbf{b}$ is solvable is to use elimination on the augmented matrix. If a row of $A$ is completely eliminated, so is the corresponding entry in $\mathbf{b}$. In our example, row 3 of $A$ is completely eliminated:
 
@@ -79,7 +79,7 @@ x_{complete} =
 3/2 \\
 0 \\
 \end{bmatrix}
-+
++ c_1
 \begin{bmatrix}
 -2 \\
 1 \\
@@ -94,6 +94,7 @@ x_{complete} =
 1 \\
 \end{bmatrix}
 $$
+
 where $c_1$ and $c_2$ are real numbers.
 
 The nullspace of $A$ is a two dimensional subspace of $\mathbb{R}^4$, and the solutions to the equation $A\mathbf{x} = \mathbf{b}$ form a plane parallel to that through $x_p = \begin{bmatrix} -2 \\ 0 \\ 3/2 \\ 0 \end{bmatrix}$
