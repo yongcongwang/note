@@ -33,6 +33,7 @@ to implement a `stack` class.
 - [150. Evaluate Reverse Polish Notation](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
 - [224. Basic Calculator](https://leetcode-cn.com/problems/basic-calculator/)
 - [227. Basic Calculator II](https://leetcode-cn.com/problems/basic-calculator-ii/)
+- [772. Basic Calculator III](https://leetcode-cn.com/problems/basic-calculator-iii/)
 
 ### Monotonous Stack
 
