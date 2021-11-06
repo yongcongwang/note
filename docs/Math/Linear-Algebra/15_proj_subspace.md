@@ -21,7 +21,7 @@ $$
 and
 
 $$
-\mathbf{p} = \mathbf{a}x = \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}} x
+\mathbf{p} = \mathbf{a}x = \mathbf{a} \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}
 $$
 
 Doubling $\mathbf{b}$ will double $\mathbf{p}$, doubling $\mathbf{a}$ does not affect $\mathbf{p}$.
@@ -37,7 +37,7 @@ $$
 As
 
 $$
-\mathbf{p} = \mathbf{a}\mathbf{x} = \mathbf{a} \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}
+\mathbf{p} = \mathbf{a}x = \mathbf{a} \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}}
 $$
 
 so the matrix is:
@@ -111,7 +111,7 @@ $$
 
 It's tempting to try to simplify these expressions, but if $A$ isn't a square matrix we can't say that $(A^TA)^{-1} = A^{-1}(A^T)^{-1}$.
 
-If $A$ does happen to be a squre, invertible matrix then it's column space is the whole space and contains $\mathbf{b}$. In this case $P$ is the identity, as we find when we simplify. It is still true that:
+If $A$ does happen to be a square, invertible matrix then it's column space is the whole space and contains $\mathbf{b}$. In this case $P$ is the identity, as we find when we simplify. It is still true that:
 
 $$
 \begin{align}

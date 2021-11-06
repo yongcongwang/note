@@ -44,7 +44,7 @@ $$
 
 There are two ways of viewing this. In the space of the line we're trying to find, $e_1, e_2$ and $e_3$ are the vertical distance from the data points to the line. The components $p_1$, $p_2$ and $p_3$ are the values of $C + Dt$ near each data point; $\mathbf{p} \approx \mathbf{b}$.
 
-In the other view we have a vector $\mathbf{b}$ in $\mathbb{R}^3$, its projection $\mathbb{b}$ onto the column space of $A$, and its projection $\mathbf{e}$ onto $N(A^T)$.
+In the other view we have a vector $\mathbf{b}$ in $\mathbb{R}^3$, its projection $\mathbf{p}$ onto the column space of $A$, and its projection $\mathbf{e}$ onto $N(A^T)$.
 
 We will now find $\mathbf{\hat{x}} = \begin{bmatrix} \hat{C} \\ \hat{D} \end{bmatrix}$ and $\mathbf{b}$. We know:
 
