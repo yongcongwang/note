@@ -24,7 +24,7 @@ $$
 \mathbf{p} = \mathbf{a}x = \frac{\mathbf{a}^T\mathbf{b}}{\mathbf{a}^T\mathbf{a}} x
 $$
 
-Doubing $\mathbf{b}$ will double $\mathbf{p}$, doubling $\mathbf{a}$ does not affect $\mathbf{p}$.
+Doubling $\mathbf{b}$ will double $\mathbf{p}$, doubling $\mathbf{a}$ does not affect $\mathbf{p}$.
 
 ## Projection Matrix
 

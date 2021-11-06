@@ -6,7 +6,11 @@ We've talked a lot about $\mathbb{R}^n$, but we can think about vector spaces ma
 
 ### 3 by 3 matrices
 
-We were looking at the space $M$ of all 3 by 3 matrices. We identified some subspaces; the symmetric 3 by 3 matrices $S$, the upper triangular 3 by 3 matrices $U$ and the intersection $D$ of these two spaces - the space of diagonal 3 by 3 matrices.
+We were looking at the space $M$ of all 3 by 3 matrices. We identified some subspaces:
+
+- the symmetric 3 by 3 matrices $S$,
+- the upper triangular 3 by 3 matrices $U$
+- and the intersection $D$ of these two spaces - the space of diagonal 3 by 3 matrices.
 
 The dimension of $M$ is 9; we must choose 9 numbers to specify an element of $M$. The space $M$ is very similar to $\mathbb{R}^9$. A good choice of basis is:
 

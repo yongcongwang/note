@@ -122,7 +122,7 @@ $$
 
 The bottom $m - r$ rows of $E$ describe linear dependencies of rows of $A$, because the bottom $m - r$ rows of $R$ are zero. Here $m - r = 1$(one zero row in R).
 
-The botoom $m - r$ rows of $E$ satisfy the equation $\mathbf{y}^TA=\mathbf{0}$ and form a basis for the left nullspace of $A$.
+The bottom $m - r$ rows of $E$ satisfy the equation $\mathbf{y}^TA=\mathbf{0}$ and form a basis for the left nullspace of $A$.
 
 ## New vector space
 

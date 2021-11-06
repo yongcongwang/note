@@ -2,7 +2,7 @@
 
 In this lecture we learn what it means for vectors, bases and subspaces to be `orthogonal`. The symbol for this is $\bot$.
 
-The `bib picture` of this course is that the row space of a matrix is orthogonal to its nullspace, and its column space is orthogonal to its left nullspace.
+The `big picture` of this course is that the row space of a matrix is orthogonal to its nullspace, and its column space is orthogonal to its left nullspace.
 
 ![orthogonal](images/orthogonal/orthogonal.png)
 
@@ -22,7 +22,7 @@ In the plane, the space containing only the zero vector and any line through the
 
 The row space of a matrix is orthogonal to the nullspace, because $A\mathbf{x}= \mathbf{0}$ means the dot product of $\mathbf{x}$ with each row of $A$ is $0$. But then the product of $\mathbf{x}$ with any combination of rows of $A$ must be $0$.
 
-The column space is orthogonal to the left nullspace of $A$ because the row space of $A^T$ is perpendicular to the nullspace of $AA^T$.
+The column space is orthogonal to the left nullspace of $A$ because the row space of $A^T$ is perpendicular to the nullspace of $A^T$.
 
 In some sense, the row space and the nullspace of a matrix subdivide $\mathbb{R}^n$ into two perpendicular subspaces. For $A=\begin{bmatrix} 1 & 2 & 5 \\ 2 & 4 & 10 \end{bmatrix}$, the row space has dimension $1$ and basis $\begin{bmatrix} 1 \\ 2 \\ 5 \end{bmatrix}$ and the nullspace has dimension $2$ and is the plane through the origin perpendicular to the vector $\begin{bmatrix} 1 \\ 2 \\ 5 \end{bmatrix}$.
 

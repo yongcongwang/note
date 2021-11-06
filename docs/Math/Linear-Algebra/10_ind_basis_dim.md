@@ -15,7 +15,7 @@ If the columns of $A$ are independent then all columns are pivot columns, the ra
 ## Spanning a space
 Vectors $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_k$ `span` a space when the space consists of all combinations of those vectors. For example, the columns vectors of $A$ span the column space of $A$.
 
-IF vectors $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_k$ span a space $S$, then $S$ is the smallest space containing those vectors.
+If vectors $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_k$ span a space $S$, then $S$ is the smallest space containing those vectors.
 
 ## Basis and dimension
 
@@ -68,7 +68,7 @@ $$
 
 Note that matrices have a rank but not a dimension. Subspaces have a dimension but not a rank.
 
-The column vectors of this $A$ are not independent, so the nullspace $N(A)$ contains more than just the zero vector. Because the third column is the sum of the first two, we know that the vector $\begin{bmatrix} -1 \\ -1 \\ 1 \\ 0 \end{bmatrix}$ is in the nullspace. Similarly, $\begin{bmatrix} -1 \\ 0 \\ 0 \\ -1 \end{bmatrix}$ is also in $N(A)$. These are the two special solutions to $A \mathbf{x} = \mathbf{0}$. We'll see that:
+The column vectors of this $A$ are not independent, so the nullspace $N(A)$ contains more than just the zero vector. Because the third column is the sum of the first two, we know that the vector $\begin{bmatrix} -1 \\ -1 \\ 1 \\ 0 \end{bmatrix}$ is in the nullspace. Similarly, $\begin{bmatrix} -1 \\ 0 \\ 0 \\ 1 \end{bmatrix}$ is also in $N(A)$. These are the two special solutions to $A \mathbf{x} = \mathbf{0}$. We'll see that:
 
 $$
 \text{dimension of } N(A) = \text{number of free variables} = n - r
