@@ -76,7 +76,7 @@ c & d \\
 -
 \begin{vmatrix}
 a & b \\
-ta & ta \\
+ta & tb \\
 \end{vmatrix}
 \text{   property 3(b)} \\
 &=
@@ -87,7 +87,7 @@ c & d \\
 - t
 \begin{vmatrix}
 a & b \\
-a & a \\
+a & b \\
 \end{vmatrix}
 \text{  property 3(a)} \\
 &=
