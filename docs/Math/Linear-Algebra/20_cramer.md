@@ -74,11 +74,11 @@ $$
 where $B_{j}$ is the matrix created by starting with A and then replacing column j with $\mathbf{b}$, so:
 
 $$
-B_{1} = \begin{bmatrix} \mathbf{b} & \text{last n - 1 columns of A}
+B_{1} = \begin{bmatrix} \mathbf{b} & \text{last n - 1 columns of A} \end{bmatrix}
 $$
 
 $$
-B_{n} = \begin{bmatrix} \text{first n - 1 columns of A} & \mathbf{b}
+B_{n} = \begin{bmatrix} \text{first n - 1 columns of A} & \mathbf{b} \end{bmatrix}
 $$
 
 This agrees with our formula $x_{1} = \frac{det B_{1}} {det A}$. When taking the determinant of $B_{1}$ we get a sum whose first term is $b_{1}$ times the cofactor $C_{11}$ of A.
@@ -98,7 +98,7 @@ If $A = Q$ is an orthogonal matrix then the box is a unit in a different orienta
 
 Swapping two columns of A does not change the volume of the box or (remember that $det A = det A^T$) the absolute value of the determinant(property 2). If we show that the volume of the box also obeys property 3 we'll have proven $|det A|$ equals the volume of the box.
 
-![box](/images/determinant/box.png)
+![box](images/determinant/box.png)
 
 If we double the length of one column of $A$, we double the volume of the box formed by its columns. Volume satisfies property 3(a).
 
@@ -121,7 +121,7 @@ c & d
 \end{vmatrix}
 $$
 
-![property3b](/images/determinant/volume.png)
+![property3b](images/determinant/volume.png)
 
 Although it's not needed for our proof, we can also see that determinants obey property 4. If two edges of a box are equal, the box flattens out and has no volume.
 
