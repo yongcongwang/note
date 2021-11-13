@@ -86,14 +86,14 @@ In matrix form:
 $$
 \begin{bmatrix}
 2 & 1 \\ 1 & -1
-\edn{bmatrix}
+\end{bmatrix}
 \begin{bmatrix}
 c_1 \\ c_2
-\edn{bmatrix}
+\end{bmatrix}
 =
 \begin{bmatrix}
 1 \\ 0
-\edn{bmatrix}
+\end{bmatrix}
 $$
 
 or $S\mathbf{c} = \mathbf{u}(0)$, where S is the eigenvector matrix. The components of $\mathbf{c}$ determine the contribution from each pure exponential solution, based on the initial conditions of the system.
@@ -115,7 +115,7 @@ This diagonalizes the system: $\frac{dv_i}{dt} = \lambda_i v_i$. The general sol
 $$
 \begin{align}
 \mathbf{v}(t) &= e^{\Lambda t}\mathbf{v}(0) \\
-\mathbf{u}(t) &= Se^{\Lambdat}S^{-1} \mathbf{v}(0) = e^{At} \mathbf{u}(0)
+\mathbf{u}(t) &= Se^{\Lambda t}S^{-1} \mathbf{v}(0) = e^{At} \mathbf{u}(0)
 \end{align}
 $$
 
@@ -134,3 +134,51 @@ e^{At} = I + At + \frac{(At)^2}{2} + \frac{(At)^3}{6} + \cdots
 $$
 
 Similarly, if the eigenvalues of $At$ are small, we can use the geometric series $\frac{1}{1 - x} = \sum_{n = 0}^{\infty} x^n$ to estimate $(I - At)^{-1} = I + At + (At)^2 + (At)^3 + \cdots$
+
+We've said that $e^{At} = Se^{\Lambda t} S^{-1}$. If A has n independent eigenvectors we can prove this from the definition of $e^{At}$ by using the formula $A = S \Lambda S^{-1}$:
+
+$$
+\begin{align}
+e^{At} = & I + At + \frac{(At)^2}{2} + \frac{(At)^3}{6} + \cdots  \\
+&= SS^{-1} + S\Lambda S^{-1} t + \frac{S \Lambda^2S^{-1}}{2}t^2 + \frac{S \Lambda^3S^{-1}}{6}t^3 + \cdots \\
+&= S e^{\Lambda t} S^{-1}
+\end{align}
+$$
+
+It's impractical to add up infinitely many matrices. Fortunately, there is an easier way to comput $e^{\Lambda t}$. Remember that:
+
+$$
+\Lambda =
+\begin{bmatrix}
+\lambda_1 & 0 & \cdots & 0 \\
+0 & \lambda_2 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdosts \\
+0 & \cdots & 0 & \lambda_n \\
+\end{bmatrix}
+$$
+
+When we plug this in to our formula for $e^{At}$ we find that:
+
+$$
+e^{\Lambda t} = 
+\begin{bmatrix}
+e^{\lambda_1 t} & 0 & \cdots & 0 \\
+0 & e^{\lambda_2 t} \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & \cdots & 0 & e^{\lambda_n t}\\
+\end{bmatrix}
+$$
+
+This is another way to see the relationship between the stability of $\mathbf{u}(t) = S e^{\Lambda t} S^{-1} \mathbf{v}(0)$ and the eigenvalues of A.
+
+## Second order
+
+We can change the second order equation $y'' + b y' + ky = 0$ into a 2 by 2 first order system using a method similar to the one we used to find a formula for the Fibonacci numbers. If $u = \begin{bmatrix} y' \\ y \end{bmatrix}$, then:
+
+$$
+u' = \begin{bmatrix} y'' \\ y' \end{bmatrix} = \begin{bmatrix} -b & -k \\ 1 & 0 \end{bmatrix} \begin{bmatrix} y' \\ y \end{bmatrix}
+$$
+
+We could use the methods we just learned to solve this system, and that would give us a solution to the second order scalar equation we started with.
+
+If we start with a kth order equation we get a k by k matrix with coefficients of the equation in the first row and 1's on a diagonal below that; the rest of the entries are 0.
