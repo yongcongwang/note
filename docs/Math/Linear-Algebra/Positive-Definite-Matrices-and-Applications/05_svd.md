@@ -111,3 +111,35 @@ $$
 $$
 
 ## Example with a Nullspace
+
+Now let $A = \begin{bmatrix}4 & 3 \\ 8 & 6\end{bmatrix}$. This has a one dimensional nullspace and one dimensional row and column spaces.
+
+The row space of A consists of the multiples of $\begin{bmatrix}4 \\ 3\end{bmatrix}$. The column space of A is made up of multiples of $\begin{bmatrix}4 \\ 8\end{bmatrix}$. The nullspace and left nullspace are perpendicular to the row and column spaces, respectively.
+
+Unit basis vectors of the row and column spaces are are $\mathbf{v}_ 1 = \begin{bmatrix}0.8 \\ 0.6\end{bmatrix}$ and $\mathbf{u}_ 1 = \begin{bmatrix}1/\sqrt{5} \\ 1 / \sqrt{5}\end{bmatrix}$. To compute $\sigma_1$ we find the nonzero eigenvalue of $A^TA$.
+
+$$
+\begin{align}
+A^TA &= \begin{bmatrix}4 & 8 \\ 3 & 6\end{bmatrix} \begin{bmatrix}4 & 3 \\ 8 & 6\end{bmatrix} \\
+     &= \begin{bmatrix}80 & 60 \\ 60 & 45\end{bmatrix}
+\end{align}
+$$
+
+Because this is a rank 1 matrix, one eigenvalue must be 0. The other must equal the trace, so $\sigma_1^2 = 125$. After finding unit vectors perpendicular to $\mathbf{u}_ 1$ and $\mathbf{v}_ 1$ (basis vectors for the left nullspace and nullspace, respectively) we see that the SVD of A is:
+
+$$
+\begin{bmatrix}4 & 3 \\ 8 & 6\end{bmatrix} = \frac{1}{\sqrt{5}}\begin{bmatrix}1 & 2 \\ 2 & -1\end{bmatrix} \begin{bmatrix}\sqrt{125} & 0 \\ 0 & 0\end{bmatrix}\begin{bmatrix}0.8 & 0.6 \\ 0.6 & -0.8\end{bmatrix}
+$$
+
+$$
+A = U \Sigma V^T
+$$
+
+The singular value decomposition conbines topics in linear algebra ranging from positive definite matrices to the four fundamental subspaces.
+
+- $\mathbf{v}_ 1, \mathbf{v}_ 2, \cdots, \mathbf{v}_ r$ is an orthonormal basis for the row space;
+- $\mathbf{u}_ 1, \mathbf{u}_ 2, \cdots, \mathbf{u}_ r$ is an orthonormal basis for the column space;
+- $\mathbf{v}_ {r + 1}, \mathbf{v}_ {r + 2}, \cdots, \mathbf{v}_ n$ is an orthonormal basis for the nullspace;
+- $\mathbf{u}_ {r + 1}, \mathbf{u}_ {r + 2}, \cdots, \mathbf{u}_ m$ is an orthonormal basis for the left nullspace.
+
+These are the "right" bases to use, bacause $A\mathbf{v}_ i = \sigma_i \mathbf{u}_ i$.
