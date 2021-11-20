@@ -112,3 +112,39 @@ First, we have to choose two bases:
 We want to find a matrix A so that $T(\mathbf{v}) = A\mathbf{v}$, where $\mathbf{v}$ and $A\mathbf{v}$ get their coordinates from these bases.
 
 The first column of A consists of the coefficients $a_{11}, a_{21}, \cdots, a_{1m}$ of $T(\mathbf{v}_ 1) = a_{11}\mathbf{w}_ 1 + a_{21}\mathbf{w}_ 2 + \cdots + a_{1m}\mathbf{w}_ m$. The entries of column i of the matrix A are determined by $T(\mathbf{v}_ i) = a_{1i} \mathbf{w}_ 1 + a_{2i} \mathbf{w}_ 2 + \cdots + a_{mi} \mathbf{w}_ m$. Because we've guaranteed that $T(\mathbf{v}_ i) = A\mathbf{v}_ i$ for each basis vector $\mathbf{v}_ i$ and because T is linear, we know that $T(\mathbf{v}) = A\mathbf{v}$ for all vectors $\mathbf{v}$ in the input space.
+
+In the example of the projection matrix, $n = m = 2$. The transformation T projects every vector in the plane onto a line. In this example, it makes sense to use the same basis for the input and the output. To make our calculations as simple as possible, we'll choose $\mathbf{v}_ 1$ to be a unit vector on the line of projection and $\mathbf{v}_ 2$ to be a unit vector perpendicular to $\mathbf{v}_ 1$. Then:
+
+$$
+T(c_1 \mathbf{v}_ 1 + c_2 \mathbf{v}_ 2) = c_1 \mathbf{v}_ 1 + \mathbf{0}
+$$
+
+and the matrix of the projection transformation is just $A = \begin{bmatrix}1 & 0 \\ 0 & 0\end{bmatrix}$.
+
+$$
+A\mathbf{v} = \begin{bmatrix}1 & 0 \\ 0 & 0 \end{bmatrix} \begin{bmatrix}c_1 \\ c_2 \end{bmatrix} = \begin{bmatrix}c_1 \\ 0\end{bmatrix}
+$$
+
+This is a nice matrix! If our chosen basis consists of eigenvectors then the matrix of the transformation will be the diagonal matrix $\Lambda$ with eigenvalues on the diagonal.
+
+To see how important the choice of basis is, let's use the standard basis for the linear transformation that projects the plane onto a line at a $45^{\circ}$ angle. If we choose $\mathbf{v}_ 1 = \mathbf{w}_ 1 = \begin{bmatrix}1 \\ 0\end{bmatrix}$ and $\mathbf{v}_ 2 = \mathbf{w}_ 2 = \begin{bmatrix}0 \\ 1\end{bmatrix}$, we get the projection matrix $P = \frac{\mathbf{a}\mathbf{a}^T}{\mathbf{a}^T\mathbf{a}} = \begin{bmatrix}1/2 & 1/2 \\ 1/2 & 1/2\end{bmatrix}$. We can check by graphing that this is the correct matrix, but calculating P directly is more difficult for this basis than it was with a basis of eigenvectors.
+
+### Example 6: T = d / dx
+
+Let T be a transformation that takes the derivative:
+
+$$
+T(c_1 + c_2x + c_3 x^2) = c_2 + 2 c_3 x
+$$
+
+The input space is the three dimensional space of quadratic polynomials $c_1 + c_2 x + c_3 x^2$ with basis $\mathbf{v}_ 1 = 1, \mathbf{v}_ 2 = x, \mathbf{v}_ 3 = x^2$. The output space is a two dimensional subspace of the input space with $\mathbf{w}_ 1 = \mathbf{v}_ 1 = 1$ and $\mathbf{w}_ 2 = \mathbf{v}_ 2 = x$.
+
+This is a linear transformation! So we can find $A = \begin{bmatrix}0 & 1 & 0 \\ 0 & 0 & 2\end{bmatrix}$ and write the transformation as a matrix multiplication:
+
+$$
+T(\begin{bmatrix}c_1 \\ c_2 \\ c_3 \end{bmatrix}) = A\begin{bmatrix}c_1 \\ c_2 \\ c_3 \end{bmatrix} = \begin{bmatrix}c_2 \\ 2c_3\end{bmatrix}
+$$
+
+## Conclusion
+
+For any linear transformation T we can find a matrix A so that $T(\mathbf{v}) = A\mathbf{v}$. If the transformation is invertible, the inverse transformation has the matrix $A^{-1}$. The product of two transformations $T_1 : \mathbf{v} \to A_1 \mathbf{v}$ and $T_2 : \mathbf{w} \to A_2 \mathbf{w}$ corresponds to the product $A_2A_1$ of their matrices. This is where matrix multiplication came from!
