@@ -17,7 +17,7 @@ c_{ij} = \sum_{k = 1}^{n} a_{ik}b_{kj}
 $$
 
 ### Columns
-The product of matrix A and column j of matrix B equals column j of matrix C. This tells us that the columns of C aare combinations of columns of A.
+The product of matrix A and column j of matrix B equals column j of matrix C. This tells us that the columns of C are combinations of columns of A.
 
 ### Rows
 The product of row i of matrix A and matrix B equals row i of matrix C. So the rows of C are combinations of rows of B.
@@ -54,7 +54,7 @@ If $A$ is a square matrix, the most important question you can ask it is whether
 If $A$ is `singular`, its determinant is zero and we can find some non-zero vector $\mathbf{x}$ for which $A\mathbf{x} = 0$. For example:
 
 $$
-\begin{bmatrix} 1 & 3 \\ 2 & 6 \end{bmatrix} \begin{bmatrix} 3 & -1 \end{bmatrix} =  \begin{bmatrix} 0 & 0 \end{bmatrix}
+\begin{bmatrix} 1 & 3 \\ 2 & 6 \end{bmatrix} \begin{bmatrix} 3 \\ -1 \end{bmatrix} =  \begin{bmatrix} 0 \\ 0 \end{bmatrix}
 $$
 
 In this example, three times the column minus one times the second column equals the zero vector; the two column vectors lie on the same line.

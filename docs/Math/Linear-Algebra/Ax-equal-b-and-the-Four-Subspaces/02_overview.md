@@ -115,7 +115,7 @@ $$
 
 And our system of three equations in three unknowns become circular.
 
-Where before $A\mathbf{x} = \mathbf{0}$ implied $\mathbf{x} = \mathbf{0}$, there are non-zero vectors $\mathbf{x}$ for which $C\mathbf{x} = \mathbf{0}$. For any vector $\mathbf{x}$ which $x_1 = x_2 = x_3, C\mathbf{x} = \mathbf{0}$. This is a significant difference; we can't multiply both sides of $C\mathbf{x} = \mathbf{0}$ by an inverse to find a non-zero solution $mathbf{x}$.
+Where before $A\mathbf{x} = \mathbf{0}$ implied $\mathbf{x} = \mathbf{0}$, there are non-zero vectors $\mathbf{x}$ for which $C\mathbf{x} = \mathbf{0}$. For any vector $\mathbf{x}$ which $x_1 = x_2 = x_3, C\mathbf{x} = \mathbf{0}$. This is a significant difference; we can't multiply both sides of $C\mathbf{x} = \mathbf{0}$ by an inverse to find a non-zero solution $\mathbf{x}$.
 
 The system of equations encoded in $C\mathbf{x} = \mathbf{b}$ is:
 
