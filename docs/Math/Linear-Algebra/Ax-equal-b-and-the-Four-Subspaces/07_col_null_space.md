@@ -10,9 +10,9 @@ A plane $P$ containing $\begin{bmatrix} 0 \\ 0 \\ 0 \end{bmatrix}$ and a line $L
 
 ## Column space of A
 
-The *column space* of a matrix $A$ is the vector space made up of all linear combinations of the columns of $A$.
+The `column space` of a matrix $A$ is the vector space made up of all linear combinations of the columns of $A$.
 
-### Solving $A\mathbf{x} = \mathbf{b}$
+### Solving Ax = b
 
 Given a matrix $A$, for what vectors $\mathbf{b}$ does $A\mathbf{x} = \mathbf{b}$ have a solution $\mathbf{x}$?
 
@@ -32,20 +32,20 @@ Big question: what $\mathbf{b}$'s allow $A\mathbf{x} = \mathbf{b}$ to be solved?
 
 A useful approach is to choose $\mathbf{x}$ and find the vector $\mathbf{b} = A\mathbf{x}$  corresponding to that solution. The components of $\mathbf{x}$ are just the coefficients in a linear combination of columns of $A$.
 
-The system of linear equations $A\mathbf{x} = \mathbf{b}$ is *solvable* exactly when $\mathbf{b}$ is a vector in the *column space* of $A$.
+The system of linear equations $A\mathbf{x} = \mathbf{b}$ is `solvable` exactly when $\mathbf{b}$ is a vector in the `column space` of $A$.
 
-For our example matrix $A$, what can we say about the column space of $A$? Are the columns of $A$ *independent*? In other words, does each column contribute something new to the subspace?
+For our example matrix $A$, what can we say about the column space of $A$? Are the columns of $A$ `independent`? In other words, does each column contribute something new to the subspace?
 
 The third column of $A$ is the sum of the first two columns, so does not add anything to the subspace. The column space of our matrix $A$ is a two dimensional subspace of $\mathbb{R}^4$.
 
 ## Nullspace of $A$
 
-The *nullspace* of a matrix is the collection of all solutions $\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$ to the equation $A\mathbf{x} = \mathbf{0}$.
+The `nullspace` of a matrix is the collection of all solutions $\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$ to the equation $A\mathbf{x} = \mathbf{0}$.
 
 The column space of the matrix in our example was a subspace of $\mathbb{R}^4$. The nullspace of $A$ is a subspace of $\mathbb{R}^3$. To see that it's a vector space, check that any sum or multiple of solutions to $A\mathbf{x} = \mathbf{0}$ is also a solution:
 
 $$
-A(\mathbf{x}_1 + \mathbf{x}_2) = A\mathbf{x}_1 + A\mathbf{x}_2 = \mathbf{0} + \mathbf{0} = \mathbf{0}
+A(\mathbf{x}_ 1 + \mathbf{x}_ 2) = A\mathbf{x}_ 1 + A\mathbf{x}_ 2 = \mathbf{0} + \mathbf{0} = \mathbf{0}
 $$
 
 $$

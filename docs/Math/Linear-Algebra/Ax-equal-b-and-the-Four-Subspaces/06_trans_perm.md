@@ -33,7 +33,7 @@ Another example of a space is $\mathbb{R}^n$, the set of (column) vectors with $
 ## Closure
 The collection of vectors with exactly two `positive` real valued components is `not` a vector space. The sum of any two vectors in that collection is again in the collection, but multiplying any vector by, say, $-5$, gives a vector that's not in the collection. We say that this collection of positive vectors is `closed` under addition but not under multiplication.
 
-f a collection of vectors is closed under linear combinations(i.e. under addtion and multiplication by any real numbers), and if multiplication and addtion behave in a reasonable way, then we call that collection a `vector space`.
+If a collection of vectors is closed under linear combinations(i.e. under addtion and multiplication by any real numbers), and if multiplication and addtion behave in a reasonable way, then we call that collection a `vector space`.
 
 ## Subspaces
 

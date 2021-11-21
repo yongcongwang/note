@@ -12,7 +12,7 @@ We obtain the `transpose` of a matrix by exchanging its rows and columns. In oth
 
 The transpose of a matrix product $AB$ is $B^TA^T$. For any invertible matrix $A$, the inverse of $A^T$ is $(A^{-1})^T$.
 
-## $A = LU$
+## A = LU
 
 We've seen how to use elimination to convert a suitable matrix $A$ into upper triangular matrix $U$. This leads to the factorization $A = LU$, which is very helpful in understanding the matrix $A$.
 
