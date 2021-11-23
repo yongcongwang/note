@@ -1,6 +1,6 @@
 # Independence, Basis and Dimension
 
-What does it mean for vectors to be independent? How does the idea of independence help us describe supspaces like the nullspace?
+What does it mean for vectors to be independent? How does the idea of independence help us describe subspaces like the nullspace?
 
 ## Linear independence
 
