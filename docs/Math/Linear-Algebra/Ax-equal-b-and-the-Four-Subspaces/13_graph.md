@@ -65,7 +65,7 @@ If the components $x_i$ of the vector $\mathbf{x}$ describe the electrical poten
 
 The matrix has 4 columns and a 1 dimensional nullspace, so its rank is 3. The first, second and fourth columns are its pivot columns; these edges connect all the nodes of the graph without forming a loop - a graph with no loops is called a `tree`.
 
-The left nullspace of $A$ consists of the solutions $\mathbf{y}$ to the equation: $A^T \mathbf{y} = \mathbf{0}$. Since $A^T$ has 5 columns and rank 3 we know that the dimension of $N(A^T)$ is $m - r = 2$. Note that 2 is the number of loops in the graph and $m$ is the number of edges. The rank $r is $n - 1$, one less than the number of nodes. This gives us:
+The left nullspace of $A$ consists of the solutions $\mathbf{y}$ to the equation: $A^T \mathbf{y} = \mathbf{0}$. Since $A^T$ has 5 columns and rank 3 we know that the dimension of $N(A^T)$ is $m - r = 2$. Note that 2 is the number of loops in the graph and $m$ is the number of edges. The rank $r$ is $n - 1$, one less than the number of nodes. This gives us:
 
 $$
 \# loops = \# edges - (\# nodes - 1)
@@ -74,7 +74,7 @@ $$
 or
 
 $$
-\text{number of nodes } - \text{number of edges } + \text{number of loopss } = 1
+\text{number of nodes } - \text{number of edges } + \text{number of loops } = 1
 $$
 
 This is Eular's formula for connected graphs.

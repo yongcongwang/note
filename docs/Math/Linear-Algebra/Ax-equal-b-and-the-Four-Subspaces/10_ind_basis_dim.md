@@ -6,7 +6,7 @@ What does it mean for vectors to be independent? How does the idea of independen
 
 Suppose $A$ is an $m$ by $n$ matrix with $m < n$(so $A\mathbf{x} = \mathbf{b}$ has more unknowns than equations). $A$ has at least one free variable, so there are nonzero solutions to $A\mathbf{x} = \mathbf{0}$. A combination of the columns is zero, so the columns of this $A$ are `dependent`.
 
-We say vectors $\mathbf{x}_1, \mathbf{x}_2, \cdots, \mathbf{x}_n$ are `linear independent` (or just `independent`) if $c_1\mathbf{x}_1 + c_2\mathbf{x}_2 + \cdots + c_n\mathbf{x}_n = \mathbf{0}$ only when $c_1, c_2, \cdots, c_n$ are all $0$. When those vectors are the columns of $A$, the only solution to $A\mathbf{x} = \mathbf{0}$ is $\mathbf{x} = \mathbf{0}$.
+We say vectors $\mathbf{x}_ 1, \mathbf{x}_ 2, \cdots, \mathbf{x}_n$ are `linear independent` (or just `independent`) if $c_1\mathbf{x}_ 1 + c_2\mathbf{x}_2 + \cdots + c_n\mathbf{x}_n = \mathbf{0}$ only when $c_1, c_2, \cdots, c_n$ are all $0$. When those vectors are the columns of $A$, the only solution to $A\mathbf{x} = \mathbf{0}$ is $\mathbf{x} = \mathbf{0}$.
 
 Two vectors are independent if they do not lie on the same line. Three vectors are independent if they do not lie on the same plane. Thinking of $A\mathbf{x}$ as a linear combination of the column vectors of $A$, we see that the column vectors of $A$ are independent exactly when the nullspace of $A$ contains only the zero vector.
 
@@ -22,7 +22,7 @@ If vectors $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_k$ span a space $S$, 
 A `basis` for a vector space is a sequence of vectors $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_d$ with two properties:
 
 - $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_d$ are independent;
-- $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_d$ span the vector space.
+- $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_ d$ span the vector space.
 
 The basis of a space tells us everything we need to know about that space.
 
