@@ -20,7 +20,7 @@ In the plane, the space containing only the zero vector and any line through the
 
 ## Nullspace is perpendicular to row space
 
-The row space of a matrix is orthogonal to the nullspace, because $A\mathbf{x}= \mathbf{0}$ means the dot product of $\mathbf{x}$ with each row of $A$ is $0$. But then the product of $\mathbf{x}$ with any combination of rows of $A$ must be $0$.
+The row space of a matrix is orthogonal to the nullspace, because the definition of nullspace is the subspace with all the $\mathbf{x}$s that meet $A\mathbf{x}= \mathbf{0}$, which means the dot product of $\mathbf{x}$ with each row of $A$ is $0$. Then the product of $\mathbf{x}$ with any combination of rows of $A$ must be $0$.
 
 The column space is orthogonal to the left nullspace of $A$ because the row space of $A^T$ is perpendicular to the nullspace of $A^T$.
 
