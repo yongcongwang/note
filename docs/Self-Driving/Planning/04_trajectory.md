@@ -103,7 +103,7 @@ $$
 #### Smooth Multi-Segment Trajectory
 If intermediate conditions are given, we get a multi-segment problem. We prefer constant velocity motion at $v$, and zero acceleration.
 
-![multi segment trajectory](images/trajectory/multi_seg_traj.png)
+![multi segment trajectory](images/trajectory/mult_seg_traj.png)
 
 The boundary conditions become:
 

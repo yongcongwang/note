@@ -138,7 +138,7 @@ Informed RRT\* makes the RRT tree to grow only in an ellipse, start point and en
 
 ![cross-entropy](images/sample/cross-entropy-rrt-star.png)
 
-- [Cross-entropy motion planning](www.roboticsproceedings.org/rss07/p22.pdf)
+- [Cross-entropy motion planning](www.roboticsproceedings.org/rss07/)
 
 ### Other Variants
 
@@ -154,9 +154,9 @@ Informed RRT\* makes the RRT tree to grow only in an ellipse, start point and en
 - [RRT](http://lavalle.pl/rrt/)
 - [Asymptotically near-optimal RRT for fast, high-quality, motion planning](https://arxiv.org/pdf/1308.0189.pdf)
 - [SST software](http://pracsyslab.org/sst_software)
-- [Transition-based RRT for Path Planning in Continuous Cost Spaces](homepages.laas.fr/jcortes/Papers/jaillet_aaaiWS08.pdf)
+- [Transition-based RRT for Path Planning in Continuous Cost Spaces](homepages.laas.fr/jcortes/Papers/)
 - [VF-RRT: Introducing optimization into randomized motion planning](https://ieeexplore.ieee.org/document/6606360)
-- [Parallel Sampling-Based Motion Planning with Superlinear Speedup](https://robotics.cs.unc.edu/publications/Ichnowski2012_IROS.pdf)
+- [Parallel Sampling-Based Motion Planning with Superlinear Speedup](https://robotics.cs.unc.edu/publications/)
 - [Charle Wong's Github](https://github.com/zychaoqun)
 
 ## Implementation

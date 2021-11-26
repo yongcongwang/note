@@ -805,7 +805,7 @@ Online generating a dense lattice costs too much time, so how about `prune` some
 
 Hybird A star use the grid map to prune the branches.
 
-![hybrid A star](images/kinodynamic/hybird_a_star.png)
+![hybrid A star](images/kinodynamic/hybrid_a_star.png)
 
 If there is no node in the grid, we add the node to grid; if there is a node in grid, we check the cost of the node in grid and new node and reserve the lower one.
 
