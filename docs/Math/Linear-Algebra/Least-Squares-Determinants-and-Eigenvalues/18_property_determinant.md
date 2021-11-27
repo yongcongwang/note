@@ -10,11 +10,25 @@ The `determinant` is a number associated with any square matrix; we'll write it 
 
 Rather than start with a big formula, we'll list the properties of the determinant. We already know that $\begin{vmatrix} a & b \\ c & d  \end{vmatrix} = ad - bc$; these properties will give us a formula for the determinant of square matrices of all sizes.
 
-### 1. $|I| = 1$
+> 1 . |I| = 1
 
-### 2. If you exchange two rows of a matrix, you reverse the sign of its determinant from positive to negative or from negative to positive.
+> 2 . If you exchange two rows of a matrix, you reverse the sign of its determinant from positive to negative or from negative to positive.
 
-### 3. (a) If we multiply one row of a matrix by $t$, the determinant is multiplied by $t$:
+$$
+\begin{vmatrix}
+a & b \\
+c & d \\
+\end{vmatrix}
+=
+-
+\begin{vmatrix}
+c & d \\
+a & b \\
+\end{vmatrix}
+$$
+
+
+> 3 . (a) If we multiply one row of a matrix by $t$, the determinant is multiplied by $t$:
 
 $$
 \begin{vmatrix}
@@ -29,7 +43,7 @@ c & d \\
 \end{vmatrix}
 $$
 
-### 3. (b) The determinant behaves like a linear function on the rows of the matrix:
+> 3 . (b) The determinant behaves like a linear function on the rows of the matrix:
 
 $$
 \begin{vmatrix}
@@ -54,11 +68,19 @@ The determinant of a permutation matrix $P$ is $1$ or $-1$ depending o whether $
 
 From these three properties we can deduce many others:
 
-### 4. If two rows of a matrix are equal, its determinant is zero.
+> 4 . If two rows of a matrix are equal, its determinant is zero.
+
+$$
+\begin{vmatrix}
+a & b \\
+a & b \\
+\end{vmatrix}
+= 0
+$$
 
 This is because of property 2, the exchange rule. On the one hand, exchanging the two identical rows does not change the determinant. On the other hand, exchanging the two rows changes the sign of the determinant. Therefore the determinant must be $0$.
 
-### 5. If $i \ne j$, subtracting $t$ times row $i$ from row $j$ doesn't change the determinant.
+> 5 . If $i \ne j$, subtracting $t$ times row $i$ from row $j$ doesn't change the determinant.
 
 In two dimensions, this argument looks like:
 
@@ -101,17 +123,17 @@ $$
 
 The proof for higher dimensional matrices is similar.
 
-### 6. If $A$ has a row that is all zeros, then $\det A = 0$.
+> 6 . If $A$ has a row that is all zeros, then $\det A = 0$.
 
 We get this from property 3(a) by letting $t = 0$.
 
-### 7. The determinant of a triangular matrix is the product of the diagonal entries(pivots) $d_1, d_2, \cdots, d_n$.
+> 7 . The determinant of a triangular matrix is the product of the diagonal entries(pivots) $d_1, d_2, \cdots, d_n$.
 
 Property 5 tells us that the determinant of the triangular matrix won't change if we use elimination to convert it to a diagonal matrix with the entries $d_i$ on its diagonal. Then property 3(a) tells us that the determinant of this digonal matrix is the product $d_1d_2 \cdots d_n$ times the determinant of the identity matrix. Property 1 completes the arguments.
 
 Note that we cannot use elimination to get a diagonal matrix if one of the $d_i$ is zero. In that case elimination will give us a row of zeros and property 6 gives us the conclusion we want.
 
-### 8. $\det A = 0$ exactly when $A$ is singular.
+> 8 . $\det A = 0$ exactly when $A$ is singular.
 
 If $A$ is singular, then we can use elimination to get a row of zeros, and property 6 tells us that determinant is zero.
 
@@ -125,7 +147,7 @@ a & b \\ c & d
 \end{bmatrix}
 \to
 \begin{bmatrix}
-a & b \\ 0 & d - \frac{c}{d}b
+a & b \\ 0 & d - \frac{c}{a}b
 \end{bmatrix}
 $$
 
@@ -139,7 +161,7 @@ a & b \\ c & d
 a(d - \frac{c}{a}b) = ad - bc
 $$
 
-### 9. $\det AB = (\det A)(\det B)$
+> 9 . $\det AB = (\det A)(\det B)$
 
 This is very useful. Although the determinant of a sum does not equal the sum of the determinants, it is true that the determinant of a product equals the product of the determinants.
 
@@ -149,9 +171,11 @@ $$
 \det A^{-1} = \frac{1}{\det A}
 $$
 
-because $A^{-1}A = 1$. (Note that if $A$ is singular then $A^{-1}$ does not exist and $\det A^{-1}$ is undefined.) Also, $\det A^2 = (\det A)^2$ and $\det 2A = 2^n \det A$ (applying property 3 to each row of the matrix). This reminds us of volume, if we double the length, width and height of a tree dimensional box, we increase its volume by a multiple of $2^3 = 8$.
+because $A^{-1}A = 1$. (Note that if $A$ is singular then $A^{-1}$ does not exist and $\det A^{-1}$ is undefined.) 
 
-### 10. $\det A^T = \det A$
+Also, $\det A^2 = (\det A)^2$ and $\det 2A = 2^n \det A$ (applying property 3 to each row of the matrix). This reminds us of volume, if we double the length, width and height of a tree dimensional box, we increase its volume by a multiple of $2^3 = 8$.
+
+> 10 . $\det A^T = \det A$
 
 $$
 \begin{vmatrix} a & b \\ c & d \end{vmatrix} = \begin{vmatrix} a & c \\ b & d \end{vmatrix} = ad - bc

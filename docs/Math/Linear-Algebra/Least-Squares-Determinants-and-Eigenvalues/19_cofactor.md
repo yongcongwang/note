@@ -88,7 +88,7 @@ This  is because there are n ways to choose an element from the first row(i.e. a
 The big formula for computing the determinant of any square matrix is:
 
 $$
-det A = \sum_{n! terms} \pm a_{1\alpha} a_{2\beta} a_{3\gamma} \cdots a_{n\omega}
+det A = \sum_{n!\text{ terms}} \pm a_{1\alpha} a_{2\beta} a_{3\gamma} \cdots a_{n\omega}
 $$
 
 where $(\alpha,\beta,\gamma,\cdots,\omega)$ is some permutation of $(1, 2, 3, \cdots, n)$. If we test this on the identity matrix, we find that all the terms are zero except the one corresponding to the trivial permutation $\alpha=1, \beta = 2, \cdots, \omega = n$. This agrees with the first property: $det I = 1$. It's possible to check all the other properties as well, but we won't do that here.

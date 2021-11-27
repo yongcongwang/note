@@ -9,7 +9,7 @@ If A has n linearly independent eigenvectors, we can put those vectors in the co
 $$
 \begin{align}
 AS &= A \begin{bmatrix} \mathbf{x_1} & \mathbf{x_2} & \cdots & \mathbf{x_n} \end{bmatrix} \\
-   &= A \begin{bmatrix} \lambda_1 \mathbf{x_1} & \lambda_2 \mathbf{x_2} & \cdots & \lambda_n \mathbf{x_n} \end{bmatrix} \\
+   &= \begin{bmatrix} \lambda_1 \mathbf{x_1} & \lambda_2 \mathbf{x_2} & \cdots & \lambda_n \mathbf{x_n} \end{bmatrix} \\
    &= S \begin{bmatrix} \lambda_1 & 0 & \cdots & 0 \\ 0 & \lambda_2 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \cdots & \lambda_n \end{bmatrix} \\
    &= S\Lambda
 \end{align}
@@ -47,7 +47,7 @@ $$
 Similarly:
 
 $$
-A^k = S
+A^k = S \Lambda^k S^{-1}
 $$
 
 tells us that raising the eigenvalues of $A$ to the kth power gives us the eigenvalues of $A^k$, and that the eigenvectors of $A^k$ are the same as those of A.
@@ -62,7 +62,7 @@ A is guaranteed to have n independent eigenvectors (and be `diagonalizable`) if 
 
 If A has repeated eigenvalues, it may or may not have n independent eigenvectors. For example, the eigenvalues of the identity matrix are all 1, but that matrix still has n independent eigenvectors.
 
-If A is the triangular matrix $\begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}$ its eigenvalues are 2 and 2. Its eigenvectors are in the nullspace of $A - \lambda I = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$ which is spanned by $\mathbf{x} = \begin{bmatrix} 1 \\ 0\end{bmatrix}$. This particular A does not have two independent eigen eigenvectors.
+If A is the triangular matrix $\begin{bmatrix} 2 & 1 \\ 0 & 2 \end{bmatrix}$ its eigenvalues are 2 and 2. Its eigenvectors are in the nullspace of $A - \lambda I = \begin{bmatrix} 0 & 1 \\ 0 & 0 \end{bmatrix}$ which is spanned by $\mathbf{x} = \begin{bmatrix} 1 \\ 0\end{bmatrix}$. This particular A does not have two independent eigenvectors.
 
 ## Difference Equation u_{k + 1} = Au_{k}
 
@@ -83,7 +83,7 @@ $$
 Then:
 
 $$
-A \mathbf{u_0} = c_1 \lambda_1 \mathbf{x_1} + c_2 \lambda_2 \mathbf{x_2} + \cdots + c_n \lambda_n \mathbf{x_n}
+A \mathbf{u_0} = c_1 \lambda_1 \mathbf{x_1} + c_2 \lambda_2 \mathbf{x_2} + \cdots + c_n \lambda_n \mathbf{x_n} = \Lambda S \mathbf{c}
 $$
 
 and:
@@ -96,7 +96,7 @@ $$
 
 The Fibonacci sequence is $0, 1, 1, 2, 3, 5, 8, 13, \cdots$. In general, $F_{k + 2} = F_{k + 1} + F_{k}$. If we could understand this in terms of matrices, the eigenvalues of the matrices would tell us how fast the numbers in the sequence are increasing.
 
-$\mathbf{u_{k + 1}} = A \mathbf{u_{k}}$ was a first order system. $F_{k + 2} = F_{k + 1} + F_{k}$ is a second order scalar equation, but we can convert it to first order linear system by using a clever trick.
+$\mathbf{u_{k + 1}} = A \mathbf{u_{k}}$ was a first order system. $F_{k + 2} = F_{k + 1} + F_{k}$ is a `second order scalar equation`, but we can convert it to first order linear system by using a clever trick.
 
 If $\mathbf{u_k} = \begin{bmatrix} F_{k + 1} \\ F_{k}\end{bmatrix}$, then:
 

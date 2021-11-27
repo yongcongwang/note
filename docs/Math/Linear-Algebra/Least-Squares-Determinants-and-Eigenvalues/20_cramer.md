@@ -1,6 +1,6 @@
 # Cramer's Rule, Inverse Matrix, and Volume
 
-We know a formula for and some properties of the determinant. Now we see how to determinant. Now we see how the determinant can be used.
+We know a formula for and some properties of the determinant. Now we see how the determinant can be used.
 
 ## Formula for A^-1
 
@@ -85,7 +85,7 @@ This agrees with our formula $x_{1} = \frac{det B_{1}} {det A}$. When taking the
 
 Computing inverses using Cramer's rule is usually less efficient than using elimination.
 
-## |deta A| = volume of box
+## |A| = volume of box
 
 Claim:
 > $det A$ is the volume of the box (parallelepiped) whose edges are  the column vectors of $A$.

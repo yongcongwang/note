@@ -20,7 +20,7 @@ If the eigenvalue $\lambda$ equals 0 then $A\mathbf{x} = 0 \mathbf{x} = \mathbf{
 
 Suppose P is the matrix of a projection onto a plane. For any $\mathbf{x}$ in the plane $P\mathbf{x} = \mathbf{0}$, so this is an eigenvector with eigenvalue $\lambda = 0$. The eigenvectors of P span the whole space(but his is not true for every matrix).
 
-The matrix $B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ has an eigenvevtor $\mathbf{x} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ with eigenvalue 1 and another eigenvector $\mathbf{x} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$ with eigenvalue -1. These eigenvectors span the space. They are perpendicular because $B = B^T$ (as we will prove).
+The matrix $B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ has an eigenvector $\mathbf{x} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ with eigenvalue 1 and another eigenvector $\mathbf{x} = \begin{bmatrix} 1 \\ -1 \end{bmatrix}$ with eigenvalue -1. These eigenvectors span the space. They are perpendicular because $B = B^T$ (as we will prove).
 
 ### det(A - \lambda I) = 0
 
@@ -35,7 +35,7 @@ A\mathbf{x} &= \lambda \mathbf{x} \\
 \end{align}
 $$
 
-In order for $\lambda$ to be an eigenvector, $A - \lambda I$ must be sigular. In other words, $det (A - \lambda I) = 0$. We can solve this `characteristic equation` for $\lambda$ to get n solutions.
+In order for $\mathbf{x}$ to be an eigenvector, $A - \lambda I$ must be singular. In other words, $det (A - \lambda I) = 0$. We can solve this `characteristic equation` for $\lambda$ to get n solutions.
 
 If we're lucky, the solutions are distinct. If not, we have one or more `repeated eigenvalues`.
 
@@ -49,7 +49,7 @@ $$
 \begin{align}
 det(A - \lambda I) & = \begin{vmatrix} 3 - \lambda & 1 \\ 1 & 3 - \lambda \end{vmatrix} \\
 &= (3 - \lambda)^2 - 1 \\ 
-&= \lambda62 - 6\lambda + 8
+&= \lambda^2 - 6\lambda + 8
 \end{align}
 $$
 
@@ -63,7 +63,7 @@ Just as the trace is the sum of the eigenvalues of a matrix, the product of the 
 
 For $A = \begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}$, the eigenvalues are $\lambda_1 = 4$ and $\lambda_2 = 2$. We find the eigenvectors $\mathbf{x_1} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}$ for $\lambda_1 = 4$ in the nullspace of $A - \lambda_1 I = \begin{bmatrix} -1 & 1 \\ 1 & -1 \end{bmatrix}$.
 
-$x_2$ will be in the nullsapce of $A - 2I = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$. The nullspace is an entire line; $x_2$ could be any vector on that line. A natural choice is $x_2 = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$.
+$\mathbf{x_2}$ will be in the nullsapce of $A - 2I = \begin{bmatrix} 1 & 1 \\ 1 & 1 \end{bmatrix}$. The nullspace is an entire line; $\mathbf{x_2}$ could be any vector on that line. A natural choice is $\mathbf{x_2} = \begin{bmatrix} -1 \\ 1 \end{bmatrix}$.
 
 Note that these eigenvectors are the same as those of $B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$. Adding $3I$ to the matrix $B = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$ added 3 to each of its eigenvalues and did not change its eigenvectors, because $A\mathbf{x} = (B + 3I)\mathbf{x} = \lambda\mathbf{x} + 3\mathbf{x} = (\lambda + 3)\mathbf{x}$.
 
@@ -73,7 +73,7 @@ Similarly, if $A\mathbf{x} = \lambda\mathbf{x}$ and $B\mathbf{x} = \alpha \mathb
 
 ### Complex eigenvalues
 
-The matrix $Q = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ rotates every vector in the plane by $90^{\circ}$. It has trace $0 = \lambda_{1} + \lambda{2}$ and determinant $1 = \lambda_{1} * \lambda_{2}$. Its only real eigenvector is the zero vector; any other vector's direction changes when it is multiplied by Q. How will this affect our eigenvalue calculation?
+The matrix $Q = \begin{bmatrix} 0 & -1 \\ 1 & 0 \end{bmatrix}$ rotates every vector in the plane by $90^{\circ}$. It has trace $0 = \lambda_{1} + \lambda_{2}$ and determinant $1 = \lambda_{1} * \lambda_{2}$. Its only real eigenvector is the zero vector; any other vector's direction changes when it is multiplied by Q. How will this affect our eigenvalue calculation?
 
 $$
 \begin{align}
