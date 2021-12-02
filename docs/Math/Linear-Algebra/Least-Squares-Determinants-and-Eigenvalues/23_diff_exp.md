@@ -5,7 +5,7 @@ The system of equations below describes how the values of variables $u_{1}$ and 
 $$
 \begin{align}
 \frac{du_{1}}{dt} = -u_{1} + 2 u_{2} \\
-\frac{du_{u}}{dt} = u_{1} - 2 u_{2} \\
+\frac{du_{2}}{dt} = u_{1} - 2 u_{2} \\
 \end{align}
 $$
 
@@ -19,9 +19,9 @@ $\mathbf{x_1} = \begin{bmatrix} 2 \\ 1\end{bmatrix}$ is an eigenvectors for whic
 
 $$
 \begin{align}
-\begin{bmatrix} 2 & 2 \\ 1 & 1 \end{bmatrix} \mathbf{x_2} &= 0 \\
+\begin{bmatrix} 2 & 2 \\ 1 & 1 \end{bmatrix} \mathbf{x_2} = 0 \\
 so \\
-\mathbf{x_2} = \begin{bmatrix} 1 & -1 \end{bmatrix} \\
+\mathbf{x_2} = \begin{bmatrix} 1 \\ -1 \end{bmatrix} \\
 \end{align}
 $$
 
@@ -34,7 +34,7 @@ $$
 Is $e^{\lambda_1 t} \mathbf{x_1}$ really a solution to $\frac{d\mathbf{u}}{dt} = A\mathbf{u}$? To find out, plug in $\mathbf{u} = e^{\lambda_1 t} \mathbf{x_1}$:
 
 $$
-\frac{\mathbf{u}}{dt} = \lambda_1 e^{\lambda_1 t} \mathbf{x_1}
+\frac{d\mathbf{u}}{dt} = \lambda_1 e^{\lambda_1 t} \mathbf{x_1}
 $$
 
 which agrees with:
@@ -152,7 +152,7 @@ $$
 \begin{bmatrix}
 \lambda_1 & 0 & \cdots & 0 \\
 0 & \lambda_2 & \cdots & 0 \\
-\vdots & \vdots & \ddots & \vdosts \\
+\vdots & \vdots & \ddots & \vdots \\
 0 & \cdots & 0 & \lambda_n \\
 \end{bmatrix}
 $$
