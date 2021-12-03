@@ -42,7 +42,7 @@ A - 1I =
 \end{bmatrix}
 $$
 
-should be singular. Since we've substracted 1 from each diagonal entry, the sum of the entries in each column of $A - I$ is 0. But then the sum of the rows of $A - I$ must be the zero row, and so $A - I$ is singular. The eigenvector $\mathbf{x_1}$ is in the nullspace of $A - I$ and has eigenvalue 1. It's not very hard to find $\mathbf{x_1} = \begin{bmatrix} 0.6 \\ 33 \\ 0.7 \end{bmatrix}$. But then the sum of the rows of $A - I$ must be the zero row, then so $A - I$ is singular. The eigenvector $\mathbf{x_1}$ is in the nullspace of $A - I$ and has eigenvalue 1. Its not very hard to find $\mathbf{x_1} = \begin{bmatrix} 0.6 \\ 33 \\ 0.7 \end{bmatrix}$.
+should be singular. Since we've substracted 1 from each diagonal entry, the sum of the entries in each column of $A - I$ is 0. But then the sum of the rows of $A - I$ must be the zero row, and so $A - I$ is singular. The eigenvector $\mathbf{x_1}$ is in the nullspace of $A - I$ and has eigenvalue 1. It's not very hard to find $\mathbf{x_1} = \begin{bmatrix} 0.6 \\ 33 \\ 0.7 \end{bmatrix}$.
 
 We're studying the equation $\mathbf{u_{k + 1}} = A\mathbf{u_k}$  where A is a Markov matrix. For example, $u_1$ might be the population of (number of people in) Massachusetts and $u_2$ might be the population of California. A might describe what fraction of the population moves from state to state, or the probability of a single person moving. We can't have negative numbers of people, so the entries of A will always be positive. We want to account for all the people in our model, so the columns of A add to $1 = 100%$.
 
@@ -62,7 +62,7 @@ For the next few values of k, the Massachusetts population will decrease and the
 
 To understand the long term behavior of this system we'll need the eigenvectors and eigenvalues of $\begin{bmatrix} 0.9 & 0.2 \\ 0.1 & 0.8\end{bmatrix}$. We know that one eigenvalue is $\lambda_1 = 1$. Because the trace $0.9 + 0.8 = 1.7$ is the sum of the eigenvalues, we see that $\lambda_2 = 0.7$.
 
-Next we calculatte the eigenvectors:
+Next we calculate the eigenvectors:
 
 $$
 A - \lambda_1 I = \begin{bmatrix} -0.1 & 0.2 \\ 0.2 & -0.2\end{bmatrix} \mathbf{x_1} = \mathbf{0}
@@ -92,7 +92,7 @@ $$
 
 so $c_1 = \frac{1000}{3}$ and $c_2 = \frac{2000}{3}$.
 
-In some applications Markov matrices are defined differently - their rows add to 1 rather than their columns. In this case, the calculations are the transpose of everything we've donee here.
+In some applications Markov matrices are defined differently - their rows add to 1 rather than their columns. In this case, the calculations are the transpose of everything we've done here.
 
 ## Fourier Series and Projections
 
@@ -124,7 +124,7 @@ This is `Fourier series` is an infinite sum and the previous example was finite,
 
 We're now working in an infinite dimensional vector space. The vectors in this space are functions and the (orthogonal) basis vectors are $1, \cos x, \sin x, \cos 2x, \sin 2x, \cdots$
 
-What does "orthogonal" mean in this context? How do we compute a dot product or `inner product` in this vector space? For vectors in $\mathbb{R}^n$ the inner product is $\mathbf{v}^T \mathbf{w} = v_1 w_1 + v_2 w_2 + \cdots + v_n w_n$. Functions are described by a continuum of values $f(x)$ rather than by a discrete collection of components $v_i$. The best parallel to the vector dot product is:
+What does "orthogonal" mean in this context? How do we compute a dot product or `inner product` in this vector space? For vectors in $\mathbb{R}^n$ the inner product is $\mathbf{v}^T \mathbf{w} = v_1 w_1 + v_2 w_2 + \cdots + v_n w_n$. Functions are described by a continum of values $f(x)$ rather than by a discrete collection of components $v_i$. The best parallel to the vector dot product is:
 
 $$
 f^Tg = \int_0^{2\pi} f(x)g(x) dx
@@ -142,7 +142,7 @@ $$
 \int_0 ^{2\pi} \sin x \cos x dx = \frac{1}{2} (\sin x)^2 |_ {0} ^{2\pi} = 0
 $$
 
-How do we find $a_0, a_1$, etc. to find the coordinates or `Fourier coefficients` of a function in this space? The constant term $a_0$ is the average value of the function. Because we're working with an othonomal basis, we can use the inner product to find the coefficients $a_i$.
+How do we find $a_0, a_1$, etc. to find the coordinates or `Fourier coefficients` of a function in this space? The constant term $a_0$ is the average value of the function. Because we're working with an orthonormal basis, we can use the inner product to find the coefficients $a_i$.
 
 $$
 \begin{align}
