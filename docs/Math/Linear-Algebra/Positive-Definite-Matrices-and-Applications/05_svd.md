@@ -1,6 +1,6 @@
 # Singular Value Decomposition(SVD)
 
-The `Singular Value Decomposition` of a matrix is usually referred to a s the SVD. This is the final and best factorization of a matrix:
+The `Singular Value Decomposition` of a matrix is usually referred to as the SVD. This is the final and best factorization of a matrix:
 
 $$
 A = U \Sigma V^T
@@ -16,7 +16,7 @@ We've also learned how to write $A = S \Lambda S^{-1}$, where S is the matrix of
 
 We can think of A as a linear transformation taking a vector $\mathbf{v}_ 1$ in its row space to a vector $\mathbf{u}_ 1 = A \mathbf{v}_ 1$ in its column space. The SVD arises from finding an orthogonal basis for the row space that gets transformed into orthogonal basis for the column space: $A\mathbf{v}_ i = \sigma_ i \mathbf{u}_ i$
 
-It's not hard to find an orthogonal basis for the row space - the Gram-Schmidt process gives us one right way. But in general, there's on reason to expect A to transform that basis to another orthogonal basis.
+It's not hard to find an orthogonal basis for the row space - the Gram-Schmidt process gives us one right way. But in general, there's no reason to expect A to transform that basis to another orthogonal basis.
 
 You may be wondering about the vectors in the nullspace of A and $A^T$. There are no problem - zeros on the diagonal of $\Sigma$ will take care of them.
 
@@ -27,7 +27,7 @@ The heart of the problem is to find an orthogonal basis $\mathbf{v}_ 1, \mathbf{
 $$
 \begin{align}
 A\begin{bmatrix}\mathbf{v}_ 1 & \mathbf{v}_ 2 & \cdots & \mathbf{v}_ r\end{bmatrix} &= 
-\begin{bmatrix}\sigma_ 1 \mathbf{u}_ 1 & \sigma_2 \mathbf{v}_ 2 & \cdots & \sigma_r \mathbf{v}_ r\end{bmatrix} \\
+\begin{bmatrix}\sigma_ 1 \mathbf{u}_ 1 & \sigma_2 \mathbf{u}_ 2 & \cdots & \sigma_r \mathbf{u}_ r\end{bmatrix} \\
 &= \begin{bmatrix}\mathbf{u}_ 1 & \mathbf{u}_ 2 & \cdots & \mathbf{u}_ r\end{bmatrix} \begin{bmatrix}\sigma_1 & & & \\ & \sigma_2 & & \\ & & \ddots & \\ & & &\sigma_r \end{bmatrix}
 \end{align}
 $$
@@ -82,11 +82,11 @@ The eigenvectors of this matrix will give us the vector $\mathbf{v}_ i$, and the
 Two orthogonal eigenvectors of $A^TA$ are $\begin{bmatrix}1 \\ 1\end{bmatrix}$ and $\begin{bmatrix}1 \\ -1\end{bmatrix}$. To get an orthonormal basis, let $\mathbf{v}_ 1 = \begin{bmatrix}1 / \sqrt{2} \\ 1 / \sqrt{2}\end{bmatrix}$ and $\mathbf{v}_ 2 = \begin{bmatrix}1 / \sqrt{2} \\ -1 / \sqrt{2}\end{bmatrix}$. These have eigenvalues $\sigma_1^2 = 32$ and $\sigma_2^2 = 18$. We now have:
 
 $$
-A &= U \Sigma V^T
+A = U \Sigma V^T
 $$
 
 $$
-\begin{bmatrix}4 & 4 \\ -3 & 3\end{bmatrix} &= [] \begin{bmatrix}4 \sqrt{2} & 0 \\ 0 & 3\sqrt{2}\end{bmatrix} \begin{bmatrix}1 / \sqrt{2} & 1 / \sqrt{2} \\ 1 / \sqrt{2} & -1 / \sqrt{2}\end{bmatrix}
+\begin{bmatrix}4 & 4 \\ -3 & 3\end{bmatrix} = [] \begin{bmatrix}4 \sqrt{2} & 0 \\ 0 & 3\sqrt{2}\end{bmatrix} \begin{bmatrix}1 / \sqrt{2} & 1 / \sqrt{2} \\ 1 / \sqrt{2} & -1 / \sqrt{2}\end{bmatrix}
 $$
 
 We could solve this for U, but for practice we'll find U by finding orthonormal eigenvectors $\mathbf{u}_ 1$ and $\mathbf{u}_ 2$ for $AA^T = U \Sigma^2 U^T$.
@@ -98,7 +98,7 @@ AA^T &= \begin{bmatrix}4 & 4 \\ -3 & 3\end{bmatrix} \begin{bmatrix}4 & -3 \\ 4 &
 \end{align}
 $$
 
-Luckily, $AA^T$ happens to be diagonal. It's tempting to let $\mathbf{u}_ 1 = \begin{bmatrix}1 \\ 0\end{bmatrix}$ and $\mathbf{u}_ 2 = \begin{bmatrix}0 \\ 1\end{bmatrix}$, as Professor Strang did in the lecture, but because $A\mathbf{v}_ 2 = \begin{bmatrix}0 \\ -3 \sqrt{2}\end{bmatrix}$ we instead have $\mathbf{u}_ 2 = \begin{bmatrix}0 \\ -1\end{bmatrix}$ and $U = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}$. Note that this also gives us a chance to double check our calculation of $\sigma_1 $ and $\sigma_2$.
+Luckily, $AA^T$ happens to be diagonal. It's tempting to let $\mathbf{u}_ 1 = \begin{bmatrix}1 \\ 0\end{bmatrix}$ and $\mathbf{u}_ 2 = \begin{bmatrix}0 \\ 1\end{bmatrix}$, as Professor Strang did in the lecture, but because $A\mathbf{v}_ 2 = \begin{bmatrix}0 \\ -3 \sqrt{2}\end{bmatrix}$ we instead have $\mathbf{u}_ 2 = \begin{bmatrix}0 \\ -1\end{bmatrix}$ and $U = \begin{bmatrix}1 & 0 \\ 0 & -1\end{bmatrix}$. Note that this also gives us a chance to double check our calculation of $\sigma_1$ and $\sigma_2$.
 
 Thus, the SVD of A is:
 
@@ -135,7 +135,7 @@ $$
 A = U \Sigma V^T
 $$
 
-The singular value decomposition conbines topics in linear algebra ranging from positive definite matrices to the four fundamental subspaces.
+The singular value decomposition combines topics in linear algebra ranging from positive definite matrices to the four fundamental subspaces.
 
 - $\mathbf{v}_ 1, \mathbf{v}_ 2, \cdots, \mathbf{v}_ r$ is an orthonormal basis for the row space;
 - $\mathbf{u}_ 1, \mathbf{u}_ 2, \cdots, \mathbf{u}_ r$ is an orthonormal basis for the column space;

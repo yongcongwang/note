@@ -6,7 +6,7 @@ We've learned that computations can be made easier by an appropriate choice of b
 
 Suppose one frame of our lecture video is 512 by 512 pixels and that the video is recorded in black and white. the camera records a brightness level for each of the $512^2$ pixels; in this sense, each frame of video is a vector in a $512^2$ dimensional vector space.
 
-The standard basis for this space has a vector for each pixel. Transformitting the values of all $512^2$ components of each frame using the standard basis would require far too much bandwidth, but if we change our basis according to the JPEG image compression standard we an transmit a fairly good copy the video very efficiently.
+The standard basis for this space has a vector for each pixel. Transformitting the values of all $512^2$ components of each frame using the standard basis would require far too much bandwidth, but if we change our basis according to the JPEG image compression standard we can transmit a fairly good copy the video very efficiently.
 
 For example, if we're reporting light level pixel by pixel, there's no efficient way to transmit the information "the entire frame is black". However, if one of our basis vectors corresponds to all pixels having the same light level(say 1), we can very efficiently transmit a recording of a blank blackboard.
 
@@ -27,7 +27,7 @@ The best known basis is the Fourier basis, which is closely related to the Fouri
 This method breaks the 512 by 512 rectangle of pixels into blocks that are 8 pixels on a side, each block containing 64 pixels total. The brightness informaton for those pixels is then compressed, possibly by eliminating all coefficients below some threshold chosen so that we can hardly see the difference once they're gone.
 
 $$
-\text{signal } \mathbf{x} \xrightarrow{lossless} 64 coefficients c \xrightarrow{lossy compression} \hat{c}(\text{many zeros}) \to \mathbf{\hat{x}} = \Sigma \hat{c_i} \mathbf{v}_ i
+\text{signal } \mathbf{x} \xrightarrow{lossless} \text{64 coefficients } c \xrightarrow{\text{lossy compression}} \hat{c}(\text{many zeros}) \to \mathbf{\hat{x}} = \Sigma \hat{c_i} \mathbf{v}_ i
 $$
 
 In video, not only should we consider compressing each frame, we can also consider compressing sequences of frames. There's very little difference between one frame and the next. If we do it right, we only need to encode and compress the difference between frames, not every frame in its entirely.
@@ -48,7 +48,7 @@ The closet competitor to the JPEG encoding method uses a wavelet basis. (JPEG200
 
 ### Comppression and Matrices
 
-Linear algebra is used to find the coefficients $c_i$ in the change os basis from the standard basis (light level for each pixel) to Fourier or wavelet basis. For example, we might want to write:
+Linear algebra is used to find the coefficients $c_i$ in the change of basis from the standard basis (light level for each pixel) to Fourier or wavelet basis. For example, we might want to write:
 
 $$
 \mathbf{x} = c_1 \mathbf{w}_ 1 + \cdots + c_8 \mathbf{w}_ 8

@@ -36,7 +36,7 @@ It's nontriviall nullspaces that cause trouble when we try to invert matrices. I
 
 The vector $A\mathbf{x}$ is always in the column space of A. In fact, the correspondence between vectors $\mathbf{x}$ in the (r dimensional) row space and vectors $A\mathbf{x}$ in the (r dimensional) column space is one-to-one. In other words, if $\mathbf{x} \ne \mathbf{y}$ are vectors in the row space of A then $A\mathbf{x} \ne A\mathbf{y}$ in the column space of A. (The proof of this would make a good exam question.)
 
-## Proof that If x != y then Ax 1= Ay
+## Proof that If x != y then Ax != Ay
 
 Suppose the statement is false. Then we can find $\mathbf{x} \ne \mathbf{y}$ in the row space of A for which $A\mathbf{x}=A\mathbf{y}$. But then $A(\mathbf{x} - \mathbf{y}) = \mathbf{0}$, so $\mathbf{x} - \mathbf{y}$ is in the nullspace of A. But the row space of A is closed under linear combinations(like subtraction), so $\mathbf{x} - \mathbf{y}$ is also in the row space. Then only vector in both the nullspace and the row space is the zero vector, so $\mathbf{x} - \mathbf{y} =\mathbf{0}$. This contradicts our assumption that $\mathbf{x}$ and $\mathbf{y}$ are not equal to each other.
 

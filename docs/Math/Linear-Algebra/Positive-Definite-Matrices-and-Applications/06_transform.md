@@ -23,7 +23,7 @@ T(\mathbf{v} + \mathbf{w}) = T(\mathbf{v}) + T(\mathbf{w})
 $$
 
 and
-^
+
 $$
 T(c\mathbf{v}) = cT(\mathbf{v})
 $$
@@ -69,7 +69,7 @@ A(\mathbf{v} + \mathbf{w}) = A(\mathbf{v}) + A(\mathbf{w})
 $$
 
 and
-$
+
 $$
 A(c\mathbf{v}) = cA(\mathbf{v})
 $$
