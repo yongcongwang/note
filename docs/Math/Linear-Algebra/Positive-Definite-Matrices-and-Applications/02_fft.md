@@ -59,10 +59,10 @@ To simplify our notation we write $|\mathbf{z}|^2 = \mathbf{z}^H\mathbf{z}$, whe
 
 ### Inner Product
 
-similarly, the inner or dot product of two complex vectors is not just $\mathbf{y}^T\mathbf{x}$. We must also take the complex conjugate of $\mathbf{y}$:
+Similarly, the inner or dot product of two complex vectors is not just $\mathbf{y}^T\mathbf{x}$. We must also take the complex conjugate of $\mathbf{y}$:
 
 $$
-\mathbf{y}^H \mathbf{x} =  \bar{\mathbf{y}}^H \mathbf{x} = \bar{y}_ 1 x_1 + \bar{y}_ 2 x_2 + \cdots + \bar{y}_ n x_n
+\mathbf{y}^H \mathbf{x} =  \bar{\mathbf{y}}^T \mathbf{x} = \bar{y}_ 1 x_1 + \bar{y}_ 2 x_2 + \cdots + \bar{y}_ n x_n
 $$
 
 ## Complex Matrices
@@ -120,7 +120,7 @@ F_n =
 \end{bmatrix}
 $$
 
-Notice that $F_n = F_n^T$ and $(F_n)_ {jk} = w^{jk}$, where $j, k = 0, 1, \cdots, n - 1$ and the complex number w is $w = e^{i 2\pi / n}$ (so $w^n = 1$). The columns of this matrix are orthogonal.
+Notice that $F_n = F_n^T$ and $(F_n)_ {jk} = w^{jk}$, where $j, k = 0, 1, \cdots, n - 1$ and the complex number w is $w = e^{2\pi i / n}$ (so $w^n = 1$). The columns of this matrix are orthogonal.
 
 All the entries of $F_n$ are on the unit circle in the complex plane, and raising each one to the nth power gives 1. We could write $w = cos(2\pi / n) + i sin (2\pi / n)$, but that would just make it harder to compute $w^{jk}$.
 
@@ -209,7 +209,7 @@ Because $\frac{1}{\sqrt{n}}F_n$ is unitary, multiplying by $F_n$ and dividing by
 
 Fourier matrices can be broken down into chunks with lots of zero entries; Fourier probably didn't notice this. Gauss did, but didn't realize how significant a discovery this was.
 
-There's a nive relationship between $F_n$ and $F_{2n}$ related to the fact that $w_{2n}^2 = w_n$:
+There's a nice relationship between $F_n$ and $F_{2n}$ related to the fact that $w_{2n}^2 = w_n$:
 
 $$
 F_{2n} = \begin{bmatrix}I & D \\ I & -D \end{bmatrix} \begin{bmatrix} F_n & 0 \\ 0 & F_n \end{bmatrix} P
@@ -248,6 +248,6 @@ $$
 
 Of course we can break each of those copies of $F_{32}$ down into two copies of $F_{16}$ and so on. In the end, instead of using $n^2$ operations to multiply by $F_n$ we get the same result using about $\frac{1}{2} n log n$ operations.
 
-A typical ccase is $n = 1024 = 2^{10}$. Simply multiplying by $F_n$ requires over a million calculations. The fast Fourier transform can be completed with only $\frac{1}{2} n log n = 5 \times 1024$ calculations. This is 200 times faster!
+A typical case is $n = 1024 = 2^{10}$. Simply multiplying by $F_n$ requires over a million calculations. The fast Fourier transform can be completed with only $\frac{1}{2} n log n = 5 \times 1024$ calculations. This is 200 times faster!
 
 This is only possible because Fourier matrices are special matrices with orthogonal columns. In the next lecture we'll return to dealing exclusively with real numbers and will learn about positive definite matrices, which are the matrices most often seen in application.

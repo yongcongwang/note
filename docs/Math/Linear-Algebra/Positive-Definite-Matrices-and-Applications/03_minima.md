@@ -10,7 +10,7 @@ Given a symmetric two by two matrix $\begin{bmatrix}a & b \\ b & c\end{bmatrix}$
 
 1. Eigenvalue test: $\lambda_1 > 0, \lambda_2 > 0$
 2. Determinants test: $a > 0, ac - b^2 > 0$
-3. Pivot test: $a > 0, \frac{ac - b62}{a} > 0$
+3. Pivot test: $a > 0, \frac{ac - b^2}{a} > 0$
 4. $\mathbf{x}^T A \mathbf{x}$ is positive except when $\mathbf{x} = \mathbf{0}$(this is usually the definition of positive definiteness)
 
 ### 2 by 2
@@ -21,7 +21,7 @@ The matrix $\begin{bmatrix}2 & 6 \\ 6 & 18 \end{bmatrix}$ is on the borderline o
 
 $$
 \begin{align}
-\mathbf{x}^tA\mathbf{x}
+\mathbf{x}^TA\mathbf{x}
 &= \begin{bmatrix}x_1 & x_2\end{bmatrix}\begin{bmatrix}2 & 6 \\ 6 & 18 \end{bmatrix} \begin{bmatrix}x_1 \\ x_2\end{bmatrix} \\
 &= \begin{bmatrix}x_1 & x_2\end{bmatrix}\begin{bmatrix}2x_1 + 6x_2 \\ 6x_1 & 18x_2 \end{bmatrix} \\
 &= 2x_162 + 12 x_1 x_2 + 18 x_2^2 \\

@@ -4,7 +4,7 @@ Symmetric metrices are good, their eigenvalues are real and each has a complete 
 
 ## Symmetric Matrices
 
-A `symmetric matrices` is one for which $A = A^T$. If a matrix has some special property (e.g. it's a Markov matrix), its eigenvalues and eigenvectors are likely to have special properties as well. For a symmetric matrix with real number entries, the  eigenvalues are real numbers and it's possible to choose a complete set of eigenvecors that are perpendicular (or even orthonormal).
+A `symmetric matrices` is one for which $A = A^T$. If a matrix has some special property (e.g. it's a Markov matrix), its eigenvalues and eigenvectors are likely to have special properties as well. For a symmetric matrix with real number entries, the  eigenvalues are real numbers and it's possible to choose a complete set of eigenvectors that are perpendicular (or even orthonormal).
 
 If A has n independent eigenvectors we dan write $A = S \Lambda S^{-1}$. If A is symmetric we can write $A = Q \Lambda Q^{-1} = Q \Lambda Q^T$, where Q is an orthogonal matrix. Mathematicians call this the `spectral theorem` and think of the eigenvalues are the `spectrum` of the matrix. In mechanics it's called the `principal axis theorem`.
 
@@ -12,7 +12,7 @@ In addition, any matrix of the form $Q \Lambda Q^T$ will be symmetric.
 
 ## Real Eigenvalues
 
-Why are the eigenvalues of symmetric matrix real? Suppose A is sysmmetric and $A\mathbf{x} = \lambda \mathbf{x}$. Then we can conjugate to get $\bar{A} \bar{\mathbf{x}} = \bar{\lambda}\bar{\mathbf{x}$. If the entries of A are real, this becomes $A \bar{\mathbf{x}} = \bar{\lambda} \mathbf{x}$. (This proves that complex eigenvalues of real valued matrices come in conjugate pairs.)
+Why are the eigenvalues of symmetric matrix real? Suppose A is sysmmetric and $A\mathbf{x} = \lambda \mathbf{x}$. Then we can conjugate to get $\bar{A}\bar{\mathbf{x}} = \bar{\lambda} \bar{\mathbf{x}}$. If the entries of A are real, this becomes $A \bar{\mathbf{x}} = \bar{\lambda} \bar{\mathbf{x}}$. (This proves that complex eigenvalues of real valued matrices come in conjugate pairs.)
 
 Now transpose to get $\bar{\mathbf{x}}^T A^T = \bar{\mathbf{x}}^T \bar{\lambda}$. Because A is symmetric we now have $\bar{\mathbf{x}}^T A = \bar{\mathbf{x}}^T \bar{\lambda}$. Multiplying both sides of this equation on the right by $\mathbf{x}$ gives:
 
