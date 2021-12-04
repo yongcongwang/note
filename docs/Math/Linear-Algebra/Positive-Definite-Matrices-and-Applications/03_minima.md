@@ -23,8 +23,8 @@ $$
 \begin{align}
 \mathbf{x}^TA\mathbf{x}
 &= \begin{bmatrix}x_1 & x_2\end{bmatrix}\begin{bmatrix}2 & 6 \\ 6 & 18 \end{bmatrix} \begin{bmatrix}x_1 \\ x_2\end{bmatrix} \\
-&= \begin{bmatrix}x_1 & x_2\end{bmatrix}\begin{bmatrix}2x_1 + 6x_2 \\ 6x_1 & 18x_2 \end{bmatrix} \\
-&= 2x_162 + 12 x_1 x_2 + 18 x_2^2 \\
+&= \begin{bmatrix}x_1 & x_2\end{bmatrix}\begin{bmatrix}2x_1 + 6x_2 \\ 6x_1 + 18x_2 \end{bmatrix} \\
+&= 2x_1^2 + 12 x_1 x_2 + 18 x_2^2 \\
 = ax_1^2 + 2bx_1x_2 + cx_2^2
 \end{align}
 $$
@@ -90,7 +90,7 @@ When we complete the square, the numbers multiplied by the squares are the pivot
 The matrix of second derivatives of $f(x, y)$ is:
 
 $$
-\begin{bmatrix}f_{xx} && f_{xy} \\ f_{yx} & f_{yy}\end{bmatrix}
+\begin{bmatrix}f_{xx} & f_{xy} \\ f_{yx} & f_{yy}\end{bmatrix}
 $$
 
 This matrix is symmetric because $f_{xy} = f_{yx}$. Its determinant is positive when the matrix is positive definite, which matches the $f_{xx}f_{yy} > f_{xy}^2$ test for a minimum that we learned in calculus.
@@ -115,9 +115,9 @@ $$
 
 These are all positive, so A is positive definite.
 
-The pivots of A are $2, 3/2 $ and $4/3$ (all positive) because the products of the pivots equal the determinants.
+The pivots of A are $2, 3/2$ and $4/3$ (all positive) because the products of the pivots equal the determinants.
 
-The eigenvalues of A are positive and their product is 4. It's not difficullt to check that they are $2 - \sqrt{2}$, 2 and $2 + \sqrt{2}$ (all positive).
+The eigenvalues of A are positive and their product is 4. It's not difficult to check that they are $2 - \sqrt{2}$, 2 and $2 + \sqrt{2}$ (all positive).
 
 ## Ellipsoids in R^n
 
@@ -125,10 +125,10 @@ $$
 f(x) = \mathbf{x}^T A \mathbf{x} = 2x_1^2 + 2x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3
 $$
 
-Because A is positive definite, we expect $f(x)$ to be positive except when $\mathbf{x} = \mathbf{0}$. Its graph is a sort of four dimensional bowl or `paraboloid`. If we wrote $f(x)$ as a sum of three squres, those squares would be multiplied by the (positive) pivots of A. Earlier, we said that a horizontal slice of our three dimensional bowl shape would be an ellipse. Here, a horizontal slice of the four dimensional bowl is an ellipsoid - a little bit like a rugby ball. For example, if we cat the graph at height 1 we get a surface whose equation is:
+Because A is positive definite, we expect $f(x)$ to be positive except when $\mathbf{x} = \mathbf{0}$. Its graph is a sort of four dimensional bowl or `paraboloid`. If we wrote $f(x)$ as a sum of three squares, those squares would be multiplied by the (positive) pivots of A. Earlier, we said that a horizontal slice of our three dimensional bowl shape would be an ellipse. Here, a horizontal slice of the four dimensional bowl is an ellipsoid - a little bit like a rugby ball. For example, if we cat the graph at height 1 we get a surface whose equation is:
 
 $$
 2x_1^2 + 2 x_2^2 + 2x_3^2 - 2x_1x_2 - 2x_2x_3 = 1
 $$
 
-Just as an ellipse has a major and minor axis, anellipsoid has three axes. If we write $A = Q \Lambda Q^T$, as the principal axis theorem tells us we can, the eigenvectors of A tell us the directions of the principal axes of the ellipsoid. The eigenvalues tell us the lengths of those axiss.
+Just as an ellipse has a major and minor axis, an ellipsoid has three axes. If we write $A = Q \Lambda Q^T$, as the principal axis theorem tells us we can, the eigenvectors of A tell us the directions of the principal axes of the ellipsoid. The eigenvalues tell us the lengths of those axiss.

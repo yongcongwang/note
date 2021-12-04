@@ -10,7 +10,7 @@ Given a symmetric positive definite matrix A, is its inverse also symmetric and 
 
 If A and B are positive definite, is $A + B$ positive definite? We don't know much about the eigenvalues of $A + B$, but we can use the propterty $\mathbf{x}^T A \mathbf{x} > 0$ and $\mathbf{x}^TB\mathbf{x} > 0$ to show that $\mathbf{x}^T (A + B) \mathbf{x} > 0$ for $\mathbf{x} \ne 0$ and so $A + B$ is also positive definite.
 
-Now suppose A is a rectangular (m by n) matrix. A is almost cettainly not symmetric, but $A^TA$ is square and symmetric. Is $A^TA$ positive definite? We'd rather not try to find the eigenvalues or the pivots of this matrix, so we ask when $\mathbf{x}^T A^T A\mathbf{x}$ is positive.
+Now suppose A is a rectangular (m by n) matrix. A is almost certainly not symmetric, but $A^TA$ is square and symmetric. Is $A^TA$ positive definite? We'd rather not try to find the eigenvalues or the pivots of this matrix, so we ask when $\mathbf{x}^T A^T A\mathbf{x}$ is positive.
 
 Simplifying $\mathbf{x}^T A^T A \mathbf{x}$ is just a matter of moving parentheses:
 
@@ -18,7 +18,7 @@ $$
 \mathbf{x}^T (A^TA) \mathbf{x} = (A \mathbf{x})^T (A\mathbf{x}) = |A\mathbf{x}|^2 \ge 0
 $$
 
-The only remaining question is whether $A\mathbf{x} = \mathbf{0}$. If A has ran n (independent columns), then $\mathbf{x}^T(A^T A)\mathbf{x} = \mathbf{0}$ only if $\mathbf{x} = \mathbf{0}$ and A is positive definite.
+The only remaining question is whether $A\mathbf{x} = \mathbf{0}$. If A has rank n (independent columns), then $\mathbf{x}^T(A^T A)\mathbf{x} = \mathbf{0}$ only if $\mathbf{x} = \mathbf{0}$ and A is positive definite.
 
 Another nice feature of positive definite matrices is that you never have to do row exchanges when row reducing - there are never 0's or unsuitably small numbers in their pivot positions.
 
@@ -130,7 +130,7 @@ J_i =
 \end{bmatrix}
 $$
 
-Two matrices may have the same eigenvalues and the same eigenvalues and the same number of eigenvectors, but if their Jordan blocks are different sizes those matrices can not be similar.
+Two matrices may have the same eigenvalues and the same number of eigenvectors, but if their Jordan blocks are different sizes those matrices can not be similar.
 
 Jordan's theorem says that every square matrix A is similar to a Jordan matrix J, with Jordan blocks on the diagonal:
 
