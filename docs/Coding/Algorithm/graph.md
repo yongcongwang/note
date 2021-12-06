@@ -352,40 +352,50 @@ Prim algorithm is a greedy algorithm that finds a minimum spanning tree for a we
 ### Kosaraju
 
 ## Euler Graph
+
+![Euler](images/graph/eular_graph.png)
+
+An `Eulerian trail` or `Euler walk` in an *undirected graph* is a path that uses each edge exactly once. If such a path exists, the graph is called `traversable` or `semi-eulerian`.
+
+An `Eulerian cycle`, `Eulerian circuit` or `Euler tour` in an undirected graph is a cycle that uses each edge exactly once. 
+
+A graph that has an Eulerian trail but not an Eulerian circuit is called `semi-Eulerian`.
+
+### Properties
+
+- An undirected graph has Eulerian cycle if and only if every vertex has even degree, and all of its vertices with nonzero degree belong to a single connected component.
+- An undirected graph can be decomposed into edge-disjoint cycles if and only if all of its vertices have even degree. 
+- An undirected graph has an Eulerian cycle if and only if exactly zero or two vertices have odd degree.
+- A directed graph has an Eulerian cycle if and only if every vertex has equal in degree and out degree, and all of its vertices with nonzero degree belong to a single strongly connected component.
+- A directed graph has an Eulerian trail if and only if at most one vertex has (out-degree) − (in-degree) = 1, at most one vertex has (in-degree) − (out-degree) = 1, every other vertex has equal in-degree and out-degree, and all of its vertices with nonzero degree belong to a single connected component of the underlying undirected graph.
+
 ### Fleury
+
+Fleury's algorithm is an elegant but inefficient algorithm, we don't use it in general.
+
 ### Hierholzer
 
-## Union-Find
-A `union-find` is a data structure that stores a collection of disjoint(non-overlapping) setting. Equivalently, it stores a partition of a set into disjoint subsets. It provides operations for adding new sets, merging sets and finding a representative member of a set.
+Hierholzer's algorithm provides a different method for finding Euler cycles that is more efficient than Fleury's algorithm:
+
+- Choose any starting vertex v, and follow a trail of edges from that vertex until returning to v. It is not possible to get stuck at any vertex other than v, because the even degree of all vertices ensures that, when the trail enters another vertex w there must be an unused edge leaving w. The tour formed in this way is a closed tour, but may not cover all the vertices and edges of the initial graph.
+- As long as there exists a vertex u that belongs to the current tour but that has adjacent edges not part of the tour, start another trail from u, following unused edges until returning to u, and join the tour formed in this way to the previous tour.
+- Since we assume the original graph is connected, repeating the previous step will exhaust all edges of the graph.
+
 ```C++
-class UnionFind {
- public:
-  Union(int n) : size(n, 1) {
-    for (int i = 0; i < n; ++i) parent.push_back(i);
+void Hierholzer(Graph& graph, Node node) {
+  while (!graph[node].empty()) {
+    auto next = graph[node].back();
+    graph[node].pop_back();
+    Hierholzer(graph, next);
   }
-
- public:
-  int find(int x) {
-    if (parent[x] != x) parent[x] = find(parent[x]);
-    return parent[x];
-  }
-
-  bool unite(int x, int y) {
-    int xx = find(x);
-    int yy = find(y);
-    if (xx == yy) return false;
-    if (size[xx] > size[yy]) swap(xx, yy);
-    parent[xx] = yy;
-    size[yy] += size[xx];
-    return true;
-  }
-
- private:
-  vector<int> parent{};
-  vector<int> size{};
-};
+}
 ```
 
+### Problems
+
+- [Reconstruct Itinerary](https://leetcode-cn.com/problems/reconstruct-itinerary/)
+- [Cracking the Safe](https://leetcode-cn.com/problems/cracking-the-safe/)
+- [Valid Arrangement of Pairs](https://leetcode-cn.com/problems/valid-arrangement-of-pairs/)
 
 ## Reference
 - [10 Graph Algorithms Visually Explained](https://towardsdatascience.com/10-graph-algorithms-visually-explained-e57faa1336f3)

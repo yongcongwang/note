@@ -1,4 +1,5 @@
 # Union
+A `union-find` is a data structure that stores a collection of disjoint(non-overlapping) setting. Equivalently, it stores a partition of a set into disjoint subsets. It provides operations for adding new sets, merging sets and finding a representative member of a set.
 
 ```C++
 class UnionFind {
