@@ -396,6 +396,6 @@ g++ -std=c++11 -c Astar.cc && g++ -std=c++11 -c main.cc && g++ main.o Astar.o -o
 
 ## Reference
 
-[Wikipedia: A* search algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)
-[Clear visual A* explanation, with advice and thoughts on path-finding](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
-[路径规划之 A* 算法](https://paul.pub/a-star-algorithm/)
+- [Wikipedia: A* search algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)
+- [Clear visual A* explanation, with advice and thoughts on path-finding](https://www.redblobgames.com/pathfinding/a-star/introduction.html)
+- [路径规划之 A* 算法](https://paul.pub/a-star-algorithm/)
