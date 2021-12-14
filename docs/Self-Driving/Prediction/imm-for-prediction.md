@@ -1,9 +1,11 @@
 # Interacting Multiple Models(IMM) for Prediction
+
 For self-driving vehicle, it's important to reliably predict the movement of traffic agents around ego car, such as vehicles, cyclists and pedestrians.
 
 We have many neural networks to predict obstacle on lane, but for obstacles which are not on lane, we now have poor method to predict them.
 
 ## Current predictor for obstacles not on lane
+
 If an obstacle(vehicle/bicycle/pedestrian) is not on lane, we use a `FreeMovePredictor` to predict its trajectory. `FreeMovePredictor` assumes that the obstacle always moves with constant acceleration, the state is:
 
 $$
@@ -137,6 +139,7 @@ $$
 Another way of thinking about the weighting by $K$ is that as the measurement error covariance $R \to 0$, the actual measurement $z_k$ is `trusted` more and more, while the predicted measurement $H\hat{x}_k^-$ is trusted less and less. On the other hand, as the `priori` estimate error covariance $P_k^- \to 0$ the actual measurement $z_k$ is trusted less and less, while the predicted measurement $H\hat{x}_k^-$ is trusted more and more.
 
 ### The discrete kalman filter algorithm
+
 The Kalman filter estimate a process by using a form of feedback control: the filter estimates the process state at some time and then obtains feedback in the form of (noisy) measurement. As such, the equations for the Kalman filter falls into two groups:
 
 - `time update`(predict) equations;
@@ -195,6 +198,7 @@ where:
 - $P_k$ is the `posteriori` estimate error covariance from time step $k$.
 
 ### Filter prameters and tunning
+
 In the actual implementation of the filter, the measurement noise covariance $R$ is usually measured prior to operation of the filter. Measuring the measurement error covariance $R$ is generally practical (possible) because we need to be able to measure the process anyway (while operating the filter) so we should generally be able to take some off-line sample measurements in order to determine the variance of the measurement noise.
 
 The determination of the process noise covariance $Q$ is generally more difficult as we typically do not have the ability to directly observe the process we are estimating. Sometimes a relatively simple (poor) process model can produce acceptable results if one “injects” enough uncertainty into the process via the selection of $Q$. Certainly in this case one would hope that the process measurements are reliable.
@@ -202,6 +206,7 @@ The determination of the process noise covariance $Q$ is generally more difficul
 In either case, whether or not we have a rational basis for choosing the parameters, often times superior filter performance (statistically speaking) can be obtained by `tuning` the filter parameters $Q$ and $R$. The tuning is usually performed off-line, frequently with the help of another (distinct) Kalman filter in a process generally referred to as `system identification`.
 
 ## Dynamic model
+
 The motion of a target object(pedestrian or vehicle) can be modeled as:
 
 - Moving with constant speed(CV) in straight;
@@ -306,7 +311,8 @@ A_{CT} =
 $$
 
 ### Simulation for kalman filter
-To check if the algorithm is correct, we build the equation of kalman in python.
+
+To check if the algorithm is correct, we build the equation of kalman in python. For details, visit [imm](https://github.com/yongcongwang/interacting_multiple_model)
 
 #### Kalman filter
 
