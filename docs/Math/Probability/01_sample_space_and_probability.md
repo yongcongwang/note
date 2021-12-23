@@ -79,4 +79,4 @@ A probabilistic model is a mathematical description of an uncertain situation. I
 
 Every probabilistic model involves an underlying process, called the `experiment`, which produces exactly **one** out of several possible `outcomes`.  The set of all possible outcomes is called the `sample space` of the experiment denoted by $\Omega$. A subset of the sample space, that is, a collection of possible outcomes, is called `event`.
 
-### Choosing an Apropriate Sample Space
+### Choosing an Appropriate Sample Space

@@ -24,7 +24,7 @@ we choose to do planning in configuration space. A transformation is as below:
 - $\text{C-space} = \text{C-obstacle} \cup \text{C-free}$
 - The path planning is finding a path between start point $q_{start}$ and goal point $q_{goal}$ within $\text{C-free}$
 
-The basic introduction for graph and search methods can be found in [Coding/Algorithm/Graph](../../Coding/Algorithm/graph.md).
+The basic introduction for graph and search methods can be found in [Coding/Algorithm/Graph](../../Coding/Algorithm/08_graph.md).
 
 ### Heuristic Search
 
