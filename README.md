@@ -27,8 +27,8 @@ There are two ways for the deployment:
 1. [Github Actions](https://github.com/yongcongwang/note/blob/master/.github/workflows/ci.yml), deployment wil happen each time a new comment is attached to master branch.
 2. Manually with the command: `mkdocs gh-deploy --force`
 
-And I prefer the first one.
+And I prefer the first.
 
 ## Images
 
-I create all figures with [diagram](app.diagrams.net), and all images can be modified with it.
+I create all figures with [diagram](https://app.diagrams.net), and all images can be modified with it.
