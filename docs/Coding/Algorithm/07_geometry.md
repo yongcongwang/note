@@ -189,7 +189,7 @@ Combine all these equations above we have:
 $$
 \begin{align}
 x_2 
-& = L \cos{\alpha + \beta} \\\\
+& = L cos(\alpha + \beta) \\\\
 & = L (\cos{\alpha}\cos{\beta} - \sin{\alpha}\sin{\beta}) \\\\
 & = L \cos{\beta}\cos{\alpha} - L \sin{\beta}\sin{\alpha} \\\\
 & = x_1 \cos{\alpha} - y_1 \sin{\alpha} \\\\
@@ -198,7 +198,7 @@ $$
 $$
 \begin{align}
 y_2 
-& = L \sin{\alpha + \beta} \\\\
+& = L sin(\alpha + \beta) \\\\
 & = L (\sin{\alpha}\cos{\beta} + \cos{\alpha}\sin{\beta}) \\\\
 & = L \cos{\beta}\sin{\alpha} + L \sin{\beta}\cos{\alpha} \\\\
 & = x_1 \sin{\alpha} + y_1 \cos{\alpha} \\\\
