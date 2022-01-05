@@ -48,20 +48,19 @@ If the repeated string appears in substring, we can jump over the same prefix of
 
 Generally speaking, `next` is an array that `next[i]` represents the length of the longest common proper prefix of two string:
 
-1. prefix of string `s[0:i]`;
-2. suffix of string `s[0:i]`;
+1. prefix of string `s[0:i - 1]`;
+2. suffix of string `s[0:i - 1]`;
 
 where `s` is the given substring.
 
-We let `s[0] = -1` because it has no proper prefix.
+We let `s[0] = -1` because it has no proper prefix. And at the position `i` we fill the result of `next[i + 1]`, so the terminate condition is `i < n - 1`.
 
 ```C++
 int i = 0;  // for main loop
 int j = next[0] = -1;  // for common part of prefix and suffix
 while (i < n - 1) {  // n is the length of s, i < n - 1 to ensure index safety
   if (j < 0 || s[i] == s[j]) {  // matching
-    ++i; ++j;
-    next[i] = j;
+    next[++i] = ++j;
   } else {
     j = next[j];  // not matching, go to first different position
   }
