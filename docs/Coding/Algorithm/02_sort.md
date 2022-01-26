@@ -9,40 +9,68 @@ To simplify matters, we will assume that the algorithms we describe will all be 
 
 Sorting under these conditions is known as comparision-based sorting.
 
-## Bubblesort
+## Sort with O(n^2) Time Complexity
+
+### Bubble Sort
+
+![bubble](images/sort/bubble_sort.gif)
+
 Bubblesort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order. The algorithm is a comparison sort, is named for the way smaller or larger elements "bubble" to the top of the list. Although the algorithm is simple, it is too slow and impractical for most problems even when compared to Insertionsort. Bubblesort can be practical if the input is in mostly sorted order with some out-of-order elements nearly in position.
 
 ```C++
 template <typename T>
-void bubbleSort(std::vector<T> arr) {
-  for (std::size_t i = 0, size = arr.size(); i < size - 1; ++i) {
-    for (std::size_t j = 0; j < size - 1 - i; ++j) {
-      if (arr[j] > arr[j + 1]) {
-        swap(arr[j], arr[j + 1]);
-      }
+void bubbleSort(std::vector<T>& arr) {
+  int m = arr.size();
+  for (int i = 0; i < m; ++i) {
+    for (int j = i + 1; j < m; ++j) {
+      if (arr[j] < arr[i]) swap(arr[j], arr[i]);
     }
   } 
 }
 ```
 
-## Insertionsort
-One of the simplest sorting algorithms is the insertion sort.
-Insertion sort consists of N - 1 passes. For pass p = 1 through N - 1, insertion sort ensures that the elements in position 0 through p are in sorted order. Insertion sort makes use of the fact that elements in position 0 through p - 1 are already known to be in sorted order.
+### Selection Sort
+
+![select](images/sort/select_sort.gif)
+
+The selection sort divides the input list into two parts: a sorted sublist of items which is built up from left to right at the front (left) of the list and a sublist of the remaining unsorted items that occupy the rest of the list.
+
 ```C++
-template <typename T>
-void insertSort(std::vector<T> &arr) {
-  for (std::size_t i = 0, j, size = arr.size(); i < size; ++i) {
-    T tmp = arr[i];
-    for (j = i; j > 0 && tmp < arr[j - 1]; --j) {
-      arr[j] = arr[j - 1];
-    }
-    arr[j] = tmp;
+void SelectionSort(std::vector<int>& arr) {
+  int m = arr.size();
+  for (int i = 0; i < m; ++i) {
+    int min_idx = i;
+    for (int j = i + 1; j < m; ++j) if (arr[j] < arr[min_idx]) min_idx = j;
+    swap(arr[i], arr[min_idx]);
   }
 }
 ```
+
+### Insertion Sort
+
+![insert](images/sort/insert_sort.gif)
+
+One of the simplest sorting algorithms is the insertion sort.
+Insertion sort consists of N - 1 passes. For pass p = 1 through N - 1, insertion sort ensures that the elements in position 0 through p are in sorted order. Insertion sort makes use of the fact that elements in position 0 through p - 1 are already known to be in sorted order.
+
+```C++
+void InsertSort(std::vector<int>& arr) {
+  int m = arr.size();
+  for (int i = 1; i < m; ++i) {
+    int j = i;
+    while (j && arr[j] < arr[j - 1]) swap(arr[j - 1], arr[j--]);
+  }
+}
+```
+
 Becuase of the nested loops, each of which can take N iterations, insertion sort is $O(N^2)$. Furthermore, this bound is tight, because input in reverse order can achieve this bound.
 
-## Shellsort
+## Sort with O(nlogn) Time Complexity
+
+### Shell Sort
+
+![shell](images/sort/shell_sort.gif)
+
 Shellsort, named after its inventor, Donald Shell, was one of the first algorithms to break the quadratic time barrier, althoungh it was not until several years after its initial discovery that a subquadratic time bound was proven.
 It works by comparing elements that are distant; the distance between comparisons decreases as the algorithm runs until the last phase, in which adjacent elements are compared. For this reason, Shellsort is sometimes referred to as diminishing increment sort.
 Shellsort uses a sequence, h1, h2,…, ht, called increment sequence. Any increment sequence will do as long as h1 = 1, but some choices are better than others.
@@ -66,7 +94,7 @@ void shellSort(std::vector<T> &arr) {
 
 The performance of Shellsort is quite acceptable in practice, even for N in the tens of thousands. The simplicity of the code makes it the algorithm of choice for sorting up to moderately large input.
 
-## Heapsort
+## Heap Sort
 Priority queues can be used to sort in $O(NlogN)$ time. The algorithm based on this idea is known as heapsort and gives the best Big-Oh running time we have seen so far. The basic strategy is to build a binary heap of N elements. This stage takes $O(N)$ time. We then preform N deleteMin operations. The elements leave the heap smallest first, in sorted order. By recording these elements in a second array and then copying the array back, we sort N elements. Since each deleteMin takes $O(logN)$ time, the total running time is $O(NlogN)$.
 
 The main problem with this algorithm is that it uses an extra array. Thus, the memory requirement is doubled. This could be a problem in some instances. Notice that the extra time spent copying the second array back to the first is only $O(N)$, so that this is not likely to affect the running time significantly. The problem is space.
@@ -112,7 +140,7 @@ void heapSort(std::vector<T> &arr) {
 }
 ```
 
-## Mergesort
+## Merge Sort
 Mergesort runs in $O(NlogN)$ worse-case running time, and the number of comparisons used is nearly optimal. It is a fine example of a recursive algorithm.
 
 The fundamental operation in this algorithm is merging two sorted lists. Because the lists are sorted, this can be done in one pass through the input, if the output is put in a third list. The basic merging algorithm takes two input array A and B, an output array C, and three counters, Actr, Bctr, and Cctr, which are initially set to the beginning of their respective arrays. The smaller of A[Actr] and B[Bctr] is copied to the next entry in C, and the appropriate counters are advanced. When either input list is exhausted, the remainder of the other list is copied to C.
@@ -170,7 +198,7 @@ $$T(N) = 2T(N/2) + N$$
 Although mergesort’s running time is $O(NlogN)$, it has the significant problem that merging two sorted lists uses linear extra memory. The additional work involved in copying to the temporary array and back, throughtout the algorithm, slows the sort considerably. This copying can be avoided by judiciously switching the roles of a and tmpArray at alternate levels of the recursion.
 The running time of mergesort, when compared with other $O(NlogN)$ alternatives, depends heavily on the relative costs of comparing elements and moving elements in the array(and the temporary array). These costs are language dependent.
 
-## Quicksort
+## Quick Sort
 As its name implies for C++, quicksort has historically been the fastest known generic sorting algorithm in practice. Its average running time is $O(NlogN)$. It is very fast, mainly due to a very tight and highly optimized inner loop. It has $O(N^2)$ worst-case performance, but this can be made exponentially unlikely with a little effort. By combining quicksort with heapsort, we can achieve quicksort’s fast running time on almost all inputs, with heapsort’s $O(NlogN)$ worst-case running time.
 The quicksort algorithm is simple to understand and prove correct, although for many years it had the reputation of being an algorithm that could in theory be highly optimized but in practice was impossible to code correctly. Like mergesort, quicksort is a divide-and-conquer recursive algorithm.
 
