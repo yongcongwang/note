@@ -7,4 +7,4 @@ This is the website I used to take notes while learning or working. And the sour
 More about me:
 
 - [Email](mailto:yongcong.wang@outlook.com)
-- [github](https://github.com/yongcongwang)
+- [Github](https://github.com/yongcongwang)
