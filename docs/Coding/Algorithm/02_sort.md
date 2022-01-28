@@ -1,4 +1,4 @@
-# Sorting
+# Sort
 
 ## Assumption
 To simplify matters, we will assume that the algorithms we describe will all be interchangeable:
@@ -9,7 +9,7 @@ To simplify matters, we will assume that the algorithms we describe will all be 
 
 Sorting under these conditions is known as comparision-based sorting.
 
-## Sort with O(n^2) Time Complexity
+## Sort with O(n^2) Complexity
 
 ### Bubble Sort
 
@@ -19,7 +19,7 @@ Bubblesort is the simplest sorting algorithm that works by repeatedly swapping t
 
 ```C++
 template <typename T>
-void bubbleSort(std::vector<T>& arr) {
+void bubbleSort(vector<T>& arr) {
   int m = arr.size();
   for (int i = 0; i < m; ++i) {
     for (int j = i + 1; j < m; ++j) {
@@ -36,7 +36,7 @@ void bubbleSort(std::vector<T>& arr) {
 The selection sort divides the input list into two parts: a sorted sublist of items which is built up from left to right at the front (left) of the list and a sublist of the remaining unsorted items that occupy the rest of the list.
 
 ```C++
-void SelectionSort(std::vector<int>& arr) {
+void SelectionSort(vector<int>& arr) {
   int m = arr.size();
   for (int i = 0; i < m; ++i) {
     int min_idx = i;
@@ -54,7 +54,7 @@ One of the simplest sorting algorithms is the insertion sort.
 Insertion sort consists of N - 1 passes. For pass p = 1 through N - 1, insertion sort ensures that the elements in position 0 through p are in sorted order. Insertion sort makes use of the fact that elements in position 0 through p - 1 are already known to be in sorted order.
 
 ```C++
-void InsertSort(std::vector<int>& arr) {
+void InsertSort(vector<int>& arr) {
   int m = arr.size();
   for (int i = 1; i < m; ++i) {
     int j = i;
@@ -65,7 +65,7 @@ void InsertSort(std::vector<int>& arr) {
 
 Becuase of the nested loops, each of which can take N iterations, insertion sort is $O(N^2)$. Furthermore, this bound is tight, because input in reverse order can achieve this bound.
 
-## Sort with O(nlogn) Time Complexity
+## Sort with O(nlogn) Complexity
 
 ### Shell Sort
 
@@ -75,18 +75,22 @@ Shellsort, named after its inventor, Donald Shell, was one of the first algorith
 It works by comparing elements that are distant; the distance between comparisons decreases as the algorithm runs until the last phase, in which adjacent elements are compared. For this reason, Shellsort is sometimes referred to as diminishing increment sort.
 Shellsort uses a sequence, h1, h2,…, ht, called increment sequence. Any increment sequence will do as long as h1 = 1, but some choices are better than others.
 
-A popular(but poor) choice for increment sequence is to use the sequence suggested by Shell: $h_t = [N / 2]$ and $h_k = [h_{k + 1} / 2]$.
+A popular(but poor) choice for increment sequence is to use the sequence suggested by Shell:
+
+$$
+h_t = [N / 2]$ and $h_k = [h_{k + 1} / 2]
+$$
+
 ```C++
-template <typename T>
-void shellSort(std::vector<T> &arr) {
-  for (std::size_t gap = arr.size() / 2; gap > 0; gap /= 2) {
-    for (std::size_t i = gap, cnt = arr.size(); i < cnt; ++i) {
-      auto tmp = arr[i];
-      auto j = i;
-      for (; j >= gap && tmp < arr[j - gap]; j -= gap) {
-        arr[j] = arr[j - gap];
+void ShellSort(vector<int>& arr) {
+  int m = arr.size();
+  for (int gap = m / 2; j; gap /= 2) {
+    for (int i = gap; i < m; i += gap) {
+      int j = i;
+      while (j >= gap && nums[j] < nums[j - gap]) {
+        swap(nums[j], nums[j - gap]);
+        j -= gap;
       }
-      arr[j] = tmp;
     }
   }
 }
@@ -94,7 +98,8 @@ void shellSort(std::vector<T> &arr) {
 
 The performance of Shellsort is quite acceptable in practice, even for N in the tens of thousands. The simplicity of the code makes it the algorithm of choice for sorting up to moderately large input.
 
-## Heap Sort
+### Heap Sort
+
 Priority queues can be used to sort in $O(NlogN)$ time. The algorithm based on this idea is known as heapsort and gives the best Big-Oh running time we have seen so far. The basic strategy is to build a binary heap of N elements. This stage takes $O(N)$ time. We then preform N deleteMin operations. The elements leave the heap smallest first, in sorted order. By recording these elements in a second array and then copying the array back, we sort N elements. Since each deleteMin takes $O(logN)$ time, the total running time is $O(NlogN)$.
 
 The main problem with this algorithm is that it uses an extra array. Thus, the memory requirement is doubled. This could be a problem in some instances. Notice that the extra time spent copying the second array back to the first is only $O(N)$, so that this is not likely to affect the running time significantly. The problem is space.
@@ -104,88 +109,54 @@ A clever way to avoid using a second array makes use of the fact that after each
 Using this strategy, after the last deleteMin the array will contain the elements in decreasing sorted order. If we want the elements in the more typical increasing sorted order, we can change the ordering property so that the parent has a larger elements than the child. Thus, we have a max-heap.
 
 ```C++
-inline int getLeftChild(int hole) {
-  return hole * 2 + 1;
-}
-
-template <typename T>
-void percolateDown(std::vector<T> &arr, int hole, int heap_size) {
-  T tmp = arr[hole];
+void percolateDown(vector<int> &arr, int hole, int heap_size) {
+  int m = arr.size();
+  auto left_child = [](int x) { return x * 2 + 1; };
+  int tmp = arr[hole];
   for (int child = getLeftChild(hole); child < heap_size; child = getLeftChild(hole)) {
-    if (child != heap_size - 1 && arr[child + 1] > arr[child]) {
-      ++child;
-    }
-    if (tmp < arr[child]) {
-      arr[hole] = arr[child];
-    } else {
-      break;
-    }
+    if (child != heap_size - 1 && arr[child + 1] > arr[child]) ++child;
+    if (tmp >= arr[child]) break;
+    arr[hole] = arr[child];
     hole = child;
   }
   arr[hole] = tmp;
 }
 
-template <typename T>
-void heapSort(std::vector<T> &arr) {
+void HeapSort(vector<int> &arr) {
+  int m = arr.size();
   // build heap
-  for (int cnt = arr.size(), i = cnt / 2; i >= 0; --i) {
-    percolateDown(arr, i, cnt);
-  }
-  printArray(arr);
+  for (int i = m / 2; i >= 0; --i) { percolateDown(arr, i, cnt); }
   // delete max
-  for (int i = arr.size() - 1; i >= 0; --i) {
+  for (int i = m - 1; i >= 0; --i) {
     swap(arr[0], arr[i]);
     percolateDown(arr, 0, i);
   }
 }
 ```
 
-## Merge Sort
+### Merge Sort
+
+![merge](images/sort/merge_sort.gif)
+
 Mergesort runs in $O(NlogN)$ worse-case running time, and the number of comparisons used is nearly optimal. It is a fine example of a recursive algorithm.
 
 The fundamental operation in this algorithm is merging two sorted lists. Because the lists are sorted, this can be done in one pass through the input, if the output is put in a third list. The basic merging algorithm takes two input array A and B, an output array C, and three counters, Actr, Bctr, and Cctr, which are initially set to the beginning of their respective arrays. The smaller of A[Actr] and B[Bctr] is copied to the next entry in C, and the appropriate counters are advanced. When either input list is exhausted, the remainder of the other list is copied to C.
 
 ```C++
-template <typename T>
-void merge(vector<T> &arr, vector<T> &temp_arr,
-           int left_pos, int right_pos, int right_end) {
-  int start = left_pos;
-  int temp_pos = left_pos;
-  int left_end = right_pos - 1;
-  while (left_pos <= left_end && right_pos <= right_end) {
-    if (arr[left_pos] < arr[right_pos]) {
-      temp_arr[temp_pos++] = arr[left_pos++];
-    } else {
-      temp_arr[temp_pos++] = arr[right_pos++];
-    }
-  }
-
-  while (left_pos <= left_end) {
-    temp_arr[temp_pos++] = arr[left_pos++];
-  }
-  while (right_pos <= right_end) {
-    temp_arr[temp_pos++] = arr[right_pos++];
-  }
-
-  for (int i = start; i <= right_end; ++i) {
-    arr[i] = temp_arr[i];
-  }
+void Merge(vector<int>& arr, vector<int>& tmp, int left, int mid, int right) {
+  int l = left, r = mid + 1, i = left;
+  while (l <= mid && r <= right) arr[i++] = tmp[l] < tmp[r] ? tmp[l++] : tmp[r++];
+  while (l <= mid) arr[i++] = tmp[l++];
+  while (r <= right) arr[i++] = tmp[r++];
+  while (left <= right) tmp[left++] = arr[left];
 }
 
-template <typename T>
-void merge_sort(vector<T> &arr, vector<T> &temp_arr,
-               int left, int right) {
+void MergeSort(vector<int>& arr, vector<int>& tmp, int left, int right) {
   if (left >= right) return;
-  int center = left + (right - left) / 2;
-  merge_sort(arr, temp_arr, left, center);
-  merge_sort(arr, temp_arr, center + 1, right);
-  merge(arr, temp_arr, left, center + 1, right);
-}
-
-template <typename T>
-void MergeSort(vector<T> &arr) {
-  vector<T> temp_arr(arr);
-  merge_sort(arr, temp_arr, 0, arr.size() - 1);
+  int mid = left + (right - left) / 2;
+  MergeSort(arr, tmp, left, mid);
+  MergeSort(arr, tmp, mid + 1, right);
+  Merge(arr, tmp, left, mid, right);
 }
 ```
 
@@ -198,7 +169,10 @@ $$T(N) = 2T(N/2) + N$$
 Although mergesort’s running time is $O(NlogN)$, it has the significant problem that merging two sorted lists uses linear extra memory. The additional work involved in copying to the temporary array and back, throughtout the algorithm, slows the sort considerably. This copying can be avoided by judiciously switching the roles of a and tmpArray at alternate levels of the recursion.
 The running time of mergesort, when compared with other $O(NlogN)$ alternatives, depends heavily on the relative costs of comparing elements and moving elements in the array(and the temporary array). These costs are language dependent.
 
-## Quick Sort
+### Quick Sort
+
+![quick](images/sort/quick_sort.gif)
+
 As its name implies for C++, quicksort has historically been the fastest known generic sorting algorithm in practice. Its average running time is $O(NlogN)$. It is very fast, mainly due to a very tight and highly optimized inner loop. It has $O(N^2)$ worst-case performance, but this can be made exponentially unlikely with a little effort. By combining quicksort with heapsort, we can achieve quicksort’s fast running time on almost all inputs, with heapsort’s $O(NlogN)$ worst-case running time.
 The quicksort algorithm is simple to understand and prove correct, although for many years it had the reputation of being an algorithm that could in theory be highly optimized but in practice was impossible to code correctly. Like mergesort, quicksort is a divide-and-conquer recursive algorithm.
 
@@ -212,34 +186,135 @@ The classic quicksort algorithm to sort an array S consists of the following fou
 For very small arrays($N \le 20$), quicksort does not perform as well as insertion sort. Furthermore, because quicksort is recursive, these cases will occur frequently. A comman solution is not to sue quicksort recursively for small arrays, but instead use a sorting algorithm that is efficient for small arrays, such as insertion sort. Using this strategy can actually save about 15 percent in the running time(over doing no cutoff at all). A good cutoff range is $N = 10$, although any cutoff between 5 and 20 is likely to produce similar results. This also saves nastly degenerate cases, such as taking the median of three elements when there are only one or two.
 
 ```C++
-template <typename T>
-int partition(vector<T>& arr, int left, int right) {
-  T& pivot = arr[left];
-  left++;
-  while (left < right) {
-    while (left < right && arr[left] <= pivot) ++left;
-    while (left < right && arr[right] >= pivot) --right;
-    if (left < right) {
-      swap(arr[left], arr[right]);
-      left++;
-      right--;
-    }
+int Partition(vector<int>& arr, int l, int r) {
+  int p = l++;
+  while (l < r) {
+    while (l < r && arr[l] <= arr[p]) ++l;
+    while (l < r && arr[r] >= arr[p]) --r;
+    if (l < r) swap(arr[l], arr[r]);
   }
-  if (left == right && arr[right] > pivot) right--;
-  swap(pivot, arr[right]);
-  return right;
+  if (l == r && arr[r] > arr[p]) --r;
+  swap(arr[p], arr[r]);
+  return r;
 }
 
-template <typename T>
-void quick_sort(std::vector<T> &arr, int left, int right) {
+void QuickSort(vector<int>& arr, int left, int right) {
   if (left >= right) return;
-  int pi = partition(arr, left, right);
-  quick_sort(arr, left, pi - 1);
-  quick_sort(arr, pi + 1, right);
+  auto mid = Partition(arr, left, right);
+  QuickSort(arr, left, mid - 1);
+  QuickSort(arr, mid + 1, right);
 }
+```
 
-template <typename T>
-void QuickSort(std::vector<T> &arr) {
-  quick_sort(arr, 0, arr.size() - 1);
+## Sort with O(N) Complexity
+
+$O(N)$ sorting algorithms were exsiting for a long time, but they can only be used in special scenes.
+
+### Counting Sort
+
+`Counting sort` uses an extra array `cnt`, the ith element of `cnt` is the couting number of the ith element in origin array, and at last we set the element of origin array to its proper position according to `cnt`.
+
+The process is:
+
+1. Couting how many times each number in origin array occurs;
+2. Calculating the pre-sum of each number;
+3. Get the index of each number according to its times from pre-sum list.
+
+![couting](images/sort/counting_sort.svg)
+
+```C++
+void CountingSort(vector<int>& a) {
+  int low = *min_element(a.begin(), a.end());
+  int high = *max_element(a.begin(), a.end());
+  
+  vector cnt(high - low + 1, 0);
+  for (auto n : a) cnt[n - low]++;
+
+  // start to end
+  // int sum = 0;
+  // for (auto& n : cnt) tie(sum, n) = pair{sum + n, sum};
+
+  // auto tmp = a;
+  // for (auto n : tmp) a[cnt[n - low]++] = n;
+
+  // end to start
+  for (int i = 1; i < cnt.size(); ++i) cnt[i] += cnt[i - 1];
+
+  auto tmp = a;
+  for (int i = cnt.size() - 1; i >= 0; --i) a[--cnt[tmp[i]- low]] = tmp[i];
+}
+```
+
+### Radix Sort
+
+`Radix sort` divides an element into k digit, and sort elements by its kth digit; after that, it does the same thing with $(k-1), (k-2), /cdots, 0$th digit.
+
+The main process is:
+
+1. find the maximum element of the array;
+2. get the radix of each element;
+3. loop for `max_digit_length` times, and sort elements by their radix.
+
+![radix](images/sort/radix_sort.png)
+
+```C++
+void RadixSort(vector<int>& a) {
+  // Get Max digital length
+  int mv = *max_element(a.begin(), a.end());
+  int ml = 0;
+  while (mv) {
+    ++ml;
+    mv /= 10;
+  }
+
+  int dev = 1;
+  auto tmp = a;
+  vector cnt(19, 0);
+  for (int i = 0; i < ml; ++i) {
+    // digit count
+    for (auto n : a) {
+      int radix = n / dev % 10 + 9;
+      cnt[radix]++;
+    }
+
+    // counting sort
+    for (int j = 0; j < 19; ++j) cnt[j] += cnt[j - 1];
+
+    // restore current digit result
+    for (int j = a.size() - 1; j >= 0; --j) {
+      int radix = a[j] / dev % 10 + 9;
+      tmp[--cnt[radix]] = a[j];
+    }
+
+    a = tmp;
+    cnt = vector(19, 0);
+    dev *= 10;
+  }
+}
+```
+
+### Bucket Sort
+
+![bucket](images/sort/bucket_sort.png)
+
+The main process of `bucket sort` is:
+
+1. divide the array into `bucket_size` interval of range `bucket_len`, each interval is call a `bucket`;
+2. traversal the array, put all elements to buckets;
+3. sort every bucket;
+4. merge the numbers in all buckets in order.
+
+```C++
+void BucketSort(vector<int>& a, int bucket_len) {
+  int low = *min_element(a.begin(), a.end());
+  int high = *max_element(a.begin(), a.end());
+  int bucket_cnt = (high - low) / bucket_len + 1;
+
+  vector buckets(bucket_cnt, vector<int>());
+  for (auto n : a) buckets[(n - a) / bucket_len] = n;
+  for (auto& b : buckets) sort(b.begin(), b.end());
+
+  int i = 0;
+  for (auto& b : buckets) for (auto n : b) a[i++] = n;
 }
 ```
