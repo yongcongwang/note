@@ -1,8 +1,8 @@
 # Latex Equations Cheatsheet
 
-## Functions, symbols, and characters
+## Functions, Symbols, and Characters
 
-### Accents and diacritics
+### Accents and Diacritics
 
 | Source | Rendering |
 | --- | --- |
@@ -10,7 +10,7 @@
 | `\check{a}, \breve{a}, \tilde{a}, \bar{a}` | $\check{a}, \breve{a}, \tilde{a}, \bar{a}$ |
 | `\hat{a}, \widehat{a}, \vec{a}` | $\hat{a}, \widehat{a}, \vec{a}$ |
 
-### Standard numerical functions
+### Standard Numerical Functions
 
 | Source | Rendering |
 | --- | --- |
@@ -38,7 +38,7 @@
 | --- | --- |
 | `\Pr j, \hom l, \lVert z \rVert, \arg z` | $\Pr j, \hom l, \lVert z \rVert, \arg z$ |
 
-### Differentials and derivatives
+### Differentials and Derivatives
 
 | Source | Rendering |
 | --- | --- |
@@ -46,14 +46,14 @@
 | <syntaxhighlight lang="tex" inline>dy/dx, \mathrm{d}y/\mathrm{d}x, \frac{dy}{dx}, \frac{\mathrm{d}y}{\mathrm{d}x}, \frac{\partial^2}{\partial x_1\partial x_2}y` | $dy/dx, \mathrm{d}y/\mathrm{d}x, \frac{dy}{dx}, \frac{\mathrm{d}y}{\mathrm{d}x}, \frac{\partial^2}{\partial x_1\partial x_2}y$ |
 | <syntaxhighlight lang="tex" inline>\prime, \backprime, f^\prime, f', f'', f^{(3)}, \dot y, \ddot y` | $\prime, \backprime, f^\prime, f', f'', f^{(3)} \!, \dot y, \ddot y$ |
 
-### Letter-like symbols or constants
+### Letter-like Symbols or Constants
 
 | Source | Rendering |
 | --- | --- |
 | `\infty, \aleph, \complement, \backepsilon, \eth, \Finv, \hbar` | $\infty, \aleph, \complement, \backepsilon, \eth, \Finv, \hbar$ |
 | `\Im, \imath, \jmath, \Bbbk, \ell, \mho, \wp, \Re, \circledS, \S, \P, \AA` | $\Im, \imath, \jmath, \Bbbk, \ell, \mho, \wp, \Re, \circledS, \S, \P, \AA$ |
 
-### Modular arithmetic
+### Modular Arithmetic
 
 | Source | Rendering |
 | --- | --- |
@@ -233,9 +233,9 @@
 | `\bigcap_{i=1}^n E_i` | $\bigcap_{i=1}^n E_i$ |
 | `\bigcup_{i=1}^n E_i` | $\bigcup_{i=1}^n E_i$ |
 
-## Display attribute
+## Display Attribute
 
-### Fractions, matrices, multilines
+### Fractions, Matrices, Multilines
 | Source | Rendering |
 | --- | --- |
 | `\frac{2}{4}=0.5` or `{2 \over 4}=0.5` | $\frac{2}{4}=0.5$ |
@@ -265,7 +265,7 @@
 | `\begin{alignat}{4} F:\; && C(X) && \;\to\;     && C(X) \\ && g    && \;\mapsto\; && g^2 \end{alignat}` | $\begin{alignat}{4} F:\; && C(X) && \;\to\;     && C(X) \\ && g    && \;\mapsto\; && g^2 \end{alignat}$ |
 | `\begin{array}{|c|c|c|} a & b & S \\ \hline 0 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \\ \end{array}` | $\begin{array}{\|c\|c\|c\|} a & b & S \\ \hline 0 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 0 & 1 \\ 1 & 1 & 0 \\ \end{array}$ |
 
-### Parenthesizing big expressions, brackets, bars
+### Parenthesizing Big Expressions, Brackets, Bars
 
 | Source | Rendering |
 | --- | --- |
@@ -287,9 +287,9 @@
 | `\updownarrow \big\updownarrow \Big\updownarrow \bigg\updownarrow \Bigg\updownarrow \dots` `\Bigg\Updownarrow \bigg\Updownarrow \Big\Updownarrow \big\Updownarrow \Updownarrow` | $\updownarrow \big\updownarrow \Big\updownarrow \bigg\updownarrow \Bigg\updownarrow \dots \Bigg\Updownarrow \bigg\Updownarrow \Big\Updownarrow \big\Updownarrow \Updownarrow$ |
 | `/ \big/ \Big/ \bigg/ \Bigg/ \dots` `\Bigg\backslash \bigg\backslash \Big\backslash \big\backslash \backslash` | $/ \big/ \Big/ \bigg/ \Bigg/ \dots \Bigg\backslash \bigg\backslash \Big\backslash \big\backslash \backslash$ |
 
-## Alphabets and typefaces
+## Alphabets and Typefaces
 
-###  Greek alphabet
+###  Greek Alphabet
 
 | Source | Rendering |
 | --- | --- |
@@ -302,13 +302,13 @@
 | `\varGamma \varDelta \varTheta \varLambda \varXi \varPi \varSigma \varPhi \varUpsilon \varOmega ` | $\varGamma \varDelta \varTheta \varLambda \varXi \varPi \varSigma \varPhi \varUpsilon \varOmega$ |
 | `\varepsilon \digamma \varkappa \varpi \varrho \varsigma \vartheta \varphi` | $\varepsilon \digamma \varkappa \varpi \varrho \varsigma \vartheta \varphi$ |
 
-### Hebrew symbols
+### Hebrew Symbols
 
 | Source | Rendering |
 | --- | --- |
 | `\aleph \beth \gimel \daleth` | $\aleph \beth \gimel \daleth$ |
 
-### Blackboard bold/scripts
+### Blackboard Bold/Scripts
 
 | Source | Rendering |
 | --- | --- |
@@ -346,7 +346,7 @@
 | --- | --- |
 | `\mathit{0123456789}` | $\mathit{0123456789}$ |
 
-### Greek italics (default for lowercase Greek)
+### Greek Italics (default for lowercase Greek)
 
 | Source | Rendering |
 | --- | --- |
@@ -354,14 +354,14 @@
 | `\mathit{\Iota \Kappa \Lambda \Mu \Nu \Xi \Omicron \Pi}` | $\mathit{\Iota \Kappa \Lambda \Mu \Nu \Xi \Omicron \Pi}$ |
 | `\mathit{\Rho \Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega}` | $\mathit{\Sigma\Tau\Upsilon\Phi\Chi\Psi\Omega}$ |
 
-### Greek uppercase boldface italics
+### Greek Uppercase Boldface Italics
 
 | Source | Rendering |
 | --- | --- |
 | `\boldsymbol{\varGamma \varDelta \varTheta \varLambda}` | $\boldsymbol{\varGamma \varDelta \varTheta \varLambda}$ |
 | `\boldsymbol{\varXi \varPi \varSigma \varUpsilon \varOmega}` | $\boldsymbol{\varXi \varPi \varSigma \varUpsilon \varOmega}$ |
 
-### Roman typeface
+### Roman Typeface
 
 | Source | Rendering |
 | --- | --- |
@@ -372,7 +372,7 @@
 | `\mathrm{nopqrstuvwxyz}` | $\mathrm{nopqrstuvwxyz}$ |
 | `\mathrm{0123456789}` | $\mathrm{0123456789}$ |
 
-### Sans serif
+### Sans Serif
 
 | Source | Rendering |
 | --- | --- |
@@ -383,7 +383,7 @@
 | `\mathsf{nopqrstuvwxyz}` | $\mathsf{nopqrstuvwxyz}$ |
 | `\mathsf{0123456789}` | $\mathsf{0123456789}$ |
 
-### Sans serif Greek (capital only)
+### Sans Serif Greek (capital only)
 
 | Source | Rendering |
 | --- | --- |
@@ -391,7 +391,7 @@
 | `\mathsf{\Iota \Kappa \Lambda \Mu \Nu \Xi \Omicron \Pi}` | $\mathsf{\Iota \Kappa \Lambda \Mu \Nu \Xi \Omicron \Pi}$ |
 | `\mathsf{\Rho \Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega}` | $\mathsf{\Sigma \Tau \Upsilon \Phi \Chi \Psi \Omega}$ |
 
-### Calligraphy/script
+### Calligraphy/Script
 
 | Source | Rendering |
 | --- | --- |
@@ -402,7 +402,7 @@
 | `\mathcal{jklmnopqr}` | $\mathcal{jklmnopqr}$ |
 | `\mathcal{stuvwxyz}` | $\mathcal{stuvwxyz}$ |
 
-### Fraktur typeface
+### Fraktur Typeface
 
 | Source | Rendering |
 | --- | --- |
@@ -413,13 +413,13 @@
 | `\mathfrak{nopqrstuvwxyz}` | $\mathfrak{nopqrstuvwxyz}$ |
 | `\mathfrak{0123456789}` | $\mathfrak{0123456789}$ |
 
-### Small scriptstyle text
+### Small Scriptstyle Text
 
 | Source | Rendering |
 | --- | --- |
 | `{\scriptstyle\text{abcdefghijklm}}` | ${\scriptstyle\text{abcdefghijklm}}$ |
 
-### Mixed text faces
+### Mixed Text Faces
 
 | Source | Rendering |
 | --- | --- |
@@ -465,7 +465,7 @@ $$
 \color{Blue}{x^2}+\color{Orange}{2x}-\color{LimeGreen}{1}
 $$
 
-### Formatting issures
+### Formatting Issures
 
 #### Spacing
 

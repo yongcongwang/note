@@ -1,4 +1,4 @@
-## Class diagram
+## Class Diagram
 
 In software engineering, a diagram in the UML(Unified Modeling Language) is a type of static structure diagram that describes the structure of a system by showing the system's classes, their attributes, operations(or methods), and the relationship among objects.
 

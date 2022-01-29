@@ -1,4 +1,4 @@
-# Shortcuts to move faster in terminal
+# Shortcuts to Move Faster in Terminal
 
 Nowdays we spend a lot of time in bash shell, typing long and complex commands. You can use the arrow keys `up/down/left/right` to move the cursor and select commands, but that's not so efficient.
 

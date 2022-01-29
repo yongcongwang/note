@@ -1,4 +1,4 @@
-# How to do 90% of what plugins do with just vim
+# How to Do 90% of What Plugins Do with Just Vim
 
 Vim plugins can buy us a lot of functionality, but they also add a lot of burden in the form of dependency complexity. Origin vim has the ability to implement many features that plugins do, for example:
 

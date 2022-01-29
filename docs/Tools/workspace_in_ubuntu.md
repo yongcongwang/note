@@ -1,4 +1,4 @@
-# Setup workspace in Linux
+# Setup Workspace in Linux
 
 ## Keyboard
 
