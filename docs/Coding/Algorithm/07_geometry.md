@@ -43,7 +43,7 @@ struct Line {
 
 ### Line Segment
 
-We use two end points $(x_1, y_1), (x_2, y_2)$of the line segment to represent it.
+We use two end points $(x_1, y_1), (x_2, y_2)$ of the line segment to represent it.
 
 ```C++
 struct LineSegment {
@@ -359,25 +359,86 @@ bool IsPointOnSegment(const LineSegment& L, const Point A) {
 }
 ```
 
-### Point in Polygon
+### Point in Polygon(PIP)
 
-There are two methods to check if the point is in polygon:
+In computational geometry, the `point in polygon` problem asks whether a given point in the plane lies inside of a polygon. There are two methods to check if the point is in polygon:
 
-- Ray casting algorithm, a general mind can be described as [PNPOLY](https://wrf.ecse.rpi.edu/Research/Short_Notes/pnpoly.html)
-- Winding number algorithm, which links the point to all points of the polygon and calculate the sum of all the angles, if the angle is: 
- - $\ne 0$, the point is not in polygon;
- - $= 0$, the point is in polygon.
+- Ray casting
+- Winding number
 
+#### Ray casting algorithm
+
+![ray casting](images/2d_geometry/ray_cast.png)
+
+One simple way of finding whether the point is inside a simple polygon is to test how many times a ray, starting from the point in any fixed direction, intersects the edges of the polygon. If the ray intersects the polygon's edge:
+
+- `even number` times, the point is outside the polygon;
+- `odd number` times, the point is inside the polygon.
+
+There are some special cases we need to deal with:
+
+1. ray intersects the conves vertex(case 1), which should count once;
+2. ray intersects the concave vertex(case 2), which should not be counted;
+3. ray intersects the edge of polygon, which should not be counted.
+
+To simplify the logic, we think that a point is in a polygon if:
+
+1. the point is on the edge;
+2. the point is on either end of the line segment and the intersection is on the right of the point.
+
+While calculating the x coordination, we use the following knowledge:
+
+![ray casting](images/2d_geometry/ray_cast_inter.png)
+
+$$
+\frac{|AC|}{|BC|} = \frac{|DE|}{|BE|}
+$$
+
+so we have:
+
+$$
+|DE| = x_2 - x = \frac{|AC||BE|}{|BC|} = \frac{(y_2 - y_1) * (y_2 - y)}{y_2 - y_1}
+$$
+
+so:
+
+$$
+x = x_2 - \frac{(y_2 - y_1) * (y_2 - y)}{y_2 - y_1}
+$$
+
+```C++
+// Ray casting
+bool IsPointInPolygon(const Point& p, cosnt Polygon& poly) {
+  bool f{false};
+  for (int i = 0; i < poly.points.size(); ++i) {
+    auto& p1 = poly.points[i];
+    auto& p2 = poly.points[(i + 1) % m];
+    if (IsPointOnSegment(p, {p1})) return true;
+    if (((p1.y - p.y) < 0 != (p2.y - p.y) < 0) &&  // y is on either end of line
+        // intersection is on the right of point
+        (x2 - (x2 - x1) / (y2 - y1) * (y2 - y) - x > 0)) f = !f;
+  }
+  return f;
+}
+```
+
+#### Winding Number Algorithm
+
+Winding number algorithm links the point to all points of the polygon and calculate the sum of all the angles, if the angle is: 
+
+- $\ne 0$, the point is not in polygon;
+- $= 0$, the point is in polygon.
 
  ```C++
- bool PointInPolygon(const Point& P, const Polygon& poly) {
+ // Winding number
+ bool IsPointInPolygon(const Point& p, const Polygon& poly) {
    double accumulate_angle{0};
    int m = poly.points.size();
    for (int i = 0; i < m; ++i) {
      auto& p1 = poly.points[i];
      auto& p2 = poly.points[(i + 1) % m];
-     if (IsPointOnSegment(P, {p1, p2})) return false;
-     accumulate_angle += acos((p1 - P) * (p2 - P) / Length(p1 - P) / Length(p2 - P));
+     if (IsPointOnSegment(p, {p1, p2})) return true;
+     accumulate_angle += acos((p1 - P) * (p2 - P) / Length(p1 - p) / Length(p2 - p));
    }
    return sign(accumulate_angle) == 0;
  }
