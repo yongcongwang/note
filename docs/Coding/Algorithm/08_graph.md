@@ -6,6 +6,7 @@ A `Graph` consists of:
 - `edge`s which connecting these `node`s.
 
 Graphs are mathematical structures uesed to model pairwise relations between objects. 
+
 ![graph definition](images/graph/graph_def.png)
 
 A distinction is made between:
@@ -14,6 +15,7 @@ A distinction is made between:
 - `directed graph`: where edges link two nodes asymmetrically.
 
 A `Graph` can be defined as:
+
 ```C++
 template <typename T>
 struct Vertex {
