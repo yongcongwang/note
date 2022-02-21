@@ -97,9 +97,11 @@ class UnionFind {
 ```
 
 ## Breadth-first Search(BFS)
+
 BFS is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root(or some arbitrary node of a graph, sometimes referred as a `search key`), and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
 
 ![bfs](images/graph/bfs.gif)
+
 ```C++
 void bfs(Graph& graph, int start) {
   deque<int> d{start};
@@ -117,9 +119,11 @@ void bfs(Graph& graph, int start) {
 ```
 
 ## Depth-first Search(DFS)
+
 DFS is an algorithm for traversing or searching tree or graph data structure. The algorithm starts at the root node(selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking.
 
 ![dfs](images/graph/dfs.gif)
+
 ```C++
 void dfs(Graph& graph, unordered_set<int>& visited, int root) {
   if (visited.count(root)) return;
@@ -130,6 +134,7 @@ void dfs(Graph& graph, unordered_set<int>& visited, int root) {
 ```
 
 ## Shortest Path(SP)
+
 In graph theory, the `shortest path problem` is the problem of finding a path between two nodes in a graph such that the sum of the weights of its constituent edges is minimized. The mainly used algorihtms are:
 
 - Floyd
@@ -143,6 +148,7 @@ In graph theory, the `shortest path problem` is the problem of finding a path be
 | $O(N^3)$ | $O(NM)$ | $O(MlogM)$ |
 
 ### Floyd
+
 Floyd algorithm compares all possible paths through the graph between each pair of vertices.
 ```C++
 vector<vector<int>> floyd(Graph& graph, int node) {
@@ -161,12 +167,14 @@ vector<vector<int>> floyd(Graph& graph, int node) {
 }
 ```
 
+- [network-delay-time](https://leetcode-cn.com/problems/network-delay-time/)
+
 ### Bellman-Ford
+
 Bellman-Ford is an algorithm that computes shortest paths from a single source node to all of the other nodes in a weighted digraph. It is capable of handling graphs in which some of the edge weights are negtive numbers.
 ```C++
 int bellman_ford(Graph& graph, int src, int tar) {
   queue<int> q{src};
-  unordered_set<int> visited{src};
   vector distance(graph.size() + 1, INT_MAX);
   distance[src] = 0;
 
@@ -181,10 +189,7 @@ int bellman_ford(Graph& graph, int src, int tar) {
     q.pop();
     visited.erase(node);
     for (auto next : graph[node]) {
-      if (relax(node, next) && !visited.count(next)) {
-        visited.insert(next);
-        q.push(next);
-      }
+      if (relax(node, next)) q.push(next);
     }
   }
 
@@ -192,7 +197,10 @@ int bellman_ford(Graph& graph, int src, int tar) {
 }
 ```
 
+- [network-delay-time](https://leetcode-cn.com/problems/network-delay-time/)
+
 ### Dijkstra
+
 Dijkstra is an algorithm that computes shortest paths from a single source node to all of the other nodes in a weighted digraph. It is not able to handle graphs in which some of the edge weights are negtive numbers.
 
 ![dijkstra](images/graph/dijkstra.gif)
@@ -225,7 +233,10 @@ int dijkstra(Graph& graph, int src, int tar) {
 }
 ```
 
+- [network-delay-time](https://leetcode-cn.com/problems/network-delay-time/)
+
 ## K Shortest Path(KSP)
+
 The `KSP` problem is a generalization of the `SP` problem in a given network. It asks not only about a shortest path but also about next $k - 1$ shortest path (which may be longer than the shortest path). A variant of the problem is the loopless k shortest paths.
 
 ### A*
@@ -263,9 +274,11 @@ double a_star(Graph<int> graph, vector<double>& h, int src,
 ```
 
 ## Topological Sorting
+
 A topological sort of a directed graph is a linear ordering of its nodes such that for every directed edge $(u, v)$, $u$ comes before $v$ in the ordering.
 
 ### BFS
+
 ```C++
 vector<int> res{};
 bool topo_sort(Graph& graph, vector<int>& in_degree) {
@@ -289,6 +302,7 @@ bool topo_sort(Graph& graph, vector<int>& in_degree) {
 ```
 
 ### DFS
+
 ```C++
 vector<int> color{};  // 0: white; 1: gray; 2: black
 vector<int> topo{};
@@ -317,11 +331,15 @@ bool topo_sort(Graph& graph) {
 ```
 
 ## Minimum Spanning Tree(MST)
+
 A minimum spanning tree(MST) is a subset of the edges of a connected, edge-weighted undirected graph that connects all the nodes together, without any cycles and with the minimum possible total edge weight. That is, it is a spanning tree whose sum of the edge weights is as small as possible. More generallly, any edge-weighted undirected graph(not neccessarily connected) has a minimum spanning forest, which is a union of the minimum spanning trees for its connected components.
+
 ![graph definition](images/graph/mst.png)
 
 ### Kruskal
+
 Kruscal's algorithm finds a minimum spanning forest of an undirected edge-weighted graph. If the graph is connected, it finds a minimum spanning tree. For a disconnected graph, a minimum spanning forest is composed of a minimum spanning tree for each connected component. It is a greedy algorithm in graph theory as in each step it adds the next lowest-weight edge that will not form a cycle to the minimum spanning forest.
+
 ![kruskal](images/graph/kruskal.gif)
 
 ```C++
@@ -378,15 +396,21 @@ int kruskal(vector<Edge>& edges, int n) {
 
   return uf.count() == 1 ? res : -1;
 }
-
 ```
+
+- [min-cost-to-connect-all-points](https://leetcode-cn.com/problems/min-cost-to-connect-all-points/)
 
 ### Prim
 Prim algorithm is a greedy algorithm that finds a minimum spanning tree for a weighted undirected graph. This means it finds a subset of the edges that forms a tree that includes every nodes, where the total weight of all the edges in the tree is minimized. The algorithm operates by building this tree one node at a time, from an arbitrary starting node, at each step adding the cheapest possible connection from the tree to another node.
+
 ![prim](images/graph/prim.gif)
 
+- [min-cost-to-connect-all-points](https://leetcode-cn.com/problems/min-cost-to-connect-all-points/)
+
 ## Strongly Connected Components(SCC)
+
 ### Tarjan
+
 ### Kosaraju
 
 ## Euler Graph
