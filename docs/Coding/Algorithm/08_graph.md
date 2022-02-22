@@ -63,12 +63,12 @@ class UnionFind {
   }
 
  public:
-  int find(int x) {
+  int Find(int x) {
     if (parent[x] != x) parent[x] = find(parent[x]);
     return parent[x];
   }
 
-  bool union(int x, int y) {
+  bool Union(int x, int y) {
     int xx = find(x);
     int yy = find(y);
     if (xx == yy) return false;
@@ -79,9 +79,9 @@ class UnionFind {
     return true;
   }
 
-  int count() { return cnt; }
+  int Count() { return cnt; }
 
-  int connect(int x, int y) { return find(x) == find(y); }
+  bool Connect(int x, int y) { return find(x) == find(y); }
 
  private:
   vector<int> parent{};
@@ -89,6 +89,20 @@ class UnionFind {
   int cnt{0};
 };
 ```
+
+Problems:
+
+- [satisfiability-of-equality-equations](https://leetcode-cn.com/problems/satisfiability-of-equality-equations/)
+- [number-of-provinces](https://leetcode-cn.com/problems/number-of-provinces/)
+- [redundant-connection](https://leetcode-cn.com/problems/redundant-connection/)
+- [number-of-operations-to-make-network-connected](https://leetcode-cn.com/problems/number-of-operations-to-make-network-connected/)
+- [number-of-provinces](https://leetcode-cn.com/problems/number-of-provinces/)
+- [evaluate-division](https://leetcode-cn.com/problems/evaluate-division/)
+- [regions-cut-by-slashes](https://leetcode-cn.com/problems/regions-cut-by-slashes/)
+- [swim-in-rising-water](https://leetcode-cn.com/problems/swim-in-rising-water/)
+- [smallest-string-with-swaps](https://leetcode-cn.com/problems/smallest-string-with-swaps/)
+- [most-stones-removed-with-same-row-or-column](https://leetcode-cn.com/problems/most-stones-removed-with-same-row-or-column/)
+- [bricks-falling-when-hit](https://leetcode-cn.com/problems/bricks-falling-when-hit/)
 
 ## Breadth-first Search(BFS)
 
@@ -447,7 +461,7 @@ void Hierholzer(Graph& graph, Node node) {
 }
 ```
 
-### Problems
+Problems:
 
 - [Reconstruct Itinerary](https://leetcode-cn.com/problems/reconstruct-itinerary/)
 - [Cracking the Safe](https://leetcode-cn.com/problems/cracking-the-safe/)
