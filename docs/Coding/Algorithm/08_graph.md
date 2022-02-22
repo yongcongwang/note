@@ -469,7 +469,7 @@ void Hierholzer(Graph& graph, Node node) {
 }
 ```
 
-### Problems
+Problems:
 
 - [Reconstruct Itinerary](https://leetcode-cn.com/problems/reconstruct-itinerary/)
 - [Cracking the Safe](https://leetcode-cn.com/problems/cracking-the-safe/)
