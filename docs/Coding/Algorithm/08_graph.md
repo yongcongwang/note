@@ -14,50 +14,42 @@ A distinction is made between:
 - `undirected graph`: where edges link two nodes symmetrically;
 - `directed graph`: where edges link two nodes asymmetrically.
 
-A `Graph` can be defined as:
+## Topological Sorting
+
+A `topological sort` of a `directed graph` is a linear ordering of its vertices such that for every directed edge `uv` from vertex `u` to vertex `v`, `u` comes before `v` in the ordering.
+
+### Kahn's Algorithm
+
+The process is:
+
+1. we find a list of `start nodes` which have no incoming edges and insert them into a queue;
+2. we remove a node from queue and for each of next nodes, we decrease its indegrees, if next node's indegree is zero, we push it to the queue;
+3. loop step 1 and 2 until the queue is empty.
 
 ```C++
-template <typename T>
-struct Vertex {
-  T id{};
-  double cost{0.};
-};
-
-template <typename T>
-struct Edge {
-  Vertex<T>* from{nullptr};
-  Vertex<T>* to{nullptr};
-  double cost{0.};
-};
-
-template <typename T>
-class Graph {
- public:
-  void AddVertex(const T& v, double cost = 0.) {
-    vs[v] = Vertex<T>{v, cost};
+vector<int> TopoSort(const vector<pair<int, int>>& edges, int n) {
+  unordered_map<int, vector<int>> graph{};
+  vector indeg(n, 0);
+  for (auto [f, t] : edges) { 
+    graph[f].push_back(t);
+    indeg[t]++;
   }
 
-  void AddEdge(const T& from, const T& to, double cost = 0.) {
-    if (!vs.count(from)) AddVertex(from);
-    if (!vs.count(to)) AddVertex(to);
-    if (!es.count(from)) es[from] = {};
-    es[from].push_back({&vs[from], &vs[to], cost});
+  queue<int> q{};
+  for (int i = 0; i < n; ++i) if (!indeg[i]) q.push(i);
+
+  vector<int> ans{};
+  while (!q.empty()) {
+    auto node = q.front(); q.pop();
+    ans.push_back(nodee);
+    for (auto next : graph[node]) if (!--indeg[next]) q.push(next);
   }
 
-  const vector<Edge<T>>& GetEdges(const T& v) {
-    return es[v];
-  }
-
-  const size_t GetVertexSize() const {
-    return vs.size();
-  }
-
- private:
-  unordered_map<T, Vertex<T>> vs{};
-  unordered_map<T, vector<Edge<T>>> es{};
-};
+  return ans;
+}
 
 ```
+
 
 ## Disjoint-Set
 
