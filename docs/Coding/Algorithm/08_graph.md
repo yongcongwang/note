@@ -50,7 +50,6 @@ vector<int> TopoSort(const vector<pair<int, int>>& edges, int n) {
 
 ```
 
-
 ## Disjoint-Set
 
 A `disjoint-set`, also called `union-find` or `merge-find` set, is a data structure that stores a collection of disjoint(non-overlapping) setting. Equivalently, it stores a partition of a set into disjoint subsets. It provides operations for adding new sets, merging sets and finding a representative member of a set.
@@ -193,12 +192,8 @@ int bellman_ford(Graph& graph, int src, int tar) {
   };
 
   while (!q.empty()) {
-    int node = q.top();
-    q.pop();
-    visited.erase(node);
-    for (auto next : graph[node]) {
-      if (relax(node, next)) q.push(next);
-    }
+    int node = q.top(); q.pop();
+    for (auto next : graph[node]) { if (relax(node, next)) q.push(next); }
   }
 
   return distance[tar];
