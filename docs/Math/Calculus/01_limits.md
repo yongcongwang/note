@@ -1,7 +1,9 @@
 # Limits
+
 Calculus wouldn't exist without the concept of limits. It turns out that it's pretty tricky to define a limit properly, but you can get an intuitive understanding of limits even without going into the glory details
 
 ## The basic idea
+
 We start with some function $f$ and a point on the $x$-axis which we call $a$. Here is what we'd like to understand:
 > What does $f(x)$ look like when $x$ is really close to $a$, **but not equal to $a$** ? 
 
@@ -73,7 +75,7 @@ In above parts we've concentrated on the behavior of a function near a point $x 
 A number is
 
 - `large`, if its absolute value is really big number;
-- `small`, iff it is really close to $0$(but not actually equal to $0$).
+- `small`, if it is really close to $0$(but not actually equal to $0$).
 
 We can say the limit at infinity as:
 

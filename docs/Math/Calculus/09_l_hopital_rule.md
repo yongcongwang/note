@@ -71,7 +71,7 @@ The closer $x$ is to $a$, the better the approximation. This leads to one versio
 > If $f(a) = g(a) = 0$, then
 
 $$
-\lim_{x \to a}\frac{f(x)}{g(x)} = lim_{x \to a} \frac{f'(x)}{g'(x)}
+\lim_{x \to a}\frac{f(x)}{g(x)} = \lim_{x \to a}\frac{f'(x)}{g'(x)}
 $$
 
 ## Type B1($\infty - \infty$)

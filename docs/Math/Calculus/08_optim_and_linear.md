@@ -80,7 +80,7 @@ $$
 
 In summary, the basic strategy for estimating, or approximating, anasty number:
 
-1. Write down the mmain formula:
+1. Write down the main formula:
 
 $$
 f(x) \cong L(x) = f(a) + f'(a)(x - a)

@@ -69,6 +69,7 @@ L = \lim_{h \to 0^+}(1 + h)^{\frac{r}{h}}
 $$
 
 Use the exponential rule:
+
 $$
 L = \lim_{h \to 0^+}((1 + h)^{\frac{1}{h}})^r
 $$

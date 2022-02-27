@@ -17,6 +17,7 @@ $$
 They look almost the same, the only difference is that the first limit is taken as $x \to 0$ while the second it taken as $x \to \infty$.
 
 ### The small case
+
 We know that $sin(0) = 0$, so what does $sin(x)$ look like when $x$ is **near** $0$? It turns out that $sin(x)$ is approximately the same as $x$ itself:
 
 ![sin and x](images/trig_derivative/sin_x.png)
@@ -43,7 +44,7 @@ $$
 As we all know:
 
 $$
--1 \le sin(x)a \le 1
+-1 \le sin(x) \le 1
 $$
 
 So the limit is:

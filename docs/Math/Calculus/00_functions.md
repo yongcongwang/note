@@ -1,5 +1,5 @@
 # Functions
-A `function` is a rule for transforming an object into another object. The object you start with is called the `input`, and comes from some set called the `domain`. Waht you get back is called the `output`; it comes from some set called the `codomain`, and the output's value is within a `range`. A function must assign a unique output for each valid input.
+A `function` is a rule for transforming an object into another object. The object you start with is called the `input`, and comes from some set called the `domain`. What you get back is called the `output`; it comes from some set called the `codomain`, and the output's value is within a `range`. A function must assign a unique output for each valid input.
 
 We say that a function $f$ is:
 
@@ -11,11 +11,13 @@ The graph of an even function has mirror symmetry about the y-axis and the graph
 Let's look at some common functions and their graphs.
 
 ## Linear Functions
+
 Functions of the form $f(x) = mx + b$ are called `linear`. There's a good reason for this: the graph of these functions are lines. The slop of the line is given by $m$, and the y-intercept is equal to $b$. To sketch the graph of a linear function, you only need to identify two points on the graph. Set $x = 0$, you get a point $(0, b)$, and set $y = 0$ you get another point $(-\frac{b}{a}, 0)$. Examples are like this:
 
 ![linear function](images/function_graph/linear_function.png)
 
 ## Polynomials
+
 These are functions built out of nonnegative integer powers of $x$. You start with the building blocks $1$, $x$, $x^2$, $x^3$, and so on, and you are allowed to multiply these basic functions by numbers and add a finite number of them together. The amount that you multiply the building block $x^n$ by is called the `coefficient` of $x^n$. The highest number $n$ such that $x^n$ has a non zero coefficient is called the `degree` of the polynomial. The mathematical way to write a general polynomial of degree $n$ is:
 
 $$
@@ -29,9 +31,11 @@ Since the functions $x^n$ are the building blocks of all polynomials, you should
 ![polynomials](images/function_graph/polynomials.png)
 
 Sketching the graphs of more general polynomials is more difficult. Even finding the x-intercepts is often impossible unless the polynomial is very simple. There is one aspect of the graph that is fairly straightforward, which is what happens at the far left and right sides of the graph. This is determined by the so-called `leading coefficient`, which is the coefficient of the highest-degree term.In fact, it only matters whether the leading coefficient is positive or negative. It also matters whether the degree of the polynomial is odd or even; so there are four possibilities for what the edges of the graph can look like:
+
 ![polynomials](images/function_graph/polynomials_all.png)
 
 ## Rational functions
+
 The functions with the form:
 
 $$
@@ -40,6 +44,7 @@ $$
 
 are called `Rational functions`, where `p` and `q` are polynomials.
 Rational functions will pop up in many different contexts, and the graphs can look really different depending on the polynomials `p` and `q`. The simplest examples of rational functions are polynomials themselves, which arise when `q(x)` is the constant polynomial $1$. The next simplest examples are the functions $\frac{1}{x^n}$, where $n$ is a positive integer. Let's look at some of the graph of these functions:
+
 ![polynomials](images/function_graph/rational.png)
 
 The odd powers look similar to each other, and the even powers look similar to each other too. 
@@ -47,20 +52,26 @@ The odd powers look similar to each other, and the even powers look similar to e
 ## Exponential functions
 Functions with the form:
 
+
 $$
 f(x) = a \cdot b^x
 $$
 
 are called `Exponential functions`, where $a$ is a coefficient, $b$ is a positive real number, and $x$ occurs as an `exponent`.
+
 The graph of $f(x) = b^x$ for any other base $b > 0$ looks similar to this:
+
 ![polynomials](images/function_graph/exponent_1.png)
 
 and the graph of $f(x) = b^{-x}$ is just the reflection of $f(x) = b^{x}$ in `y-axis`.
+
 ![polynomials](images/function_graph/exponent_2.png)
 
 If $a$ is negtive, the graph will be the reflection of its positive one.
 
 ## Logarithm functions
+
+
 When a functions has the form:
 
 $$
@@ -69,6 +80,7 @@ $$
 
 we called it a `logarithm function`.
 Logarithm functions are the inverse functions of the exponential functions. Using the line $y = x$ as a mirror, the graph of $y = \log_{2}(x)$ looks like this:
+
 ![polynomials](images/function_graph/logarithm.png)
 
 ## Trig functions
@@ -134,7 +146,7 @@ It's really useful to remember what the graphs of the sin, cos, and tan function
 ![cos](images/function_graph/cos.png)
 ![tan](images/function_graph/tan.png)
 
-It's also worthwhile learning the graph of $y = \sec(x)$, $y = \sec(x)$, and $y = \cot(x)$:
+It's also worthwhile learning the graph of $y = \sec(x)$, $y = \csc(x)$, and $y = \cot(x)$:
 
 ![sec](images/function_graph/sec.png)
 ![csc](images/function_graph/csc.png)
@@ -204,7 +216,7 @@ $$
 \cos(A + B) = \cos(A)\cos(B) - \sin(A)\sin(B)
 $$
 
-It's useful to remember that you can switch all the plues and minues to get some related formulas:
+It's useful to remember that you can switch all the pluses and minuses to get some related formulas:
 
 $$
 \sin(A - B) = \sin(A)\cos(B) - \cos(A)\sin(B)

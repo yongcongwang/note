@@ -5,4 +5,7 @@ There are the nodes I took while learning the book [The Calculus Lifesaver](http
 TODO:
 
 - [ ] add last chapter of the book
-- [ ] add mind map for this course
+- [x] add mind map for this course
+
+![summary](images/summary.png)
+

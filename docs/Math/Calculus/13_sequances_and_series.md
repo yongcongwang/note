@@ -90,6 +90,7 @@ Let's look at an important example of an infinite series. Suppose we start with 
 
 $$
 1 + r + r^2 + r^3 + \cdots = \sum_{n = 0} ^{\infty} r^n
+$$
 
 This is called a `geometric series`. It turns out that the geometric series:
 
@@ -132,12 +133,13 @@ $$
 b_n = |\frac{a_{n + 1}}{a_n}|
 $$
 
-The the series $\{\sum_{n=1}^{\infty}\}$:
+The the series $\{\sum_{n=1}^{\infty}a_n\}$:
 
 - converges, if the sequence ${b_n}$ converges to a number less than $1$;
 - diverges, if the sequence ${b_n}$ converges to a number greater than $1$;
 
 ### The root test
+
 The root test(also called the n-th root test) is a close cousin of the ratio test. Instead of considering ratios of successive terms, just consider the n-th root of the absolute value of n-th term.
 
 Starting with a series $\sum_{n = 1}^{\infty} a_n$, let's make a new sequence given by:
