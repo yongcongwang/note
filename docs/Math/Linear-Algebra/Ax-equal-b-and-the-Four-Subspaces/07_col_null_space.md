@@ -38,7 +38,7 @@ For our example matrix $A$, what can we say about the column space of $A$? Are t
 
 The third column of $A$ is the sum of the first two columns, so does not add anything to the subspace. The column space of our matrix $A$ is a two dimensional subspace of $\mathbb{R}^4$.
 
-## Nullspace of $A$
+## Nullspace of A
 
 The `nullspace` of a matrix is the collection of all solutions $\mathbf{x} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}$ to the equation $A\mathbf{x} = \mathbf{0}$.
 
