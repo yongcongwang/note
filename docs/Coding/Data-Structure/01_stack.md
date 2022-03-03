@@ -29,6 +29,8 @@ This kind of problems are mainly about the few elements at the end of lists, for
 - Paretheses matching, which delete the parentheses matched;
 - Path finding, which delete the elements at the back if `..` occurs.
 
+problems:
+
 - [20. Valid Parentheses](https://leetcode-cn.com/problems/valid-parentheses/)
 - [71. Simplify Path](https://leetcode-cn.com/problems/simplify-path/)
 
@@ -37,7 +39,7 @@ This kind of problems are mainly about the few elements at the end of lists, for
 The tytical problem of this is the calculator. We usually solve this with two stacks:
 
 - `number` stack, which records all numbers to be calculated；
-- `operator` stack, which stores operators(`(, ), +, -, *, /`) in increasing grade(`(, 0` is 0, `+, -` is 1, `*, /` is 2)
+- `operator` stack, which stores operators(`(, ), +, -, *, /`) in increasing grade, `(, )` is 0, `+, -` is 1, `*, /` is 2.
 
 The general frame is:
 ```C++
