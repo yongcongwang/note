@@ -107,7 +107,7 @@ F_{k + 1} &= F_{k + 1}
 \end{align}
 $$
 
-is equivalent to the first order system $\mathbf{u_{k + 1}} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$.
+is equivalent to the first order system $\mathbf{u_{k + 1}} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} \mathbf{u_{k}}$.
 
 What are the eigenvalues and eigenvectors of $A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$? Because A is systemmetric, its eigenvalues will be real and its eigenvectors will be orthogonal.
 
