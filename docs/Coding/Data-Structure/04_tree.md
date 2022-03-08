@@ -33,9 +33,9 @@ The general solutions for tree often involves with recursion, a function which c
 There are mainly two methods to traversal a binary tree:
 
 1. Depth First Search(BFS), and according to the order we visited the parent node, BFS can be divided into:
-    a. pre-order traversal: first visiting parent node, and then left and right child;
-    b. in-order traversal: first visiting left child, and then parent node, and then right child;
-    c. post-order traversal: first visiting left and right child, and then parent node.
+    1. `pre-order traversal`: first visiting parent node, and then left and right child;
+    2. `in-order traversal`: first visiting left child, and then parent node, and then right child;
+    3. `post-order traversal`: first visiting left and right child, and then parent node.
 2. Bread First Search(BFS), which visits the tree layer by layer.
 
 The general code for DFS is:
