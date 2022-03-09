@@ -41,10 +41,11 @@ To establish notation for future use, we use:
 A pair $(x_i, y_i)$ is called a training example and a list of training example is called a training set.
 
 We also use:
+
 - $X$ to denote the space of input values;
 - $Y$ to denote the space of output values;
 
-To describe the supervised learning problem more formally, our goal is, given a training set, to learn a function $h: X -> Y$ so that $h(x)$ is a "good" predictor for the corresponding value of $y$. For history reason, the function $h$ is called a hypothesis. The process is like this:
+To describe the supervised learning problem more formally, our goal is, given a training set, to learn a function $h: X \to Y$ so that $h(x)$ is a "good" predictor for the corresponding value of $y$. For history reason, the function $h$ is called a hypothesis. The process is like this:
 ```C++
   +----------------+
   |                |
@@ -111,7 +112,7 @@ where:
 - $\theta_{0}$ is a constant that will be changing simultaneously with $\theta_{1}$
 - $x_{i}, y_{i}$ are values of the given training set.
 
-With the equation, we can repeat calculating $\theta_{0}$ and $\theta_{1}$ until vonvergence.
+With the equation, we can repeat calculating $\theta_{0}$ and $\theta_{1}$ until convergence.
 
 This method looks at every example in the entire training set on every step, and is called `batch gradient descent`.
 
@@ -240,6 +241,7 @@ With the normal equation, computing the inversion has comlexity $O(n^3)$. So if 
 
 ### Noninvertibility
 The normal equation used $X^TX$ to calculate variables, but $X^TX$ might be "noninvertible", the common causes may be:
+
 - Redundant features, where two features are very closely related;
 - Too many features(e.g. $m <= n$), in this case, delete some featues or use "regularization".
 
@@ -471,11 +473,11 @@ To sumerize:
 ## Neural Networks
 
 ### Model Representation
-![neuron](https://scx1.b-cdn.net/csz/news/800/2018/2-whyareneuron.jpg)
+![neuron](images/mechine_learning/neural.jpg)
 
 In this chapter, we will represent a hypothesis function using neural networks. At a very simple level, neurons are basically computational units that take inputs(dendrites) as electrical inputs(called "spikes") that are channeled to outputs(axons). In our model, our dendrites are like the input features $x_{1} \cdots x_{n}$ and the output is the result of our hypothesis function. In this model our $x_{0}$ input node is sometimes called the "bias unit". It is always euqal to $1$. In neural networks, we use the same logistic function as in classification, $\frac{1}{1+e^{-\theta^Tx}}$, yet we sometimes call it a sigmoid(logistic) activation function. In this situation, our "theta" parameters are sometimes called "weights".
 
-![neural network](https://www.oracle.com/a/tech/img/art-neural-network-image001.png)
+![neural network](images/mechine_learning/neural_network.png)
 
 Visually, a simplistic representation looks like:
 
@@ -550,6 +552,7 @@ This is saying that we compute our activation nodes by using a $3 \times 4$ matr
 Our hypothesis output is the logistic function applied to the sum of the values of our activation nodes, which have been multiplied by yet another another parameter matrix $\Theta^{(2)}$ containing the weights for our second layer of nodes.
 Each layer gets its own matrix of weights, $\Theta^{(j)}$.
 The dimension of these marices of weights is determined as follows:
+
 > If network has $s_{j}$ units in layer $j$ and $s_{j + 1}$ in layer $j + 1$, then $\Theta_{0}^{j}$ will be of dimension $s_{j + 1} \times (s_{j} + 1)$.
 
 The $+1$ comes from the addition in $\Theta^{(j)}$ of the "bias node" $x_{0}$ and $\Theta_{0}^{(j)}$. In other words, the output nodes will not include the bias node while the input nodes will.
@@ -727,7 +730,7 @@ $$
 J(\Theta) = -\frac{1}{m}\sum_{i=1}^{m}[y^{(i)}log(h_{\theta}(x^{(i)})) + (1 - y^{(i)})log(1 - h_{\theta}(x^{(i)}))] + \frac{\lambda}{2m} \sum_{j=1}^{n}\theta_{j}^{2}
 $$
 
-For neural networks, it is going to be silightly more complicated:
+For neural networks, it is going to be slightly more complicated:
 
 $$
 J(\Theta) = -\frac{1}{m}\sum_{i=1}^{m}\sum_{k=1}^{K}[y_{k}^{(i)}log(h_{\Theta}(x^{(i)})\_k) + (1-y_{k}^{(i)})log(1 - (h_{\Theta}(x^{(i)})\_k)] + \frac{\lambda}{2m}\sum_{l=1}^{L-1}\sum_{i=1}^{s_{l}}\sum_{j=1}^{s_{l+1}}(\Theta_{j,i}^{(l)})^{2}
@@ -753,14 +756,14 @@ $$
 To do so:
 
 1. Given training set ${(x^{(1), y^{(1)}}) \cdots (x^{(m)}, y^{(m)})}$,
-    - Set $\Delta_{i, j}^{(l)} := 0$ for all $(l, i, j)$(hence you end up having a matrix full of zeros)
+    1. Set $\Delta_{i, j}^{(l)} := 0$ for all $(l, i, j)$(hence you end up having a matrix full of zeros)
 2. For training example $t = 1 \to m$:
-    a. Set $a^{(1)} := x^{(t)}$
-    b. Perform `forward propagation` to compute $a^{(l)}$ for $l=2,3,\cdots,L$ ![forward propagation](images/deep_learning/forward_propagation.png)
+    1. Set $a^{(1)} := x^{(t)}$
+    2. Perform `forward propagation` to compute $a^{(l)}$ for $l=2,3,\cdots,L$ ![forward propagation](images/deep_learning/forward_propagation.png)
 
-    c. Using $y^{(t)}$ to compute $\delta^{(L)} = a^{(L)} - y^{(t)}$.
-    d. Where $L$ is our total number of layers and $a^{(L)}$ is the vector of outputs of the activation units for the last layer. So our "error values" for the last layer are simply the differences of our actual results in the last layer and the correct outputs in $y$. To get the $\delta$ values of the layers before the last layer, we can use an equation that steps us back from right to left.
-    e. Computing $\delta^{(L-1)},\delta^{(L-2)},\cdots,\delta^{(2)}$ using
+    3. Using $y^{(t)}$ to compute $\delta^{(L)} = a^{(L)} - y^{(t)}$.
+    4. Where $L$ is our total number of layers and $a^{(L)}$ is the vector of outputs of the activation units for the last layer. So our "error values" for the last layer are simply the differences of our actual results in the last layer and the correct outputs in $y$. To get the $\delta$ values of the layers before the last layer, we can use an equation that steps us back from right to left.
+    5. Computing $\delta^{(L-1)},\delta^{(L-2)},\cdots,\delta^{(2)}$ using
 
 $$
 \delta^{(l)}=((\Theta^{(l)})^{T}\delta^{(l+1)}).*a^{(l)}.*(1-a^{(l)})
