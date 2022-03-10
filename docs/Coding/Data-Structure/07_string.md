@@ -4,7 +4,7 @@ A `string` is traditionally a sequence of charactors, either as a literal consta
 
 - an array of `char` with the end of `\0`, which is the `C`-style string;
 - the stl `string` container, whose length is changable;
-- lieral constant(some charactors enclosed by `"`).
+- literal constant(some charactors enclosed by `""`).
 
 Some definiations:
 
@@ -53,7 +53,9 @@ Generally speaking, `next` is an array that `next[i]` represents the length of t
 
 where `s` is the given substring.
 
-We let `s[0] = -1` because it has no proper prefix. And at the position `i` we fill the result of `next[i + 1]`, so the terminate condition is `i < n - 1`.
+![kmp](images/kmp.png)
+
+We let `next[0] = -1` because `s[0:-1]` has no proper prefix. And at the position `i` we fill the result of `next[i + 1]`, so the terminate condition is `i < n - 1`.
 
 ```C++
 int i = 0;  // for main loop
@@ -86,6 +88,11 @@ return -1;
 ```
 
 The time complexity of KMP is $O(m + n)$.
+
+Problems:
+
+- [implement-strstr](https://leetcode-cn.com/problems/implement-strstr/)
+- [longest-happy-prefix](https://leetcode-cn.com/problems/longest-happy-prefix/)
 
 ## Substring
 
