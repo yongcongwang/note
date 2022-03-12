@@ -140,6 +140,7 @@ where:
 - The activation function for $y$ is depending on your task and choosing $sigmoid$ or $softmax$.
 
 Inorder to help us develop complex RNN architecture, the last equations needs to be simplified a lot:
+
 Simplify:
 
 $$
@@ -216,6 +217,7 @@ The solution for `exploding gradient` problems:
 - Gradient clipping
 
 The solution for `vanishing gradient` problems:
+
 - Weight initialization
     - Like He initialization
 - Echo state networks
@@ -224,8 +226,11 @@ The solution for `vanishing gradient` problems:
 
 ## Gated Recurrent Unit(GRU)
 GRU is an RNN type that can help solve the vanishing gradient problem and can remember the long-term dependencies.
+
 The basic RNN unit can be visualized to:
+
 ![gru](images/deep_learning/gru.jpg)
+
 The drawing for GRU is similar. Each layer in GRU has a new variable `C` called `memory cell` which can tell whether meorize something or not.
 In GRUs, $C^{<t>} = a^{<t>}$, the equations are:
 
@@ -242,6 +247,7 @@ c^{<t>} = \Gamma_u \times \tilde c^{<t>} + (1 - \Gamma_u) \times c^{<t-1>}
 $$
 
 The $\Gamma_u$ is called `update gate`, and it's value is between 0 and 1.
+
 ![gru](images/deep_learning/gru_gate.jpg)
 
 Because the update gate U is usually a small number like $0.000001$, GRUs doesn't suffer the vanishing gradient problem.
@@ -266,6 +272,7 @@ $$
 
 ## Long Short Term Memory(LSTM)
 LSTM is another type of RNN that can enable you to account for long-term dependencies. It's more powerful and general than GRU.
+
 In LSTM, $C^{<t>} != a^{<t>}$:
 
 $$
