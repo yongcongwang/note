@@ -70,6 +70,7 @@ You can use `g++ -c` to get assembled file with the extension `.o`.
 
 ### Linking
 The linker is what produces the final compilation output from the `object file` that compiler generated. The output of linker can be:
+
 - shared library: it doesn't add the library code to the output, so it has the smallest file size;
 - static library: it add all the library code to the output, which makes its larger size;
 - executable file: it combine all the binary file to an executable, and has the largest file size.
