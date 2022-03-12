@@ -78,6 +78,7 @@ The linker is what produces the final compilation output from the `object file` 
 While linking, the linker links all the boject files by replacing the references to undefined symbols with the correct addresses. Each of these symbols can be defined in other object files or in libraries. If they are defined in libraries other than the standard library, you need to tell the linker the path of them.
 
 At this stage the most common erros are:
+
 - missing definitions, which means that either the definitions don't exist or the object files or libraries they reside were not given to the linker
 - duplicate definitions, which means that the same symbol was defined in two different object files or libraries
 
@@ -90,6 +91,7 @@ The origin compilation time:
 
 ### Compile what we used
 In prediction module, we have three parts of code:
+
 - onboard: which runs on our computing platform and supports for auto-driving system;
 - offboard: which contains tools and deep-learning model trainers and runs on our develop PC;
 - unittest: which is the unit-test case of above parts.
@@ -135,7 +137,9 @@ Now we split the code into three parts and just compile the part we interested. 
     ├── CMakeLists.txt
     └── onboard
 ```
+
 At the top level of repo, we use three flags to define which part of code we want to compile in `CMakeLists.txt`:
+
 ```cmake
 ## Build options
 set(BUILD_ONBOARD OFF CACHE BOOL "build_onboard")
@@ -154,7 +158,9 @@ if(${BUILD_UNIT_TEST})
   add_subdirectory(unit_test)
 endif(${BUILD_UNIT_TEST})
 ```
+
 In bash script file, we choose what we want to build:
+
 ```bash
 function build_onboard(){
   set +e
@@ -184,6 +190,7 @@ In linux platform, we use GCC to compile our code. When you invoke GCC, it norma
 
 #### Parallel compilation
 In Linux platform we use `GNU/Make` tool to compile code. When we execute make command, we should use the `-j` option to define parallel jobs. In the bash script we use `$(nproc)` to get the number of cpu core as the `-j` parameter and increase the compilation performance.
+
 ```bash
 make -C build -j$(nproc) install
 ```
@@ -200,6 +207,7 @@ Without any optimization option, the compiler’s goal is to reduce the cost of 
 Turning on optimization flags makes the compiler attempt to improve the performance and/or code size at the expense of compilation time and possibly the ability to debug the program.
 
 Here are some option levels:
+
 - `-O/-O1`: Optimizing compilation takes somewhat more time, and a lot more memory for a large function.With `-O`, the compiler tries to reduce code size and execution time, without performing any optimizations that take a great deal of compilation time.
 - `-O2`: Optimize even more. GCC performs nearly all supported optimizations that do not involve a space-speed tradeoff. As compared to -O, this option increases both compilation time and the performance of the generated code.
 
@@ -224,6 +232,7 @@ Results:
 To tell GCC to emit extra information for use by a debugger, in almost all cases you need only to add `-g` to your other options.
 
 GCC allows you to use `-g` with `-O`. But this combination taken by optimized code may occasionally be surprising:
+
 - some variables you declared may not exist at all;
 - flow of control may briefly move where you did not expect it;
 - some statements may not be executed because they compute constant results or their values are already at hand;
@@ -234,14 +243,16 @@ This makes it reasonable to use the optimizer for programs that might have bugs.
 If you are not using some other optimization option, consider `-Og -g` option. With no `-O` option at all, some compiler passes that collect information useful for debugging do not run at all, so that `-Og` may result in a better debugging experience.
 
 Here are some options for debugging:
+
 - `-g`: Produce debugging information in the operating system’s native format (stabs, COFF, XCOFF, or DWARF). GDB can work with this debugging information.
 - `-g[level]`: Request debugging information ans also use `level` to specify how much information. The default level is 2.
- - Level 0: produces no debug information at all
- - Level 1: produces minimal information, enough for making backtraces in parts of the program that you don’t plan to debug. This includes descriptions of functions and external variables, and line number tables, but no information about local variables.
- - Level 2: produces normal debug information as default.
- - Level 3: includes extra information, such as all the macro definitions present in the program. Some debuggers support macro expansion when you use -g3.
+    - Level 0: produces no debug information at all
+     - Level 1: produces minimal information, enough for making backtraces in parts of the program that you don’t plan to debug. This includes descriptions of functions and external variables, and line number tables, but no information about local variables.
+     - Level 2: produces normal debug information as default.
+     - Level 3: includes extra information, such as all the macro definitions present in the program. Some debuggers support macro expansion when you use -g3.
 
 What we should know is that producing debug symbols will increase both executable file size and compilation time, so the conclusion is:
+
 - if you don't need to debug with gdb, do not add `-g` option to g++ flags;
 - if you need to debug with gdb, use `-Og -g` option to get better debugging experience.
 
@@ -257,11 +268,13 @@ Results:
 
 ### Include denpencies optimization
 There are two kinds of dependencies:
+
 - logical dependencies: which is between classes, functions, etc.
 - compile time dependencis: which is between files and libraries.
 
 The compile time dependencies have a huge impact on building, refactoring, testing and on the structure of your software.
 For small programs that just consists of a couple of filess, it is not a problem. But as soon as our software grows and so the number of includes files do, the impact of inappropriate handled includes can be huge:
+
 - Increasing compilation time
 - Increasing code complexity
 - Harder to refactor/restructure your program
@@ -271,6 +284,7 @@ When you change a header file, all translation units depending on this header fi
 
 #### GCC compiler options
 GCC provides some helpful options to determine/analyze include dependencies:
+
 - -M: output a rule suitable for make describing the dependencies of the main source file.
 - -MM: like -M but do not mention header files that are found in system header directories, nor header files that are included, directly or indirectly, from such a header.
 - -MF: when used with -M or -MM, specifies a file to write the dependencies to.
@@ -506,6 +520,7 @@ The main disadvantage of boost library is that it add declaration and definition
 We can remove the `boost` library from project to reduce the time and size of compilation.
 
 ## Reference
+
 - [C++ Preprocessor](https://www.w3schools.in/cplusplus-tutorial/preprocessor/)
 - [The Compilation Process](https://medium.com/coding-den/the-compilation-process-a1307824d40e)
 - [GCC Command Options](https://gcc.gnu.org/onlinedocs/gcc/Invoking-GCC.html#Invoking-GCC)
