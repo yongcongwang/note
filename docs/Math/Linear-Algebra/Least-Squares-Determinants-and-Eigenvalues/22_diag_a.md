@@ -4,7 +4,7 @@ We know how to find eigenvalues and eigen vectors. In this lecture we learn to `
 
 ## Diagonalizing a Matrix S^-1AS=Lambda
 
-If A has n linearly independent eigenvectors, we can put those vectors in the columns of a matrix S(square, invertible), then:
+If A has n linearly `independent eigenvectors`, we can put those vectors in the columns of a matrix S(square, invertible), then:
 
 $$
 \begin{align}
