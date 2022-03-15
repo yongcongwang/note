@@ -59,3 +59,42 @@ P(A_i | B) &= \frac{P(A_i) P(B | A_i)} {P(B)} \\
            &= \frac{P(A_i) P(B | A_i)} {P(A_1)P(B|A_1) + \cdots + P(A_n)P(B|A_n)}
 \end{align}
 $$
+
+### Counting
+
+The `permutation` of n objects is:
+
+$$
+n!
+$$
+
+#### K-Permutations
+
+If we want to count the number of different ways that we can pick k out of n objects and arrange them in a sequence, the number of posibble sequences is called `k-permutations`:
+
+$$
+\begin{align}
+n(n - 1) \cdots (n - k + 1) &= \frac{n(n - 1)\cdots(n - k + 1)(n - k)\cdots 2 \times 1} {(n - k) \cdots 2 \times 1} \\
+                            &= \frac{n!}{(n - k)!} \\
+\end{align}
+$$
+
+#### K-Combinations
+
+A combination is a choice of k elements out of an n-element set without regard to order. Combination has no ordering of the selected elements.
+
+$$
+\binom{n}{k} = \frac{n!} {k! (n - k)!}
+$$
+
+#### Partition
+
+We have n distinct objects and we are given nonnegative integers $n_1, n_2, \cdots, n_r$, whose sum is equal to n. The n items are to be divided into r disjoint groups, with the ith group containing exactly $n_i$ items. Partitions of n objects into r groups with ith group having $n_i$ objects is called `multinomial coefficient`:
+
+$$
+\begin{align}
+\binom{n}{n_1, n_2, \cdots, n_r} &= \binom{n}{n_1} \binom{n - n_1}{n_2} \binom{n - n_1 - n_2}{n_3} \cdots \binom{n - n_1 - \cdots - n_{r - 1}}{n_r} \\
+&= \frac{n!}{n_1!(n - n_1)!} \frac{(n - n_1)!}{n_2!(n - n_1 - n_2)!} \cdots \frac{(n - n_1 - \cdots - n_{r - 1})!}{(n - n_1 - \cdots - n_{r - 1} - n_r)!n_r!} \\
+&= \frac{n!}{n_1!n_2!\cdots n_r!} \\
+\end{align}
+$$
