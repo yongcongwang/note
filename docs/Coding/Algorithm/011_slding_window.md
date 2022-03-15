@@ -13,13 +13,11 @@ The process of sliding window is:
 Sometimes we have to find the minimum/maximum/average of a fixed-size window, here comes the technique that move left and right pointer equally. The general code is:
 
 ```C++
-int m = arr.size();
-int l = 0, r = 0;
+int m = arr.size(), l = 0, r = 0, sum = 0;
 while (r < m) {
-  window.add(arr[r++]);
-  if (r < m - 1) continue;
-  // collect the answers here
-  window.remove(arr[l++]);
+  while (r < m && r - l < size) sum += arr[r++];
+  // collect answers
+  sum -= arr[l++];
 }
 
 ```
@@ -28,7 +26,6 @@ while (r < m) {
 - [Grumpy Bookstore Owner](https://leetcode-cn.com/problems/grumpy-bookstore-owner/)
 - [Maximum Points You Can Obtain From Cards](https://leetcode-cn.com/problems/maximum-points-you-can-obtain-from-cards/)
 - [Maximum Number of Vowels in a Substring of Given Length](https://leetcode-cn.com/problems/maximum-number-of-vowels-in-a-substring-of-given-length/)
-- [Minimum Operations to Reduce X to Zero](https://leetcode-cn.com/problems/minimum-operations-to-reduce-x-to-zero/)
 
 ## Flexible Size Window
 
@@ -46,6 +43,7 @@ while (r < m) {
 }
 ```
 
+- [Minimum Operations to Reduce X to Zero](https://leetcode-cn.com/problems/minimum-operations-to-reduce-x-to-zero/)
 - [Minimum Window Substring](https://leetcode-cn.com/problems/minimum-window-substring/)
 - [Longest Repeating Character Replacement](https://leetcode-cn.com/problems/longest-repeating-character-replacement/)
 - [Minimum Number of K consecutive bit flips](https://leetcode-cn.com/problems/minimum-number-of-k-consecutive-bit-flips/)
