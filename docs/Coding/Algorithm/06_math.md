@@ -27,7 +27,7 @@ P(A|B) = \frac{P(A \cap B)} {P(B)}
 $$
 
 $$
-A(A \cap B) = P(B) * P(A|B)
+P(A \cap B) = P(B) * P(A|B)
 $$
 
 ### Multiplication Rule

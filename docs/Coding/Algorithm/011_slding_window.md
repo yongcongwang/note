@@ -1,12 +1,12 @@
 # Sliding Window
 
-Sliding window can also be called `two pointers`, it use two pointers to define a sub-array of the origin array and keeps the `loop invariant` while steping on. The main idea behind the sliding window technique is to convert two nested loops into a single loop. And if the prolem is to check something in a sub-array, sliding windwo may be applied.
+Sliding window can also be called `two pointers`, it use two pointers to define a sub-array of the origin array and keeps the `loop invariant` while steping on. The main idea behind the sliding window technique is to convert two nested loops into a single loop. And if the problem is to check something in a sub-array, sliding windwo may be applied.
 
 The process of sliding window is:
 
-1. define the range and break condition of `left` and `right` pointers;
-2. define the `loop invariant`, which is unchanged before/in/after the loop;
-3. keep the `loop invariant` in loop and record the result.
+1. define the range $[left, right)$ with `left` and `right` pointers;
+2. determine to iterate `left` or `right` boundary and extend the other boundary;
+3. keep the `invariant` in loop and collect the results.
 
 ## Fixed Size Window
 
@@ -34,12 +34,11 @@ In some situations the window size is not fixed, for example, we want to find a 
 The pattern is like:
 
 ```C++
-int m = arr.size();
-int l = 0; r = 0;
+int m = arr.size(), l = 0; r = 0;
 while (r < m) {
   window.add(arr[r++]);
-  // Collect the answers here
   while (is_invalid(window)) window.remove(arr[l++]);
+  // Collect the answers here
 }
 ```
 
@@ -55,6 +54,8 @@ while (r < m) {
 ## Count Prolems in Window
 
 Some problems also need the times of number or charactor's appearance, we can use an array or hash to store them.
+
+And if we want to count the number of elements in a range `[low, high]`, we can convert the problem to find the required elements less or equal to a number, and then return `less_or_equal(high) - less_or_equal(low - 1)`.
 
 - [Longest Substring with at most Two Distinct Characters](https://leetcode-cn.com/problems/longest-substring-with-at-most-two-distinct-characters/)
 - [Number of Subarrays with Bounded Maximum](https://leetcode-cn.com/problems/number-of-subarrays-with-bounded-maximum/)
