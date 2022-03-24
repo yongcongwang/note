@@ -397,13 +397,13 @@ $$
 so we have:
 
 $$
-|DE| = x_2 - x = \frac{|AC||BE|}{|BC|} = \frac{(y_2 - y_1) * (y_2 - y)}{y_2 - y_1}
+|DE| = x_2 - x' = \frac{|AC||BE|}{|BC|} = \frac{(y_2 - y_1) * (y_2 - y)}{y_2 - y_1}
 $$
 
 so:
 
 $$
-x = x_2 - \frac{(y_2 - y_1) * (y_2 - y)}{y_2 - y_1}
+x' = x_2 - \frac{(y_2 - y_1) * (y_2 - y)}{y_2 - y_1}
 $$
 
 ```C++
