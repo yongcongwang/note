@@ -455,6 +455,7 @@ There are three relationships between two line segments:
 - overlaps.
 
 And as for the intersection case, we can use following methods to calculate its intersection point:
+
 ![line segment intersection algo](images/2d_geometry/line_segment_intersection_algo.png)
 
 We assume that the intersection point is $O$, the area of the $\triangle ABC$ and $\triangle ABD$ can be calculated by:
