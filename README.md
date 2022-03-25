@@ -1,4 +1,4 @@
-This this the source code repo for my [blog](https://blog.yongcong.wang).
+This this the source code repo for my [blog](https://note.yongcong.wang).
 
 The static website is generated with [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/).
 
