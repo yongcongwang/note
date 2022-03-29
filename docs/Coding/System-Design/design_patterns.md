@@ -1,8 +1,8 @@
 # Design Patterns
 
-Design patterns are typical solutions to commonly occurring problems in software design. The are likely pre-made blueprints that you can customize to solve a recurring design problem in your code.
+Design patterns are typical solutions to commonly occurring problems in software design. They are likely pre-made blueprints that you can customize to solve a recurring design problem in your code.
 
-You can't just find a pattern and copy it into your problem, the way you can with off-the-shelf functions or libraries. The pattern is not a specific piece of code, but a general concept for solving a particular problem. You can follow the pattern details and implement a solution that suits the realities of your own problem.
+You can't just find a pattern and copy it into your problem, as the way you can with off-the-shelf functions or libraries. The pattern is not a specific piece of code, but a general concept for solving a particular problem. You can follow the pattern details and implement a solution that suits the realities of your own problem.
 
 ## Benefits
 Why should we spend time learning design patterns?
