@@ -38,16 +38,14 @@ class FenwickTree {
   }
 
  private:
-  int lowbit(int x) { return x & -x; }
-
   int query(int x) {
     int ans = 0;
-    for (; x; x -= lowbit(x)) ans += tree[x];
+    for (; x; x -= x & -x) ans += tree[x];
     return ans;
   }
 
   void add(int x, int v) {
-    for (; x < tree.size(); x += lowbit(x)) tree[x] += v;
+    for (; x < tree.size(); x += x & -x) tree[x] += v;
   }
 
   vector<int> tree{};
