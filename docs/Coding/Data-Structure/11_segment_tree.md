@@ -1,5 +1,11 @@
 # Segment Tree
 
+A `segment tree` is a data structure that allows answering range querying over an array effectively, while still being flexible enough to allow modifying the array. This includes finding the sum of consecutive array elements `a[l : r]`, or finding the minimum element in a such a range in $O(log n)$ time. Between answering such queries, the Segment Tree allows modifying the array by replacing one element, or even changing the elements of a whole subsegment (e.g. assigning all elements `a[l : r]` to any value, or adding a value to all element in the sub segment).
+
+The root node of the segment tree is `1`, and for an array `a = {10, 11, 12, 13, 14}`, the segment tree will be like:
+
+![segment tree](images/segtree.svg)
+
 ```C++
 /// Segment tree for range sum
 class SegmentTree {
@@ -69,3 +75,5 @@ SegmentTree st{arr};
 st.query(0, 2, 0, 4, 1);  // get sum of arr in range [0, 2], node 1 has range [0, 4]
 st.update(0, 3, 5, 0, 4, 1);  // add(update) 5 to array in range[0, 2]
 ```
+
+- [range-sum-query-mutable](https://leetcode-cn.com/problems/range-sum-query-mutable/)
