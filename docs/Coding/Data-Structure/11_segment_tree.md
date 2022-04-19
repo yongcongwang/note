@@ -62,4 +62,10 @@ class SegmentTree {
   vector<int> d{};  // tree node data array
   vector<int> b{};  // tree node bias array
 };
+
+/// Usage:
+Vector<int> arr{11, 12, 13, 14, 15};
+SegmentTree st{arr};
+st.query(0, 2, 0, 4, 1);  // get sum of arr in range [0, 2], node 1 has range [0, 4]
+st.update(0, 3, 5, 0, 4, 1);  // add(update) 5 to array in range[0, 2]
 ```
