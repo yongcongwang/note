@@ -11,20 +11,27 @@ class SegmentTree {
 
   /// Recursively build the tree
   void build(int s, int e, int p, const vector<int>& a) {
-    if (s == e) {  // terminate if the range is one
-      d[p] = a[s];
-      return;
-    }
+    if (s == e) { d[p] = a[s]; return; }
 
-    int m = s + (e - s) / 2;  // get mid of the range, avoid of overflow
+    int m = s + (e - s) / 2;  // mid of the range
     build(s, m, p * 2, a);
     build(m + 1, e, p * 2 + 1, a);
     d[p] = d[p * 2] + d[p * 2 + 1];
   }
 
+  /// Pushdown the bias
+  void pushdown(int s, int e, int m, int p) {
+    if (!b[p]) return;
+    // update current node's left and right child's data and bias
+    // range [l, r] add a bias
+    d[p * 2] += (m - s + 1) * b[p], d[p * 2 + 1] += (e - m) * b[p];
+    b[p * 2] += b[p], b[p * 2 + 1] += b[p];
+    b[p] = 0;  // clear current node's bias
+  }
+
   /// Update the range [l, r] to c in the tree d[p], which is the range [s, e]
   void update(int l, int r, int c, int s, int e, int p) {
-    if (l <= s && e <= r) {  // [s, e] is in the range [l, r]
+    if (l <= s && e <= r) {  // l <= s <= e <= r
       d[p] += (e - s + 1) * c;
       b[p] = c;
       return;
@@ -32,16 +39,7 @@ class SegmentTree {
 
     // range half to update
     int m = s + (e - s) / 2;
-    if (b[p]) {  // has lazy change, pushdown
-      // update current node's left and right child's data and bias
-      // range [l, r] add a num
-      d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (e - m);
-      d[p * 2] += b[p], b[p * 2 + 1] += b[p];
-      // range [l, r] change to a num
-      // d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (e - m);
-      // d[p * 2] = b[p], b[p * 2 + 1] = b[p];
-      b[p] = 0;  // clear current node's bias
-    }
+    pushdown(s, e, m, p);
 
     if (l <= m) update(l, r, c, s, m, p * 2);
     if (r > m) update(l, r, c, m + 1, e, p * 2 + 1);
@@ -53,16 +51,7 @@ class SegmentTree {
     if (l <= s && e <= r) return d[p];
 
     int m = s + (e - s) / 2, sum = 0;
-    if (b[p]) {  // has lazy change, pushdown
-      // update current node's left and right child's data and bias
-      // range [l, r] add a num
-      d[p * 2] += b[p] * (m - s + 1), d[p * 2 + 1] += b[p] * (e - m);
-      d[p * 2] += b[p], b[p * 2 + 1] += b[p];
-      // range [l, r] change to a num
-      // d[p * 2] = b[p] * (m - s + 1), d[p * 2 + 1] = b[p] * (e - m);
-      // d[p * 2] = b[p], b[p * 2 + 1] = b[p];
-      b[p] = 0;  // clear current node's bias
-    }
+    pushdown(s, e, m, p);
 
     if (l <= m) sum += query(l, r, s, m, p * 2);
     if (r > m) sum += query(l, r, m + 1, e, p * 2 + 1);
