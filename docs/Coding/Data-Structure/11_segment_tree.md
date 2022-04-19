@@ -20,7 +20,7 @@ class SegmentTree {
     if (s == e) { d[p] = a[s]; return; }
 
     int m = s + (e - s) / 2;  // mid of the range
-    build(s, m, p * 2, a);
+    build(s, m, p * 2, a)t
     build(m + 1, e, p * 2 + 1, a);
     d[p] = d[p * 2] + d[p * 2 + 1];
   }
