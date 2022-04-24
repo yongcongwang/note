@@ -503,6 +503,14 @@ bool IsLineSegmentIntersection(const LineSegment& L1, const LineSegment& L2) {
 }
 ```
 
+### Convex Hull
+
+![convex hull](images/2d_geometry/convex_hull.png)
+
+The convex hull of a set of points is defined as the smallest convex polygon, that encloses all of the points in the set. Convex means that the polygon has no coner that is bent inwards.
+
+A usefull way to think about the convex hull is the rubber band analogy. Suppose the points in the set were nails, sticking out of a flat surface. Imaging now, what would happen if you took a rubber band and stretched it around the nails. Trying to contract back to its origin length, the rubber band would enclose the nails, touching the ones that stick out the furthest from the centre.
+
 ## Reference
 
 - [Geometry](https://oi-wiki.org/geometry/2d/)

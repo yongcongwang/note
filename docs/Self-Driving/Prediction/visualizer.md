@@ -7,7 +7,7 @@ This is a tool to visualize map and agents for self-driving developers. It's bas
 - [Dear ImGui](https://github.com/ocornut/imgui)
 - [ImPlot](https://github.com/epezent/implot)
 
-It works with `Apollo Cyber`, and suppoer:
+It works with `Apollo Cyber`, and support:
 
 - Show hdmap(apollo) lane boundaries and reference line with ids;
 - Show agents(ego vehicle and obstacles, extract from apollo channel) with history/shape/futures(planning or prediction trajectory);
