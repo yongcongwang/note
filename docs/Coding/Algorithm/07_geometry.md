@@ -511,6 +511,63 @@ The convex hull of a set of points is defined as the smallest convex polygon, th
 
 A usefull way to think about the convex hull is the rubber band analogy. Suppose the points in the set were nails, sticking out of a flat surface. Imaging now, what would happen if you took a rubber band and stretched it around the nails. Trying to contract back to its origin length, the rubber band would enclose the nails, touching the ones that stick out the furthest from the centre.
 
+#### Andrew's monotone chain convex hull algorithm
+
+![andrew convex hull](images/2d_geometry/andrew_convex_hull.gif)
+
+Andrew's algorithm constructs the convex hull of a set of 2D points in $O(NlogN)$ time.
+
+It does so by first sorting the points lexicographically (first by x-coordinate, and in case of a tie, by y-coordinate), and then constructing upper and lower hulls of the points in $O(n)$ time.
+
+![andrew](images/2d_geometry/andrew_upper_lower.png)
+
+The process is mainly:
+
+1. Sort the points by its x-coordinate, if the x-coordinate is equal, by y-coordinate;
+2. Start from the leftmost point, if the new point is higher(use `cross product`) than last point in stack, we pop the last; if not, we push the new point to stack. After this, we can get the upper hull.
+3. We remove all points used in upper hull, and do the same thing as step 2 in reverse order to get the lower hull.
+4. Return all points in upper and lower hull.
+
+```C++
+vector<vector<int>> andrew(const vector<vector<int>>& pts) {
+    sort(pts.begin(), pts.end(), [](auto& a , auto& b) {
+      return a[0] == b[0] ? a[1] < b[1] : a[0] < b[0];
+    });
+    auto cross = [](auto& p1, auto& p2, auto& p0) -> int {
+      return (p1[0] - p0[0]) * (p2[1] - p0[1]) -
+             (p1[1] - p0[1]) * (p2[0] - p0[0]);
+    };
+
+    int m = pts.size();
+    vector<int> hull{};
+    vector<bool> v(m, true);
+    for (int i = 0; i < m; ++i) {
+      while (hull.size() >= 2 && cross(pts[*hull.rbegin()], pts[i],
+                                       pts[*(hull.rbegin() + 1)]) > 0) {
+        v[hull.back()] = false;
+        hull.pop_back();
+      }
+      hull.push_back(i);
+    }
+    
+    int n = hull.size();
+    v[0] = false;
+    for (int i = m - 1; i >= 0; --i) {
+      if (v[i]) continue;
+      while (hull.size() >= 2 && cross(pts[*hull.rbegin()], pts[i],
+                                       pts[*(hull.rbegin() + 1)]) > 0) {
+        hull.pop_back();
+      }
+      hull.push_back(i);
+    }
+    hull.pop_back();
+
+    vector<vector<int>> ans{};
+    for (auto i : hull) ans.push_back(std::move(pts[i]));
+    return ans;
+  }
+```
+
 ## Reference
 
 - [Geometry](https://oi-wiki.org/geometry/2d/)
