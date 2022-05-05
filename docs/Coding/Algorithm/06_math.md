@@ -16,6 +16,24 @@ Least common multiple(LCM) of two integer is the smallest integer that is a mult
 int lcm(int x, int y) { return x / gcd(x, y) * y; }
 ```
 
+## Josephus Problem
+
+![josephus problem](images/math/josephus_problem.gif)
+
+People are standing in a circle wating to be executed. Counting begins at a special point in the circle and proceeds around the circle in a specified direction. After a specified number of people are skipped, the next person is executed. The procedure is repeated with the remaining people, starting with the next person, going in the same direction and skipping the same number of people, until only one person remains, and is freed.
+
+We define that:
+
+- `f(n, m)` returns the remaining people indexed from `0` in `n` people and skips each `m` people.
+- if we know `f(n - 1, m) = x`, then at the `n` trip we start from index `x + 1` and skip `m` people and then return the answer: `f(n - 1, m) + m`. Now that people are in a circle, we can avoid overflow by `f(n, m) = (f(n - 1, m) + m) % n`.
+- As for the base, if `n == 1`, result is `0`.
+
+```C++
+int josephus(int n, int m) {
+  return n == 1 ? 0 : (f(n - 1, m) + m) % n;
+}
+```
+
 ## Probability
 
 ### Conditional Probability
