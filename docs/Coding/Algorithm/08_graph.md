@@ -50,43 +50,6 @@ vector<int> TopoSort(const vector<pair<int, int>>& edges, int n) {
 
 ```
 
-## Breadth-first Search(BFS)
-
-BFS is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root(or some arbitrary node of a graph, sometimes referred as a `search key`), and explores all of the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
-
-![bfs](images/graph/bfs.gif)
-
-```C++
-void bfs(Graph& graph, int start) {
-  deque<int> d{start};
-  unordered_set<int> visited{start};
-  while (!d.empty()) {
-    int node = d.front();
-    d.pop_front();
-    for (auto next : graph[node]) {
-      if (visited.count(next)) continue;
-      visited.insert(next);
-      d.push_back(next);
-    }
-  }
-}
-```
-
-## Depth-first Search(DFS)
-
-DFS is an algorithm for traversing or searching tree or graph data structure. The algorithm starts at the root node(selecting some arbitrary node as the root node in the case of a graph) and explores as far as possible along each branch before backtracking.
-
-![dfs](images/graph/dfs.gif)
-
-```C++
-void dfs(Graph& graph, unordered_set<int>& visited, int root) {
-  if (visited.count(root)) return;
-  for (auto next : graph[root]) {
-    dfs(graph, visited, next);
-  }
-}
-```
-
 ## Shortest Path(SP)
 
 In graph theory, the `shortest path problem` is the problem of finding a path between two nodes in a graph such that the sum of the weights of its constituent edges is minimized. The mainly used algorihtms are:
