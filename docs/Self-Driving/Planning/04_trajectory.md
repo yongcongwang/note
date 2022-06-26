@@ -229,7 +229,11 @@ $$
 N = \frac{5}{k}
 $$
 
-The more segments we divide, the less degrees of polynomial we need.
+The more segments we divide, the less degrees of polynomial we need. But $k$ may be $1$, so $5$ is a good choice.
+
+As for the timeline of problem, we can use
+
+- many relative timeline, which is good for 
 
 ### Convex Optimization
 
