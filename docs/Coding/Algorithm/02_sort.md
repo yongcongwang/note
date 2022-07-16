@@ -143,20 +143,18 @@ Mergesort runs in $O(NlogN)$ worse-case running time, and the number of comparis
 The fundamental operation in this algorithm is merging two sorted lists. Because the lists are sorted, this can be done in one pass through the input, if the output is put in a third list. The basic merging algorithm takes two input array A and B, an output array C, and three counters, Actr, Bctr, and Cctr, which are initially set to the beginning of their respective arrays. The smaller of A[Actr] and B[Bctr] is copied to the next entry in C, and the appropriate counters are advanced. When either input list is exhausted, the remainder of the other list is copied to C.
 
 ```C++
-void Merge(vector<int>& arr, vector<int>& tmp, int left, int mid, int right) {
-  int l = left, r = mid + 1, i = left;
-  while (l <= mid && r <= right) arr[i++] = tmp[l] < tmp[r] ? tmp[l++] : tmp[r++];
-  while (l <= mid) arr[i++] = tmp[l++];
-  while (r <= right) arr[i++] = tmp[r++];
-  while (left <= right) tmp[left++] = arr[left];
-}
-
 void MergeSort(vector<int>& arr, vector<int>& tmp, int left, int right) {
   if (left >= right) return;
+
   int mid = left + (right - left) / 2;
   MergeSort(arr, tmp, left, mid);
   MergeSort(arr, tmp, mid + 1, right);
-  Merge(arr, tmp, left, mid, right);
+
+  int l = left, r = mid + 1, i = left;
+  while (l <= mid && r <= right) arr[i++] = arr[l] < arr[r] ? tmp[l++] : tmp[r++];
+  while (l <= mid) arr[i++] = tmp[l++];
+  while (r <= right) arr[i++] = tmp[r++];
+  while (left <= right) arr[left++] = tmp[left];
 }
 ```
 
@@ -181,8 +179,6 @@ The classic quicksort algorithm to sort an array S consists of the following fou
 1. Pick any element v in S. This called the `pivot`;
 2. Partition S-{v}(the remaining elements in S) into two disjoint groups: $S_1 = {x \in S - {v} | x \le v}$, and $S_x = {x \in S - {v} | x \ge v}$;
 3. Return {quicksort($S_1$) and quicksort($S_2$)}.
-
-For very small arrays($N \le 20$), quicksort does not perform as well as insertion sort. Furthermore, because quicksort is recursive, these cases will occur frequently. A comman solution is not to sue quicksort recursively for small arrays, but instead use a sorting algorithm that is efficient for small arrays, such as insertion sort. Using this strategy can actually save about 15 percent in the running time(over doing no cutoff at all). A good cutoff range is $N = 10$, although any cutoff between 5 and 20 is likely to produce similar results. This also saves nastly degenerate cases, such as taking the median of three elements when there are only one or two.
 
 ```C++
 void QuickSort(vector<int>& arr, int left, int right) {
