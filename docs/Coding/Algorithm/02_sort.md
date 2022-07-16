@@ -178,31 +178,23 @@ The quicksort algorithm is simple to understand and prove correct, although for 
 
 The classic quicksort algorithm to sort an array S consists of the following four easy steps:
 
-1. If the number of elements in S is 0 or 1, then return;
-2. Pick any element v in S. This called the pivot;
-3. Partition S-{v}(the remaining elements in S) into two disjoint groups: $S_1 = {x \in S - {v} | x \le v}$, and $S_x = {x \in S - {v} | x \ge v}$;
-4. Return {quicksort($S_1$) followed by v followed by quicksort($S_2$)}.
+1. Pick any element v in S. This called the `pivot`;
+2. Partition S-{v}(the remaining elements in S) into two disjoint groups: $S_1 = {x \in S - {v} | x \le v}$, and $S_x = {x \in S - {v} | x \ge v}$;
+3. Return {quicksort($S_1$) and quicksort($S_2$)}.
 
 For very small arrays($N \le 20$), quicksort does not perform as well as insertion sort. Furthermore, because quicksort is recursive, these cases will occur frequently. A comman solution is not to sue quicksort recursively for small arrays, but instead use a sorting algorithm that is efficient for small arrays, such as insertion sort. Using this strategy can actually save about 15 percent in the running time(over doing no cutoff at all). A good cutoff range is $N = 10$, although any cutoff between 5 and 20 is likely to produce similar results. This also saves nastly degenerate cases, such as taking the median of three elements when there are only one or two.
 
 ```C++
-int Partition(vector<int>& arr, int l, int r) {
-  int p = l++;
-  while (l < r) {
-    while (l < r && arr[l] <= arr[p]) ++l;
-    while (l < r && arr[r] >= arr[p]) --r;
-    if (l < r) swap(arr[l], arr[r]);
-  }
-  if (l == r && arr[r] > arr[p]) --r;
-  swap(arr[p], arr[r]);
-  return r;
-}
-
 void QuickSort(vector<int>& arr, int left, int right) {
   if (left >= right) return;
-  auto mid = Partition(arr, left, right);
-  QuickSort(arr, left, mid - 1);
-  QuickSort(arr, mid + 1, right);
+  int l = left - 1, r = right + 1, p = arr[left + (right - left) / 2];
+  while (l < r) {
+    while (arr[++l] < p) {};
+    while (arr[--r] > p) {};
+    if (l < r) swap(arr[l], arr[r]);
+  }
+  QuickSort(arr, left, r);
+  QuickSort(arr, r + 1, right);
 }
 ```
 
