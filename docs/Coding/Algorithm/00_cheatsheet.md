@@ -38,7 +38,36 @@ void merge_sort(int a[], int l, int r) {
 ```
 
 ## Binary Search
+//           Left                             Right
+// |---------------------------| |------------------------------|
+//                   right end | | left end
 
-```C++
-// Left
+// Left end
+// Devide range [l, r] to [l, mid] and [mid + 1, r], and l locates at (mid + 1)
+int bs(int a[], int l, int r) {
+  while (l < r) {
+    int mid = l + r >> 1;
+    if (resultl_is_in(mid)) {
+      r = mid;
+    } else {
+      l = mid + 1;
+    }
+  }
+  return l;
+}
+
+// Right end
+// Devide range [l, r] to [l, mid - 1] and [mid, r], and l locates at (mid)
+int bs(int a[], int l, int r) {
+  while (l < r) {
+    // avoid the case [l, r] = [0, 1]
+    int mid = l + r + 1 >> 1;
+    if (is_result_in(mid)) {
+      l = mid;
+    } else {
+      r = mid - 1;
+    }
+  }
+  return l;
+}
 ```
