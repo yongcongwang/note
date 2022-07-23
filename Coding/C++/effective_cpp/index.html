@@ -1,0 +1,3878 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../../logo.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Effective C++ - Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+    
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#effective-c" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Notebook" class="md-header__button md-logo" aria-label="Notebook" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Effective C++
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Algorithm/00_cheatsheet/" class="md-tabs__link md-tabs__link--active">
+        Coding
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Deep-Learning/00_mechine_learning/" class="md-tabs__link">
+        Deep Learning
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Math/Calculus/000_summary/" class="md-tabs__link">
+        Math
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Self-Driving/Control/path_tracking/" class="md-tabs__link">
+        Self Driving
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../Tools/class_diagram/" class="md-tabs__link">
+        Tools
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Notebook" class="md-nav__button md-logo" aria-label="Notebook" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Coding
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Coding" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Coding
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          Algorithm
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Algorithm" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Algorithm
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/00_cheatsheet/" class="md-nav__link">
+        Algorithm Cheatsheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/011_slding_window/" class="md-nav__link">
+        Sliding Window
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/013_two_pointer/" class="md-nav__link">
+        Two Pointers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/01_bs/" class="md-nav__link">
+        Binary Search
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/02_sort/" class="md-nav__link">
+        Sort
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/031_bt/" class="md-nav__link">
+        Backtracking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/03_search/" class="md-nav__link">
+        Searching
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/04_dp/" class="md-nav__link">
+        Dynamic Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/055_bit/" class="md-nav__link">
+        Bitwise
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/05_greedy/" class="md-nav__link">
+        Greedy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/06_math/" class="md-nav__link">
+        Math
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/07_geometry/" class="md-nav__link">
+        Geometry(2D)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Algorithm/08_graph/" class="md-nav__link">
+        Graph
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          C++
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="C++" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          C++
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_11/" class="md-nav__link">
+        C++11 New Features and Libraries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_14/" class="md-nav__link">
+        C++14 New Features and Libraries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cpp_17/" class="md-nav__link">
+        C++17 New Features and Libraries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Effective C++
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Effective C++
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-view-c-as-a-federation-of-languages" class="md-nav__link">
+    1. View C++ as a federation of languages.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prefer-consts-enums-and-inlines-to-defines" class="md-nav__link">
+    2. Prefer consts, enums, and inlines to #defines.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-use-const-whenever-possible" class="md-nav__link">
+    3. Use const whenever possible.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-make-sure-that-the-objects-are-initialized-before-theyre-used" class="md-nav__link">
+    4. Make sure that the objects are initialized before they're used.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-know-what-functions-c-silently-writes-and-calls" class="md-nav__link">
+    5. Know what functions C++ silently writes and calls.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-explicityly-disallow-the-use-of-compiler-generated-function-you-do-not-want" class="md-nav__link">
+    6. Explicityly disallow the use of compiler-generated function you do not want.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-declare-destructors-virtual-in-polymorphic-basic-classes" class="md-nav__link">
+    7. Declare destructors virtual in polymorphic basic classes.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-prevent-exceptions-from-leaving-destructors" class="md-nav__link">
+    8. Prevent exceptions from leaving destructors.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-never-call-virtual-function-during-construction-or-destruction" class="md-nav__link">
+    9. Never call virtual function during construction or destruction.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-have-assignment-operators-return-a-reference-to-this" class="md-nav__link">
+    10. Have assignment operators return a reference to *this.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-handle-assignment-to-self-in-operator" class="md-nav__link">
+    11. Handle assignment to self in operator=.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-copy-all-parts-of-an-object" class="md-nav__link">
+    12. Copy all parts of an object.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-use-objects-to-manage-resources" class="md-nav__link">
+    13. Use objects to manage resources.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-think-carefully-about-copying-behavior-in-resource-managing-classes" class="md-nav__link">
+    14. Think carefully about copying behavior in resource-managing classes.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-provide-access-to-raw-resource-in-resource-managing-classes" class="md-nav__link">
+    15. Provide access to raw resource in resource-managing classes.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-use-the-same-form-in-correspongding-uses-of-new-and-delete" class="md-nav__link">
+    16. Use the same form in correspongding uses of new and delete.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-store-newed-objects-in-smart-pointers-in-standalone-statements" class="md-nav__link">
+    17. Store newed objects in smart pointers in standalone statements.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-make-interfaces-easy-to-use-correctly-and-hard-to-use-incorrectly" class="md-nav__link">
+    18. Make interfaces easy to use correctly and hard to use incorrectly.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-treak-class-design-as-type-design" class="md-nav__link">
+    19. Treak class design as type design.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-prefer-pass-by-reference-to-const-to-pass-by-value" class="md-nav__link">
+    20. Prefer pass-by-reference-to-const to pass-by-value.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-dont-try-to-return-a-reference-when-you-must-return-an-object" class="md-nav__link">
+    21. Don't try to return a reference when you must return an object.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-declare-data-members-private" class="md-nav__link">
+    22. Declare data members private.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-prefer-non-member-non-friend-functions-to-member-functions" class="md-nav__link">
+    23. Prefer non-member non-friend functions to member functions.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-declare-non-member-functions-when-type-conversions-should-apply-to-all-parameters" class="md-nav__link">
+    24. Declare non-member functions when type conversions should apply to all parameters.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-consider-support-for-a-non-throwing-swap" class="md-nav__link">
+    25. Consider support for a non-throwing swap.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-postpone-variable-definitions-as-long-as-possible" class="md-nav__link">
+    26. Postpone variable definitions as long as possible.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-minimize-casting" class="md-nav__link">
+    27. Minimize casting.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-avoid-returning-handle-to-object-internals" class="md-nav__link">
+    28. Avoid returning "handle" to object internals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-strive-for-exception-safe-code" class="md-nav__link">
+    29. Strive for exception-safe code.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30-understand-the-ins-and-outs-of-inlining" class="md-nav__link">
+    30. Understand the ins and outs of inlining.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-minimize-compilation-dependencies-between-files" class="md-nav__link">
+    31. Minimize compilation dependencies between files.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-make-sure-public-inheritance-models-is-a" class="md-nav__link">
+    32. Make sure public inheritance models "is-a".
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-avoid-hiding-inherited-names" class="md-nav__link">
+    33. Avoid hiding inherited names.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-differentiate-between-inheritance-of-interface-and-inheritance-of-implementation" class="md-nav__link">
+    34. Differentiate between inheritance of interface and inheritance of implementation.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-consider-alternatives-to-virtual-functions" class="md-nav__link">
+    35. Consider alternatives to virtual functions.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-never-redefine-an-inherited-non-virtual-function" class="md-nav__link">
+    36. Never redefine an inherited non-virtual function.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-never-redefine-a-functions-inherited-default-parameter-value" class="md-nav__link">
+    37. Never redefine a function's inherited default parameter value.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-model-has-a-or-is-implemented-in-terms-of-through-composition" class="md-nav__link">
+    38. Model "has-a" or "is-implemented-in-terms-of" through composition.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39-use-private-inheritance-judiciously" class="md-nav__link">
+    39. Use private inheritance judiciously.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#40-use-multiple-inheritance-judiciously" class="md-nav__link">
+    40. Use multiple inheritance judiciously.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-understand-implicit-interfaces-and-compile-time-polymorphism" class="md-nav__link">
+    41. Understand implicit interfaces and compile-time polymorphism.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-understand-the-two-meaning-of-typename" class="md-nav__link">
+    42. Understand the two meaning of typename.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-know-how-to-access-names-in-templatized-base-classes" class="md-nav__link">
+    43. Know how to access names in templatized base classes.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-factor-parameter-independent-code-out-of-templates" class="md-nav__link">
+    44. Factor parameter-independent code out of templates.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#45-use-member-function-templates-to-accept-all-compatible-types" class="md-nav__link">
+    45. Use member function templates to accept "all compatible types".
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-define-non-member-functions-inside-templates-when-type-conversions-are-disired" class="md-nav__link">
+    46. Define non-member functions inside templates when type conversions are disired.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-use-traits-classes-for-information-about-types" class="md-nav__link">
+    47. Use traits classes for information about types.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#48-beware-of-template-metaprogramming" class="md-nav__link">
+    48. Beware of template metaprogramming.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#49-understand-the-behavior-of-the-new-handler" class="md-nav__link">
+    49. Understand the behavior of the new-handler.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#50-understand-when-it-makes-sense-to-replace-new-and-delete" class="md-nav__link">
+    50. Understand when it makes sense to replace new and delete.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-adhere-to-convention-when-writing-new-and-delete" class="md-nav__link">
+    51. Adhere to convention when writing new and delete.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-write-placement-delete-if-you-write-placement-new" class="md-nav__link">
+    52. Write placement delete if you write placement new.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-pay-attention-to-compiler-warnings" class="md-nav__link">
+    53. Pay attention to compiler warnings.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-familiarize-yourself-with-the-standard-library" class="md-nav__link">
+    54. Familiarize yourself with the standard library.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-familiarize-yourself-with-boost" class="md-nav__link">
+    55. Familiarize yourself with Boost.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../effective_modern_cpp/" class="md-nav__link">
+        Effective Modern C++
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Concurrency
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Concurrency" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Concurrency
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Concurrency/01_concurrency_in_cpp/" class="md-nav__link">
+        C++ Concurrency in Action
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Concurrency/02_cuda_coding/" class="md-nav__link">
+        Cuda Coding
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          Data Structure
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data Structure" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Data Structure
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/01_stack/" class="md-nav__link">
+        Stack
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/02_queue/" class="md-nav__link">
+        Queue
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/03_linked_list/" class="md-nav__link">
+        Linked List
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/045_kd_tree/" class="md-nav__link">
+        K-d Tree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/04_tree/" class="md-nav__link">
+        Tree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/05_hash/" class="md-nav__link">
+        Hash Table
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/06_array/" class="md-nav__link">
+        Array
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/075_lru/" class="md-nav__link">
+        LRU(Latest Recently Used) Cache
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/076_lfu/" class="md-nav__link">
+        LFU
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/07_string/" class="md-nav__link">
+        String
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/08_trie/" class="md-nav__link">
+        Trie
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/09_union_find/" class="md-nav__link">
+        Union-Find
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/10_bit/" class="md-nav__link">
+        Fenwick Tree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Data-Structure/11_segment_tree/" class="md-nav__link">
+        Segment Tree
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          System Design
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="System Design" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          System Design
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../System-Design/algorithm-analysis/" class="md-nav__link">
+        Algorithm Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../System-Design/design_patterns/" class="md-nav__link">
+        Design Patterns
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../System-Design/oop10/" class="md-nav__link">
+        The 10 Object-Oriented-Principles(OOP)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Deep Learning
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Deep Learning" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Deep Learning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/00_mechine_learning/" class="md-nav__link">
+        Mechine Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/10_nn_and_deep_learning/" class="md-nav__link">
+        Neural Network and Deep Learning
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/11_improve_nn/" class="md-nav__link">
+        Improving Deep Neural Networks: Hyperparameter Tuning, Regularition and Optimization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/12_structure_ml/" class="md-nav__link">
+        Structuring mechine learning projects
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/13_cnn/" class="md-nav__link">
+        Convolutional Neural Networks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/14_rnn/" class="md-nav__link">
+        Sequence models
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Math
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Math" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Math
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Calculus
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Calculus" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Calculus
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/000_summary/" class="md-nav__link">
+        Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/00_functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/01_limits/" class="md-nav__link">
+        Limits
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/02_limits_polynomials/" class="md-nav__link">
+        Limit Problems of Polynomials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/03_continuity_and_differentiability/" class="md-nav__link">
+        Continuity and Differentiability
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/04_solve_diff/" class="md-nav__link">
+        Differentiation Problems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/05_trig_derivative/" class="md-nav__link">
+        Trig Limits and Derivatives
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/06_exp_and_log/" class="md-nav__link">
+        Exponentials and Logarithms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/07_extrema/" class="md-nav__link">
+        Extrema of Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/08_optim_and_linear/" class="md-nav__link">
+        Optimization and Linearization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/09_l_hopital_rule/" class="md-nav__link">
+        L'Hopital's Rule and Limits
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/10_calculus/" class="md-nav__link">
+        The Fundamental Theorems of Calculus
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/11_tech_to_solve_int/" class="md-nav__link">
+        Techniques to Solve Integration Problems
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/12_improper_integral/" class="md-nav__link">
+        Improper Integrals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/13_sequances_and_series/" class="md-nav__link">
+        Sequences and Series
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Calculus/14_taylor/" class="md-nav__link">
+        Tylor Polynomials, Tylor Series and Power Series
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Linear Algebra
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Linear Algebra" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Linear Algebra
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/00_summary/" class="md-nav__link">
+        Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_2" type="checkbox" id="__nav_4_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_2">
+          Ax equal b and the Four Subspaces
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ax equal b and the Four Subspaces" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ax equal b and the Four Subspaces
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/01_geometry_of_linear_equations/" class="md-nav__link">
+        The Geometry of Linear Equations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/02_overview/" class="md-nav__link">
+        An Overview of Linear Algebra
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/03_elimination/" class="md-nav__link">
+        Elimination with Matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/04_multi_inverse/" class="md-nav__link">
+        Multiplication and Inverse Matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/05_a_lu/" class="md-nav__link">
+        Factorization into A=LU
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/06_trans_perm/" class="md-nav__link">
+        Transpose, permutations, spaces R^n
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/07_col_null_space/" class="md-nav__link">
+        Column Space and Nullspace
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/08_ax_0/" class="md-nav__link">
+        Soving Ax = 0: pivot variables, special solutions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/09_ax_b/" class="md-nav__link">
+        Solving Ax = b: row reduced form R
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/10_ind_basis_dim/" class="md-nav__link">
+        Independence, Basis and Dimension
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/11_four_subspace/" class="md-nav__link">
+        The Four Fundamental Subspaces
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/12_matrix_space/" class="md-nav__link">
+        Matrix spaces, Rand 1 and Small World Graphs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/13_graph/" class="md-nav__link">
+        Graphs, Networks and Incidence Matrices
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_3" type="checkbox" id="__nav_4_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_3">
+          Least Squares Determinants and Eigenvalues
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Least Squares Determinants and Eigenvalues" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Least Squares Determinants and Eigenvalues
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/14_orthogonal/" class="md-nav__link">
+        Orthogonal vectors and subspaces
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/15_proj_subspace/" class="md-nav__link">
+        Projections onto Subspaces
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/16_least_square/" class="md-nav__link">
+        Projection Matrices and Least Squares
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/17_gram_schmidt/" class="md-nav__link">
+        Orthogonal Matrices and Gram-Schmidt
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/18_property_determinant/" class="md-nav__link">
+        Properties of Determinants
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/19_cofactor/" class="md-nav__link">
+        Determinant Formulas and Cofactors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/20_cramer/" class="md-nav__link">
+        Cramer's Rule, Inverse Matrix, and Volume
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/21_eigen/" class="md-nav__link">
+        Eigenvalues and Eigenvectors
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/22_diag_a/" class="md-nav__link">
+        Diagonalization and Powers of A
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/23_diff_exp/" class="md-nav__link">
+        Differential Equations and e^At
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/24_markov/" class="md-nav__link">
+        Markov Matrices and Fourier Series
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_4" type="checkbox" id="__nav_4_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_4">
+          Positive Definite Matrices and Applications
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Positive Definite Matrices and Applications" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Positive Definite Matrices and Applications
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/01_pos_def/" class="md-nav__link">
+        Symmetric Matrices and Positive definiteness
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/02_fft/" class="md-nav__link">
+        Complex Matrices and Fast Fourier Transform
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/03_minima/" class="md-nav__link">
+        Positive Definite Matrices and Minima
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/04_similar_matrices/" class="md-nav__link">
+        Similar Matrices and Jordan Form
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/05_svd/" class="md-nav__link">
+        Singular Value Decomposition(SVD)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/06_transform/" class="md-nav__link">
+        Linear Transformations and their Matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/07_compression/" class="md-nav__link">
+        Change of Basis and Image Compression
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/08_pseudoinverse/" class="md-nav__link">
+        Left and Right Inverse; Pseudoinverse
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Probability
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Probability" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Probability
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Probability/00_summary/" class="md-nav__link">
+        Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Math/Probability/01_sample_space_and_probability/" class="md-nav__link">
+        Sample Space and Probability
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Self Driving
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Self Driving" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Self Driving
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Control
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Control" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Control
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Control/path_tracking/" class="md-nav__link">
+        Path tracking
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          Map
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Map" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Map
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Map/hdmap/" class="md-nav__link">
+        Autonomous Hdmap Format
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Planning
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Planning" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Planning
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/00_summary/" class="md-nav__link">
+        Summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/01_search/" class="md-nav__link">
+        Search-based Path Finding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/02_sample/" class="md-nav__link">
+        Sample-based Path Finding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/03_kinodynamic/" class="md-nav__link">
+        Kinodynamic Path Finding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/04_trajectory/" class="md-nav__link">
+        Minimum Snap Trajectory Generation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Prediction
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Prediction" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Prediction
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/apollo_prediction_module/" class="md-nav__link">
+        Introduce to Apollo(3.5) Prediction Module
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/compile_cpp_project/" class="md-nav__link">
+        Compilation Optimization of C++ Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/dig_into_apollo_prediction/" class="md-nav__link">
+        Dig into Apollo(6.0) Prediction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/imm-for-prediction/" class="md-nav__link">
+        Interacting Multiple Models(IMM) for Prediction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/visualizer/" class="md-nav__link">
+        The Design of A Visualization Tool for Autonomous Vehicle Developers(TODO)
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Routing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Routing" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Routing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Routing/a_star/" class="md-nav__link">
+        A star
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tools" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/class_diagram/" class="md-nav__link">
+        Class diagram
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/latex/" class="md-nav__link">
+        Latex Equations Cheatsheet
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/shortcuts_to_move_faster_in_terminal/" class="md-nav__link">
+        Shortcuts to Move Faster in Terminal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/use_vim_as_ide/" class="md-nav__link">
+        Use vim as an IDE without plugins
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/vim_without_plugins/" class="md-nav__link">
+        How to Do 90% of What Plugins Do with Just Vim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/workspace_in_ubuntu/" class="md-nav__link">
+        Setup Workspace in Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/workspace_in_windows/" class="md-nav__link">
+        Setup Workspace in Windows
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-view-c-as-a-federation-of-languages" class="md-nav__link">
+    1. View C++ as a federation of languages.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-prefer-consts-enums-and-inlines-to-defines" class="md-nav__link">
+    2. Prefer consts, enums, and inlines to #defines.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-use-const-whenever-possible" class="md-nav__link">
+    3. Use const whenever possible.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-make-sure-that-the-objects-are-initialized-before-theyre-used" class="md-nav__link">
+    4. Make sure that the objects are initialized before they're used.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-know-what-functions-c-silently-writes-and-calls" class="md-nav__link">
+    5. Know what functions C++ silently writes and calls.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-explicityly-disallow-the-use-of-compiler-generated-function-you-do-not-want" class="md-nav__link">
+    6. Explicityly disallow the use of compiler-generated function you do not want.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-declare-destructors-virtual-in-polymorphic-basic-classes" class="md-nav__link">
+    7. Declare destructors virtual in polymorphic basic classes.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-prevent-exceptions-from-leaving-destructors" class="md-nav__link">
+    8. Prevent exceptions from leaving destructors.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-never-call-virtual-function-during-construction-or-destruction" class="md-nav__link">
+    9. Never call virtual function during construction or destruction.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-have-assignment-operators-return-a-reference-to-this" class="md-nav__link">
+    10. Have assignment operators return a reference to *this.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-handle-assignment-to-self-in-operator" class="md-nav__link">
+    11. Handle assignment to self in operator=.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-copy-all-parts-of-an-object" class="md-nav__link">
+    12. Copy all parts of an object.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-use-objects-to-manage-resources" class="md-nav__link">
+    13. Use objects to manage resources.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-think-carefully-about-copying-behavior-in-resource-managing-classes" class="md-nav__link">
+    14. Think carefully about copying behavior in resource-managing classes.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-provide-access-to-raw-resource-in-resource-managing-classes" class="md-nav__link">
+    15. Provide access to raw resource in resource-managing classes.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-use-the-same-form-in-correspongding-uses-of-new-and-delete" class="md-nav__link">
+    16. Use the same form in correspongding uses of new and delete.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-store-newed-objects-in-smart-pointers-in-standalone-statements" class="md-nav__link">
+    17. Store newed objects in smart pointers in standalone statements.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-make-interfaces-easy-to-use-correctly-and-hard-to-use-incorrectly" class="md-nav__link">
+    18. Make interfaces easy to use correctly and hard to use incorrectly.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-treak-class-design-as-type-design" class="md-nav__link">
+    19. Treak class design as type design.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-prefer-pass-by-reference-to-const-to-pass-by-value" class="md-nav__link">
+    20. Prefer pass-by-reference-to-const to pass-by-value.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-dont-try-to-return-a-reference-when-you-must-return-an-object" class="md-nav__link">
+    21. Don't try to return a reference when you must return an object.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-declare-data-members-private" class="md-nav__link">
+    22. Declare data members private.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-prefer-non-member-non-friend-functions-to-member-functions" class="md-nav__link">
+    23. Prefer non-member non-friend functions to member functions.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-declare-non-member-functions-when-type-conversions-should-apply-to-all-parameters" class="md-nav__link">
+    24. Declare non-member functions when type conversions should apply to all parameters.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#25-consider-support-for-a-non-throwing-swap" class="md-nav__link">
+    25. Consider support for a non-throwing swap.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#26-postpone-variable-definitions-as-long-as-possible" class="md-nav__link">
+    26. Postpone variable definitions as long as possible.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#27-minimize-casting" class="md-nav__link">
+    27. Minimize casting.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#28-avoid-returning-handle-to-object-internals" class="md-nav__link">
+    28. Avoid returning "handle" to object internals
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#29-strive-for-exception-safe-code" class="md-nav__link">
+    29. Strive for exception-safe code.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#30-understand-the-ins-and-outs-of-inlining" class="md-nav__link">
+    30. Understand the ins and outs of inlining.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-minimize-compilation-dependencies-between-files" class="md-nav__link">
+    31. Minimize compilation dependencies between files.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-make-sure-public-inheritance-models-is-a" class="md-nav__link">
+    32. Make sure public inheritance models "is-a".
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-avoid-hiding-inherited-names" class="md-nav__link">
+    33. Avoid hiding inherited names.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-differentiate-between-inheritance-of-interface-and-inheritance-of-implementation" class="md-nav__link">
+    34. Differentiate between inheritance of interface and inheritance of implementation.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-consider-alternatives-to-virtual-functions" class="md-nav__link">
+    35. Consider alternatives to virtual functions.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-never-redefine-an-inherited-non-virtual-function" class="md-nav__link">
+    36. Never redefine an inherited non-virtual function.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-never-redefine-a-functions-inherited-default-parameter-value" class="md-nav__link">
+    37. Never redefine a function's inherited default parameter value.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#38-model-has-a-or-is-implemented-in-terms-of-through-composition" class="md-nav__link">
+    38. Model "has-a" or "is-implemented-in-terms-of" through composition.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#39-use-private-inheritance-judiciously" class="md-nav__link">
+    39. Use private inheritance judiciously.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#40-use-multiple-inheritance-judiciously" class="md-nav__link">
+    40. Use multiple inheritance judiciously.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#41-understand-implicit-interfaces-and-compile-time-polymorphism" class="md-nav__link">
+    41. Understand implicit interfaces and compile-time polymorphism.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-understand-the-two-meaning-of-typename" class="md-nav__link">
+    42. Understand the two meaning of typename.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-know-how-to-access-names-in-templatized-base-classes" class="md-nav__link">
+    43. Know how to access names in templatized base classes.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-factor-parameter-independent-code-out-of-templates" class="md-nav__link">
+    44. Factor parameter-independent code out of templates.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#45-use-member-function-templates-to-accept-all-compatible-types" class="md-nav__link">
+    45. Use member function templates to accept "all compatible types".
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-define-non-member-functions-inside-templates-when-type-conversions-are-disired" class="md-nav__link">
+    46. Define non-member functions inside templates when type conversions are disired.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#47-use-traits-classes-for-information-about-types" class="md-nav__link">
+    47. Use traits classes for information about types.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#48-beware-of-template-metaprogramming" class="md-nav__link">
+    48. Beware of template metaprogramming.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#49-understand-the-behavior-of-the-new-handler" class="md-nav__link">
+    49. Understand the behavior of the new-handler.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#50-understand-when-it-makes-sense-to-replace-new-and-delete" class="md-nav__link">
+    50. Understand when it makes sense to replace new and delete.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51-adhere-to-convention-when-writing-new-and-delete" class="md-nav__link">
+    51. Adhere to convention when writing new and delete.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52-write-placement-delete-if-you-write-placement-new" class="md-nav__link">
+    52. Write placement delete if you write placement new.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-pay-attention-to-compiler-warnings" class="md-nav__link">
+    53. Pay attention to compiler warnings.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-familiarize-yourself-with-the-standard-library" class="md-nav__link">
+    54. Familiarize yourself with the standard library.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-familiarize-yourself-with-boost" class="md-nav__link">
+    55. Familiarize yourself with Boost.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="effective-c">Effective C++<a class="headerlink" href="#effective-c" title="Permanent link">&para;</a></h1>
+<p>This is a summary of the book "Effective C++" which gives 55 specific ways to imporve your programs and designs by Scott Meyers.</p>
+<h2 id="1-view-c-as-a-federation-of-languages">1. View C++ as a federation of languages.<a class="headerlink" href="#1-view-c-as-a-federation-of-languages" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Rules for effective C++ programming vary, depending on the part of C++ you are using.</li>
+</ul>
+<h2 id="2-prefer-consts-enums-and-inlines-to-defines">2. Prefer consts, enums, and inlines to #defines.<a class="headerlink" href="#2-prefer-consts-enums-and-inlines-to-defines" title="Permanent link">&para;</a></h2>
+<ul>
+<li>For simple constants, prefer const objects or enums to <code>#define</code>s.</li>
+<li>For function-like macros, prefer inline functions to <code>#define</code>s.</li>
+</ul>
+<h2 id="3-use-const-whenever-possible">3. Use <code>const</code> whenever possible.<a class="headerlink" href="#3-use-const-whenever-possible" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Declaring something const help compilers detect usage errors. const can be applied to objects at any scope, to function parameters and return types, and to member functions as a whole.</li>
+<li>Compilers enforce bitwise constness, but you should program using logical constness.</li>
+<li>When const and non-const member functions have essentially identical implementations, code duplication can be avoided by having the non-const version call the const version.</li>
+</ul>
+<h2 id="4-make-sure-that-the-objects-are-initialized-before-theyre-used">4. Make sure that the objects are initialized before they're used.<a class="headerlink" href="#4-make-sure-that-the-objects-are-initialized-before-theyre-used" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Manually initialize objects of built-in type, because C++ only sometimes initializes them itself.</li>
+<li>In a constructor, prefer use of the member initialization list to assignment inside the body of the constructor. List data members in the initialization list in the same order they're declared in the class.</li>
+<li>Avoid initialization order problems across translation units by replacing non-local static objects with local static objects.</li>
+</ul>
+<h2 id="5-know-what-functions-c-silently-writes-and-calls">5. Know what functions C++ silently writes and calls.<a class="headerlink" href="#5-know-what-functions-c-silently-writes-and-calls" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Compilers may implicityly generate a class's default constructor, copy constructor, copy assignment operator, and destructor.</li>
+</ul>
+<h2 id="6-explicityly-disallow-the-use-of-compiler-generated-function-you-do-not-want">6. Explicityly disallow the use of compiler-generated function you do not want.<a class="headerlink" href="#6-explicityly-disallow-the-use-of-compiler-generated-function-you-do-not-want" title="Permanent link">&para;</a></h2>
+<ul>
+<li>To disallow functionality automatically provided by compilerssss, declare the corresponding member functions <code>private</code> or <code>= delete</code> and give no implementations. Using a base class like Uncopyable is one way to do this.</li>
+</ul>
+<h2 id="7-declare-destructors-virtual-in-polymorphic-basic-classes">7. Declare destructors virtual in polymorphic basic classes.<a class="headerlink" href="#7-declare-destructors-virtual-in-polymorphic-basic-classes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Polymorphic base classes should declare virtual destructors. If a class has dany virtual functions, it should have a virtual destructor.</li>
+<li>Classes not designed to be base class or not designed to be used polymorhpically should not declare virtual destructors.</li>
+</ul>
+<h2 id="8-prevent-exceptions-from-leaving-destructors">8. Prevent exceptions from leaving destructors.<a class="headerlink" href="#8-prevent-exceptions-from-leaving-destructors" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Destructors should never emit exceptions. If functions called in a destructor may throw, the destructor should catch any exceptions, then swallow them or terminate the program.</li>
+<li>If class clientss need to be able to react exceptions thron during an opreration, the class should provide a regular (i.e., non-destructor)function that performs the operation.</li>
+</ul>
+<h2 id="9-never-call-virtual-function-during-construction-or-destruction">9. Never call virtual function during construction or destruction.<a class="headerlink" href="#9-never-call-virtual-function-during-construction-or-destruction" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Don't call virtual functions during construction or destruction, because such calls will never go to a more derived class than that of the currently executing constructor or destructor.</li>
+</ul>
+<h2 id="10-have-assignment-operators-return-a-reference-to-this">10. Have assignment operators return a reference to <code>*this</code>.<a class="headerlink" href="#10-have-assignment-operators-return-a-reference-to-this" title="Permanent link">&para;</a></h2>
+<ul>
+<li>To meet the chain of assignments like <code>x = y = z = 15;</code>.</li>
+</ul>
+<h2 id="11-handle-assignment-to-self-in-operator">11. Handle assignment to self in <code>operator=</code>.<a class="headerlink" href="#11-handle-assignment-to-self-in-operator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Make sure <code>operator=</code> is well-behaved when an object is assigned to itself. Techniques include comparing addresses of source and target objects, careful statement ordering, and copy-and-swap.</li>
+<li>Make sure that any function operating on more than one object behaves correctly if two or more of the objects are the same.</li>
+</ul>
+<h2 id="12-copy-all-parts-of-an-object">12. Copy all parts of an object.<a class="headerlink" href="#12-copy-all-parts-of-an-object" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Copy functions should be sure to copy all of an object's data members and all of its base class parts.</li>
+<li>Don't try to implement one of the copying functions in terms of the other. Instead, put common functionality in a third function that both call.</li>
+</ul>
+<h2 id="13-use-objects-to-manage-resources">13. Use objects to manage resources.<a class="headerlink" href="#13-use-objects-to-manage-resources" title="Permanent link">&para;</a></h2>
+<ul>
+<li>To prevent resource leaks, use <code>RAII</code>(Resource Acquisition Is Initialization) objects that acquire resources in their constructors and release them in their destructors.</li>
+<li>Two commonly useful <code>RAII</code> classes are <code>std::shared_ptr</code> and <code>std::unique_ptr</code>. <code>std::shared_ptr</code> is usually the better choice, because its behavior when copied is intuitive.</li>
+</ul>
+<h2 id="14-think-carefully-about-copying-behavior-in-resource-managing-classes">14. Think carefully about copying behavior in resource-managing classes.<a class="headerlink" href="#14-think-carefully-about-copying-behavior-in-resource-managing-classes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Copying an <code>RAII</code> object entails copying the resource it manages, so the copying behavior of the resource determines the copying behavior of the <code>RAII</code> object.</li>
+<li>Common <code>RAII</code> class copying behaviors are disallowing copying and performing reference counting, but other behaviorss are possible.</li>
+</ul>
+<h2 id="15-provide-access-to-raw-resource-in-resource-managing-classes">15. Provide access to raw resource in resource-managing classes.<a class="headerlink" href="#15-provide-access-to-raw-resource-in-resource-managing-classes" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>API</code>s often require access to raw resources, so each <code>RAII</code> class should offer a way to get at the resource it manages.</li>
+<li>Access may be via explicit conversion or implicit conversion. In general, explicit conversion is safer, but implicit conversion is more convenient for clients.</li>
+</ul>
+<h2 id="16-use-the-same-form-in-correspongding-uses-of-new-and-delete">16. Use the same form in correspongding uses of <code>new</code> and <code>delete</code>.<a class="headerlink" href="#16-use-the-same-form-in-correspongding-uses-of-new-and-delete" title="Permanent link">&para;</a></h2>
+<ul>
+<li>If you use <code>[]</code> in a new expression, you must use <code>[]</code> in the corresponding delete expression. If you don't use <code>[]</code> in a new expression, you mustn't use <code>[]</code> in the corresponding delete expression.</li>
+</ul>
+<h2 id="17-store-newed-objects-in-smart-pointers-in-standalone-statements">17. Store <code>new</code>ed objects in smart pointers in standalone statements.<a class="headerlink" href="#17-store-newed-objects-in-smart-pointers-in-standalone-statements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Store <code>new</code>ed objects in smart pointer in standlone statements. Failure to do this can lead to subtle resource leaks when exceptions are thrown.</li>
+</ul>
+<h2 id="18-make-interfaces-easy-to-use-correctly-and-hard-to-use-incorrectly">18. Make interfaces easy to use correctly and hard to use incorrectly.<a class="headerlink" href="#18-make-interfaces-easy-to-use-correctly-and-hard-to-use-incorrectly" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Good interfaces are easy to use correctly and hard to use incorrectly. You should strive for these characteristics in all your interfaces.</li>
+<li>Ways to facilitate correct use include consistency in interfaces and behavioral compatibility with built-in types.</li>
+<li>Ways to prevent errors include creating new typess, restricting operations on types, constraining object values, and eliminating client resource management respoinsibilities.</li>
+<li><code>std::shared_ptr</code> supports custom deleters. This preventss the cross-DLL problems, can be used to automatically unlock mutexes.</li>
+</ul>
+<h2 id="19-treak-class-design-as-type-design">19. Treak class design as type design.<a class="headerlink" href="#19-treak-class-design-as-type-design" title="Permanent link">&para;</a></h2>
+<p>Before defining a new type, be sure to consider all these issues:</p>
+<ul>
+<li>How should objects of your new type be created and destroyed?</li>
+<li>How should object initialization differ from object assignment?</li>
+<li>What does it mean for objects of your new type to be passed by value?</li>
+<li>What are the restrictions on legal value for your new type?</li>
+<li>Does your new type fit into an inheritance graph?</li>
+<li>What kind of type conversions are allowed for your new type?</li>
+<li>What operators and functions make sense for the new type?</li>
+<li>What standard functions should be disallowed?</li>
+<li>Who should have access to the members of your new type?</li>
+<li>What is the "undeclared interface" of your new type?</li>
+<li>How general is your new type?</li>
+<li>Is a new type really what you need?</li>
+</ul>
+<h2 id="20-prefer-pass-by-reference-to-const-to-pass-by-value">20. Prefer pass-by-reference-to-const to pass-by-value.<a class="headerlink" href="#20-prefer-pass-by-reference-to-const-to-pass-by-value" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Prefer pass-by-reference-to-const over pass-by-value. It's typically more efficient and it avoids the slicing problem.</li>
+<li>The rule doesn't apply to built-in types and <code>STL</code> iterator and function object types. For them, pass-by-value is usually appropriate.</li>
+</ul>
+<h2 id="21-dont-try-to-return-a-reference-when-you-must-return-an-object">21. Don't try to return a reference when you must return an object.<a class="headerlink" href="#21-dont-try-to-return-a-reference-when-you-must-return-an-object" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Never return a pointer or reference to a local stack object, a reference to a heap-allocated object or a pointer or reference to a local static object i there is a chance that more than one such object will be needed.</li>
+</ul>
+<h2 id="22-declare-data-members-private">22. Declare data members <code>private</code>.<a class="headerlink" href="#22-declare-data-members-private" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Declare data members <code>private</code>, it gives clients syntactically uniform access to data, affords fine-grained access control, allows invariants to be enforced, and offers class authors implementation flexibility.</li>
+<li>Protected is no more encapsulated than <code>public</code>.</li>
+</ul>
+<h2 id="23-prefer-non-member-non-friend-functions-to-member-functions">23. Prefer non-member non-friend functions to member functions.<a class="headerlink" href="#23-prefer-non-member-non-friend-functions-to-member-functions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Doing so increases encapsulation, packaging flexibility, and functional extensibility.</li>
+</ul>
+<h2 id="24-declare-non-member-functions-when-type-conversions-should-apply-to-all-parameters">24. Declare non-member functions when type conversions should apply to all parameters.<a class="headerlink" href="#24-declare-non-member-functions-when-type-conversions-should-apply-to-all-parameters" title="Permanent link">&para;</a></h2>
+<ul>
+<li>If you need type conversions on all parameters to a function (including the one that would otherwise be pointed to by the <code>this</code> pointer), the function must be a non-member.</li>
+</ul>
+<h2 id="25-consider-support-for-a-non-throwing-swap">25. Consider support for a non-throwing <code>swap</code>.<a class="headerlink" href="#25-consider-support-for-a-non-throwing-swap" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Provide a <code>swap</code> member function when <code>std::swap</code> would be inefficient for your type. Make sure your swap doesn't throw exceptions.</li>
+<li>If you offer a member swap, also offer a non-member swap that calls the member. For classes(not templates), specialize <code>std::swap</code>, too.</li>
+<li>When calling swap, employ a using declaration for <code>std::swap</code>, then call swap without namespace qualification.</li>
+<li>It's fine to totally specialize <code>std</code> templates for user-defined bypes, but never try to add something completely new to std.</li>
+</ul>
+<h2 id="26-postpone-variable-definitions-as-long-as-possible">26. Postpone variable definitions as long as possible.<a class="headerlink" href="#26-postpone-variable-definitions-as-long-as-possible" title="Permanent link">&para;</a></h2>
+<ul>
+<li>It increase problem clarity and improves program efficiency.</li>
+</ul>
+<h2 id="27-minimize-casting">27. Minimize casting.<a class="headerlink" href="#27-minimize-casting" title="Permanent link">&para;</a></h2>
+<p>C++ offers four new cast froms:</p>
+<ul>
+<li><code>const_cast&lt;T&gt;(expression)</code>: used to cast away constness of objects.</li>
+<li><code>dynamic_cast&lt;T&gt;(expression)</code>: used to perform "safe downcasting", i.e., to determine whether an object is of a particular type in an inheritance hierarchy.</li>
+<li><code>reinterpret_cast&lt;T&gt;(expression)</code>: used for low-level casts that yield implementation-dependent results, e.g., casting a pointer to an int.</li>
+<li>
+<p><code>static_cast&lt;T&gt;(expression)</code>: used to force implicit conversions, e.g. non-const object to const object, int to double, etc.</p>
+</li>
+<li>
+<p>Avoid casts whenever practical, especially <code>dynamic_cast</code> in performance-sensitive code. If a design requires casting, try to develop a cast-free alternative.</p>
+</li>
+<li>When casting is neccessary, try to hide it inside a function. Clients can then call the function instead of putting casts in their own code.</li>
+<li>Prefer C++-style casts to old-style casts. They are easier to see, and they are more specific aboud what they do.</li>
+</ul>
+<h2 id="28-avoid-returning-handle-to-object-internals">28. Avoid returning "handle" to object internals<a class="headerlink" href="#28-avoid-returning-handle-to-object-internals" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Avoid returning handles (references, pointers, or iterators) to object internals. Not returning handles increases encapsulation, helps const member functions act cosnt and minimizes the creation of dangling handles.</li>
+</ul>
+<h2 id="29-strive-for-exception-safe-code">29. Strive for exception-safe code.<a class="headerlink" href="#29-strive-for-exception-safe-code" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Exception-safe functions leak no resource and allow no data structure to become corrupted, even when exceptions are thrown. Such functions offer the basic, strong, or nothrow guarantees.</li>
+<li>The strong guarantee can often be implemented via copy-and-swap, but the strong guarantee is not practical for all functions.</li>
+<li>A function can usually offer a guarantee no stronger than the weakest guarantee of the functions it calls.</li>
+</ul>
+<h2 id="30-understand-the-ins-and-outs-of-inlining">30. Understand the ins and outs of inlining.<a class="headerlink" href="#30-understand-the-ins-and-outs-of-inlining" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Limit most inlining to small, frequently called functions. This facilitates debugging and binary upgradability, minimizes potential code bloat, and maximizes the chances of greater program speed.</li>
+<li>Don't declare fucntion template inline just because they appear in header files.</li>
+</ul>
+<h2 id="31-minimize-compilation-dependencies-between-files">31. Minimize compilation dependencies between files.<a class="headerlink" href="#31-minimize-compilation-dependencies-between-files" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The general idea behind minimizing compilation dependencies is to depend on declarations instead of definitions. Two approaches based on this idea are Handle classes and Interface classes.</li>
+<li>Library header files should exist in full and declaration-only forms. This applies regardless of whether templates are involved.</li>
+</ul>
+<h2 id="32-make-sure-public-inheritance-models-is-a">32. Make sure public inheritance models "is-a".<a class="headerlink" href="#32-make-sure-public-inheritance-models-is-a" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Public inheritance means "is-a". Everything that applies to base classes must also apply to derived classes, because every derived class object <code>is a</code> base class object.</li>
+</ul>
+<h2 id="33-avoid-hiding-inherited-names">33. Avoid hiding inherited names.<a class="headerlink" href="#33-avoid-hiding-inherited-names" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Names in derived classes hide names in base classes. Under public inheritance, this is never desirable.</li>
+<li>To make hidden names visible again, employ <code>using</code> declarations or forwarding functions.</li>
+</ul>
+<h2 id="34-differentiate-between-inheritance-of-interface-and-inheritance-of-implementation">34. Differentiate between inheritance of interface and inheritance of implementation.<a class="headerlink" href="#34-differentiate-between-inheritance-of-interface-and-inheritance-of-implementation" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Inheritance of interface is different from inheritance of implementation. Under public inheritance, derived classes always inherit base class interfaces.</li>
+<li>Pure vitual functions specify inheritance of interface only.</li>
+<li>Simple (impure) virtual functions specify inheritance of interface plus inheritance of a default implementation.</li>
+<li>Non-virtual functions specify inheritance of interface plus inheritance of a mandatory implementation.</li>
+</ul>
+<h2 id="35-consider-alternatives-to-virtual-functions">35. Consider alternatives to virtual functions.<a class="headerlink" href="#35-consider-alternatives-to-virtual-functions" title="Permanent link">&para;</a></h2>
+<p>Here are some alternatives of virtual function:</p>
+<ul>
+<li>Use the non-virtual interface idiom(NVI idiom), a form of the Template Method design pattern that wraps public non-virtual member functions around less accessible virtual functions.</li>
+<li>Replace virtual functions with <code>function pointer data member</code>, a stripped-down manifestation of the <code>Strategy</code> design pattern.</li>
+<li>Replace virtual functions with <code>std::function</code> data member, thus allowing use of any callable entity with a signature compatible with what you ned. This, too is a form of the <code>Strategy</code> design pattern.</li>
+<li>
+<p>Replace virtual functions in one hierarchy with <code>virtual functions in another hierarychy</code>. This is the conventional implementation of the <code>Strategy</code> design pattern.</p>
+</li>
+<li>
+<p>Alternatives to virtual functions include the <code>NVI</code> idiom and various forms of the Strategy design pattern. The NVI idiom is itself an example of the Template Method design pattern.</p>
+</li>
+<li>A disadvantage of moving functionality from a member function to a function outside the class is that the non-member function lacks access to the class's non-public members.</li>
+<li><code>std::function</code> objects act like generalized function pointers. Such objects support all callable entities compatible with a given target signature.</li>
+</ul>
+<h2 id="36-never-redefine-an-inherited-non-virtual-function">36. Never redefine an inherited non-virtual function.<a class="headerlink" href="#36-never-redefine-an-inherited-non-virtual-function" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The implementation of derived class will hide the one of base class, which may lead to different results when called by pointer of derived class and pointer of base class.</li>
+</ul>
+<h2 id="37-never-redefine-a-functions-inherited-default-parameter-value">37. Never redefine a function's inherited default parameter value.<a class="headerlink" href="#37-never-redefine-a-functions-inherited-default-parameter-value" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Because default parameter values are statically bound, while virtual functions(the only functions you should be redefining) are dynamically bound.</li>
+</ul>
+<h2 id="38-model-has-a-or-is-implemented-in-terms-of-through-composition">38. Model "has-a" or "is-implemented-in-terms-of" through composition.<a class="headerlink" href="#38-model-has-a-or-is-implemented-in-terms-of-through-composition" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Composition has meanings completely different from that of public inheritance.</li>
+<li>In the application domain, composition means "has-a". In the implementation domain, it means is-implemented-in-terms-of.</li>
+</ul>
+<h2 id="39-use-private-inheritance-judiciously">39. Use private inheritance judiciously.<a class="headerlink" href="#39-use-private-inheritance-judiciously" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Private inheritance means is-implementation-in-terms of. It's usually inferior to composition, but it makes sense when a derived class needs access to protected base class members or needs to redefine inherited virtual functions.</li>
+<li>Unlike composition, private inheritance can enable the empty base optimization. This can be important for library developers who strive to minimize object sizes.</li>
+</ul>
+<h2 id="40-use-multiple-inheritance-judiciously">40. Use multiple inheritance judiciously.<a class="headerlink" href="#40-use-multiple-inheritance-judiciously" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Multiple inheritance is more complex than single inheritance. It can lead to new ambiguity issues and to the need for virtual inheritance.</li>
+<li>Virtual inheritance imposes costs in size, speed, and complexity of initialization and assignment. It's most practical when virtual base classes have no idea.</li>
+<li>Multiple inheritance does have legitimate uses. On scenario involves combining public inheritance from an Interface class with private inheritance from a class that helps with implementation.</li>
+</ul>
+<h2 id="41-understand-implicit-interfaces-and-compile-time-polymorphism">41. Understand implicit interfaces and compile-time polymorphism.<a class="headerlink" href="#41-understand-implicit-interfaces-and-compile-time-polymorphism" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Both classes and templates support interfaces and polymorphism.</li>
+<li>For classes, interfaces are centered on function signatures. Polymorphism occurs at runtime through virtual functions.</li>
+<li>For template parameters, interfaces are implicit and base on valid expression. Polymorphism occurs during compilation through template instantiation and function overloading resolution.</li>
+</ul>
+<h2 id="42-understand-the-two-meaning-of-typename">42. Understand the two meaning of typename.<a class="headerlink" href="#42-understand-the-two-meaning-of-typename" title="Permanent link">&para;</a></h2>
+<ul>
+<li>When declaring template parameters, <code>class</code> and <code>template</code> are interchangeable.</li>
+<li>Use <code>typename</code> to identify nested dependent type names, except in base class lists or as a base class identifier in a member initialization list.</li>
+</ul>
+<h2 id="43-know-how-to-access-names-in-templatized-base-classes">43. Know how to access names in templatized base classes.<a class="headerlink" href="#43-know-how-to-access-names-in-templatized-base-classes" title="Permanent link">&para;</a></h2>
+<ul>
+<li>In derived class templates, refer to names in base class templates via:<ul>
+<li><code>this-&gt;</code> prefix;</li>
+<li><code>using</code> declaration;</li>
+<li>explicit base class qualification.</li>
+</ul>
+</li>
+</ul>
+<h2 id="44-factor-parameter-independent-code-out-of-templates">44. Factor parameter-independent code out of templates.<a class="headerlink" href="#44-factor-parameter-independent-code-out-of-templates" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Templates generate multiple classes and multiple functions, so any template code not dependent on a template parameter causes bloat.</li>
+<li>Bloat due to non-type template parameters can often be eliminated by replacing template parameters with function parameters or class data members.</li>
+<li>Bloat due to type parameters can be reduced by sharing implementations for instantiation types with identical binary representations.</li>
+</ul>
+<h2 id="45-use-member-function-templates-to-accept-all-compatible-types">45. Use member function templates to accept "all compatible types".<a class="headerlink" href="#45-use-member-function-templates-to-accept-all-compatible-types" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Use member function templates to generate functions that accept all compatible types.</li>
+<li>If you declare member templates for generalized copy construction or generalized assignment, you'll still need to declare the normal copy constructor and copy assignment operator, too.</li>
+</ul>
+<h2 id="46-define-non-member-functions-inside-templates-when-type-conversions-are-disired">46. Define non-member functions inside templates when type conversions are disired.<a class="headerlink" href="#46-define-non-member-functions-inside-templates-when-type-conversions-are-disired" title="Permanent link">&para;</a></h2>
+<ul>
+<li>When writting a class template that offers functions related to the template that support implicit type conversions on all parameters, define those functions as friends inside the class template.</li>
+</ul>
+<h2 id="47-use-traits-classes-for-information-about-types">47. Use traits classes for information about types.<a class="headerlink" href="#47-use-traits-classes-for-information-about-types" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Traits classes make information about types available during compilation. They're implemented using templates specializations.</li>
+<li>In conjunction with overloading, traits classes make it possible to perform compile-time <code>if else</code> tests on types.</li>
+</ul>
+<h2 id="48-beware-of-template-metaprogramming">48. Beware of template metaprogramming.<a class="headerlink" href="#48-beware-of-template-metaprogramming" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Template metaprogramming can shift work from runtime to compile-time, thus enabling earlier error detection and higher runtime performance.</li>
+<li>TMP can be used to generate custom code based on combinations of policy choices, and it can also be used to avoid generating code inappropriate for particular types.</li>
+</ul>
+<h2 id="49-understand-the-behavior-of-the-new-handler">49. Understand the behavior of the new-handler.<a class="headerlink" href="#49-understand-the-behavior-of-the-new-handler" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>set_new_handler</code> allows you to specify a function to be called when memory allocation requests cannot be satisfied.</li>
+<li>Nothrow new is of limited utility, because it applies only to memory allocation; associated constructor calls may still throw exceptions.</li>
+</ul>
+<h2 id="50-understand-when-it-makes-sense-to-replace-new-and-delete">50. Understand when it makes sense to replace <code>new</code> and <code>delete</code>.<a class="headerlink" href="#50-understand-when-it-makes-sense-to-replace-new-and-delete" title="Permanent link">&para;</a></h2>
+<p>There are many valid reasons for writting custom versions of <code>new</code> and <code>delete</code>:</p>
+<ul>
+<li>To detect usage errors.</li>
+<li>To collect statistics about the use of dynamically allocated memory.</li>
+<li>To increase the speed of allocation and deallocation.</li>
+<li>To reduce the space overhead of default memory management.</li>
+<li>To compensate for suboptimal alignment in the default allocator.</li>
+<li>To cluster related objects near one another.</li>
+<li>To obtain unconventional behavior.</li>
+</ul>
+<h2 id="51-adhere-to-convention-when-writing-new-and-delete">51. Adhere to convention when writing <code>new</code> and <code>delete</code>.<a class="headerlink" href="#51-adhere-to-convention-when-writing-new-and-delete" title="Permanent link">&para;</a></h2>
+<ul>
+<li>operator <code>new</code> should <ul>
+<li>contain an infinite loop trying to allocate memory,</li>
+<li>call the new-handler if it can't satisfy a memory request, </li>
+<li>handle requests from zero bytes,</li>
+<li>class-specific versions should requests for larger blocks than expected.</li>
+</ul>
+</li>
+<li>operator <code>delete</code> should do nothing if passed a pointer that is null. Class-specific versions should handle blocks that are larger than expected.</li>
+</ul>
+<h2 id="52-write-placement-delete-if-you-write-placement-new">52. Write placement <code>delete</code> if you write placement <code>new</code>.<a class="headerlink" href="#52-write-placement-delete-if-you-write-placement-new" title="Permanent link">&para;</a></h2>
+<ul>
+<li>When you write a placement version of operator new, be sure to write the corresponding placement version of operator delete. If you don't, your program may experience subtle, intermittent memory leaks.</li>
+<li>When you declare placement version of new and delete, be sure not to unintentionally hide the normal versions of those functions.</li>
+</ul>
+<h2 id="53-pay-attention-to-compiler-warnings">53. Pay attention to compiler warnings.<a class="headerlink" href="#53-pay-attention-to-compiler-warnings" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Take compiler warnings seriously, and strive to compile warning-free at the maximum warning level supported by your compilers.</li>
+<li>Don't become dependent on compiler warnings, because different compilers warn about different things. Porting to a new compiler may eliminate warning messages you've come to rely on.</li>
+</ul>
+<h2 id="54-familiarize-yourself-with-the-standard-library">54. Familiarize yourself with the standard library.<a class="headerlink" href="#54-familiarize-yourself-with-the-standard-library" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The primary standard C++ library functionality consists of:<ul>
+<li>STL,</li>
+<li>iostreams,</li>
+<li>locales,</li>
+<li>C89 standard library.</li>
+</ul>
+</li>
+</ul>
+<h2 id="55-familiarize-yourself-with-boost">55. Familiarize yourself with Boost.<a class="headerlink" href="#55-familiarize-yourself-with-boost" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Boost is a community and website for the development of free, open source, peer-reviewed C++ libraries. Boost plays an influential role in C++ standardization.</li>
+</ul>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://b-ok.asia/book/3487768/b70c18">Effective C++</a> </li>
+</ul>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../cpp_17/" class="md-footer__link md-footer__link--prev" aria-label="Previous: C++17 New Features and Libraries" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              C++17 New Features and Libraries
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../effective_modern_cpp/" class="md-footer__link md-footer__link--next" aria-label="Next: Effective Modern C++" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Effective Modern C++
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
