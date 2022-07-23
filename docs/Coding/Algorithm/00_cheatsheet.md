@@ -1,4 +1,4 @@
-# Algorithm Cheetsheet
+# Algorithm Cheatsheet
 
 ## Quick Sort
 ```C++
@@ -16,7 +16,7 @@ void quick_sort(int a[], int l , int r) {
 }
 ```
 
-## MergeS Sort
+## Merge Sort
 
 ```C++
 int tmp[N];
@@ -38,12 +38,14 @@ void merge_sort(int a[], int l, int r) {
 ```
 
 ## Binary Search
+
+```C++
 //           Left                             Right
 // |---------------------------| |------------------------------|
 //                   right end | | left end
 
 // Left end
-// Devide range [l, r] to [l, mid] and [mid + 1, r], and l locates at (mid + 1)
+// Devide [l, r] to [l, mid] + [mid + 1, r], l locates at mid + 1
 int bs(int a[], int l, int r) {
   while (l < r) {
     int mid = l + r >> 1;
@@ -57,7 +59,7 @@ int bs(int a[], int l, int r) {
 }
 
 // Right end
-// Devide range [l, r] to [l, mid - 1] and [mid, r], and l locates at (mid)
+// Devide [l, r] to [l, mid - 1] + [mid, r], l locates at mid
 int bs(int a[], int l, int r) {
   while (l < r) {
     // avoid the case [l, r] = [0, 1]
