@@ -1,6 +1,8 @@
 # Algorithm Cheatsheet
 
-## Quick Sort
+## Sort
+
+### Quick Sort
 ```C++
 void quick_sort(int a[], int l , int r) {
   if (l >= r) return;
@@ -16,7 +18,7 @@ void quick_sort(int a[], int l , int r) {
 }
 ```
 
-## Merge Sort
+### Merge Sort
 
 ```C++
 int tmp[N];
@@ -36,8 +38,9 @@ void merge_sort(int a[], int l, int r) {
 }
 
 ```
+## Serach
 
-## Binary Search
+### Binary Search
 
 ```C++
 //           Left                             Right
@@ -71,5 +74,80 @@ int bs(int a[], int l, int r) {
     }
   }
   return l;
+}
+```
+
+## Expression
+
+### Addition
+
+```C++
+/// digits of A, B and C are in reverse order
+vector<int> add(vector<int>& A, vector<int>& B) {
+  if (A.size() < B.size()) return add(B, A);
+
+  vector<int> C{};
+  int t{0};
+  for (int i = 0; i < A.size(); ++i) {
+    t += A[i];
+    if (i < B.size()) t += B[i];
+    C.push_back(t % 10);
+    t /= 10;
+  }
+  if (t) C.push_back(t);
+
+  return C;
+}
+```
+
+### Subtraction
+
+```C++
+/// digits of A, B and C are in reverse order
+/// and A is bigger than B
+vector<int> add(vector<int>& A, vector<int>& B) {
+  vector<int> C{};
+  for (int i = 0, t = 0; i < A.size(); ++i) {
+    t = A[i] - t;
+    if (i < B.size()) t -=B[i];
+    C.push_back((t + 10) % 10);
+    t = t < 0 ? -1 : 0;
+  }
+  while (C.size() > 1 && C.back() == 0) C.pop_back();
+  return C;
+}
+```
+
+### Multiplication
+
+```C++
+/// digits of A and C are in reverse order
+vector<int> mul(vector<int>& A, int b) {
+  vector<int> C{};
+  for (int i = 0, t = 0; i < A.size() || t; ++i) {
+    if (i < A.size()) t += A[i] * b;
+    C.push_back(t % 10);
+    t /= 10;
+  }
+  while (C.size() > 1 && C.back() == 0) c.pop_back();
+  return C;
+}
+```
+
+### Division
+
+```C++
+/// digits of A and C are in reverse order
+pair<vector<int>, int> div(vector<int>& A, int b) {
+  vector<int> C{};
+  int r{0};
+  for (int i = A.size() - 1; i >= 0; --i) {
+    r = r * 10 + A[i];
+    C.push_back(r / b);
+    r %= 10;
+  }
+  reverse(C.begin(), C.end());
+  while (C.size() > 1 && C.back() == 0) C.pop_back();
+  return {C, r};
 }
 ```
