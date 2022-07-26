@@ -151,3 +151,20 @@ pair<vector<int>, int> div(vector<int>& A, int b) {
   return {C, r};
 }
 ```
+
+## Prefix
+
+### Prefix Sum
+
+```C++
+for (int i = 1; i <= n; ++i) p[i] = p[i - 1] + a[i - 1];
+```
+
+### Prefix Sum 2D
+
+```C++
+for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
+    p[i][j] = a[i - 1][j - 1] + p[i][j - 1] + p[i - 1][j] - p[i - 1][j - 1];
+```
+
+### Prefix Diff
