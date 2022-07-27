@@ -168,3 +168,28 @@ for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
 ```
 
 ### Prefix Diff
+
+```C++
+void insert(int p[], int l, int r, int c) {
+  p[l] += c;
+  p[r + 1] -= c;
+}
+
+/// get each element
+for (int i = 1, t = 0; i <= n; ++i) t += p[i];
+```
+### Prefix Diff 2D
+
+```C++
+void insert(int p[][N], int x1, int y1, int x2, int y2, int c) {
+  p[x1][y1] += c;
+  p[x2 + 1][y1] -= c;
+  p[x1][y2 + 1] -= c;
+  p[x2 + 1][y2 + 1] += c;
+}
+
+// Get each element
+for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
+  b[i][j] += b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1];
+```
+
