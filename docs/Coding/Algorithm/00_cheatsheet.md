@@ -193,3 +193,77 @@ for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
   b[i][j] += b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1];
 ```
 
+
+## Bit Operator
+
+### K bit
+
+```C++
+int kbit(int x, int k) { return x >> k & 1; }
+```
+
+### Lowbit
+
+```C++
+int lowbit(int x) { return x & -x; }
+```
+
+## Binary Pointer
+
+```C++
+/// nnnnnnnnnnnnnnnnnnnnnn
+///     ^          ^
+///     | j        | i    
+for (int i = 0, j = 0; i < n; ++i) {
+  // add i here
+
+  while (j < i && check(i, j)) ++j;  // remove j
+
+  // record answer here
+}
+```
+
+## Discrete
+
+```C++
+vector<int> a{};  // to be discrete
+sort(a.begin(), a.end());
+a.erase(unique(a.begin(), a.end()), a.end());
+
+// get index after discrete
+int find(int x) {
+  int l = 0, r = a.size() - 1;
+  while (l < r) {
+    int mid = l + (r - l) / 2;
+    if (a[mid] >= x) {
+      r = mid;
+    } else {
+      l = mid + 1;
+    }
+  }
+  return l;
+}
+```
+
+## Merge Range
+
+```C++
+using PII = pair<int, int>;
+void merge(vector<PII> &segs) {
+  sort(segs.begin(), segs.end());
+
+  vector<PII> ans{};
+  int s = -2e9, e = -2e9;
+  for (auto [ss, se] : segs) {
+    if (e < ss) {
+      if (e != -2e9) ans.push_back({s, e});
+      tie(s, e) = pair{ss, se};
+    } else {
+      e = max(e, se);
+    }
+  }
+  if (s != -2e9) ans.push_back({s, e});
+
+  return ans;
+}
+```
