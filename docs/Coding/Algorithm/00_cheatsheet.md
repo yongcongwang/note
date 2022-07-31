@@ -18,6 +18,8 @@ void quick_sort(int a[], int l , int r) {
 }
 ```
 
+- [problem](https://www.acwing.com/problem/content/787/)
+
 ### Merge Sort
 
 ```C++
@@ -36,8 +38,10 @@ void merge_sort(int a[], int l, int r) {
 
   for (int k = l; k <= r; ++k) a[k] = tmp[k];
 }
-
 ```
+
+- [problem](https://www.acwing.com/problem/content/787/)
+
 ## Serach
 
 ### Binary Search
@@ -75,7 +79,24 @@ int bs(int a[], int l, int r) {
   }
   return l;
 }
+
+/// Float
+constexpr double eps = 1e-6;
+double bs(double l, double r) {
+  while (r - l > eps) {
+    double mid = (l + r) / 2;
+    if (Valid(mid)) {
+      r = mid;
+    } else {
+      l = mid;
+    }
+  }
+  return l;
+}
 ```
+
+- [problem](https://www.acwing.com/problem/content/791/)
+- [problem](https://www.acwing.com/problem/content/792/)
 
 ## Expression
 
