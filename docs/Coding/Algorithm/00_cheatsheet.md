@@ -121,6 +121,8 @@ vector<int> add(vector<int>& A, vector<int>& B) {
 }
 ```
 
+- [problem](https://www.acwing.com/problem/content/793/)
+
 ### Subtraction
 
 ```C++
@@ -139,6 +141,8 @@ vector<int> add(vector<int>& A, vector<int>& B) {
 }
 ```
 
+- [problem](https://www.acwing.com/problem/content/794/)
+
 ### Multiplication
 
 ```C++
@@ -154,6 +158,8 @@ vector<int> mul(vector<int>& A, int b) {
   return C;
 }
 ```
+
+- [problem](https://www.acwing.com/problem/content/795/)
 
 ### Division
 
@@ -172,6 +178,8 @@ pair<vector<int>, int> div(vector<int>& A, int b) {
   return {C, r};
 }
 ```
+
+- [problem](https://www.acwing.com/problem/content/795/)
 
 ## Prefix
 
