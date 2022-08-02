@@ -189,12 +189,16 @@ pair<vector<int>, int> div(vector<int>& A, int b) {
 for (int i = 1; i <= n; ++i) p[i] = p[i - 1] + a[i - 1];
 ```
 
+- [problem](https://www.acwing.com/problem/content/797/)
+
 ### Prefix Sum 2D
 
 ```C++
 for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
     p[i][j] = a[i - 1][j - 1] + p[i][j - 1] + p[i - 1][j] - p[i - 1][j - 1];
 ```
+
+- [problem](https://www.acwing.com/problem/content/798/)
 
 ### Prefix Diff
 
@@ -207,6 +211,8 @@ void insert(int p[], int l, int r, int c) {
 /// get each element
 for (int i = 1, t = 0; i <= n; ++i) t += p[i];
 ```
+- [problem](https://www.acwing.com/problem/content/799/)
+
 ### Prefix Diff 2D
 
 ```C++
@@ -222,6 +228,7 @@ for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
   b[i][j] += b[i - 1][j] + b[i][j - 1] - b[i - 1][j - 1];
 ```
 
+- [problem](https://www.acwing.com/problem/content/800/)
 
 ## Bit Operator
 
@@ -230,6 +237,8 @@ for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
 ```C++
 int kbit(int x, int k) { return x >> k & 1; }
 ```
+
+- [problem](https://www.acwing.com/problem/content/803/)
 
 ### Lowbit
 
@@ -251,6 +260,9 @@ for (int i = 0, j = 0; i < n; ++i) {
   // record answer here
 }
 ```
+
+- [problem](https://www.acwing.com/problem/content/801/)
+- [problem](https://www.acwing.com/problem/content/802/)
 
 ## Discrete
 
@@ -274,6 +286,8 @@ int find(int x) {
 }
 ```
 
+- [problem](https://www.acwing.com/problem/content/804/)
+
 ## Merge Range
 
 ```C++
@@ -296,3 +310,5 @@ void merge(vector<PII> &segs) {
   return ans;
 }
 ```
+
+- [problem](https://www.acwing.com/problem/content/805/)
