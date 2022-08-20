@@ -384,39 +384,24 @@ There are some special cases we need to deal with:
 To simplify the logic, we think that a point is in a polygon if:
 
 1. the point is on the edge;
-2. the point is on either end of the line segment and the intersection is on the right of the point.
+2. the ray from point to long long right has intersetion with the edge.
 
-While calculating the x coordination, we use the following knowledge:
+While calculating the intersection with the edge, we check:
 
-![ray casting](images/2d_geometry/ray_cast_inter.png)
-
-$$
-\frac{|AC|}{|BC|} = \frac{|DE|}{|BE|}
-$$
-
-so we have:
-
-$$
-|DE| = x_2 - x' = \frac{|AC||BE|}{|BC|} = \frac{(y_2 - y_1) * (y_2 - y)}{y_2 - y_1}
-$$
-
-so:
-
-$$
-x' = x_2 - \frac{(y_2 - y_1) * (y_2 - y)}{y_2 - y_1}
-$$
+1. the point is between the edge in y direction: `p0.y - p.y != p1.y - p.y`
+2. the intersection size: `p0.y < p1.y ? cross_product > 0 : cross_product < 0`
 
 ```C++
 // Ray casting
 bool IsPointInPolygon(const Point& p, cosnt Polygon& poly) {
   bool f{false};
-  for (int i = 0; i < poly.points.size(); ++i) {
-    auto& p1 = poly.points[i];
-    auto& p2 = poly.points[(i + 1) % m];
-    if (IsPointOnSegment(p, {p1})) return true;
-    if (((p1.y - p.y) < 0 != (p2.y - p.y) < 0) &&  // y is on either end of line
-        // intersection is on the right of point
-        (x2 - (x2 - x1) / (y2 - y1) * (y2 - y) - x > 0)) f = !f;
+  auto p0 = poly.points.back();
+  for (auto p1 : poly.points) {
+    if (IsPointOnSegment(p, {p0, p1})) return true;
+    if ((p0.y > p.y) != (p1.y > p.y)) {
+      auto side = (p1 - p0).Cross(p - p0);
+      f ^= p0.y < p1.y ? side > 0 : side < 0;
+    }
   }
   return f;
 }
