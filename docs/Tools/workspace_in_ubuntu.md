@@ -27,6 +27,10 @@ ssh-keygen -t rsa -C "yongcong.wang@outlook.com"
 3. Paste `id_rsa.PUB`(in `/home/.ssh/id_rsa.pub`);
 4. Test: `ssh -T git@github.com`.
 
+```Bash
+git clone git@github.com:yongcongwang/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && bash deploy.sh git
+```
+
 ## Vim
 
 ### Install
@@ -39,17 +43,38 @@ cd vim && make && sudo make install
 ### Config
 
 ```Bash
-git clone git@github.com:yongcongwang/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && bash deploy.sh vim
+bash deploy.sh vim
 ```
 
-## Translater
+## i3
 
 ```Bash
-sudo apt install translate-shell
+bash deploy.sh vim
 ```
 
-## Terminal
+## fzf
 
 ```Bash
-sudo apt install guake
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &&
+~/.fzf/install
 ```
+
+## Software without config
+
+- xterm
+- openssh
+- translate-shell
+- alsa-mixer
+- iwd
+- bluez
+- feh
+- feishu
+- rofi
+- ranger
+- neofetch
+- htop
+- gdb
+- flameshot
+- vlc
+- drawio
+- simplescreenrecorder
