@@ -202,25 +202,27 @@ But if $T$ is a variable, we can get more than one solutions. This is an optimal
 
 The general step for this problem is:
 
-1. Modelling
-2. Solving with `Pontryain's Minimum Principle`
+1. System modelling
+2. `Pontryain's Minimum Principle` constructing
+3. Solving costate
+4. Solving optimal control
 
 We take the quadratic as an example.
 
 ### Fixed Final State
 
-#### 1. Modeling
+#### 1. System modeling
 
-a. Cost Function:
-
-$$
-J_{\sum} = \sum_{k=1}^{3}J_{k}, J_{k} = \frac{1}{T} \int_0^T j_{k}^2(t) dt \tag{1}
-$$
-
-b. State:
+a. State:
 
 $$
 S_{k} = \begin{bmatrix} p_{k} \\ v_{k} \\ a_{k} \end{bmatrix} \tag{2}
+$$
+
+b. System modle
+
+$$
+\dot {S_{k}} = f_s(s_k, u_K) = \begin{bmatrix} v_k \\ a_k \\ j_k \end{bmatrix} \tag{4}
 $$
 
 c. Input:
@@ -229,13 +231,7 @@ $$
 u_{k} = j_{k} \tag{3}
 $$
 
-d. System Model:
-
-$$
-\dot {S_{k}} = f_s(s_k, u_K) = \begin{bmatrix} v_k \\ a_k \\ j_k \end{bmatrix} \tag{4}
-$$
-
-e. Start and End State:
+d. Boundary state:
 
 $$
 S(0) = \begin{bmatrix} p(0) \\ v(0) \\ a(0) \end{bmatrix} \tag{5}
@@ -245,6 +241,13 @@ $$
 S(f) = \begin{bmatrix} p(f) \\ v(f) \\ a(f) \end{bmatrix} \tag{6}
 $$
 
+e. Cost Function:
+
+$$
+J_{\sum} = \sum_{k=1}^{3}J_{k}, J_{k} = \frac{1}{T} \int_0^T j_{k}^2(t) dt \tag{1}
+$$
+
+
 The $k$ in equation is the dimension(x, y, z) of state, and we assume that three dimensions are independent, so we throw away the $k$ in the following equations.
 
 And we also define that the quadratic must arrive the final position with the state of $S(f)$, which causes some difference with undefined dimensions' case, we'll discuss this condition later.
@@ -252,7 +255,57 @@ And we also define that the quadratic must arrive the final position with the st
 - [A Computationally Efficient Motion Primitive for Quadrocopter Trajectory Generation](https://ieeexplore.ieee.org/document/7299672)
 - [Dynamic Programming and Optimal Control](http://www.athenasc.com/dpbook.html)
 
-#### 2. Solving
+#### 2. `Pontryain Minimum Principle` constructing
+
+Generally, the cost function can be described as:
+
+$$
+J = h(s(T)) + \int^T_0{g(s(t), u(t)) \cdot dt}
+$$
+
+where:
+
+- $h(s(T))$ is the `final state`;
+- $\int^T_0{g(s(t), u(t)) \cdot dt}$ is the `transition cost`.
+
+Write the `Hamiltonian function` and `costate`:
+
+$$
+H(s, u, \lambda) = g(s, u) + \lambda^T f(s, u)
+$$
+
+$$
+\lambda = (\lambda_1, \lambda_2, \lambda_3)
+$$
+
+and suppose:
+
+- $s^\star$ is the `optimal state`
+- $u^\star$ is the `optimal input`
+
+We have following conclusions:
+
+$$
+\dot{s^\star} = f(s^\star(t), u^\star(t)), given: s^\star(0) = s(0)
+$$
+
+$\lambda(t)$ is the solution of:
+
+$$
+\dot{\lambda(t)} = -\nabla_s H(s^\star(t), u^\star(t), \lambda(t))
+$$
+
+with the boundary condition of:
+
+$$
+\lambda(T) = - \nabla h(s^\star(T))
+$$
+
+and the optimal control input is:
+
+$$
+u^\star(t) = arg \min_{u(t)} H(s^\star (t), u(t), \lambda(t))
+$$
 
 By `Pontryain's minimum principle`, we first inctroduce the `costate`:
 
@@ -297,7 +350,7 @@ $$
 u^*(t) = arg \min_{u(t)} H(S^*(t), u(t), \lambda(t)) \tag{12}
 $$
 
-#### 3. Details
+#### 3. Solving costate
 
 From equation (8) and (10), calculating the partial derivatives of $(p, v, a)$, we get:
 
