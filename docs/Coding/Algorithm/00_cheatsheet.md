@@ -95,8 +95,8 @@ double bs(double l, double r) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/791/)
-- [problem](https://www.acwing.com/problem/content/792/)
+- [acwing](https://www.acwing.com/problem/content/791/)
+- [leetcode](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
 ## Expression
 
