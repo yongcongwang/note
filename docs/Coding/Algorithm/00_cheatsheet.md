@@ -18,8 +18,6 @@ void quick_sort(int a[], int l , int r) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/787/)
-
 ### Merge Sort
 
 ```C++
@@ -40,7 +38,9 @@ void merge_sort(int a[], int l, int r) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/787/)
+- [acwing](https://www.acwing.com/problem/content/787/)
+- [leetcode](https://leetcode.cn/problems/sort-an-array/)
+
 
 ## Serach
 
