@@ -7,7 +7,7 @@
 void quick_sort(int a[], int l , int r) {
   if (l >= r) return;
 
-  int i = l - 1, j = r + 1, p = a[l + (r - l) / 2];
+  int i = l - 1, j = r + 1, p = a[l + r >> 1];
   while (i < j) {
     while (a[++i] < p);
     while (a[--j] > p);
@@ -27,7 +27,7 @@ int tmp[N];
 void merge_sort(int a[], int l, int r) {
   if (l >= r) return;
 
-  int mid = l + (r - l) / 2;
+  int mid = l + r >> 1;
   merge_sort(a, l, mid);
   merge_sort(a, mid + 1, r);
 
