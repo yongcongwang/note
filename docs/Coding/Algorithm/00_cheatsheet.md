@@ -121,7 +121,8 @@ vector<int> add(vector<int>& A, vector<int>& B) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/793/)
+- [acwing](https://www.acwing.com/problem/content/793/)
+- [leetcode](https://leetcode.cn/problems/add-strings/)
 
 ### Subtraction
 
@@ -134,7 +135,7 @@ vector<int> add(vector<int>& A, vector<int>& B) {
     t = A[i] - t;
     if (i < B.size()) t -=B[i];
     C.push_back((t + 10) % 10);
-    t = t < 0 ? -1 : 0;
+    t = t < 0 ? 1 : 0;
   }
   while (C.size() > 1 && C.back() == 0) C.pop_back();
   return C;
