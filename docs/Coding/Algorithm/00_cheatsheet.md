@@ -38,7 +38,6 @@ void merge_sort(int a[], int l, int r) {
 }
 ```
 
-- [acwing](https://www.acwing.com/problem/content/787/)
 - [leetcode](https://leetcode.cn/problems/sort-an-array/)
 
 
@@ -95,7 +94,6 @@ double bs(double l, double r) {
 }
 ```
 
-- [acwing](https://www.acwing.com/problem/content/791/)
 - [leetcode](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
 ## Expression
@@ -122,7 +120,6 @@ vector<int> add(vector<int>& A, vector<int>& B) {
 ```
 
 - [acwing](https://www.acwing.com/problem/content/793/)
-- [leetcode](https://leetcode.cn/problems/add-strings/)
 
 ### Subtraction
 
