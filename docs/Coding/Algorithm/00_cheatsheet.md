@@ -177,7 +177,7 @@ pair<vector<int>, int> div(vector<int>& A, int b) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/795/)
+- [problem](https://www.acwing.com/problem/content/796/)
 
 ## Prefix
 
