@@ -207,7 +207,7 @@ void insert(int p[], int l, int r, int c) {
 }
 
 /// get each element
-for (int i = 1, t = 0; i <= n; ++i) t += p[i];
+for (int i = 1; i <= n; ++i) p[i] += p[i - 1];
 ```
 
 - [problem](https://www.acwing.com/problem/content/799/)
