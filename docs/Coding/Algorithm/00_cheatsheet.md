@@ -245,7 +245,7 @@ int kbit(int x, int k) { return x >> k & 1; }
 int lowbit(int x) { return x & -x; }
 ```
 
-## Binary Pointer
+## Two Pointers
 
 ```C++
 /// nnnnnnnnnnnnnnnnnnnnnn
