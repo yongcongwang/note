@@ -248,9 +248,17 @@ int lowbit(int x) { return x & -x; }
 ## Two Pointers
 
 ```C++
+/// 1 array
 /// nnnnnnnnnnnnnnnnnnnnnn
 ///     ^          ^
 ///     | j        | i    
+/// 2 array
+/// nnnnnnnnnnnnnnnnnnnnnn
+///     ^           
+///     | i               
+/// nnnnnnnnnnnnnnnnnnnnnn
+///                ^
+///                | j    
 for (int i = 0, j = 0; i < n; ++i) {
   // add i here
 
