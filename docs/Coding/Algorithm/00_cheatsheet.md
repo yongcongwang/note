@@ -319,3 +319,33 @@ void merge(vector<PII> &segs) {
 ```
 
 - [problem](https://www.acwing.com/problem/content/805/)
+
+## Linked List
+
+```C++
+// head index , element, next element index, index to empty memory
+int head, e[N], ne[N], idx;
+
+void init() {
+  head = -1;
+  idx = 0;
+}
+
+// add a node with value of v to head
+void to_head(int v) {
+  e[idx] = v, ne[idx] = head, head = idx++;
+}
+
+// remove node after ith node
+void remove(int i) {
+  ne[i] = ne[ne[i]];
+}
+
+// insert a node with value of v after kth node
+void insert(int k, int v) {
+  e[idx] = v, ne[idx] = ne[k], ne[k] = idx++;
+}
+
+// traval the linked list
+for (int i = head; i != -1; i = ne[i]) cout << e[i];
+```
