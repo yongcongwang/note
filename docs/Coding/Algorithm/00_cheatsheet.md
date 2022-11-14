@@ -349,3 +349,36 @@ void insert(int k, int v) {
 // traval the linked list
 for (int i = head; i != -1; i = ne[i]) cout << e[i];
 ```
+
+- [problem](https://www.acwing.com/problem/content/828/)
+
+## Double Linked List
+
+```C++
+
+int e[N], l[N], r[N], idx;
+
+// idx 0 for left node, idx 1 for right node
+void init() {
+  r[0] = 1, l[1] = 0;
+  idx = 2;
+}
+
+// insert a node at i's right
+void insert(int i, int v) {
+  e[idx] = v;
+  l[idx] = i, r[idx] = r[i];
+  l[r[i]] = idx, r[i] = idx++;
+}
+
+// remove i node
+void remove(int i) {
+  r[l[i]] = r[i];
+  l[r[i]] = l[i];
+}
+
+// travel
+for (int i = 0; i != 1; i = r[i]) cout << e[i];
+```
+
+- [problem](https://www.acwing.com/problem/content/828/)
