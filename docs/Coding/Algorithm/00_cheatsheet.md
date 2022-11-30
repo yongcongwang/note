@@ -419,3 +419,14 @@ void front() { return q[h]; }
 
 bool empty() { return h == t; }
 ```
+
+## Monotonous stack
+
+```C++
+int stk[N], t = 0;
+
+for (auto n : a) {
+  while (t && stk[t] >= n) --t;
+  stk[++t] = n;
+}
+```
