@@ -382,3 +382,19 @@ for (int i = 0; i != 1; i = r[i]) cout << e[i];
 ```
 
 - [problem](https://www.acwing.com/problem/content/828/)
+
+## Stack
+
+```C++
+int stk[N], idx = 0;
+
+void push(int x) { stk[++idx] = x; }
+
+void pop() { --idx; }
+
+int top() { return stk[idx]; }
+
+bool empty() { return idx == 0; }
+```
+
+- [problem](https://www.acwing.com/problem/content/description/830/)
