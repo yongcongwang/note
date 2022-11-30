@@ -420,6 +420,8 @@ void front() { return q[h]; }
 bool empty() { return h == t; }
 ```
 
+- [problem](https://www.acwing.com/problem/content/831/)
+
 ## Monotonous stack
 
 ```C++
@@ -430,3 +432,5 @@ for (auto n : a) {
   stk[++t] = n;
 }
 ```
+
+- [problem](https://www.acwing.com/problem/content/832/)
