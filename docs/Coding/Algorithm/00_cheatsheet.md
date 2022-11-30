@@ -398,3 +398,24 @@ bool empty() { return idx == 0; }
 ```
 
 - [problem](https://www.acwing.com/problem/content/description/830/)
+
+## Queue
+
+```C++
+/// loop
+int q[N], h = 0, t = 0;
+
+void push(int x) {
+  q[t] = x;
+  if (t == N) t = 0;
+}
+
+void pop() {
+  h++;
+  if (h == N) h = 0;
+}
+
+void front() { return q[h]; }
+
+bool empty() { return h == t; }
+```
