@@ -452,3 +452,5 @@ for (int i = 0; i < n; ++i) {
 }
 
 ```
+
+- [problem](https://www.acwing.com/problem/content/156/)
