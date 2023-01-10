@@ -454,3 +454,26 @@ for (int i = 0; i < n; ++i) {
 ```
 
 - [problem](https://www.acwing.com/problem/content/156/)
+
+## KMP
+
+```C++
+/// s[] for string with index [1, n], p[] for pattern with index [1, m]
+/// ne[] for next array, 
+for (int i = 2, j = 0; i <= m; ++i) {
+  while (j && p[j + 1] != p[i]) j = ne[j];
+  if (p[j + 1] == p[i]) ++j;
+  ne[i] = j;
+}
+
+for (int i = 1, j = 0; i <= n; ++i) {
+  while (j && p[j + 1] != p[i]) j = ne[j];
+  if (p[j + 1] == p[i]) ++j;
+  if (j == m) {
+    /// do something
+    j = ne[j];
+  }
+}
+```
+
+- [problem](https://www.acwing.com/problem/content/833/)
