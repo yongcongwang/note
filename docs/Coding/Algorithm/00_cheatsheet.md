@@ -434,3 +434,21 @@ for (auto n : a) {
 ```
 
 - [problem](https://www.acwing.com/problem/content/832/)
+
+## Monotonous queue
+
+```C++
+/// h for head of queue, t for tail of queue, k for window size
+/// nnnnnnnnnnnnnnnnnnnnnn
+///     ^          ^
+///     | h        | t    
+
+for (int i = 0; i < n; ++i) {
+  if (h <= t && i - q[h] + 1 > k) ++h;
+  while (h <=t && a[q[t]] >= a[i]) --t;
+  q[++t] = i;
+  /// Check min value of the window
+  printf("min value %d", a[q[h]]);
+}
+
+```
