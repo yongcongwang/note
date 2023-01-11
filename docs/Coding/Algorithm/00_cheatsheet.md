@@ -477,3 +477,31 @@ for (int i = 1, j = 0; i <= n; ++i) {
 ```
 
 - [problem](https://www.acwing.com/problem/content/833/)
+
+## Trie
+
+```C++
+/// son[N][26] for Trie Node, cnt[N] for Node's finished cnt, idx for pointer
+
+void insert(char str[]) {
+  int p = 0;
+  for (int i = 0; str[i]; ++i) {
+    int u = str[i] - 'a';
+    if (!son[p][u]) son[p][u] = ++idx;
+    p = son[p][u];
+  }
+  ++cnt[p];
+}
+
+/// return count of the str
+int query(char str[]) {
+  int p = 0;
+  for (int i = 0; str[i]; ++i) {
+    int u = str[i] - 'a';
+    if (!son[p][u]) return 0;
+    p = son[p][u];
+  }
+
+  return cnt[p];
+}
+```
