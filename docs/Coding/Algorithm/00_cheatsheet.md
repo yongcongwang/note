@@ -505,3 +505,42 @@ int query(char str[]) {
   return cnt[p];
 }
 ```
+
+## Union
+
+```C++
+/// origin Union, p for parent
+int p[N]
+
+// find parent
+int find(int x) {
+  if (p[x] != x) p[x] = find(p[x]);
+  return p[x];
+}
+
+// init
+for (int i = 1; i <= n; ++i) p[i] = i;
+
+// merge
+p[find(a)] = find(b);
+
+/// Union with size
+int p[N], size[N];
+
+// find parent
+int find(int x) {
+  if (p[x] != x) p[x] = find(p[x]);
+  return p[x];
+}
+
+// init
+for (int i = 1; i <= n; ++i) p[i] = i;
+for (int i = 1; i <= n; ++i) size[i] = 1;
+
+// merge
+size[find(a)] += size[find(b)];  // this must execute first
+p[find(a)] = find(b);
+```
+
+- [problem](https://www.acwing.com/problem/content/838/)
+- [problem](https://www.acwing.com/problem/content/839/)
