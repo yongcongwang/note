@@ -38,7 +38,7 @@ void merge_sort(int a[], int l, int r) {
 }
 ```
 
-- [leetcode](https://leetcode.cn/problems/sort-an-array/)
+- [problem](https://problem.cn/problems/sort-an-array/)
 
 
 ## Serach
@@ -94,7 +94,7 @@ double bs(double l, double r) {
 }
 ```
 
-- [leetcode](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
+- [problem](https://problem.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
 ## Expression
 
@@ -187,7 +187,7 @@ pair<vector<int>, int> div(vector<int>& A, int b) {
 for (int i = 1; i <= n; ++i) p[i] = p[i - 1] + a[i - 1];
 ```
 
-- [problem](https://leetcode.cn/problems/range-sum-query-immutable/)
+- [problem](https://problem.cn/problems/range-sum-query-immutable/)
 
 ### Prefix Sum 2D
 
@@ -196,7 +196,7 @@ for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
     p[i][j] = a[i - 1][j - 1] + p[i][j - 1] + p[i - 1][j] - p[i - 1][j - 1];
 ```
 
-- [problem](https://leetcode.cn/problems/range-sum-query-2d-immutable/)
+- [problem](https://problem.cn/problems/range-sum-query-2d-immutable/)
 
 ### Prefix Diff
 
@@ -505,6 +505,8 @@ int query(char str[]) {
   return cnt[p];
 }
 ```
+
+- [problem](https://www.acwing.com/problem/content/837/)
 
 ## Union
 
