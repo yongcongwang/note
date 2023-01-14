@@ -544,3 +544,48 @@ p[find(a)] = find(b);
 
 - [problem](https://www.acwing.com/problem/content/838/)
 - [problem](https://www.acwing.com/problem/content/839/)
+
+## Heap
+
+```C++
+/// Minimum root heap
+int h[N], size;
+
+void down(int x) {
+  int u = x;
+  if (auto left = x * 2; left <= size && h[left] < h[u]) u = left; 
+  if (auto right = x * 2 + 1; right <= size && h[right ] < h[u]) u = right; 
+  if (u != x) {
+    swap(h[u], h[x]);
+    down(u);
+  }
+}
+
+void up(int x) {
+  while (x / 2 && h[x / 2] > h[x]) {
+    swap(h[x / 2], h[x]);
+    x >> 1;
+  }
+}
+
+/// O(N) build heap
+for (int i = n / 2; i; --i) down(i);
+
+/// Insert a number
+h[++size] = x; up(size);
+
+/// Get minimum
+head[1];
+
+/// Remove minimum(root)
+swap(h[1], head[size--]); down(1);
+
+/// Remove kth element
+head[k] = head[size--]; down(k); up(k);
+
+/// Modify kth element
+head[k] = x; down(k); up(k);
+```
+
+- [problem](https://www.acwing.com/problem/content/840/)
+
