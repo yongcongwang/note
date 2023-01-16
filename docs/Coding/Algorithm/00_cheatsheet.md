@@ -591,3 +591,57 @@ head[k] = x; down(k); up(k);
 
 - [problem](https://www.acwing.com/problem/content/840/)
 
+## Hash table
+
+```C++
+/// Integar Hash
+
+/// Seperate chaining
+constexpr int N = 1e5 + 10;  // first prime number after length(1e5)
+int h[N], e[N], ne[N], idx;  // h[n] for chain head ptr, e[n] for element, ne[n] for next ptr, idx for ptr
+
+// init
+memset(h, -1, sizeof(h));
+
+void insert(int x) {
+  int k = (x % N + N) % N;  // key, range in [0, N - 1]
+  e[idx] = x;
+  ne[idx] = h[k];
+  h[k] = idx++;
+}
+
+bool find(int x) {
+  int k = (x % N + N) % N;
+  for (int i = h[k]; i != -1; i = ne[i]) if (e[i] == x) return true;
+  return false;
+}
+
+/// Open addressing
+constexpr int N = 2e5 + 3;  // 2 or 3 times of the number range, first prime
+constexpr int null = 0x3f3f3f3f;  // a number bigger not in range to represent the nullptr
+int h[N];
+
+int find(int x) {  // return the idx x locates or should be inserted
+  int t = (x % N + N) % N;
+  while (h[t] != null && h[t] != x) t %= ++t;
+  return t;
+}
+```
+
+```C++
+/// string hash, to check if two substring on string are the same
+using ULL = unsigned long long;  // number range [0, 2^64), overflow for mod
+constexpr int N = 1e5 + 10, P = 131;  // P-base numeral system
+ULL h[N], p[N];
+
+// init
+p[0] = 1;
+for (int i = 1; i <= n; ++i) {
+  h[i] = h[i - 1] * P + str[i];  // h for hash
+  p[i] = p[i - 1] * P;  // p for P^i
+}
+
+ULL get(int l, int r) {
+  return h[r] - h[l - 1] * p[r - l + 1];
+}
+```
