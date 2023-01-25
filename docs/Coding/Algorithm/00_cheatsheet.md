@@ -645,3 +645,80 @@ ULL get(int l, int r) {
   return h[r] - h[l - 1] * p[r - l + 1];
 }
 ```
+
+- [problem](https://www.acwing.com/problem/content/843/)
+
+## Graph
+
+### Storage of Graph
+
+```C++
+/// adjecent matrix
+g[a][b];  // for the edge a -> b
+
+/// adjecent list
+int h[N], e[N], ne[N], idx;
+
+// add edge a -> b
+void add(int a, int b) {
+  e[idx] = b, ne[idx] = h[a], h[a] = idx++;
+}
+
+// init
+idx = 0;
+memset(h, -1, sizeof(h));
+```
+
+### DFS of graph
+
+```C++
+int dfs(int u) {
+  st[u] = true;
+  for (int i = h[u]; i != -1; i = ne[i]) {
+    int j = e[i];
+    if (!st[j]) dfs(j);
+  }
+}
+```
+
+- [problem](https://www.acwing.com/problem/content/848/)
+
+### BFD of graph
+
+```C++
+queue<int> q{};
+st[1] = true;
+q.push(1);
+
+while (!q.empty()) {
+  int t = q.front();
+  q.pop();
+
+  for (int i = h[t]; i != -1; i = ne[i]) if (int j = e[i]; !st[j]) {
+    st[j] = true;
+    q.push(j);
+  }
+}
+```
+
+- [problem](https://www.acwing.com/problem/content/849/)
+
+### Toposort
+
+```C++
+bool topsort() {
+  int hh = 0, tt = -1;
+  for (int i = 1; i <= n; ++i) if (!d[i]) q[++tt] = i;
+
+  while (hh <= tt) {
+    int t = q[h++];
+    for (int i = h[t]; i != -1; i = ne[i]) {
+      if (int j = e[i]; --d[j] == 0) q[++tt] = j;
+    }
+  }
+
+  return tt == n - 1;
+}
+```
+
+- [problem](https://www.acwing.com/problem/content/850/)
