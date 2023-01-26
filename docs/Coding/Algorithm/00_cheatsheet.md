@@ -566,7 +566,7 @@ void down(int x) {
 void up(int x) {
   while (x / 2 && h[x / 2] > h[x]) {
     swap(h[x / 2], h[x]);
-    x >> 1;
+    x >>= 1;
   }
 }
 
