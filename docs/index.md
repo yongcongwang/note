@@ -8,3 +8,5 @@ More about me:
 
 - [Email](mailto:yongcong.wang@outlook.com)
 - [Github](https://github.com/yongcongwang)
+- [Leetcode](https://leetcode.cn/u/yongcongwang/)
+- [Bilibili](https://space.bilibili.com/2070021520)
