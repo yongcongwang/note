@@ -1,8 +1,10 @@
 # Algorithm Cheatsheet
 
-## Sort
+## Basic Algorithm
 
-### Quick Sort
+### Sort
+
+#### Quick Sort
 ```C++
 void quick_sort(int a[], int l , int r) {
   if (l >= r) return;
@@ -18,7 +20,7 @@ void quick_sort(int a[], int l , int r) {
 }
 ```
 
-### Merge Sort
+#### Merge Sort
 
 ```C++
 int tmp[N];
@@ -41,9 +43,9 @@ void merge_sort(int a[], int l, int r) {
 - [problem](https://problem.cn/problems/sort-an-array/)
 
 
-## Serach
+### Serach
 
-### Binary Search
+#### Binary Search
 
 ```C++
 //           Left                             Right
@@ -96,9 +98,9 @@ double bs(double l, double r) {
 
 - [problem](https://problem.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
-## Expression
+### Expression
 
-### Addition
+#### Addition
 
 ```C++
 /// digits of A, B and C are in reverse order
@@ -121,7 +123,7 @@ vector<int> add(vector<int>& A, vector<int>& B) {
 
 - [acwing](https://www.acwing.com/problem/content/793/)
 
-### Subtraction
+#### Subtraction
 
 ```C++
 /// digits of A, B and C are in reverse order
@@ -141,7 +143,7 @@ vector<int> add(vector<int>& A, vector<int>& B) {
 
 - [problem](https://www.acwing.com/problem/content/794/)
 
-### Multiplication
+#### Multiplication
 
 ```C++
 /// digits of A and C are in reverse order
@@ -159,7 +161,7 @@ vector<int> mul(vector<int>& A, int b) {
 
 - [problem](https://www.acwing.com/problem/content/795/)
 
-### Division
+#### Division
 
 ```C++
 /// digits of A and C are in reverse order
@@ -179,9 +181,9 @@ pair<vector<int>, int> div(vector<int>& A, int b) {
 
 - [problem](https://www.acwing.com/problem/content/796/)
 
-## Prefix
+### Prefix
 
-### Prefix Sum
+#### Prefix Sum
 
 ```C++
 for (int i = 1; i <= n; ++i) p[i] = p[i - 1] + a[i - 1];
@@ -189,7 +191,7 @@ for (int i = 1; i <= n; ++i) p[i] = p[i - 1] + a[i - 1];
 
 - [problem](https://problem.cn/problems/range-sum-query-immutable/)
 
-### Prefix Sum 2D
+#### Prefix Sum 2D
 
 ```C++
 for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
@@ -198,7 +200,7 @@ for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
 
 - [problem](https://problem.cn/problems/range-sum-query-2d-immutable/)
 
-### Prefix Diff
+#### Prefix Diff
 
 ```C++
 void insert(int p[], int l, int r, int c) {
@@ -212,7 +214,7 @@ for (int i = 1; i <= n; ++i) p[i] += p[i - 1];
 
 - [problem](https://www.acwing.com/problem/content/799/)
 
-### Prefix Diff 2D
+#### Prefix Diff 2D
 
 ```C++
 void insert(int p[][N], int x1, int y1, int x2, int y2, int c) {
@@ -229,9 +231,9 @@ for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
 
 - [problem](https://www.acwing.com/problem/content/800/)
 
-## Bit Operator
+### Bit Operator
 
-### K bit
+#### K bit
 
 ```C++
 int kbit(int x, int k) { return x >> k & 1; }
@@ -239,13 +241,13 @@ int kbit(int x, int k) { return x >> k & 1; }
 
 - [problem](https://www.acwing.com/problem/content/803/)
 
-### Lowbit
+#### Lowbit
 
 ```C++
 int lowbit(int x) { return x & -x; }
 ```
 
-## Two Pointers
+### Two Pointers
 
 ```C++
 /// 1 array
@@ -271,7 +273,7 @@ for (int i = 0, j = 0; i < n; ++i) {
 - [problem](https://www.acwing.com/problem/content/801/)
 - [problem](https://www.acwing.com/problem/content/802/)
 
-## Discrete
+### Discrete
 
 ```C++
 vector<int> a{};  // to be discrete
@@ -295,7 +297,7 @@ int find(int x) {
 
 - [problem](https://www.acwing.com/problem/content/804/)
 
-## Merge Range
+### Merge Range
 
 ```C++
 using PII = pair<int, int>;
@@ -320,7 +322,9 @@ void merge(vector<PII> &segs) {
 
 - [problem](https://www.acwing.com/problem/content/805/)
 
-## Linked List
+## Data Structure
+
+### Linked List
 
 ```C++
 // head index , element, next element index, index to empty memory
@@ -352,7 +356,7 @@ for (int i = head; i != -1; i = ne[i]) cout << e[i];
 
 - [problem](https://www.acwing.com/problem/content/828/)
 
-## Double Linked List
+### Double Linked List
 
 ```C++
 
@@ -383,7 +387,7 @@ for (int i = 0; i != 1; i = r[i]) cout << e[i];
 
 - [problem](https://www.acwing.com/problem/content/828/)
 
-## Stack
+### Stack
 
 ```C++
 int stk[N], idx = 0;
@@ -399,7 +403,7 @@ bool empty() { return idx == 0; }
 
 - [problem](https://www.acwing.com/problem/content/description/830/)
 
-## Queue
+### Queue
 
 ```C++
 /// loop
@@ -422,7 +426,7 @@ bool empty() { return h == t; }
 
 - [problem](https://www.acwing.com/problem/content/831/)
 
-## Monotonous stack
+### Monotonous stack
 
 ```C++
 int stk[N], t = 0;
@@ -435,7 +439,7 @@ for (auto n : a) {
 
 - [problem](https://www.acwing.com/problem/content/832/)
 
-## Monotonous queue
+### Monotonous queue
 
 ```C++
 /// h for head of queue, t for tail of queue, k for window size
@@ -455,7 +459,7 @@ for (int i = 0; i < n; ++i) {
 
 - [problem](https://www.acwing.com/problem/content/156/)
 
-## KMP
+### KMP
 
 ```C++
 /// s[] for string with index [1, n], p[] for pattern with index [1, m]
@@ -478,7 +482,7 @@ for (int i = 1, j = 0; i <= n; ++i) {
 
 - [problem](https://www.acwing.com/problem/content/833/)
 
-## Trie
+### Trie
 
 ```C++
 /// son[N][26] for Trie Node, cnt[N] for Node's finished cnt, idx for pointer
@@ -508,7 +512,7 @@ int query(char str[]) {
 
 - [problem](https://www.acwing.com/problem/content/837/)
 
-## Union
+### Union
 
 ```C++
 /// origin Union, p for parent
@@ -547,7 +551,7 @@ p[find(a)] = find(b);
 - [problem](https://www.acwing.com/problem/content/838/)
 - [problem](https://www.acwing.com/problem/content/839/)
 
-## Heap
+### Heap
 
 ```C++
 /// Minimum root heap
@@ -591,7 +595,7 @@ head[k] = x; down(k); up(k);
 
 - [problem](https://www.acwing.com/problem/content/840/)
 
-## Hash table
+### Hash table
 
 ```C++
 /// Integar Hash
@@ -722,3 +726,9 @@ bool topsort() {
 ```
 
 - [problem](https://www.acwing.com/problem/content/850/)
+
+### Shortest Path
+
+### Minimum Spanning Tree
+
+### Binary Graph
