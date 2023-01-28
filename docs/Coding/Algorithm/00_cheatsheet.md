@@ -727,7 +727,9 @@ bool topsort() {
 
 - [problem](https://www.acwing.com/problem/content/850/)
 
-### Shortest Path
+### Shortest Path(SP)
+
+![sp](images/cheatsheet/sp.png)
 
 ### Minimum Spanning Tree
 
