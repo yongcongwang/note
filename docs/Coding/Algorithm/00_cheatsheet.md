@@ -759,15 +759,17 @@ int dijkstra(int u) {
 }
 ```
 
+- [problem](https://www.acwing.com/problem/content/851/)
+
 #### Heap-optimal Dijkstra
 
 ```C++
 /// for sparse graph, node from 1 to n
 using PII = piar<int, int>;
-int h[N], e[M], c[M], ne[M], idx;  // e for element, c for cost, ne for next
+int h[N], e[M], w[M], ne[M], idx;  // e for element, c for cost, ne for next
 memset(h, -1, sizeof(h));
 void add(int x, int y, int z) {
-  e[idx] = y, c[idx] = z, ne[idx] = h[x], h[x] = idx++;
+  e[idx] = y, w[idx] = z, ne[idx] = h[x], h[x] = idx++;
 }
 
 int dist[N];
@@ -788,7 +790,7 @@ int dijkstra(int u) {
     st[node] = true;
 
     for (int i = h[node]; i != -1; i = ne[i]) {
-      int next = e[i], cost = c[i];
+      int next = e[i], cost = w[i];
       if (dist[next] > dist[node] + cost) {
         dist[next] = dist[node] + cost;
         pq.push({dist[next], next});
@@ -799,6 +801,32 @@ int dijkstra(int u) {
   return dist[n] == INF ? -1 : dist[n];
 }
 ```
+
+- [problem](https://www.acwing.com/problem/content/852/)
+
+#### Bellman-Ford
+
+```C++
+int dist[N], back[N];
+struct Edge { int a, b, w; } es[M];
+
+int bellman_ford(int u) {
+  memset(dist, 0x3f, sizeof(dist));
+  dist[u] = 0;
+
+  // relax k times, all sps within k edges are found
+  for (int i = 0; i < k; ++i) {
+    for (int j = 0; j < m; ++j) {
+      auto [a, b, w] = es[j];
+      dist[b] = std::min(dist[b], dist[a] + w);
+    }
+  }
+
+  return dist[n];
+}
+```
+
+- [problem](https://www.acwing.com/problem/content/855/)
 
 ### Minimum Spanning Tree
 
