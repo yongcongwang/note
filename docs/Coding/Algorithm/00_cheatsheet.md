@@ -731,6 +731,75 @@ bool topsort() {
 
 ![sp](images/cheatsheet/sp.png)
 
+#### Original Dijkstra
+
+```C++
+/// for dense graph, node from 1 to n
+int g[N][N], dist[N];
+bool st[N];  // Store the node whose sp is determined
+
+int dijkstra(int u) {
+  memset(dist, 0x3f, sizeof(dist));
+  dist[u] = 0;
+
+  for (int i = 0; i < n - 1; ++i) {
+    // find the node who's not in st but has minimum distance to u
+    int t = -1;
+    for (int j = 1; j <= n; ++j) if (!st[j] && (t == -1 || dist[j] < dist[t]))
+      t = j;
+
+    // use t to update all other nodes' distance
+    for (int j = 1; j <= n; ++j) dis[j] = std::min(dist[j], dist[t] + g[t][j]);
+
+    // put t to st
+    st[t] = true;
+  }
+
+  return dist[n] == INF ? -1 : dist[n];
+}
+```
+
+#### Heap-optimal Dijkstra
+
+```C++
+/// for sparse graph, node from 1 to n
+using PII = piar<int, int>;
+int h[N], e[M], c[M], ne[M], idx;  // e for element, c for cost, ne for next
+memset(h, -1, sizeof(h));
+void add(int x, int y, int z) {
+  e[idx] = y, c[idx] = z, ne[idx] = h[x], h[x] = idx++;
+}
+
+int dist[N];
+bool st[N];
+
+int dijkstra(int u) {
+  memset(dist, 0x3f, sizeof(dist));
+  dist[u] = 0;
+
+  priority_queue<PII, vector<int>, greater<PII>> pq{};
+  pq.push({0, u});
+
+  while (pq.size()) {
+    auto [dis, node] = pq.top();
+    pq.pop();
+
+    if (st[node]) continue;
+    st[node] = true;
+
+    for (int i = h[node]; i != -1; i = ne[i]) {
+      int next = e[i], cost = c[i];
+      if (dist[next] > dist[node] + cost) {
+        dist[next] = dist[node] + cost;
+        pq.push({dist[next], next});
+      }
+    }
+  }
+
+  return dist[n] == INF ? -1 : dist[n];
+}
+```
+
 ### Minimum Spanning Tree
 
 ### Binary Graph
