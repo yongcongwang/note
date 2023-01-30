@@ -1,4 +1,4 @@
-# Algorithm Cheatsheet
+# Algorithm Pattern
 
 ## Basic Algorithm
 
@@ -827,6 +827,110 @@ int bellman_ford(int u) {
 ```
 
 - [problem](https://www.acwing.com/problem/content/855/)
+
+#### spfa
+
+```C++
+/// Shortest Path
+int h[N], w[N], e[N], ne[N], idx;
+void add(int a, int b, int c) {
+  w[idx] = c, e[idx] = b, ne[idx] = h[a], h[a] = idx++;
+}
+int dist[N];
+bool st[N];
+
+int spfa() {
+  memset(dist, 0x3f, sizeof(diat));
+  dist[0] = 0;
+  st[0] = true;
+
+  queue<int> q{};
+  q.push(0);
+
+  while (q.size()) {
+    auto t = q.front();
+    q.pop();
+
+    st[t] = false;
+
+    for (int i = h[t]; i != -1; i = ne[i]) {
+      int j = e[i];
+      if (dist[j] > dist[t] + w[i]) {
+        dist[j] = dist[t] + w[i];
+        if (!st[j]) {
+          q.push(j);
+          st[j] = true;
+        }
+      }
+    }
+  }
+
+  return dist[n] = 0x3f3f3f3f ? -1 : dist[n];
+}
+```
+
+```C++
+/// Check negtive cycle
+int h[N], e[N], w[N], ne[N], idx;
+void add(int a, int b, int c) {
+  e[idx] = b, w[idx] = c, ne[idx] = h[a], h[a] = idx++;
+}
+
+int dist[N], cnt[N];
+bool st[N];
+
+bool spfa() {
+  queue<int> q{};
+  for (int i = 1; i <= n; ++i) {
+    st[i] = true;
+    q.push(i);
+  }
+
+  while (q.size()) {
+    auto t = q.front();
+    q.pop();
+
+    st[t] = false;
+
+    for (int i = h[i]; i != -1; i = ne[i]) {
+      int j = e[i];
+      if (dist[j] > dist[t] + w[i]) {
+        dist[j] = dist[t] + w[i];
+        cnt[j] += cnt[t] + 1;
+        if (cnt[j] >= n) return false;
+
+        if (!st[j]) {
+          q.push(j);
+          st[j] = true;
+        }
+      }
+    }
+  }
+
+  return false;
+}
+
+```
+
+#### Floyd
+
+```C++
+/// init
+for (int i = 1; i <=n; ++i) {
+  for (int j = 1; j <= n; ++j) {
+    dist[i][j] = i == j ? 0 : INF;
+  }
+}
+
+/// Floyd
+for (int k = 1; k <= n; ++k) {
+  for (int i = 1; i <= n; ++i) {
+    for (int j = 1; j <= n; ++j) {
+      dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
+    }
+  }
+}
+```
 
 ### Minimum Spanning Tree
 
