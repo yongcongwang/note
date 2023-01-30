@@ -869,6 +869,8 @@ int spfa() {
 }
 ```
 
+- [problem](https://www.acwing.com/problem/content/853/)
+
 ```C++
 /// Check negtive cycle
 int h[N], e[N], w[N], ne[N], idx;
@@ -909,8 +911,9 @@ bool spfa() {
 
   return false;
 }
-
 ```
+
+- [problem](https://www.acwing.com/problem/content/854/)
 
 #### Floyd
 
@@ -932,6 +935,73 @@ for (int k = 1; k <= n; ++k) {
 }
 ```
 
+- [problem](https://www.acwing.com/problem/content/856/)
+
 ### Minimum Spanning Tree
 
+`Prim` for dense graph, `Kruskal` for sparse graph.
+
+#### Prim
+
+```C++
+int g[N][N], dist[N];
+bool st[N];
+
+int prim() {
+  int ans = 0;
+  memset(dist, 0x3f, sizeof(dist));
+  for (int i = 0; i < n; ++i) {
+    int t = -1;
+    for (int j = 1; j <= n; ++j) if (!st[j] && (t == -1 || dist[j] < dist[t]))
+      t = j;
+
+    if (i && dist[t] == INF) return INF;
+    if (i) ans += dist[t];
+
+    st[t] = true;
+    for (int j = 1; j <= n; ++j) dist[j] = min(dist[j], g[t][j])
+  }
+
+  return ans;
+}
+```
+
+- [problem](https://www.acwing.com/problem/content/860/)
+
+#### Kruskal
+
+```C++
+int p[N];
+int find(int x) {
+  if (p[x] != x) p[x] = find(p[x]);
+  return p[x];
+}
+
+struct Edge {
+  int a, b, w;
+  bool operator<(const Edge& rhs) const { return w < rhs.w; }
+} edges[M];
+
+int kruskal() {
+  sort(edges, edges + m);
+
+  int ans = 0, cnt = 0;
+  for (int i = 0; i < m; ++i) {
+    auto [a, b, w] = edges[i];
+    a = find(a), b = find(b);
+    if (a != b) {
+      p[a] = b;
+      and += w;
+      ++cnt;
+    }
+  }
+
+  return cnt < n - 1 ? INF : ans;
+}
+```
+
+- [problem](https://www.acwing.com/problem/content/861/)
+
 ### Binary Graph
+
+
