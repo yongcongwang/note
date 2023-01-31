@@ -1002,6 +1002,56 @@ int kruskal() {
 
 - [problem](https://www.acwing.com/problem/content/861/)
 
-### Binary Graph
+### Bipartite Graph
 
+#### Coloring (check bipartite graph)
 
+```C++
+int color[N];  // -1 for uncolored, 0 for white, 1 for black
+
+bool dfs(int u, int c) {
+  color[u] = c;
+  for (int i = h[u]; i != -1; i = ne[i]) {
+    int j = e[i];
+    if (color[j] == -1 && !dfs(j, !c)) return false;
+    if (color[j] == c) return false;
+  }
+
+  return true;
+}
+
+for (int i = 1; i <= n; ++i) if (!dfs(i, 0)) return false;
+return true;
+```
+
+- [problem](https://www.acwing.com/problem/content/862/)
+
+#### Maximum Bipartite Matching(MBM), Hungarian
+
+```C++
+int match[N];  // 0 for unmatched
+bool st[N];
+
+bool find(int x) {
+  for (int i = h[x]; i != -1; i = ne[i]) {
+    int j = e[i];
+    if (!st[j]) {
+      st[j] = true;
+      if (match[j] == 0 || find(match[j])) {
+        match[j] = x;
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+int ans = 0;
+for (int i = 1; i <= n1; ++i) {
+  memset(st, false, sizeof(st));
+  if (find(i)) ++ans;
+}
+```
+
+- [problem](https://www.acwing.com/problem/content/863/)
