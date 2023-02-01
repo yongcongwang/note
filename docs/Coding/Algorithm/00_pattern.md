@@ -20,6 +20,8 @@ void quick_sort(int a[], int l , int r) {
 }
 ```
 
+- [problem](https://www.acwing.com/problem/content/797/)
+
 #### Merge Sort
 
 ```C++
@@ -40,7 +42,7 @@ void merge_sort(int a[], int l, int r) {
 }
 ```
 
-- [problem](https://problem.cn/problems/sort-an-array/)
+- [problem](https://www.acwing.com/problem/content/799/)
 
 
 ### Serach
@@ -96,7 +98,8 @@ double bs(double l, double r) {
 }
 ```
 
-- [problem](https://problem.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
+- [problem](https://www.acwing.com/problem/content/791/)
+- [problem](https://www.acwing.com/problem/content/792/)
 
 ### Expression
 
