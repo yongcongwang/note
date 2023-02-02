@@ -20,7 +20,7 @@ void quick_sort(int a[], int l , int r) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/797/)
+- [problem](https://www.acwing.com/problem/content/787/)
 
 #### Merge Sort
 
@@ -42,7 +42,7 @@ void merge_sort(int a[], int l, int r) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/799/)
+- [problem](https://www.acwing.com/problem/content/789/)
 
 
 ### Serach
