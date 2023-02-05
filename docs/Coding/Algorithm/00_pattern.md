@@ -192,7 +192,7 @@ pair<vector<int>, int> div(vector<int>& A, int b) {
 for (int i = 1; i <= n; ++i) p[i] = p[i - 1] + a[i - 1];
 ```
 
-- [problem](https://problem.cn/problems/range-sum-query-immutable/)
+- [problem](https://www.acwing.com/problem/content/797/)
 
 #### Prefix Sum 2D
 
@@ -201,7 +201,7 @@ for (int i = 1; i <= n; ++i) for (int j = 1; j <= m; ++j)
     p[i][j] = a[i - 1][j - 1] + p[i][j - 1] + p[i - 1][j] - p[i - 1][j - 1];
 ```
 
-- [problem](https://problem.cn/problems/range-sum-query-2d-immutable/)
+- [problem](https://www.acwing.com/problem/content/798/)
 
 #### Prefix Diff
 
