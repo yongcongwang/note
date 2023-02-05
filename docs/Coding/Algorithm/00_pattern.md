@@ -308,16 +308,13 @@ void merge(vector<PII> &segs) {
   sort(segs.begin(), segs.end());
 
   vector<PII> ans{};
-  int s = -2e9, e = -2e9;
-  for (auto [ss, se] : segs) {
-    if (e < ss) {
-      if (e != -2e9) ans.push_back({s, e});
-      tie(s, e) = pair{ss, se};
+  for (auto [l, r] : segs) {
+    if (ans.emtpy() || ans.back().second < l) {
+      ans.push_back({l, r});
     } else {
-      e = max(e, se);
+      ans.back().second = max(ans.back().second, r);
     }
   }
-  if (s != -2e9) ans.push_back({s, e});
 
   return ans;
 }
