@@ -385,7 +385,7 @@ void remove(int i) {
 for (int i = 0; i != 1; i = r[i]) cout << e[i];
 ```
 
-- [problem](https://www.acwing.com/problem/content/828/)
+- [problem](https://www.acwing.com/problem/content/829/)
 
 ### Stack
 
@@ -393,11 +393,8 @@ for (int i = 0; i != 1; i = r[i]) cout << e[i];
 int stk[N], idx = 0;
 
 void push(int x) { stk[++idx] = x; }
-
 void pop() { --idx; }
-
 int top() { return stk[idx]; }
-
 bool empty() { return idx == 0; }
 ```
 
@@ -409,18 +406,9 @@ bool empty() { return idx == 0; }
 /// loop
 int q[N], h = 0, t = 0;
 
-void push(int x) {
-  q[t] = x;
-  if (t == N) t = 0;
-}
-
-void pop() {
-  h++;
-  if (h == N) h = 0;
-}
-
+void push(int x) { q[++t % N] = x; }
+void pop() { h = ++h % N; }
 void front() { return q[h]; }
-
 bool empty() { return h == t; }
 ```
 
