@@ -434,6 +434,7 @@ for (auto n : a) {
 /// nnnnnnnnnnnnnnnnnnnnnn
 ///     ^          ^
 ///     | h        | t    
+int a[N], q[N];
 
 for (int i = 0; i < n; ++i) {
   if (h <= t && i - q[h] + 1 > k) ++h;
@@ -450,8 +451,8 @@ for (int i = 0; i < n; ++i) {
 ### KMP
 
 ```C++
-/// s[] for string with index [1, n], p[] for pattern with index [1, m]
-/// ne[] for next array, 
+char s[N], p[M], ne[N];
+
 for (int i = 2, j = 0; i <= m; ++i) {
   while (j && p[j + 1] != p[i]) j = ne[j];
   if (p[j + 1] == p[i]) ++j;
@@ -459,8 +460,8 @@ for (int i = 2, j = 0; i <= m; ++i) {
 }
 
 for (int i = 1, j = 0; i <= n; ++i) {
-  while (j && p[j + 1] != p[i]) j = ne[j];
-  if (p[j + 1] == p[i]) ++j;
+  while (j && p[j + 1] != s[i]) j = ne[j];
+  if (p[j + 1] == s[i]) ++j;
   if (j == m) {
     /// do something
     j = ne[j];
@@ -473,7 +474,7 @@ for (int i = 1, j = 0; i <= n; ++i) {
 ### Trie
 
 ```C++
-/// son[N][26] for Trie Node, cnt[N] for Node's finished cnt, idx for pointer
+int son[N][26], cnt[N], idx;
 
 void insert(char str[]) {
   int p = 0;
