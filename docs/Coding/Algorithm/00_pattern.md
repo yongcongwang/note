@@ -614,12 +614,18 @@ constexpr int N = 2e5 + 3;  // 2 or 3 times of the number range, first prime
 constexpr int null = 0x3f3f3f3f;  // a number bigger not in range to represent the nullptr
 int h[N];
 
+memset(h, 0x3f, sizeof(h));
+
 int find(int x) {  // return the idx x locates or should be inserted
   int t = (x % N + N) % N;
   while (h[t] != null && h[t] != x) t %= ++t;
   return t;
 }
+h[find(x)] = x;  // insert
+h[find(x)] == x;  // query 
 ```
+
+- [problem](https://www.acwing.com/problem/content/842/)
 
 ```C++
 /// string hash, to check if two substring on string are the same
