@@ -682,7 +682,7 @@ int dfs(int u) {
 
 - [problem](https://www.acwing.com/problem/content/848/)
 
-### BFD of graph
+### BFS of graph
 
 ```C++
 queue<int> q{};
