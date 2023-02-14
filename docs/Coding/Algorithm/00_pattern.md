@@ -811,9 +811,10 @@ int bellman_ford(int u) {
 
   // relax k times, all sps within k edges are found
   for (int i = 0; i < k; ++i) {
+    memcpy(back, dist, sizeof(dist));
     for (int j = 0; j < m; ++j) {
       auto [a, b, w] = es[j];
-      dist[b] = std::min(dist[b], dist[a] + w);
+      dist[b] = std::min(dist[b], back[a] + w);
     }
   }
 
