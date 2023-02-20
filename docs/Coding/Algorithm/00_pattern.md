@@ -1051,3 +1051,13 @@ for (int i = 1; i <= n1; ++i) {
 ```
 
 - [problem](https://www.acwing.com/problem/content/863/)
+
+## Dynamic Programing(DP)
+
+### Knapsack Problem
+
+- [01 package](https://www.acwing.com/problem/content/2/)
+- [unbounded package](https://www.acwing.com/problem/content/3/)
+- [bounded package](https://www.acwing.com/problem/content/4/)
+- [bounded package(optimal)](https://www.acwing.com/problem/content/5/)
+- [group package(optimal)](https://www.acwing.com/problem/content/9/)
