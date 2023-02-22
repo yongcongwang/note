@@ -1060,4 +1060,26 @@ for (int i = 1; i <= n1; ++i) {
 - [unbounded package](https://www.acwing.com/problem/content/3/)
 - [bounded package](https://www.acwing.com/problem/content/4/)
 - [bounded package(optimal)](https://www.acwing.com/problem/content/5/)
-- [group package(optimal)](https://www.acwing.com/problem/content/9/)
+- [group package](https://www.acwing.com/problem/content/9/)
+
+### Linear Dp
+
+- [Triangle](https://www.acwing.com/problem/content/900/)
+- [Longest Increasing Subsequence(LIS)](https://www.acwing.com/problem/content/897/)
+- [Longest Increasing Subsequence(optimal)](https://www.acwing.com/problem/content/898/)
+- [Longest Common Subsequence(LCS)](https://www.acwing.com/problem/content/899/)
+- [Edit Distance](https://www.acwing.com/problem/content/898/)
+
+### Range Dp
+
+- [Merge Stone](https://www.acwing.com/problem/content/284/)
+
+### Count Dp
+
+### Digital Statistic Dp
+
+### State Compress Dp
+
+### Tree Dp
+
+### Memory Search
