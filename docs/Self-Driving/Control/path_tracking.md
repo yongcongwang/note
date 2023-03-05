@@ -6,6 +6,7 @@ Geometric-based pure-pursuit is one of the most basic and simple methods to comp
 
 ### Bicycle Model
 The simplest vehicle model for path tracking is the bicycle model, which following the Ackerman steering geometry. The bicycle model simplifies the four wheel car by:
+
 - combining the two front wheels together and the two rear wheels together to form a two wheeled model, like a bicycle;
 - the vehicle can only move on a plane.
 

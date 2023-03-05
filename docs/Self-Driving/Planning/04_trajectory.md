@@ -33,6 +33,7 @@ The states and the inputs of a quadrotor can be written as algebraic functions o
 - Trajectory in the space of flat outputs: $\sigma(t) = [T_0, T_M] \to \mathbb{R}^3 \times SO(2)$
 
 Reference:
+
 - [Minimum Snap Trajectory Generation and Control for Quadrotors, Daniel Mellinger and Vijay Kumar](https://ieeexplore.ieee.org/document/5980409)
 
 Polynomial functions can be used to specify trajectories in the space of flat outputs:
