@@ -168,7 +168,6 @@ $$
 \begin{bmatrix}
 x_1 \\ x_2 \\ \vdots x_{N - 1} \\ x_{N}
 \end{bmatrix}
-
 =
 \begin{bmatrix}
 B & 0 & \cdots & 0 \\
@@ -201,7 +200,6 @@ J = x_0^T Q x_0 +
 \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_{N - 1} \\ x_{N} \end{bmatrix}^T
 \begin{bmatrix} Q & 0 & 0 & \cdots & 0 \\ 0 & Q & 0 & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots & \vdots \\ 0 & \cdots & 0 & Q & 0 \\ 0 & 0 & \cdots & 0 & P \end{bmatrix}
 \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_{N - 1} \\ x_{N} \end{bmatrix}
-
 + \begin{bmatrix} u_0 \\ u_1 \\ \vdots \\ u_{N - 1} \end{bmatrix}^T
 \begin{bmatrix} R &  0 & \cdots & 0 \\ 0 & R & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & \cdots & 0 & R \\ \end{bmatrix}
 \begin{bmatrix} u_0 \\ u_1 \\ \vdots \\ u_{N - 1} \end{bmatrix}
