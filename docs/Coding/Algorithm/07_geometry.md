@@ -402,6 +402,7 @@ bool IsPointInPolygon(const Point& p, cosnt Polygon& poly) {
       auto side = (p1 - p0).Cross(p - p0);
       f ^= p0.y < p1.y ? side > 0 : side < 0;
     }
+    p0 = p1;
   }
   return f;
 }
