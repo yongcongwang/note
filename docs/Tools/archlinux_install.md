@@ -259,6 +259,24 @@ Include = /etc/pacman.d/mirrorlist
 - ttf-hack
 - wqy-microhei
 
+#### ctags
+
+```Bash
+git clone https://github.com/universal-ctags/ctags.git
+cd ctags
+./autogen.sh
+./configure # --prefix=/where/you/want # defaults to /usr/local
+make
+make install # may require extra privileges depending on where to install
+```
+
+#### fzf
+
+```Bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf &&
+~/.fzf/install
+```
+
 
 ### Install i3
 
@@ -317,4 +335,11 @@ add following lines to `/etc/environment`:
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
+```
+### Keyboard
+
+Set caps to control
+
+```Bash
+setxkbmap -layout us -option ctrl:nocaps
 ```
