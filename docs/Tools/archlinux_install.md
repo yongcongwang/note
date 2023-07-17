@@ -5,7 +5,7 @@
 ### BIOS
 
 - Disable `Secure Boot`
-- Boot Mode ``UEFI Only
+- Boot Mode `UEFI` Only
 
 ## Basic Install
 
@@ -305,5 +305,16 @@ Config:
 git clone git@github.com:yongcongwang/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && bash deploy.sh git
 ```
 
-### 
+### Install Chinese Input
 
+```
+sudo pacman -S fcitx5 fcitx5-qt fcitx5-config-qt fcitxt-rime rime-luna-pinyin
+```
+
+add following lines to `/etc/environment`:
+
+```
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+```
