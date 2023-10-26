@@ -20,8 +20,6 @@ void quick_sort(int a[], int l , int r) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/787/)
-
 #### Merge Sort
 
 ```C++
@@ -42,7 +40,7 @@ void merge_sort(int a[], int l, int r) {
 }
 ```
 
-- [problem](https://www.acwing.com/problem/content/789/)
+- [problem](https://www.luogu.com.cn/problem/P1177)
 
 
 ### Serach
