@@ -40,7 +40,7 @@ void merge_sort(int a[], int l, int r) {
 }
 ```
 
-- [problem](https://www.luogu.com.cn/problem/P1177)
+- [problem](https://www.acwing.com/problem/content/787/)
 
 
 ### Serach
