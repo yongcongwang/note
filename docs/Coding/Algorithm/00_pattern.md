@@ -275,19 +275,14 @@ for (int i = head; i != -1; i = ne[i]) cout << e[i];
 
 ```C++
 
-int e[N], l[N], r[N], idx;
-
-// idx 0 for left node, idx 1 for right node
-void init() {
-  r[0] = 1, l[1] = 0;
-  idx = 2;
-}
+// 0 for left most, 1 for right most, l[1] = 0, r[1] = 0;
+int e[N], l[N] = {0}, r[N] = {1}, idx = 2;
 
 // insert a node at i's right
 void insert(int i, int v) {
-  e[idx] = v;
-  l[idx] = i, r[idx] = r[i];
-  l[r[i]] = idx, r[i] = idx++;
+  e[idx] = v, l[idx] = i, r[idx] = r[i];
+  l[r[idx]] = idx, r[l[idx]] = idx;
+  ++idx;
 }
 
 // remove i node
@@ -297,7 +292,7 @@ void remove(int i) {
 }
 
 // travel
-for (int i = 0; i != 1; i = r[i]) cout << e[i];
+for (int i = r[0]; i != 1; i = r[i]) cout << e[i];
 ```
 
 - [problem](https://www.acwing.com/problem/content/829/)
