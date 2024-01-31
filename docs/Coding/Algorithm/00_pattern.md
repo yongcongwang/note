@@ -275,7 +275,7 @@ for (int i = head; i != -1; i = ne[i]) cout << e[i];
 
 ```C++
 
-// 0 for left most, 1 for right most, l[1] = 0, r[1] = 0;
+// 0 for head node, 1 for tail node, l[1] = 0, r[1] = 0;
 int e[N], l[N] = {0}, r[N] = {1}, idx = 2;
 
 // insert a node at i's right
@@ -300,6 +300,7 @@ for (int i = r[0]; i != 1; i = r[i]) cout << e[i];
 ### Stack
 
 ```C++
+// index 0 for empty, start from 1
 int stk[N], idx = 0;
 
 void push(int x) { stk[++idx] = x; }
