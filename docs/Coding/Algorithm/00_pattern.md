@@ -317,7 +317,7 @@ bool empty() { return idx == 0; }
 /// loop
 int q[N], h = 0, t = 0;
 
-void push(int x) { q[++t % N] = x; }
+void push(int x) { q[t++ % N] = x; }
 void pop() { h = ++h % N; }
 void front() { return q[h]; }
 bool empty() { return h == t; }
