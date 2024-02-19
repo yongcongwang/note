@@ -275,7 +275,7 @@ for (int i = head; i != -1; i = ne[i]) cout << e[i];
 
 ```C++
 
-// 0 for head node, 1 for tail node, l[1] = 0, r[1] = 0;
+// 0 for head, 1 for tail, range: (0, 1)
 int e[N], l[N] = {0}, r[N] = {1}, idx = 2;
 
 // insert a node at i's right
@@ -300,7 +300,7 @@ for (int i = r[0]; i != 1; i = r[i]) cout << e[i];
 ### Stack
 
 ```C++
-// index 0 for empty, start from 1
+// index 0 for empty, range: (0, idx]
 int stk[N], idx = 0;
 
 void push(int x) { stk[++idx] = x; }
@@ -314,7 +314,7 @@ bool empty() { return idx == 0; }
 ### Queue
 
 ```C++
-/// loop
+/// range: [h, t)
 int q[N], h = 0, t = 0;
 
 void push(int x) { q[t++ % N] = x; }
@@ -328,6 +328,7 @@ bool empty() { return h == t; }
 ### Monotonous stack
 
 ```C++
+/// range: (0, t]
 int stk[N], t = 0;
 
 for (auto n : a) {
@@ -341,7 +342,7 @@ for (auto n : a) {
 ### Monotonous queue
 
 ```C++
-/// h for head of queue, t for tail of queue, k for window size
+/// h for head of queue, t for tail, k for window size
 /// nnnnnnnnnnnnnnnnnnnnnn
 ///     ^          ^
 ///     | h        | t    
