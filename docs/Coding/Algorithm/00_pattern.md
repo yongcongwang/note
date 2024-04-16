@@ -964,6 +964,39 @@ for (int i = 1; i <= n1; ++i) {
 
 - [problem](https://www.acwing.com/problem/content/863/)
 
+### Strongly Connnected Component
+
+#### Tarjan
+
+```C++
+void tarjan(int u) {
+  dfn[u] = low[u] = ++ts;
+  stk[++top] = u, in_stk[u] = true;
+
+  for (int i = h[u]; ~i; i = ne[i]) {
+    int j = e[i];
+    if (!dfn[j]) {
+      tarjan(j);
+      low[u] = min(low[u], low[j]);
+    } else if (in_stk[j]) {
+      low[u] = min(low[u], dfn[j]);
+    }
+  }
+
+  if (dfn[u] == low[u]) {
+    ++scc_cnt;
+    int y;
+    do {
+      y = stk[top--];
+      in_stk[y] = false;
+      id[y] = scc_cnt;
+      scc_size[scc_cnt]++;
+    } while (y != u);
+  }
+}
+
+```
+
 ## Dynamic Programing(DP)
 
 ### Knapsack Problem
