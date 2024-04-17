@@ -969,6 +969,8 @@ for (int i = 1; i <= n1; ++i) {
 #### Tarjan
 
 ```C++
+/// dfn: timestamp to hit a node in dfs travels
+/// low: lowest timestamp a node can connect
 void tarjan(int u) {
   dfn[u] = low[u] = ++ts;
   stk[++top] = u, in_stk[u] = true;
