@@ -1,0 +1,4486 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../000_summary/">
+      
+      
+        <link rel="next" href="../01_limits/">
+      
+      
+      <link rel="icon" href="../../../logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>Functions - Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#functions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Notebook" class="md-header__button md-logo" aria-label="Notebook" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Functions
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Coding/Algorithm/00_pattern/" class="md-tabs__link">
+          
+  
+  Coding
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deep-Learning/00_mechine_learning/" class="md-tabs__link">
+          
+  
+  Deep Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../000_summary/" class="md-tabs__link">
+          
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Self-Driving/Control/models_for_car_like_vehicles/" class="md-tabs__link">
+          
+  
+  Self Driving
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Tools/archlinux_install/" class="md-tabs__link">
+          
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Notebook" class="md-nav__button md-logo" aria-label="Notebook" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Coding
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Coding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithm
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/00_pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithm Pattern
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/011_slding_window/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sliding Window
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/013_two_pointer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Two Pointers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/01_bs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Binary Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/02_sort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/031_bt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/03_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Searching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/04_dp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dynamic Programming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/055_bit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/05_greedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Greedy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/06_math/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/07_geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Geometry(2D)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/08_graph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graph
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C++
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            C++
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/cpp_11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++11 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/cpp_14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++14 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/cpp_17/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++17 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/effective_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Effective C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/effective_modern_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Effective Modern C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Concurrency
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Concurrency
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Concurrency/01_concurrency_in_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++ Concurrency in Action
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Concurrency/02_cuda_coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cuda Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Data Structure
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Data Structure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/01_stack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/02_queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Queue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/03_linked_list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linked List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/045_kd_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K-d Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/04_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/05_hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hash Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/06_array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Array
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/075_lru/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LRU(Latest Recently Used) Cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/076_lfu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LFU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/07_string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    String
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/08_trie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/09_union_find/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Union-Find
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/10_bit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fenwick Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/11_segment_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    System Design
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            System Design
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/System-Design/algorithm-analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithm Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/System-Design/design_patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/System-Design/oop10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The 10 Object-Oriented-Principles(OOP)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deep Learning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/00_mechine_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mechine Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/10_nn_and_deep_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neural Network and Deep Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/11_improve_nn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Improving Deep Neural Networks: Hyperparameter Tuning, Regularition and Optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/12_structure_ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Structuring mechine learning projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/13_cnn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Convolutional Neural Networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/14_rnn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequence models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Math
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Math
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Calculus
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Calculus
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../000_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linear-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polynomials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polynomials
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rational-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rational functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exponential-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exponential functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logarithm-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logarithm functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trig-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trig functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trig functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radians" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radians
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigonometry-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trigonometry Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-of-trigonometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Value of Trigonometry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Value of Trigonometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-the-domain-of-0-fracpi2" class="md-nav__link">
+    <span class="md-ellipsis">
+      With the Domain of \(0 - \frac{\pi}{2}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-the-domain-of-0-2pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      With the Domain of \(0 - 2\pi\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-the-domain-outside-0-2pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      With the Domain outside \(0 - 2\pi\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tan-and-cot" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(tan\) and \(cot\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pythagoras-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pythagoras' Theorem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trig-functions-and-co-trig-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      trig functions and co-trig functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sums-of-angles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sums of Angles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_limits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_limits_polynomials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limit Problems of Polynomials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_continuity_and_differentiability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Continuity and Differentiability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_solve_diff/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differentiation Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_trig_derivative/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trig Limits and Derivatives
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_exp_and_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exponentials and Logarithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_extrema/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extrema of Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_optim_and_linear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optimization and Linearization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_l_hopital_rule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L'Hopital's Rule and Limits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_calculus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Fundamental Theorems of Calculus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_tech_to_solve_int/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Techniques to Solve Integration Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_improper_integral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Improper Integrals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_sequances_and_series/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequences and Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_taylor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tylor Polynomials, Tylor Series and Power Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linear Algebra
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Linear Algebra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ax equal b and the Four Subspaces
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ax equal b and the Four Subspaces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/01_geometry_of_linear_equations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Geometry of Linear Equations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/02_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    An Overview of Linear Algebra
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/03_elimination/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Elimination with Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/04_multi_inverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiplication and Inverse Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/05_a_lu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Factorization into A=LU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/06_trans_perm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transpose, permutations, spaces R^n
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/07_col_null_space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Column Space and Nullspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/08_ax_0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Soving Ax = 0: pivot variables, special solutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/09_ax_b/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solving Ax = b: row reduced form R
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/10_ind_basis_dim/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Independence, Basis and Dimension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/11_four_subspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Four Fundamental Subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/12_matrix_space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Matrix spaces, Rand 1 and Small World Graphs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/13_graph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphs, Networks and Incidence Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Least Squares Determinants and Eigenvalues
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Least Squares Determinants and Eigenvalues
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/14_orthogonal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orthogonal vectors and subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/15_proj_subspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projections onto Subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/16_least_square/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projection Matrices and Least Squares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/17_gram_schmidt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orthogonal Matrices and Gram-Schmidt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/18_property_determinant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Properties of Determinants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/19_cofactor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Determinant Formulas and Cofactors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/20_cramer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cramer's Rule, Inverse Matrix, and Volume
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/21_eigen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Eigenvalues and Eigenvectors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/22_diag_a/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diagonalization and Powers of A
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/23_diff_exp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differential Equations and e^At
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/24_markov/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markov Matrices and Fourier Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Positive Definite Matrices and Applications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Positive Definite Matrices and Applications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/01_pos_def/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Symmetric Matrices and Positive definiteness
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/02_fft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complex Matrices and Fast Fourier Transform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/03_minima/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Positive Definite Matrices and Minima
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/04_similar_matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Similar Matrices and Jordan Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/05_svd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Singular Value Decomposition(SVD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/06_transform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linear Transformations and their Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/07_compression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change of Basis and Image Compression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/08_pseudoinverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Left and Right Inverse; Pseudoinverse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Probability
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Probability
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Probability/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Probability/01_sample_space_and_probability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample Space and Probability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Self Driving
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Self Driving
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Control
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Control
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Control/models_for_car_like_vehicles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Models for car like vehicles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Control/path_tracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path tracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Map
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Map
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Map/hdmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autonomous Hdmap Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Planning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/01_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Search-based Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/02_sample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample-based Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/03_kinodynamic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kinodynamic Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/04_trajectory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Minimum Snap Trajectory Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/05_mpc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Prediction Control (MPC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/ref_line/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reference Line
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Prediction
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Prediction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/apollo_prediction_module/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduce to Apollo(3.5) Prediction Module
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/compile_cpp_project/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation Optimization of C++ Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/dig_into_apollo_prediction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dig into Apollo(6.0) Prediction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/imm-for-prediction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interacting Multiple Models(IMM) for Prediction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/visualizer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Design of A Visualization Tool for Autonomous Vehicle Developers(TODO)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Routing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Routing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Routing/a_star/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A star
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/archlinux_install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Archlinux Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/class_diagram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex Equations Cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/shortcuts_to_move_faster_in_terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shortcuts to Move Faster in Terminal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/use_vim_as_ide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use vim as an IDE without plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/vim_without_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Do 90% of What Plugins Do with Just Vim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/workspace_in_linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup Workspace in Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/workspace_in_windows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup Workspace in Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#linear-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#polynomials" class="md-nav__link">
+    <span class="md-ellipsis">
+      Polynomials
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rational-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rational functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exponential-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exponential functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#logarithm-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logarithm functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trig-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trig functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trig functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Definitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Definitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radians" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radians
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trigonometry-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trigonometry Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-of-trigonometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Value of Trigonometry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Value of Trigonometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#with-the-domain-of-0-fracpi2" class="md-nav__link">
+    <span class="md-ellipsis">
+      With the Domain of \(0 - \frac{\pi}{2}\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-the-domain-of-0-2pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      With the Domain of \(0 - 2\pi\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#with-the-domain-outside-0-2pi" class="md-nav__link">
+    <span class="md-ellipsis">
+      With the Domain outside \(0 - 2\pi\)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graphs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#identities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identities
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identities">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tan-and-cot" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(tan\) and \(cot\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pythagoras-theorem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pythagoras' Theorem
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trig-functions-and-co-trig-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      trig functions and co-trig functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sums-of-angles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sums of Angles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h1>
+<p>A <code>function</code> is a rule for transforming an object into another object. The object you start with is called the <code>input</code>, and comes from some set called the <code>domain</code>. What you get back is called the <code>output</code>; it comes from some set called the <code>codomain</code>, and the output's value is within a <code>range</code>. A function must assign a unique output for each valid input.</p>
+<p>We say that a function <span class="arithmatex">\(f\)</span> is:</p>
+<ul>
+<li><code>even</code>, if <span class="arithmatex">\(f(-x) = f(x)\)</span> for all <span class="arithmatex">\(x\)</span> in the domain of <span class="arithmatex">\(f\)</span>; </li>
+<li><code>odd</code>, if <span class="arithmatex">\(f(-x) = -f(x)\)</span> for all <span class="arithmatex">\(x\)</span> in the domain of <span class="arithmatex">\(f\)</span>.</li>
+</ul>
+<p>The graph of an even function has mirror symmetry about the y-axis and the graph of an odd function has <span class="arithmatex">\(180^\circ\)</span> point symmetry about the origin.</p>
+<p>Let's look at some common functions and their graphs.</p>
+<h2 id="linear-functions">Linear Functions<a class="headerlink" href="#linear-functions" title="Permanent link">&para;</a></h2>
+<p>Functions of the form <span class="arithmatex">\(f(x) = mx + b\)</span> are called <code>linear</code>. There's a good reason for this: the graph of these functions are lines. The slop of the line is given by <span class="arithmatex">\(m\)</span>, and the y-intercept is equal to <span class="arithmatex">\(b\)</span>. To sketch the graph of a linear function, you only need to identify two points on the graph. Set <span class="arithmatex">\(x = 0\)</span>, you get a point <span class="arithmatex">\((0, b)\)</span>, and set <span class="arithmatex">\(y = 0\)</span> you get another point <span class="arithmatex">\((-\frac{b}{a}, 0)\)</span>. Examples are like this:</p>
+<p><img alt="linear function" src="../images/function_graph/linear_function.png" /></p>
+<h2 id="polynomials">Polynomials<a class="headerlink" href="#polynomials" title="Permanent link">&para;</a></h2>
+<p>These are functions built out of nonnegative integer powers of <span class="arithmatex">\(x\)</span>. You start with the building blocks <span class="arithmatex">\(1\)</span>, <span class="arithmatex">\(x\)</span>, <span class="arithmatex">\(x^2\)</span>, <span class="arithmatex">\(x^3\)</span>, and so on, and you are allowed to multiply these basic functions by numbers and add a finite number of them together. The amount that you multiply the building block <span class="arithmatex">\(x^n\)</span> by is called the <code>coefficient</code> of <span class="arithmatex">\(x^n\)</span>. The highest number <span class="arithmatex">\(n\)</span> such that <span class="arithmatex">\(x^n\)</span> has a non zero coefficient is called the <code>degree</code> of the polynomial. The mathematical way to write a general polynomial of degree <span class="arithmatex">\(n\)</span> is:</p>
+<div class="arithmatex">\[
+p(x) = a_n x^n + a_{n - 1}x^{n - 1} + ... + a_2x^2 + a_1x + a_0
+\]</div>
+<p>where <span class="arithmatex">\(a_n\)</span> is the coefficient of <span class="arithmatex">\(x^n\)</span>, <span class="arithmatex">\(a_{n - 1}\)</span> is the coefficient of <span class="arithmatex">\(x^{n - 1}\)</span>, ans so on down to <span class="arithmatex">\(a_0\)</span>, which is the coefficient of <span class="arithmatex">\(1\)</span>.</p>
+<p>Since the functions <span class="arithmatex">\(x^n\)</span> are the building blocks of all polynomials, you should know what their graphs look like. The even powers mostly look similar to each other, and the same can be said for the odd powers. Here's what the graphs look like, from <span class="arithmatex">\(x^0\)</span> up to <span class="arithmatex">\(x^7\)</span>:</p>
+<p><img alt="polynomials" src="../images/function_graph/polynomials.png" /></p>
+<p>Sketching the graphs of more general polynomials is more difficult. Even finding the x-intercepts is often impossible unless the polynomial is very simple. There is one aspect of the graph that is fairly straightforward, which is what happens at the far left and right sides of the graph. This is determined by the so-called <code>leading coefficient</code>, which is the coefficient of the highest-degree term.In fact, it only matters whether the leading coefficient is positive or negative. It also matters whether the degree of the polynomial is odd or even; so there are four possibilities for what the edges of the graph can look like:</p>
+<p><img alt="polynomials" src="../images/function_graph/polynomials_all.png" /></p>
+<h2 id="rational-functions">Rational functions<a class="headerlink" href="#rational-functions" title="Permanent link">&para;</a></h2>
+<p>The functions with the form:</p>
+<div class="arithmatex">\[
+f(x) = \frac{p(x)}{q(x)}
+\]</div>
+<p>are called <code>Rational functions</code>, where <code>p</code> and <code>q</code> are polynomials.
+Rational functions will pop up in many different contexts, and the graphs can look really different depending on the polynomials <code>p</code> and <code>q</code>. The simplest examples of rational functions are polynomials themselves, which arise when <code>q(x)</code> is the constant polynomial <span class="arithmatex">\(1\)</span>. The next simplest examples are the functions <span class="arithmatex">\(\frac{1}{x^n}\)</span>, where <span class="arithmatex">\(n\)</span> is a positive integer. Let's look at some of the graph of these functions:</p>
+<p><img alt="polynomials" src="../images/function_graph/rational.png" /></p>
+<p>The odd powers look similar to each other, and the even powers look similar to each other too. </p>
+<h2 id="exponential-functions">Exponential functions<a class="headerlink" href="#exponential-functions" title="Permanent link">&para;</a></h2>
+<p>Functions with the form:</p>
+<div class="arithmatex">\[
+f(x) = a \cdot b^x
+\]</div>
+<p>are called <code>Exponential functions</code>, where <span class="arithmatex">\(a\)</span> is a coefficient, <span class="arithmatex">\(b\)</span> is a positive real number, and <span class="arithmatex">\(x\)</span> occurs as an <code>exponent</code>.</p>
+<p>The graph of <span class="arithmatex">\(f(x) = b^x\)</span> for any other base <span class="arithmatex">\(b &gt; 0\)</span> looks similar to this:</p>
+<p><img alt="polynomials" src="../images/function_graph/exponent_1.png" /></p>
+<p>and the graph of <span class="arithmatex">\(f(x) = b^{-x}\)</span> is just the reflection of <span class="arithmatex">\(f(x) = b^{x}\)</span> in <code>y-axis</code>.</p>
+<p><img alt="polynomials" src="../images/function_graph/exponent_2.png" /></p>
+<p>If <span class="arithmatex">\(a\)</span> is negtive, the graph will be the reflection of its positive one.</p>
+<h2 id="logarithm-functions">Logarithm functions<a class="headerlink" href="#logarithm-functions" title="Permanent link">&para;</a></h2>
+<p>When a functions has the form:</p>
+<div class="arithmatex">\[
+f(x) = a \cdot \log_b(x)
+\]</div>
+<p>we called it a <code>logarithm function</code>.
+Logarithm functions are the inverse functions of the exponential functions. Using the line <span class="arithmatex">\(y = x\)</span> as a mirror, the graph of <span class="arithmatex">\(y = \log_{2}(x)\)</span> looks like this:</p>
+<p><img alt="polynomials" src="../images/function_graph/logarithm.png" /></p>
+<h2 id="trig-functions">Trig functions<a class="headerlink" href="#trig-functions" title="Permanent link">&para;</a></h2>
+<h3 id="definitions">Definitions<a class="headerlink" href="#definitions" title="Permanent link">&para;</a></h3>
+<h4 id="radians">Radians<a class="headerlink" href="#radians" title="Permanent link">&para;</a></h4>
+<p>The first thing we need to know is the notion of <code>radian</code>. Instead of saying that there are 360 degrees in a full revolution, we'll say that there are <span class="arithmatex">\(2\pi\)</span> <em>radians</em>. The arc length of a wedge of the circle is the angle of the wedge:</p>
+<p><img alt="radian" src="../images/function_graph/radians.png" /></p>
+<h4 id="trigonometry-functions">Trigonometry Functions<a class="headerlink" href="#trigonometry-functions" title="Permanent link">&para;</a></h4>
+<p>Suppose you have a right-angled triangle and one of the angles, other than the right angle, is labeled <span class="arithmatex">\(\theta\)</span>, like this:</p>
+<p><img alt="triangle" src="../images/function_graph/triangle.png" /></p>
+<p>the formulas are defined:</p>
+<div class="arithmatex">\[
+\sin(\theta) = \frac{opposite}{hypotenuse}, \cos(\theta) = \frac{adjacent}{hypotenuse}, \tan(\theta) = \frac{opposite}{adjacent}
+\]</div>
+<p>We'll also be using the reciprocal functions, which are defined as:</p>
+<div class="arithmatex">\[
+\csc(x) = \frac{1}{\sin(x)}, \sec(x) = \frac{1}{\cos(x)}, \cot(x) = \frac{1}{\tan(x)}
+\]</div>
+<h3 id="value-of-trigonometry">Value of Trigonometry<a class="headerlink" href="#value-of-trigonometry" title="Permanent link">&para;</a></h3>
+<p>Now it's time to figure out the value of trig functions.</p>
+<h4 id="with-the-domain-of-0-fracpi2">With the Domain of <span class="arithmatex">\(0 - \frac{\pi}{2}\)</span><a class="headerlink" href="#with-the-domain-of-0-fracpi2" title="Permanent link">&para;</a></h4>
+<p>It may be really difficult to calculate the value of trig functions with out a calculator, but some common angles's vlaue you must keep in mind:</p>
+<p><img alt="radian" src="../images/function_graph/common_angles.png" /></p>
+<h4 id="with-the-domain-of-0-2pi">With the Domain of <span class="arithmatex">\(0 - 2\pi\)</span><a class="headerlink" href="#with-the-domain-of-0-2pi" title="Permanent link">&para;</a></h4>
+<p>If an angle is bigger than <span class="arithmatex">\(2\pi\)</span>, for example, <span class="arithmatex">\(\frac{7\pi}{6}\)</span>, we can draw it on the coordinate plane:</p>
+<p><img alt="radian" src="../images/function_graph/trig_coordinate.png" /></p>
+<p>So the angle <span class="arithmatex">\(7\pi/6\)</span> is in the third quadrant. We've chosen the point on the ray which has distance <span class="arithmatex">\(r = 1\)</span> from the origin, then dropped a perpendicular. The angle between the ray and the <span class="arithmatex">\(-\pi\)</span> axis is <span class="arithmatex">\(\pi / 6\)</span>, and we already know that <span class="arithmatex">\(\sin(\theta) = \frac{y}{1}\)</span>, <span class="arithmatex">\(y &lt; 0\)</span>, so we got:</p>
+<div class="arithmatex">\[
+\sin(\frac{7\pi}{6}) = -\sin(\frac{\pi}{6}) = -\frac{1}{2}
+\]</div>
+<p>The key in the previous example is that <span class="arithmatex">\(\sin(\frac{7\pi}{6})\)</span> is related to <span class="arithmatex">\(\sin(\frac{\pi}{6})\)</span>, where <span class="arithmatex">\(\frac{\pi}{6}\)</span> is the reference angle for <span class="arithmatex">\(\frac{7\pi}{6}\)</span>. It's not difficult to find that the trig functions of any anlge is puls or minus value of the reference angle. This can be described as the <code>ASTC Method</code>:</p>
+<p><img alt="radian" src="../images/function_graph/ASTC.png" /></p>
+<p>The letters <code>ASTC</code> on the diagram are all you need to remember. <code>A</code> stands for <code>All</code>, meaning all the functions are positive in the first quadrant; the other letters obviously stand for sin, tan, and cos, respectively.</p>
+<h4 id="with-the-domain-outside-0-2pi">With the Domain outside <span class="arithmatex">\(0 - 2\pi\)</span><a class="headerlink" href="#with-the-domain-outside-0-2pi" title="Permanent link">&para;</a></h4>
+<p>If the angle is bigger than <span class="arithmatex">\(2\pi\)</span> or less than <span class="arithmatex">\(0\)</span>, we can simple add or subtract multiples of <span class="arithmatex">\(2\pi\)</span> until you get between <span class="arithmatex">\(0\)</span> and <span class="arithmatex">\(2\pi\)</span></p>
+<h3 id="graphs">Graphs<a class="headerlink" href="#graphs" title="Permanent link">&para;</a></h3>
+<p>It's really useful to remember what the graphs of the sin, cos, and tan functions look like. These functions are all <code>periodic</code>, meaning that they repeat themselves over and over again from left to right:</p>
+<p><img alt="sin" src="../images/function_graph/sin.png" />
+<img alt="cos" src="../images/function_graph/cos.png" />
+<img alt="tan" src="../images/function_graph/tan.png" /></p>
+<p>It's also worthwhile learning the graph of <span class="arithmatex">\(y = \sec(x)\)</span>, <span class="arithmatex">\(y = \csc(x)\)</span>, and <span class="arithmatex">\(y = \cot(x)\)</span>:</p>
+<p><img alt="sec" src="../images/function_graph/sec.png" />
+<img alt="csc" src="../images/function_graph/csc.png" />
+<img alt="cot" src="../images/function_graph/cot.png" /></p>
+<p>From their graphs, we can get the following symmetry properties:</p>
+<blockquote>
+<p><span class="arithmatex">\(\sin(x)\)</span>, <span class="arithmatex">\(\tan(x)\)</span>, <span class="arithmatex">\(\cot(x)\)</span>, and <span class="arithmatex">\(csc(x)\)</span> are odd functions of <span class="arithmatex">\(x\)</span>.
+<span class="arithmatex">\(\cot(x)\)</span> and <span class="arithmatex">\(\sec(x)\)</span> are even functions of <span class="arithmatex">\(x\)</span>.</p>
+</blockquote>
+<h3 id="identities">Identities<a class="headerlink" href="#identities" title="Permanent link">&para;</a></h3>
+<p>There are relations between trig functions which will come in handy. </p>
+<h4 id="tan-and-cot"><span class="arithmatex">\(tan\)</span> and <span class="arithmatex">\(cot\)</span><a class="headerlink" href="#tan-and-cot" title="Permanent link">&para;</a></h4>
+<p>First, tan and cot may be expressed in terms of sin and cos as follows:</p>
+<div class="arithmatex">\[
+\tan(x) = \frac{\sin(x)}{\cos(x)}, \cot(x) = \frac{\cos(x)}{\sin(x)}
+\]</div>
+<h4 id="pythagoras-theorem">Pythagoras' Theorem<a class="headerlink" href="#pythagoras-theorem" title="Permanent link">&para;</a></h4>
+<p>The most important of all the trig identities is <code>Pythagoras' Theorem</code>:</p>
+<div class="arithmatex">\[
+\cos^2(x) + \sin^2(x) = 1
+\]</div>
+<p>Now divide this equation by <span class="arithmatex">\(\cos^2(x)\)</span>, we got:</p>
+<div class="arithmatex">\[
+1 + \tan^2(x) = \sec^2(x)
+\]</div>
+<p>If you dived the <code>Pythagorean equation</code> above by <span class="arithmatex">\(\sin^2(x)\)</span>, you got:</p>
+<div class="arithmatex">\[
+\cot^2(x) + 1 = \csc^2(x)
+\]</div>
+<h4 id="trig-functions-and-co-trig-functions">trig functions and co-trig functions<a class="headerlink" href="#trig-functions-and-co-trig-functions" title="Permanent link">&para;</a></h4>
+<p>There are some more relationships between trig functions. Have you noticed that some of the names begin with the syllable <code>co</code>? This is short for the word <code>complementary</code>. The fact is that we have the following general relationship:</p>
+<div class="arithmatex">\[
+trig functions(x) = co-trig functions(\frac{\pi}{2} - x)
+\]</div>
+<p>So in particular, we have</p>
+<div class="arithmatex">\[
+\sin(x) = \cos(\frac{\pi}{2} - x), \tan(x) = \cot(\frac{\pi}{x} - x), \sec(x) = \csc(\frac{\pi}{2} - x)
+\]</div>
+<p>It even works when the trig function is already a <code>co</code>:</p>
+<div class="arithmatex">\[
+\cos(x) = \sin(\frac{\pi}{2} - x), \cot(x) = \tan(\frac{\pi}{2} - x), \csc(x) = \sec(\frac{\pi}{2} - x)
+\]</div>
+<h4 id="sums-of-angles">Sums of Angles<a class="headerlink" href="#sums-of-angles" title="Permanent link">&para;</a></h4>
+<p>Specifically, you should remember that:</p>
+<div class="arithmatex">\[
+\sin(A + B) = \sin(A)\cos(B) + \cos(A)\sin(B)
+\]</div>
+<div class="arithmatex">\[
+\cos(A + B) = \cos(A)\cos(B) - \sin(A)\sin(B)
+\]</div>
+<p>It's useful to remember that you can switch all the pluses and minuses to get some related formulas:</p>
+<div class="arithmatex">\[
+\sin(A - B) = \sin(A)\cos(B) - \cos(A)\sin(B)
+\]</div>
+<div class="arithmatex">\[
+\cos(A - B) = \cos(A)\cos(B) + \sin(A)\sin(B)
+\]</div>
+<p>And if <span class="arithmatex">\(A = B\)</span>, we got:</p>
+<div class="arithmatex">\[
+\sin(2x) = 2\sin(x)\cos(x)
+\]</div>
+<div class="arithmatex">\[
+\cos(2x) = 2\cos^2(x) - 1 = 1 - 2\sin^2(x)
+\]</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

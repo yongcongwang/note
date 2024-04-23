@@ -1,0 +1,4331 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../12_improper_integral/">
+      
+      
+        <link rel="next" href="../14_taylor/">
+      
+      
+      <link rel="icon" href="../../../logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>Sequences and Series - Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sequences-and-series" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="Notebook" class="md-header__button md-logo" aria-label="Notebook" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sequences and Series
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Coding/Algorithm/00_pattern/" class="md-tabs__link">
+          
+  
+  Coding
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Deep-Learning/00_mechine_learning/" class="md-tabs__link">
+          
+  
+  Deep Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../000_summary/" class="md-tabs__link">
+          
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Self-Driving/Control/models_for_car_like_vehicles/" class="md-tabs__link">
+          
+  
+  Self Driving
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Tools/archlinux_install/" class="md-tabs__link">
+          
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Notebook" class="md-nav__button md-logo" aria-label="Notebook" data-md-component="logo">
+      
+  <img src="../../../logo.png" alt="logo">
+
+    </a>
+    Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Coding
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Coding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithm
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/00_pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithm Pattern
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/011_slding_window/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sliding Window
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/013_two_pointer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Two Pointers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/01_bs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Binary Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/02_sort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/031_bt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/03_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Searching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/04_dp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dynamic Programming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/055_bit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/05_greedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Greedy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/06_math/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/07_geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Geometry(2D)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Algorithm/08_graph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graph
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C++
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            C++
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/cpp_11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++11 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/cpp_14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++14 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/cpp_17/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++17 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/effective_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Effective C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/C%2B%2B/effective_modern_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Effective Modern C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Concurrency
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Concurrency
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Concurrency/01_concurrency_in_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++ Concurrency in Action
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Concurrency/02_cuda_coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cuda Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Data Structure
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Data Structure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/01_stack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/02_queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Queue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/03_linked_list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linked List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/045_kd_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K-d Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/04_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/05_hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hash Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/06_array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Array
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/075_lru/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LRU(Latest Recently Used) Cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/076_lfu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LFU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/07_string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    String
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/08_trie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/09_union_find/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Union-Find
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/10_bit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fenwick Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/Data-Structure/11_segment_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    System Design
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            System Design
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/System-Design/algorithm-analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithm Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/System-Design/design_patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Coding/System-Design/oop10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The 10 Object-Oriented-Principles(OOP)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deep Learning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/00_mechine_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mechine Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/10_nn_and_deep_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neural Network and Deep Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/11_improve_nn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Improving Deep Neural Networks: Hyperparameter Tuning, Regularition and Optimization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/12_structure_ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Structuring mechine learning projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/13_cnn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Convolutional Neural Networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Deep-Learning/14_rnn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequence models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Math
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Math
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Calculus
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Calculus
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../000_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_limits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_limits_polynomials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limit Problems of Polynomials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_continuity_and_differentiability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Continuity and Differentiability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_solve_diff/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differentiation Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_trig_derivative/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trig Limits and Derivatives
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_exp_and_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exponentials and Logarithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_extrema/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extrema of Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_optim_and_linear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optimization and Linearization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_l_hopital_rule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L'Hopital's Rule and Limits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_calculus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Fundamental Theorems of Calculus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_tech_to_solve_int/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Techniques to Solve Integration Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_improper_integral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Improper Integrals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Sequences and Series
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Sequences and Series
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#convergence-and-divergence-of-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convergence and Divergence of Sequences
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convergence and Divergence of Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-important-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two important sequences
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergence-and-divergence-of-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convergence and Divergence of Series
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convergence and Divergence of Series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geometric-seriestheory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometric series(theory)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-n-th-term-testtheory" class="md-nav__link">
+    <span class="md-ellipsis">
+      The n-th Term Test(Theory)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-p-testtheory" class="md-nav__link">
+    <span class="md-ellipsis">
+      The p-test(Theory)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-tests-for-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Tests for Series
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Tests for Series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ratio-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The ratio test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-root-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The root test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-integral-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The integral test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-alternating-series-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The alternating series test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-solve-series-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Solve Series Problems
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_taylor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tylor Polynomials, Tylor Series and Power Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linear Algebra
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Linear Algebra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ax equal b and the Four Subspaces
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ax equal b and the Four Subspaces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/01_geometry_of_linear_equations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Geometry of Linear Equations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/02_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    An Overview of Linear Algebra
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/03_elimination/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Elimination with Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/04_multi_inverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiplication and Inverse Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/05_a_lu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Factorization into A=LU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/06_trans_perm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transpose, permutations, spaces R^n
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/07_col_null_space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Column Space and Nullspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/08_ax_0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Soving Ax = 0: pivot variables, special solutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/09_ax_b/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solving Ax = b: row reduced form R
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/10_ind_basis_dim/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Independence, Basis and Dimension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/11_four_subspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Four Fundamental Subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/12_matrix_space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Matrix spaces, Rand 1 and Small World Graphs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/13_graph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphs, Networks and Incidence Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Least Squares Determinants and Eigenvalues
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Least Squares Determinants and Eigenvalues
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/14_orthogonal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orthogonal vectors and subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/15_proj_subspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projections onto Subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/16_least_square/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projection Matrices and Least Squares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/17_gram_schmidt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orthogonal Matrices and Gram-Schmidt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/18_property_determinant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Properties of Determinants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/19_cofactor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Determinant Formulas and Cofactors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/20_cramer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cramer's Rule, Inverse Matrix, and Volume
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/21_eigen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Eigenvalues and Eigenvectors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/22_diag_a/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diagonalization and Powers of A
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/23_diff_exp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differential Equations and e^At
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/24_markov/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markov Matrices and Fourier Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Positive Definite Matrices and Applications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Positive Definite Matrices and Applications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/01_pos_def/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Symmetric Matrices and Positive definiteness
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/02_fft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complex Matrices and Fast Fourier Transform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/03_minima/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Positive Definite Matrices and Minima
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/04_similar_matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Similar Matrices and Jordan Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/05_svd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Singular Value Decomposition(SVD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/06_transform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linear Transformations and their Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/07_compression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change of Basis and Image Compression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Linear-Algebra/Positive-Definite-Matrices-and-Applications/08_pseudoinverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Left and Right Inverse; Pseudoinverse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Probability
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Probability
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Probability/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Probability/01_sample_space_and_probability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample Space and Probability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Self Driving
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Self Driving
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Control
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Control
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Control/models_for_car_like_vehicles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Models for car like vehicles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Control/path_tracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path tracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Map
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Map
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Map/hdmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autonomous Hdmap Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Planning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/01_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Search-based Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/02_sample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample-based Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/03_kinodynamic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kinodynamic Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/04_trajectory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Minimum Snap Trajectory Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/05_mpc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Prediction Control (MPC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Planning/ref_line/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reference Line
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Prediction
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Prediction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/apollo_prediction_module/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduce to Apollo(3.5) Prediction Module
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/compile_cpp_project/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation Optimization of C++ Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/dig_into_apollo_prediction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dig into Apollo(6.0) Prediction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/imm-for-prediction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interacting Multiple Models(IMM) for Prediction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Prediction/visualizer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Design of A Visualization Tool for Autonomous Vehicle Developers(TODO)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Routing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Routing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Self-Driving/Routing/a_star/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A star
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/archlinux_install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Archlinux Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/class_diagram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex Equations Cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/shortcuts_to_move_faster_in_terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shortcuts to Move Faster in Terminal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/use_vim_as_ide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use vim as an IDE without plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/vim_without_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Do 90% of What Plugins Do with Just Vim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/workspace_in_linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup Workspace in Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/workspace_in_windows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup Workspace in Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#convergence-and-divergence-of-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convergence and Divergence of Sequences
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convergence and Divergence of Sequences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#two-important-sequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two important sequences
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergence-and-divergence-of-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convergence and Divergence of Series
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convergence and Divergence of Series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geometric-seriestheory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometric series(theory)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-n-th-term-testtheory" class="md-nav__link">
+    <span class="md-ellipsis">
+      The n-th Term Test(Theory)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-p-testtheory" class="md-nav__link">
+    <span class="md-ellipsis">
+      The p-test(Theory)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-tests-for-series" class="md-nav__link">
+    <span class="md-ellipsis">
+      New Tests for Series
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="New Tests for Series">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-ratio-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The ratio test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-root-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The root test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-integral-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The integral test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-alternating-series-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      The alternating series test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-solve-series-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      How to Solve Series Problems
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="sequences-and-series">Sequences and Series<a class="headerlink" href="#sequences-and-series" title="Permanent link">&para;</a></h1>
+<p>Infinite series are pretty similar to improper integrals.</p>
+<h2 id="convergence-and-divergence-of-sequences">Convergence and Divergence of Sequences<a class="headerlink" href="#convergence-and-divergence-of-sequences" title="Permanent link">&para;</a></h2>
+<p>A <strong>sequence</strong> is a collection of numbers in order. It might have a finite number of terms, or it might go on forever, in which case it is called an <code>infinite sequence</code>. For example:</p>
+<div class="arithmatex">\[
+0, 1, 2, 3, 4, ...
+\]</div>
+<p>Sequences are normally written using subscript notation, where <span class="arithmatex">\(a_1\)</span> denotes the first element of the series, <span class="arithmatex">\(a_2\)</span> the second, <span class="arithmatex">\(a_3\)</span> the third, and so on.</p>
+<p>Given an infinite sequence, our main focus is going to be on the limiting behavior of the values of the sequence as the index <span class="arithmatex">\(n\)</span> tends to infinity. That is, what happens to the sequence as you look farther and farther along it? In math notation, does</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} a_n
+\]</div>
+<p>exist, and if so, what is it?</p>
+<p>The basic idea is that the statement</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} a_n = L
+\]</div>
+<p>means that <span class="arithmatex">\(a_n\)</span> might wander around for a little while, but eventually gets very close to <span class="arithmatex">\(L\)</span> and stays at least as close to <span class="arithmatex">\(L\)</span> for ever after. If there's such a number <span class="arithmatex">\(L\)</span>, then the sequence <span class="arithmatex">\(\{a_n\}\)</span> <code>converges</code>; otherwise it <code>diverges</code>. Just like functions, sequences can diverge to <span class="arithmatex">\(\infty\)</span> or <span class="arithmatex">\(-\infty\)</span>, or they can oscillate around and not get close to any particular value.</p>
+<h3 id="two-important-sequences">Two important sequences<a class="headerlink" href="#two-important-sequences" title="Permanent link">&para;</a></h3>
+<p>Pick some constant number <span class="arithmatex">\(r\)</span> and consider the sequence given by <span class="arithmatex">\(a_n = r^n\)</span> starting at <span class="arithmatex">\(n = 0\)</span>. This is a <code>geometric progression</code>.</p>
+<p>These are all special cases of the general rule, which is as follows:</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} r^n = 
+\begin{cases}
+= 0 &amp; if \quad -1 &lt; r &lt; 1, \\
+= 1 &amp; if \quad r = 1, \\
+= \infty &amp; if \quad r &gt; 1, \\
+= DNE &amp; if \quad r \le -1.
+\end{cases}
+\]</div>
+<p>In particular, if <span class="arithmatex">\(k\)</span> is any constant, then</p>
+<div class="arithmatex">\[
+\lim_{n \to \infty} (1 + \frac{k}{n})^n = e^k
+\]</div>
+<h2 id="convergence-and-divergence-of-series">Convergence and Divergence of Series<a class="headerlink" href="#convergence-and-divergence-of-series" title="Permanent link">&para;</a></h2>
+<p>A series is just a sum. We'd like to add up all of the terms of a sequence <span class="arithmatex">\(a_n\)</span>.
+Let's define a new sequence, which we'll call <span class="arithmatex">\(\{A_N\}\)</span>, by setting:</p>
+<div class="arithmatex">\[
+A_N = a_1 + a_2 + a_3 + \cdots + a_{N - 1} + a_{N}
+\]</div>
+<p>The new sequence is called the sequence of <code>partial sums</code>. The weird equaton now looks like this:</p>
+<div class="arithmatex">\[
+a_1 + a_2 + a_3 + \cdots = \lim_{N \to \infty} A_N
+\]</div>
+<p>If the limit exists and equals <span class="arithmatex">\(L\)</span>, then we'll say that the seriess on the left-hand side <code>converges</code> to <span class="arithmatex">\(L\)</span>. If the limit doesn't exist, then the series <code>diverges</code>.</p>
+<p>The formula for <span class="arithmatex">\(A_N\)</span> is:</p>
+<div class="arithmatex">\[
+A_N = a_1 + a_2 + a_3 + \cdots + a_{N - 1} + a_N = \sum_{n = 1}^N a_n
+\]</div>
+<p>The infinite seriess is written as:</p>
+<div class="arithmatex">\[
+a_1 + a_2 + a_3 + \cdots = \sum_{n = 1} ^{\infty} a_n
+\]</div>
+<p>So, here's how to define the value of an infinite series using sigma notation:</p>
+<div class="arithmatex">\[
+\sum_{n = 1} ^{\infty} a_n = \lim_{N \to \infty} \sum_{n = 1} ^N a_n
+\]</div>
+<h3 id="geometric-seriestheory">Geometric series(theory)<a class="headerlink" href="#geometric-seriestheory" title="Permanent link">&para;</a></h3>
+<p>Let's look at an important example of an infinite series. Suppose we start with the geometric progression <span class="arithmatex">\(1, r, r^2, r^3, \cdots\)</span>, we can use this sequence as the terms of an infinit series:</p>
+<div class="arithmatex">\[
+1 + r + r^2 + r^3 + \cdots = \sum_{n = 0} ^{\infty} r^n
+\]</div>
+<p>This is called a <code>geometric series</code>. It turns out that the geometric series:</p>
+<div class="arithmatex">\[
+\sum_{n = 0}^{\infty} r^n = \frac{1}{1 - r}
+\]</div>
+<ul>
+<li>if <span class="arithmatex">\(-1 &lt; r &lt; 1\)</span>;</li>
+<li>otherwise, if <span class="arithmatex">\(r \ge 1\)</span> or <span class="arithmatex">\(r \le -1\)</span>, the series diverges.</li>
+</ul>
+<h2 id="the-n-th-term-testtheory">The n-th Term Test(Theory)<a class="headerlink" href="#the-n-th-term-testtheory" title="Permanent link">&para;</a></h2>
+<p>For a series to converge, the sequence of partial sums has to have a limit. The partial sum after N steps represents your position after you have taken N steps. If you  finally converge to some special limiting position as you keep on taking more and more steps, then your steps have to become really really small.</p>
+<p>So your step sizes, which are just given by the sequence <span class="arithmatex">\(\{a_n\}\)</span>, eventually have to become very small, at least if you want your series to converge. This leads to the <code>n-th term</code> test:</p>
+<blockquote>
+<p>if <span class="arithmatex">\(\lim_{n \to \infty} a_n != 0\)</span>, or the limit doesn't exist, then the seriess <span class="arithmatex">\(\sum_{n = 1}^{\infty} a_n\)</span> diverges.</p>
+</blockquote>
+<p>Just beware:</p>
+<blockquote>
+<p>the n-th term test cannot be used to show that a series converges!</p>
+</blockquote>
+<h2 id="the-p-testtheory">The p-test(Theory)<a class="headerlink" href="#the-p-testtheory" title="Permanent link">&para;</a></h2>
+<p>The p-test is basically the same as the p-test for improper integrals with problem spot at <span class="arithmatex">\(\infty\)</span>:</p>
+<div class="arithmatex">\[
+\sum_{n = a}^{\infty} \frac{1}{n^p}
+\begin{cases}
+converges &amp; if \quad p &gt; 1, \\
+diverges &amp; if \quad p \le 1.
+\end{cases}
+\]</div>
+<h2 id="new-tests-for-series">New Tests for Series<a class="headerlink" href="#new-tests-for-series" title="Permanent link">&para;</a></h2>
+<p>The tests above are from improper integral. Here are four tests for convergence of series which have no corresponding improper integral versions.</p>
+<h3 id="the-ratio-test">The ratio test<a class="headerlink" href="#the-ratio-test" title="Permanent link">&para;</a></h3>
+<p>To test the series <span class="arithmatex">\(\sum_{n=1}^{\infty}a_n\)</span>, let's consider a new sequence <span class="arithmatex">\(b_n\)</span>, and </p>
+<div class="arithmatex">\[
+b_n = |\frac{a_{n + 1}}{a_n}|
+\]</div>
+<p>The the series <span class="arithmatex">\(\{\sum_{n=1}^{\infty}a_n\}\)</span>:</p>
+<ul>
+<li>converges, if the sequence <span class="arithmatex">\({b_n}\)</span> converges to a number less than <span class="arithmatex">\(1\)</span>;</li>
+<li>diverges, if the sequence <span class="arithmatex">\({b_n}\)</span> converges to a number greater than <span class="arithmatex">\(1\)</span>;</li>
+</ul>
+<h3 id="the-root-test">The root test<a class="headerlink" href="#the-root-test" title="Permanent link">&para;</a></h3>
+<p>The root test(also called the n-th root test) is a close cousin of the ratio test. Instead of considering ratios of successive terms, just consider the n-th root of the absolute value of n-th term.</p>
+<p>Starting with a series <span class="arithmatex">\(\sum_{n = 1}^{\infty} a_n\)</span>, let's make a new sequence given by:</p>
+<div class="arithmatex">\[
+b_n = |a_n|^{\frac{1}{n}}
+\]</div>
+<p>If the limit of sequence <span class="arithmatex">\(\{b_n\}\)</span> converges and is:</p>
+<ul>
+<li>less than 1, then the series <span class="arithmatex">\(\sum_{n=1}^{\infty} a_n\)</span> converges;</li>
+<li>greater than 1, then the series <span class="arithmatex">\(\sum_{n=1}^{\infty} a_n\)</span> diverges;</li>
+<li>equals 1, then you can't tell what the hecks is going on.</li>
+</ul>
+<h3 id="the-integral-test">The integral test<a class="headerlink" href="#the-integral-test" title="Permanent link">&para;</a></h3>
+<p>If <span class="arithmatex">\(f\)</span> is a decreasing positive function such that <span class="arithmatex">\(f(n) = a_n\)</span> for all positive integers <span class="arithmatex">\(n\)</span>, then:</p>
+<div class="arithmatex">\[
+\int_{1}^{\infty} f(x) dx
+\]</div>
+<p>and</p>
+<div class="arithmatex">\[
+\sum_{n = 1}^{\infty} a_n
+\]</div>
+<p>either both converge or both diverge.</p>
+<h3 id="the-alternating-series-test">The alternating series test<a class="headerlink" href="#the-alternating-series-test" title="Permanent link">&para;</a></h3>
+<p>The <code>alternating series test</code> says that if a series <span class="arithmatex">\(\sum_{n = 1}^{\infty}\)</span>, and the absolute values of its terms are decreasing to <span class="arithmatex">\(0\)</span>, then the series converges.</p>
+<h2 id="how-to-solve-series-problems">How to Solve Series Problems<a class="headerlink" href="#how-to-solve-series-problems" title="Permanent link">&para;</a></h2>
+<ol>
+<li><code>Is the series geometric?</code> If your series only involves exponentials like <span class="arithmatex">\(2^n\)</span> or <span class="arithmatex">\(e^{3n}\)</span>, it might be a geometric series, or it might be the sum of one or more geometric series.</li>
+<li><code>Do the terms got to 0?</code> If the series isn't geometric, try <strong>n-th term test</strong>.</li>
+<li><code>Are there negative terms in the series?</code> If so, you may have to use the <strong>absolute convergence test</strong> or the <strong>alternating series test</strong>.</li>
+<li><code>Are factorials involved?</code> If so, use <strong>ratio test</strong></li>
+<li><code>Are there tricky exponentials with n in the base and the exponent?</code> If so, try <strong>root test</strong>.</li>
+<li><code>Do the terms have a factor ef exactly $1/n$ as well as logarithms?</code>, In this case, try <strong>integral test</strong>.</li>
+<li><code>Do none of the above tests seem to work?</code> You may have to use the <strong>comparison test</strong> or the <strong>limit comparison test</strong>.</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.top", "navigation.tabs"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

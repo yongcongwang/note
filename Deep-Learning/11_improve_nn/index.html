@@ -1,0 +1,5271 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../10_nn_and_deep_learning/">
+      
+      
+        <link rel="next" href="../12_structure_ml/">
+      
+      
+      <link rel="icon" href="../../logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+    
+    
+      
+        <title>Improving Deep Neural Networks: Hyperparameter Tuning, Regularition and Optimization - Notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#improving-deep-neural-networks-hyperparameter-tuning-regularition-and-optimization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Notebook" class="md-header__button md-logo" aria-label="Notebook" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Improving Deep Neural Networks: Hyperparameter Tuning, Regularition and Optimization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Coding/Algorithm/00_pattern/" class="md-tabs__link">
+          
+  
+  Coding
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../00_mechine_learning/" class="md-tabs__link">
+          
+  
+  Deep Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Math/Calculus/000_summary/" class="md-tabs__link">
+          
+  
+  Math
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Self-Driving/Control/models_for_car_like_vehicles/" class="md-tabs__link">
+          
+  
+  Self Driving
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Tools/archlinux_install/" class="md-tabs__link">
+          
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Notebook" class="md-nav__button md-logo" aria-label="Notebook" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Notebook
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Coding
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Coding
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Algorithm
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            Algorithm
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/00_pattern/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithm Pattern
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/011_slding_window/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sliding Window
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/013_two_pointer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Two Pointers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/01_bs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Binary Search
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/02_sort/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sort
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/031_bt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Backtracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/03_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Searching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/04_dp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dynamic Programming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/055_bit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Bitwise
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/05_greedy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Greedy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/06_math/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Math
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/07_geometry/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Geometry(2D)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Algorithm/08_graph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graph
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    C++
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            C++
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/C%2B%2B/cpp_11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++11 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/C%2B%2B/cpp_14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++14 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/C%2B%2B/cpp_17/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++17 New Features and Libraries
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/C%2B%2B/effective_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Effective C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/C%2B%2B/effective_modern_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Effective Modern C++
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Concurrency
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Concurrency
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Concurrency/01_concurrency_in_cpp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    C++ Concurrency in Action
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Concurrency/02_cuda_coding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cuda Coding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Data Structure
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Data Structure
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/01_stack/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Stack
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/02_queue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Queue
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/03_linked_list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linked List
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/045_kd_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    K-d Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/04_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/05_hash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Hash Table
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/06_array/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Array
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/075_lru/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LRU(Latest Recently Used) Cache
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/076_lfu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LFU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/07_string/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    String
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/08_trie/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/09_union_find/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Union-Find
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/10_bit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fenwick Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/Data-Structure/11_segment_tree/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Segment Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    System Design
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            System Design
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/System-Design/algorithm-analysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Algorithm Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/System-Design/design_patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Design Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Coding/System-Design/oop10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The 10 Object-Oriented-Principles(OOP)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Deep Learning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_mechine_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Mechine Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_nn_and_deep_learning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neural Network and Deep Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Improving Deep Neural Networks: Hyperparameter Tuning, Regularition and Optimization
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Improving Deep Neural Networks: Hyperparameter Tuning, Regularition and Optimization
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#practical-aspects-of-deep-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical aspects of deep learning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical aspects of deep learning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traindevtest-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Train/dev/test Sets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biasvariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias/variance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-recipe-for-high-bias-and-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic recipe for high bias and variance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regularizing-your-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularizing your neural network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regularizing your neural network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regularization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regularization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regularization-for-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularization for logistic regression
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regularization-for-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularization for neural network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-regularization-reduces-overfitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why regularization reduces overfitting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dropout-regularization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dropout regularization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dropout regularization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-dropout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding dropout
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-regularization-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other regularization methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other regularization methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-augmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data augmentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#early-stopping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Early stopping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-ensembles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model ensembles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-your-optimization-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up your optimization problem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up your optimization problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normallizing-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normallizing inputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vanishingexploding-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vanishing/exploding gradients
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight-initialization-for-deep-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weight initialization for deep networks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimization algorithms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mini-batch-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini-batch gradient descent
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mini-batch gradient descent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-mini-batch-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding mini-batch gradient descent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponentially-weighted-average" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exponentially weighted average
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exponentially weighted average">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bias-correction-in-exponentially-weighted-averages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias correction in exponentially weighted averages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gradient-descent-with-momentum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gradient descent with momentum
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rmsprop" class="md-nav__link">
+    <span class="md-ellipsis">
+      RMSprop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adam-optimization-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adam optimization algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-rate-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning rate decay
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hyperparameter-tuning-and-batch-nomalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyperparameter tuning and batch nomalization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hyperparameter tuning and batch nomalization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tuning-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tuning process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-an-appropriate-scale-to-pick-hyperparameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using an appropriate scale to pick hyperparameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using an appropriate scale to pick hyperparameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hyperparameters-tuning-in-practice-pandas-vs-caviar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyperparameters tuning in practice: Pandas vs. Caviar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalizing-activations-in-a-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalizing activations in a network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fitting-batch-normalization-into-a-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fitting Batch normalization into a neural network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-does-batch-normalization-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why does batch normalization work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-normalization-at-test-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch normalization at test time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#softmax-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Softmax Regression
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trainning-a-softmax-classifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trainning a Softmax classifier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_structure_ml/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Structuring mechine learning projects
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_cnn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Convolutional Neural Networks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_rnn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequence models
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Math
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Math
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Calculus
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Calculus
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/000_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/00_functions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/01_limits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/02_limits_polynomials/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Limit Problems of Polynomials
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/03_continuity_and_differentiability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Continuity and Differentiability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/04_solve_diff/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differentiation Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/05_trig_derivative/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Trig Limits and Derivatives
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/06_exp_and_log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Exponentials and Logarithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/07_extrema/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Extrema of Functions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/08_optim_and_linear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Optimization and Linearization
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/09_l_hopital_rule/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    L'Hopital's Rule and Limits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/10_calculus/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Fundamental Theorems of Calculus
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/11_tech_to_solve_int/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Techniques to Solve Integration Problems
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/12_improper_integral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Improper Integrals
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/13_sequances_and_series/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequences and Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Calculus/14_taylor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tylor Polynomials, Tylor Series and Power Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linear Algebra
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Linear Algebra
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Ax equal b and the Four Subspaces
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Ax equal b and the Four Subspaces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/01_geometry_of_linear_equations/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Geometry of Linear Equations
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/02_overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    An Overview of Linear Algebra
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/03_elimination/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Elimination with Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/04_multi_inverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Multiplication and Inverse Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/05_a_lu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Factorization into A=LU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/06_trans_perm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Transpose, permutations, spaces R^n
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/07_col_null_space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Column Space and Nullspace
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/08_ax_0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Soving Ax = 0: pivot variables, special solutions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/09_ax_b/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Solving Ax = b: row reduced form R
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/10_ind_basis_dim/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Independence, Basis and Dimension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/11_four_subspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Four Fundamental Subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/12_matrix_space/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Matrix spaces, Rand 1 and Small World Graphs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Ax-equal-b-and-the-Four-Subspaces/13_graph/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Graphs, Networks and Incidence Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_3" id="__nav_4_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Least Squares Determinants and Eigenvalues
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Least Squares Determinants and Eigenvalues
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/14_orthogonal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orthogonal vectors and subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/15_proj_subspace/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projections onto Subspaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/16_least_square/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Projection Matrices and Least Squares
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/17_gram_schmidt/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Orthogonal Matrices and Gram-Schmidt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/18_property_determinant/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Properties of Determinants
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/19_cofactor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Determinant Formulas and Cofactors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/20_cramer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cramer's Rule, Inverse Matrix, and Volume
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/21_eigen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Eigenvalues and Eigenvectors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/22_diag_a/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diagonalization and Powers of A
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/23_diff_exp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Differential Equations and e^At
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Least-Squares-Determinants-and-Eigenvalues/24_markov/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Markov Matrices and Fourier Series
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_4" id="__nav_4_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Positive Definite Matrices and Applications
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Positive Definite Matrices and Applications
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/01_pos_def/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Symmetric Matrices and Positive definiteness
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/02_fft/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Complex Matrices and Fast Fourier Transform
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/03_minima/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Positive Definite Matrices and Minima
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/04_similar_matrices/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Similar Matrices and Jordan Form
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/05_svd/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Singular Value Decomposition(SVD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/06_transform/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Linear Transformations and their Matrices
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/07_compression/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Change of Basis and Image Compression
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Linear-Algebra/Positive-Definite-Matrices-and-Applications/08_pseudoinverse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Left and Right Inverse; Pseudoinverse
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Probability
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            Probability
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Probability/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Math/Probability/01_sample_space_and_probability/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample Space and Probability
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Self Driving
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Self Driving
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Control
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Control
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Control/models_for_car_like_vehicles/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Models for car like vehicles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Control/path_tracking/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Path tracking
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Map
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            Map
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Map/hdmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autonomous Hdmap Format
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Planning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            Planning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Planning/00_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Planning/01_search/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Search-based Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Planning/02_sample/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample-based Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Planning/03_kinodynamic/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Kinodynamic Path Finding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Planning/04_trajectory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Minimum Snap Trajectory Generation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Planning/05_mpc/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Model Prediction Control (MPC)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Planning/ref_line/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Reference Line
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Prediction
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            Prediction
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Prediction/apollo_prediction_module/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduce to Apollo(3.5) Prediction Module
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Prediction/compile_cpp_project/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Compilation Optimization of C++ Project
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Prediction/dig_into_apollo_prediction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dig into Apollo(6.0) Prediction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Prediction/imm-for-prediction/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interacting Multiple Models(IMM) for Prediction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Prediction/visualizer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    The Design of A Visualization Tool for Autonomous Vehicle Developers(TODO)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Routing
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            Routing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Self-Driving/Routing/a_star/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    A star
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Tools
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tools/archlinux_install/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Archlinux Installation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tools/class_diagram/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Class diagram
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tools/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex Equations Cheatsheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tools/shortcuts_to_move_faster_in_terminal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shortcuts to Move Faster in Terminal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tools/use_vim_as_ide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Use vim as an IDE without plugins
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tools/vim_without_plugins/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How to Do 90% of What Plugins Do with Just Vim
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tools/workspace_in_linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup Workspace in Linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Tools/workspace_in_windows/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Setup Workspace in Windows
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#practical-aspects-of-deep-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Practical aspects of deep learning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Practical aspects of deep learning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#traindevtest-sets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Train/dev/test Sets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#biasvariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias/variance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#basic-recipe-for-high-bias-and-variance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic recipe for high bias and variance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regularizing-your-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularizing your neural network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regularizing your neural network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regularization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regularization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regularization-for-logistic-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularization for logistic regression
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regularization-for-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularization for neural network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-regularization-reduces-overfitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why regularization reduces overfitting
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dropout-regularization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dropout regularization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dropout regularization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-dropout" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding dropout
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-regularization-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other regularization methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other regularization methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-augmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data augmentation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#early-stopping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Early stopping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-ensembles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model ensembles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-your-optimization-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setting up your optimization problem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setting up your optimization problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normallizing-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normallizing inputs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vanishingexploding-gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vanishing/exploding gradients
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight-initialization-for-deep-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weight initialization for deep networks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization-algorithms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimization algorithms
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mini-batch-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mini-batch gradient descent
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mini-batch gradient descent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-mini-batch-gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Understanding mini-batch gradient descent
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponentially-weighted-average" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exponentially weighted average
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Exponentially weighted average">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bias-correction-in-exponentially-weighted-averages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bias correction in exponentially weighted averages
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gradient-descent-with-momentum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gradient descent with momentum
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rmsprop" class="md-nav__link">
+    <span class="md-ellipsis">
+      RMSprop
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adam-optimization-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Adam optimization algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-rate-decay" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning rate decay
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hyperparameter-tuning-and-batch-nomalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyperparameter tuning and batch nomalization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hyperparameter tuning and batch nomalization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tuning-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tuning process
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-an-appropriate-scale-to-pick-hyperparameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using an appropriate scale to pick hyperparameters
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using an appropriate scale to pick hyperparameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hyperparameters-tuning-in-practice-pandas-vs-caviar" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hyperparameters tuning in practice: Pandas vs. Caviar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalizing-activations-in-a-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalizing activations in a network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fitting-batch-normalization-into-a-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fitting Batch normalization into a neural network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-does-batch-normalization-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why does batch normalization work?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-normalization-at-test-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      Batch normalization at test time
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#softmax-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Softmax Regression
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trainning-a-softmax-classifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trainning a Softmax classifier
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="improving-deep-neural-networks-hyperparameter-tuning-regularition-and-optimization">Improving Deep Neural Networks: Hyperparameter Tuning, Regularition and Optimization<a class="headerlink" href="#improving-deep-neural-networks-hyperparameter-tuning-regularition-and-optimization" title="Permanent link">&para;</a></h1>
+<h3 id="practical-aspects-of-deep-learning">Practical aspects of deep learning<a class="headerlink" href="#practical-aspects-of-deep-learning" title="Permanent link">&para;</a></h3>
+<h4 id="traindevtest-sets">Train/dev/test Sets<a class="headerlink" href="#traindevtest-sets" title="Permanent link">&para;</a></h4>
+<p>It's impossible to get all your hyperparameters right on a new application from the first time, so, the idea is to go through the loop:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="w">   </span><span class="n">Idea</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">Code</span><span class="w"> </span><span class="o">--&gt;</span><span class="w"> </span><span class="n">Experiment</span>
+<span class="w">    </span><span class="o">^</span><span class="w">                     </span><span class="o">|</span>
+<span class="w">    </span><span class="o">|</span><span class="w">                     </span><span class="o">|</span>
+<span class="w">    </span><span class="o">-----------------------</span>
+</code></pre></div></td></tr></table></div>
+You can go through the loop many times to figure out your hyperparameters.</p>
+<p>Generally, we divid the data into three parts:</p>
+<ul>
+<li>Train set, which used to train the neural network and is usually the largest set;</li>
+<li>Develop(dev) set, which is used to validate the traing result;</li>
+<li>Test set, which is used to test the trained neural network.</li>
+</ul>
+<p>You will try to build a model upon <code>train set</code> then try to optimize hyperparamters on <code>dev set</code> as much as possible. After your model is ready, you can evaluate the model with <code>test set</code>.</p>
+<p>The ratio of splitting the models is:</p>
+<ul>
+<li><code>6:2:2</code>, if the size of the dataset is <span class="arithmatex">\(100\)</span> to <span class="arithmatex">\(1000000\)</span>;</li>
+<li><code>98:1:1</code> or <code>99.5:0.25:0.25</code>, if the size of the dataset is <span class="arithmatex">\(&gt; 1000000\)</span>.</li>
+</ul>
+<p>You should make sure the <code>dev set</code> and <code>test set</code> comes from the same distribution.</p>
+<h4 id="biasvariance">Bias/variance<a class="headerlink" href="#biasvariance" title="Permanent link">&para;</a></h4>
+<p>Bias and variance techiques are easy to learn but difficult to master.
+Generally, your model is:</p>
+<ul>
+<li><code>underfitting</code>, if it has a <code>high bias</code>;</li>
+<li><code>overfitting</code>, if it has a <code>high variance</code>.
+<img alt="bias and variance" src="../images/deep_learning/bias_and_variance.png" /></li>
+</ul>
+<p>You can plot the result as the figure above, but if this is not possible, another idea to get bias/ variance is to check the error:</p>
+<ul>
+<li>High variance(overfitting):<ul>
+<li>Training error: 1%;</li>
+<li>Dev error: 11%.</li>
+</ul>
+</li>
+<li>High bias(underfitting):<ul>
+<li>Training error: 15%;</li>
+<li>Dev error: 14%.</li>
+</ul>
+</li>
+<li>High bias (underfitting) &amp;&amp; High variance(overfitting):<ul>
+<li>Training error: 15%;</li>
+<li>Test error: 30%.</li>
+</ul>
+</li>
+<li>Best:<ul>
+<li>Training error: 0.5%;</li>
+<li>Test error: 1%.</li>
+</ul>
+</li>
+</ul>
+<p>These conclusions come from the assumption that human has <span class="arithmatex">\(0%\)</span> error. If the problem isn't meeting this assumption, you will need to use human error as baseline.</p>
+<h4 id="basic-recipe-for-high-bias-and-variance">Basic recipe for high bias and variance<a class="headerlink" href="#basic-recipe-for-high-bias-and-variance" title="Permanent link">&para;</a></h4>
+<p>If your algorithm has a high bias, you can:</p>
+<ul>
+<li>Try to make your neural network bigger(more hidden units or more layers);</li>
+<li>Try a different model that fits your data well;</li>
+<li>Try more batches;</li>
+<li>Try difference(advanced) optimization algorithms.</li>
+</ul>
+<p>If your algorithm has a high variance, you can:</p>
+<ul>
+<li>Use more data;</li>
+<li>Try regularization;</li>
+<li>Try a different model that is suitable for your data.</li>
+</ul>
+<p>No matter what the problem is, training a bigger neural network never hurts, although this may lead to longer runing time.</p>
+<h3 id="regularizing-your-neural-network">Regularizing your neural network<a class="headerlink" href="#regularizing-your-neural-network" title="Permanent link">&para;</a></h3>
+<p>For variance(overfitting) problems, we can try a bigger training data to fix it. But some times you can't just get more training data, or it would be quite expensive to get more data. In this case regularization will often help to prevent overfitting, or reduce the errors in your network.</p>
+<h4 id="regularization">Regularization<a class="headerlink" href="#regularization" title="Permanent link">&para;</a></h4>
+<h5 id="regularization-for-logistic-regression">Regularization for logistic regression<a class="headerlink" href="#regularization-for-logistic-regression" title="Permanent link">&para;</a></h5>
+<ul>
+<li><span class="arithmatex">\(L_1\)</span> regularization</li>
+</ul>
+<div class="arithmatex">\[
+J(w,b) = \frac{1}{m} \sum_{i = 1}^mL(\hat{y^{(i)}}, y^{(i)}) + \frac{\lambda}{2m} \lVert w \rVert_2^2
+\]</div>
+<div class="arithmatex">\[
+\lVert w \rVert_2^2 = \sum_{j = i}^{n_x}|w_j|
+\]</div>
+<p>where <span class="arithmatex">\(\lambda\)</span> is called regularization parameter(hyperparameter), you can try different value and choose the one with best performance.</p>
+<ul>
+<li><span class="arithmatex">\(L_1\)</span> regularization(for arcane technical math, this is called <code>Frobenius norm</code>)</li>
+</ul>
+<div class="arithmatex">\[
+J(w,b) = \frac{1}{m} \sum_{i = 1}^mL(\hat{y^{(i)}}, y^{(i)}) + \frac{\lambda}{2m} \lVert w \rVert_1
+\]</div>
+<div class="arithmatex">\[
+\lVert w \rVert_1 = \sum_{j = i}^{n_x}w_j^2 = w^Tw
+\]</div>
+<h5 id="regularization-for-neural-network">Regularization for neural network<a class="headerlink" href="#regularization-for-neural-network" title="Permanent link">&para;</a></h5>
+<p>The normal cost function that we want to minimize is:</p>
+<div class="arithmatex">\[
+J(w^{[1]}, b^{[1]}, ..., w^{[L]}, b^{[L]}) = \frac{1}{m} \sum_{i = 1}^{m}L(\hat{y^{(i)}}, y^{(i)})
+\]</div>
+<p>Then the <span class="arithmatex">\(L_2\)</span> regularization is:</p>
+<div class="arithmatex">\[
+J(w^{[1]}, b^{[1]}, ..., w^{[L]}, b^{[L]}) = \frac{1}{m} \sum_{i = 1}^{m}L(\hat{y^{(i)}}, y^{(i)}) + \frac{1}{2m} \sum_{l = 1}^{L} \lVert w^{[l]} \rVert^2
+\]</div>
+<p>The old way we do back propagation is:</p>
+<div class="arithmatex">\[
+dw^{[l]} = (back propagation)
+\]</div>
+<div class="arithmatex">\[
+w^{[l]} = w^{[l]} - \alpha \cdot dw^{[l]}
+\]</div>
+<p>Then we change to:</p>
+<div class="arithmatex">\[
+dw^{[l]} = (back propagation) + \frac{\lambda}{m} \cdot w^{[l]}
+\]</div>
+<p>So:</p>
+<div class="arithmatex">\[
+\begin{align}
+w^{[l]} 
+&amp; = w^{[l]} - \alpha \cdot dw^{[l]} \\\\
+&amp; = w^{[l]} - \alpha * ((back propagation) + \frac{\lambda}{m} \cdot w^{[l]}) \\\\
+&amp; = w^{[l]} - \alpha * (back propagation) - \alpha * (\frac{\lambda}{m} \cdot w^{[l]}) \\\\
+&amp; = (1 - \frac{\alpha\lambda}{m}) \cdot w^{[l]} - \alpha * (back propagation)
+\end{align}
+\]</div>
+<p>In practice this will penalize large weights and effectively limits the freedom in your model, because the them <span class="arithmatex">\((1 - \frac{\alpha\lambda}{m}) \cdot w^{[l]}\)</span> causes the <code>weight to decay</code> in propartion to its size.</p>
+<h5 id="why-regularization-reduces-overfitting">Why regularization reduces overfitting<a class="headerlink" href="#why-regularization-reduces-overfitting" title="Permanent link">&para;</a></h5>
+<p>Here are some intuitions:</p>
+<ul>
+<li>If <span class="arithmatex">\(\lambda\)</span> is too large: a lot of <span class="arithmatex">\(w\)</span> part will be close to <span class="arithmatex">\(0\)</span>, which makes the neural network more simple;</li>
+<li>If <span class="arithmatex">\(\lambda\)</span> is good enough: it will reduce some weights that makes the neural network overfitting.</li>
+</ul>
+<p>And for <span class="arithmatex">\(tanh\)</span> activation function:</p>
+<ul>
+<li>If <span class="arithmatex">\(\lambda\)</span> is too large, <span class="arithmatex">\(w\)</span> part will be small(close to <span class="arithmatex">\(0\)</span>), which will use the linear part of the <span class="arithmatex">\(tanh\)</span> activation function, so we will go from non-linear activation to roughly linear which would make the neural network a roughly linear classifier.</li>
+<li>If <span class="arithmatex">\(\lambda\)</span> is good enough, it will just make some of <span class="arithmatex">\(tanh\)</span> activations roughly linear which will prevent overfitting.</li>
+</ul>
+<h4 id="dropout-regularization">Dropout regularization<a class="headerlink" href="#dropout-regularization" title="Permanent link">&para;</a></h4>
+<p>In most case, we use <span class="arithmatex">\(L_2\)</span> regularization. The dropout regularization eliminates some neurons/weights on each iteration based on a probability. A most common techinque to implement dropout is called <code>Inverted dropout</code>:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">keep_prob</span> <span class="o">=</span> <span class="mf">0.8</span>   <span class="c1"># 0 &lt;= keep_prob &lt;= 1</span>
+<span class="n">l</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># this code is only for layer 3</span>
+<span class="c1">## the generated number that are less than 0.8 will be dropped. 80% stay, 20% dropped</span>
+<span class="n">d3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="n">keep_prob</span>
+
+<span class="n">a3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">a3</span><span class="p">,</span><span class="n">d3</span><span class="p">)</span>   <span class="c1"># keep only the values in d3</span>
+
+<span class="c1">## increase a3 to not reduce the expected value of output</span>
+<span class="c1">## (ensures that the expected value of a3 remains the same) - to solve the scaling problem</span>
+<span class="n">a3</span> <span class="o">=</span> <span class="n">a3</span> <span class="o">/</span> <span class="n">keep_prob</span>
+</code></pre></div></td></tr></table></div></p>
+<h5 id="understanding-dropout">Understanding dropout<a class="headerlink" href="#understanding-dropout" title="Permanent link">&para;</a></h5>
+<ul>
+<li>Dropout knocks out units in neural network randomly, so it works like on every iteration you're working with a smaller neural network which has a regulizing effect.</li>
+<li>Neural network can not rely on any one feature because it may be knocked out, so it has to spread out weights.</li>
+<li>Dropout can have different <code>keep_prob</code> per layer.</li>
+<li>The input layer dropout has to be near <span class="arithmatex">\(1\)</span>(or just <span class="arithmatex">\(1\)</span>) because you don't want to eliminate a lot of featrues.</li>
+<li>A lot of researchers are using dropout with Computer Vision(CV), bacause they have a very big input size and almost nerver have enough data, so overfitting is the usual problem. And dropout is a regularization technique to prevent overfitting.</li>
+</ul>
+<h4 id="other-regularization-methods">Other regularization methods<a class="headerlink" href="#other-regularization-methods" title="Permanent link">&para;</a></h4>
+<h5 id="data-augmentation">Data augmentation<a class="headerlink" href="#data-augmentation" title="Permanent link">&para;</a></h5>
+<ul>
+<li>In a computer vision data, you can:<ul>
+<li>flip all your pictures horizontally which will give you more data instances;</li>
+<li>apply a random position and rotation to an image to get more data.</li>
+</ul>
+</li>
+<li>In OCR you can impose random ratation and distortions to digits/letters.</li>
+<li>New data obtained using this technique isn't as good as the real independent data, but still can be used as a regularization techniques.</li>
+</ul>
+<h5 id="early-stopping">Early stopping<a class="headerlink" href="#early-stopping" title="Permanent link">&para;</a></h5>
+<p>We plot the <code>training set cost</code> and the <code>dev set cost</code> together for each iteration. At some iteration the <code>dev set cost</code> will stop decreasing and will start <code>increasing</code>. We will pick the point at wich the training set error and dev set error are best(lowest training cost with lowest dev cost).
+<img alt="" src="../images/deep_learning/early_stop.png" /></p>
+<p>We prefer to use <span class="arithmatex">\(L_2\)</span> regularization instead of early stop because this technique simultaneously tries to mimimize the cost function and not to overfit which contradicts the orthogonalization approch. But its advantage is that you don't need to search a hyperparameter.</p>
+<h5 id="model-ensembles">Model ensembles<a class="headerlink" href="#model-ensembles" title="Permanent link">&para;</a></h5>
+<p>You can train multiple independent models and average their results, this can get you extra 2% performance and reduces the generalization error.</p>
+<h3 id="setting-up-your-optimization-problem">Setting up your optimization problem<a class="headerlink" href="#setting-up-your-optimization-problem" title="Permanent link">&para;</a></h3>
+<h4 id="normallizing-inputs">Normallizing inputs<a class="headerlink" href="#normallizing-inputs" title="Permanent link">&para;</a></h4>
+<p>Normalizing inputs will speed up the training process a lot.
+<img alt="normalize" src="../images/deep_learning/normalize_trainning_set.png" /></p>
+<p>Normalization are going on these steps:</p>
+<ol>
+<li>Get the mean of the training set: <span class="arithmatex">\(mean = \frac{1}{m} * \sum_{i=1}^mx^{(i)}\)</span></li>
+<li>Subtract the mean from each input: <span class="arithmatex">\(X = X - mean\)</span>, this will make your inputs centered around <span class="arithmatex">\(0\)</span>.</li>
+<li>Get the variance of the training set: <span class="arithmatex">\(variance = \frac{1}{m} * \sum_{i = 1}^m(x^{(i)})^2\)</span></li>
+<li>Normalize the variance: <span class="arithmatex">\(X = X / variance\)</span></li>
+</ol>
+<p>So why we normalize our inputs?</p>
+<ul>
+<li>If we don't normalize the inputs our cost function will be deep and its shape will be inconsistent(elongated), then optimizing it will take a long time.</li>
+<li>If we normalized the inputs, the shape of the cost function will be consistent(look more symmetric like circle in 2D exmaple) and we can use a larger learning rate <span class="arithmatex">\(\alpha\)</span>, the optimization will be faster.</li>
+</ul>
+<h4 id="vanishingexploding-gradients">Vanishing/exploding gradients<a class="headerlink" href="#vanishingexploding-gradients" title="Permanent link">&para;</a></h4>
+<p>The vanishing/exploding gradients occurs when your derivates becomes very small or very big. To understand the problem, suppose that we have a deep neural network with number of layer <span class="arithmatex">\(L\)</span>, and all the activation functions are <code>linear</code> and each <span class="arithmatex">\(b = 0\)</span>, then:</p>
+<div class="arithmatex">\[
+\hat{y} = w^{[L]}w^{[L - 1]}w^{[L - 2]} \cdots w^{[2]} w^{[1]} x
+\]</div>
+<p>and if we have 2 hidden units per layer and <span class="arithmatex">\(x_1 = x_2 = 1\)</span>, we will result in:</p>
+<div class="arithmatex">\[
+\hat{y} = w^{[L]} \begin{bmatrix}x &amp; 0 \\\\ 0 &amp; x \end{bmatrix}^{L-1} = x^L \\\\
+\]</div>
+<p>as:</p>
+<div class="arithmatex">\[
+w^{[L]} = \begin{bmatrix}x &amp; 0 \\\\ 0 &amp; x \end{bmatrix}^{L-1}
+\]</div>
+<p>If <span class="arithmatex">\(x &lt; 1\)</span>, <span class="arithmatex">\(\hat{y}\)</span> will be very small; if <span class="arithmatex">\(x &gt; 1\)</span>, <span class="arithmatex">\(\hat{y}\)</span> will be really big.
+This example explains that the activations (and similarly derivatives) will be decreased/increased exponentially as a function of number of layers.</p>
+<h4 id="weight-initialization-for-deep-networks">Weight initialization for deep networks<a class="headerlink" href="#weight-initialization-for-deep-networks" title="Permanent link">&para;</a></h4>
+<p>A partial solution to the vanishing/exploding gradients in neural network is better or more careful choice of the random initialization of weights.
+In a simgle neuron: <span class="arithmatex">\(Z = w_1x_1 + w_2x_2 + \cdots + w_nx_n\)</span>, if the number of node <span class="arithmatex">\(n_x\)</span> is large, we want <span class="arithmatex">\(w\)</span> to be smaller to not explode the cost, which turns out that we need the variance(equal to <span class="arithmatex">\(\frac{1}{n_x}\)</span>) to be the range of <span class="arithmatex">\(W\)</span>.
+So we initialize <span class="arithmatex">\(W\)</span> like this(better to use with <code>tanh</code> activation):
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">n</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+or variation of this:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">n</span><span class="p">[</span><span class="n">l</span><span class="p">]))</span>
+</code></pre></div></td></tr></table></div>
+Setting initialization part inside sqrt to <code>2/n[l-1]</code> for <code>ReLU</code> is better:
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">[</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+This is one of the best way of partially solution to Vanishing / Exploding gradients (ReLU + Weight Initialization with variance) which will help gradients not to vanish/explode too quickly.</p>
+<h2 id="optimization-algorithms">Optimization algorithms<a class="headerlink" href="#optimization-algorithms" title="Permanent link">&para;</a></h2>
+<p>Training neural network with a large data is slow, so it's necessary to optimize the algorithm to run faster.</p>
+<h3 id="mini-batch-gradient-descent">Mini-batch gradient descent<a class="headerlink" href="#mini-batch-gradient-descent" title="Permanent link">&para;</a></h3>
+<p>Suppose we have a data set with the size of <code>50m</code>, training it will take a huge processing time for one step because 50 million won't fit in the memory at once. To deal with this we can use <code>mini-batch</code> to process some of our items even before finishing the 50 million items. The process is:</p>
+<ul>
+<li>Split <span class="arithmatex">\(X\)</span>(with the size <code>m</code>) into <code>mini-batch</code> of size <code>b</code>:<ul>
+<li><span class="arithmatex">\(X^{ \\{ 1 \\} } = 0,  \cdots, b\)</span></li>
+<li><span class="arithmatex">\(X^{ \\{ 2 \\} } = b + 1, \cdots, 2b\)</span></li>
+<li><span class="arithmatex">\(\cdots\)</span></li>
+<li><span class="arithmatex">\(X^{ \\{ \frac{m}{b} \\} } = (\frac{m}{b} - 1) * b, \cdots, \frac{m}{b} * b\cdots 2b\)</span></li>
+</ul>
+</li>
+<li>Split <span class="arithmatex">\(Y\)</span> into <code>mini-batch</code> of size <code>b</code>, so we get the definition of <code>mini-batch</code>: <span class="arithmatex">\(t: X^{\\{ t \\}}, Y^{\\{ t \\}}\)</span></li>
+<li>Like old <code>batch gradient descent</code>, with <code>mini-batch gradient descent</code> we run the gradient descent on the mini datasets:</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">Sum_of_mini</span><span class="o">-</span><span class="n">batches</span>  <span class="c1"># this is called an epoch</span>
+    <span class="n">AL</span><span class="p">,</span> <span class="n">caches</span> <span class="o">=</span> <span class="n">forward_prop</span><span class="p">(</span><span class="n">X</span><span class="p">{</span><span class="n">t</span><span class="p">},</span> <span class="n">Y</span><span class="p">{</span><span class="n">t</span><span class="p">})</span>
+    <span class="n">cost</span> <span class="o">=</span> <span class="n">compute_cost</span><span class="p">(</span><span class="n">AL</span><span class="p">,</span> <span class="n">Y</span><span class="p">{</span><span class="n">t</span><span class="p">})</span>
+    <span class="n">grads</span> <span class="o">=</span> <span class="n">backward_prop</span><span class="p">(</span><span class="n">AL</span><span class="p">,</span> <span class="n">caches</span><span class="p">)</span>
+    <span class="n">update_parameters</span><span class="p">(</span><span class="n">grads</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h4 id="understanding-mini-batch-gradient-descent">Understanding mini-batch gradient descent<a class="headerlink" href="#understanding-mini-batch-gradient-descent" title="Permanent link">&para;</a></h4>
+<p>Unlike batch gradient descent where cost function decreases each iteration, mini-batch's cost function won't go down with each step, it may contain ups and downs but generally it goes down.</p>
+<p><img alt="mini-batch" src="../images/deep_learning/mini_batch.png" /></p>
+<p>The gradient descent type depends on mini-batch size:</p>
+<ul>
+<li>mini-batch-size = m: batch gradient descent, which is too long per iteration(epoch);</li>
+<li>mini-batch-size = 1: stochastic gradient descent(SGD), which:<ul>
+<li>is too noisy regarding cost minimization(can be reduced by using smaller learning rate);</li>
+<li>won't ever converge(reach the minimum cost);</li>
+<li>loses speedup from vectorization.</li>
+</ul>
+</li>
+<li>mini-batch-size = (1, m): mini-batch gradient descent, which:<ul>
+<li>has faster learning speed:<ul>
+<li>it can take the advantage of vectorization;</li>
+<li>it makes progress without waiting to process the entire training set.</li>
+</ul>
+</li>
+<li>doesn't always exactly converge(oscelates in a very small region)</li>
+</ul>
+</li>
+</ul>
+<p>How to choose the <code>mini-batch</code> size? Here are the suggestions:</p>
+<ul>
+<li>m &lt; 2000: Batch gradient descent;</li>
+<li>It has to be the power of <span class="arithmatex">\(2\)</span>(64, 128, ..., 1024, ...), because of the way computer memory is layed and accessed your code might run faster;</li>
+<li>Make sure that the <code>mini-batch</code> fits in CPU/GPU memory.</li>
+</ul>
+<h3 id="exponentially-weighted-average">Exponentially weighted average<a class="headerlink" href="#exponentially-weighted-average" title="Permanent link">&para;</a></h3>
+<p>If you have data like the temparature of day throughout the year:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+\theta_1 = 40 \\\\
+\theta_2 = 49 \\\\
+\theta_3 = 45 \\\\
+\cdots \\\\
+\theta_{180} = 60
+\end{array}
+\]</div>
+<p>This data is samll in winter but big in summer. It's noisy if we plot it out.
+Now we use the <code>exponentially weighted averages</code> equation</p>
+<div class="arithmatex">\[
+v_t = \beta * v_{t - 1} + (1 - \beta) * \theta_t
+\]</div>
+<p>The result is:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+v_0 = 0 \\\\
+v_1 = \beta * v_0 + (1 - \beta) * \theta_1 \\\\
+v_2 = \beta * v_0 + (1 - \beta) * \theta_2 \\\\
+v_3 = \beta * v_0 + (1 - \beta) * \theta_3 \\\\
+\cdots
+\end{array}
+\]</div>
+<p>If we plot this it will represent averages about <span class="arithmatex">\(\frac{1}{1 - \beta}\)</span> entries:</p>
+<ul>
+<li><span class="arithmatex">\(\beta = 0.9\)</span> will average last 10 entries;</li>
+<li><span class="arithmatex">\(\beta = 0.98\)</span> will average last 50 entries;</li>
+<li><span class="arithmatex">\(\beta = 0.5\)</span> will average last 2 entries.</li>
+</ul>
+<p>The reason why <code>exponentially weighted averages</code> is useful for further optimizing gradient descent is that, it can give different weights to recent data points(<span class="arithmatex">\(\beta\)</span>) based on value of <span class="arithmatex">\(\beta\)</span>. If <span class="arithmatex">\(\beta\)</span> is high(around 0.9),  it smoothens out the averages of skewed data points, which will reduce oscillations in gradient descent and hence make faster and smoother path towards minima.
+<img alt="exponentially_weighted_averages" src="../images/deep_learning/exponentially_weighted_averages.png" /></p>
+<p>The advantage of this algorithm is that its implementation is efficient and fast because it has only one param: <span class="arithmatex">\(\beta\)</span>.</p>
+<h4 id="bias-correction-in-exponentially-weighted-averages">Bias correction in exponentially weighted averages<a class="headerlink" href="#bias-correction-in-exponentially-weighted-averages" title="Permanent link">&para;</a></h4>
+<p>Because <span class="arithmatex">\(v_0 = 0\)</span>, the bias of the weighted averages is shifted and the accuracy suffers at the start. We use following equation to solve the bias issue:</p>
+<div class="arithmatex">\[
+v_t = \frac{\beta * v_{t - 1} + (1 - \beta) * \theta_t}{1 - \beta^t}
+\]</div>
+<p>As <span class="arithmatex">\(t\)</span> becomes larger the <span class="arithmatex">\(1 - \beta^t\)</span> term will become close to <span class="arithmatex">\(1\)</span>.</p>
+<h3 id="gradient-descent-with-momentum">Gradient descent with momentum<a class="headerlink" href="#gradient-descent-with-momentum" title="Permanent link">&para;</a></h3>
+<p>The momentum algorithm almost always works faster than standard gradient descent. The simple idea is to calculate the exponentially weighted averages for your gradients and then update your weights with the new values:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+v_{dW} = \beta \cdot v_{dW} + (1 - \beta) \cdot dW \\\\
+v_{db} = \beta \cdot v_{db} + (1 - \beta) \cdot db \\\\
+W = W - \alpha \cdot v_{dW} \\\\
+b = b - \alpha \cdot v_{db}
+\end{array}
+\]</div>
+<p>where <span class="arithmatex">\(\alpha\)</span> is learning rate, <span class="arithmatex">\(\beta\)</span> is another <code>hyperparameter</code>, <span class="arithmatex">\(\beta = 0.9\)</span> is very common and works very well in most cases.</p>
+<blockquote>
+<p>In practice we don't bother implementating <code>bias correction</code></p>
+</blockquote>
+<h3 id="rmsprop">RMSprop<a class="headerlink" href="#rmsprop" title="Permanent link">&para;</a></h3>
+<p><code>RMSprop</code> stands for <code>Root Mean Square prop</code>. It speeds up the gradient descent:</p>
+<div class="arithmatex">\[
+\begin{array}{l}
+s_{dW} = \beta \cdot s_{dW} + (1 - \beta) \cdot dW^2 \\\\
+s_{db} = \beta \cdot s_{db} + (1 - \beta) \cdot db^2 \\\\
+W = W - \alpha \cdot \frac{dW}{\sqrt{s_{dW}}} \\\\
+b = b - \alpha \cdot \frac{dW}{\sqrt{s_{db}}}
+\end{array}
+\]</div>
+<p>RMSprop will make the cost function move slower on the vertical direction and faster on the horizontal direction:</p>
+<p><img alt="rms_prop" src="../images/deep_learning/rmsprop.png" /></p>
+<p>To ensure <span class="arithmatex">\(s_{dw}\)</span> is not zero, we add <span class="arithmatex">\(\epsilon\)</span> (e.g. <span class="arithmatex">\(\epsilon = 10^{-8}\)</span>)to the demoninator: </p>
+<div class="arithmatex">\[
+W = W - \alpha \cdot \frac{dW}{\sqrt{s_{dW}} + \epsilon}
+\]</div>
+<h3 id="adam-optimization-algorithm">Adam optimization algorithm<a class="headerlink" href="#adam-optimization-algorithm" title="Permanent link">&para;</a></h3>
+<p><code>Adam</code> stands for <code>Adaptive Moment Estimation</code>. Adam and RMSprop are among the optimization algorithms that works very well with a lot of neural network architecture. Adam simply puts RMSprop and momentum together:</p>
+<div class="arithmatex">\[
+\begin{align}
+v_{dW} &amp;= \beta_1 \cdot v_{dW} + (1 - \beta_1) \cdot dW \\\\
+v_{db} &amp;= \beta_1 \cdot v_{db} + (1 - \beta_1) \cdot db \\\\
+s_{dW} &amp;= \beta_2 \cdot s_{dW} + (1 - \beta_2) \cdot dW^2 \\\\
+s_{db} &amp;= \beta_2 \cdot s_{db} + (1 - \beta_2) \cdot db^2 \\\\
+v_{dW} &amp;= \frac{v_{dW}}{1 - \beta_1^t} \\\\
+v_{db} &amp;= \frac{v_{db}}{1 - \beta_1^t} \\\\
+s_{dW} &amp;= \frac{s_{dW}}{1 - \beta_1^t} \\\\
+s_{db} &amp;= \frac{s_{db}}{1 - \beta_1^t} \\\\
+W &amp;= W - \alpha \cdot \frac{v_{dW}}{\sqrt{s_{dW}} + \epsilon} \\\\
+b &amp;= b - \alpha \cdot \frac{v_{db}}{\sqrt{s_{db}} + \epsilon}
+\end{align}
+\]</div>
+<p>In equation:</p>
+<ul>
+<li>(5) and (6) are momentum;</li>
+<li>(7) and (8) are RMSprop;</li>
+<li>(9) - (12) are bias correction;</li>
+<li><span class="arithmatex">\(\alpha\)</span> is learning rate and needs to be tuned;</li>
+<li><span class="arithmatex">\(\beta_1\)</span> is the parameter of momentum, <span class="arithmatex">\(0.9\)</span> is recommanded by default;</li>
+<li><span class="arithmatex">\(\beta_2\)</span> is the parameter of RMSprop, <span class="arithmatex">\(0.999\)</span> is recommanded by default;</li>
+<li><span class="arithmatex">\(\epsilon = 10^{-8}\)</span> recommanded by default.</li>
+</ul>
+<h3 id="learning-rate-decay">Learning rate decay<a class="headerlink" href="#learning-rate-decay" title="Permanent link">&para;</a></h3>
+<p>Learning rate decay is to reduce the learning rate slowly. As mentioned before, mini-batch gradient descent won't reach the optimum point(converge). But by making the learning rate decay with iterations it will be much closer to it because the steps near the optimum are smaller.</p>
+<p>One technique equations is:</p>
+<div class="arithmatex">\[
+\alpha = \frac{1}{1 + k_{decay} \cdot t} \cdot \alpha_0
+\]</div>
+<p>where <span class="arithmatex">\(k_{decay}\)</span> is decay rate, <span class="arithmatex">\(t\)</span> is the epoch number.
+Other learning rate decay can be:</p>
+<div class="arithmatex">\[
+\alpha = 0.95^{t} \cdot \alpha_0
+\]</div>
+<p>or</p>
+<div class="arithmatex">\[
+\alpha = \frac{k}{\sqrt{t}} \cdot \alpha_0
+\]</div>
+<p>Learning rate decay has less priority than other optimization methods.</p>
+<h2 id="hyperparameter-tuning-and-batch-nomalization">Hyperparameter tuning and batch nomalization<a class="headerlink" href="#hyperparameter-tuning-and-batch-nomalization" title="Permanent link">&para;</a></h2>
+<h3 id="tuning-process">Tuning process<a class="headerlink" href="#tuning-process" title="Permanent link">&para;</a></h3>
+<p>When we train a neural network, we usually need to tune our hyperparameters to get the best out of them. The importance rank of these hyperparameters is:</p>
+<ol>
+<li>Learning rate, <span class="arithmatex">\(\alpha\)</span>;</li>
+<li>Momentum, <span class="arithmatex">\(\beta\)</span>;</li>
+<li>Mini-batch size, <span class="arithmatex">\(b\)</span>;</li>
+<li>Number of hidden units;</li>
+<li>Number of layers;</li>
+<li>Learning rate decay;</li>
+<li>Ragularization <span class="arithmatex">\(\lambda\)</span>;</li>
+<li>Activation functions;</li>
+<li>Adam <span class="arithmatex">\(\beta_1\)</span>, <span class="arithmatex">\(\beta_2\)</span> and <span class="arithmatex">\(\epsilon\)</span>.</li>
+</ol>
+<p>One of the ways to tune is to sample a grid with <span class="arithmatex">\(N\)</span> hyperparameter settings and then try all setting combinations on your problem. You should try random values, not the grid.
+You can use <code>Coarse to fine sampling scheme</code>:</p>
+<blockquote>
+<p>When you find some hyperparameters values that give you a better performance, zoom into a smaller region around these values and sample more densely within this space.</p>
+</blockquote>
+<h3 id="using-an-appropriate-scale-to-pick-hyperparameters">Using an appropriate scale to pick hyperparameters<a class="headerlink" href="#using-an-appropriate-scale-to-pick-hyperparameters" title="Permanent link">&para;</a></h3>
+<p>Assume that you have a specific range for a hyperparameter from <code>a</code> to <code>b</code>, it's better to search for the right ones using logarithmic scale rather than in linear scale:</p>
+<ul>
+<li><span class="arithmatex">\(a_{log} = log(a)\)</span>: if <span class="arithmatex">\(a = 0.001\)</span> then <span class="arithmatex">\(a_{log} = -4\)</span></li>
+<li><span class="arithmatex">\(b_{log} = log(b)\)</span>: if <span class="arithmatex">\(b = 1\)</span> then <span class="arithmatex">\(a_{log} = 0\)</span></li>
+</ul>
+<p>Then: <span class="arithmatex">\(r = (a_{log} - b_{log}) * rand + b_{log}\)</span>, the range will be [-4, 0] and result <span class="arithmatex">\(r = 10^r\)</span>.</p>
+<p>For example, we have known that the best range for <code>Momentum</code> <span class="arithmatex">\(\beta\)</span> is <span class="arithmatex">\([0.9, 0.999]\)</span>, you should search for <span class="arithmatex">\(1 - \beta\)</span> in the range <span class="arithmatex">\([0.001, 0.1]\)</span>, and use <span class="arithmatex">\(a = 0.001\)</span> and <span class="arithmatex">\(b = 0.1\)</span>. Then:</p>
+<ul>
+<li><span class="arithmatex">\(a_{log} = -3\)</span></li>
+<li><span class="arithmatex">\(b_{log} = -1\)</span></li>
+<li><span class="arithmatex">\(r = (a_{log} - b_{log}) * rand + b_{log}\)</span></li>
+<li><span class="arithmatex">\(\beta = 1 - 10^r\)</span></li>
+</ul>
+<h4 id="hyperparameters-tuning-in-practice-pandas-vs-caviar">Hyperparameters tuning in practice: Pandas vs. Caviar<a class="headerlink" href="#hyperparameters-tuning-in-practice-pandas-vs-caviar" title="Permanent link">&para;</a></h4>
+<p>Intuitions about hyperparameter settings from one application area may or may not trasfer to a different one.</p>
+<p>If you don't have much computational resources you can use <code>Panda</code> approach:</p>
+<ul>
+<li>Day 0 you might initialize your parameter as random and then start training;</li>
+<li>Then you watch your learning curve gradually decrease over the day;</li>
+<li>And each day you nudge your parameters a little during training.</li>
+</ul>
+<p>If you have enough computational resources, you can use <code>Caviar</code> approach: </p>
+<ul>
+<li>Run some models in parallel and at the end of the day you check the result.</li>
+</ul>
+<h4 id="normalizing-activations-in-a-network">Normalizing activations in a network<a class="headerlink" href="#normalizing-activations-in-a-network" title="Permanent link">&para;</a></h4>
+<p>Normalizing input by subtracting the mean and dividing by variance helps a lot for the shape of the cost function and for reaching the minimum point faster.  The question is:</p>
+<blockquote>
+<p>for any hidden layer can we normalize <span class="arithmatex">\(A^{[l]}\)</span> to train <span class="arithmatex">\(W^{[l+1]}\)</span> and <span class="arithmatex">\(b^{[l+1]}\)</span> faster?
+This is what batch normalization is about.</p>
+</blockquote>
+<p>There are some debates about whether you should normalize values before the activation function <span class="arithmatex">\(Z^{[l]}\)</span> or after applying the activation function <span class="arithmatex">\(A^{[l]}\)</span>. In practice, nomalizing <span class="arithmatex">\(Z^{[l]}\)</span> is much more often.
+The algorithm porcess is:</p>
+<ul>
+<li>Given <span class="arithmatex">\(Z^{[l]} = [z^{(1)}, \cdots, z^{(m)}]\)</span>;</li>
+<li>Compute <span class="arithmatex">\(mean = \frac{1}{m} * \sum^m\_{i=1}{z^{[i]}}\)</span></li>
+<li>Compute <span class="arithmatex">\(variance = \frac{1}{m} * \sum_{i=1}^m(z^{[i]}-mean)^2\)</span></li>
+<li>Then <span class="arithmatex">\(Z_{norm}^{[i]} = \frac{z^{[i]}}{\sqrt{variance + epsilon}}\)</span><ul>
+<li>forcing the inputs to distribution with 0 mean and variance of 1</li>
+</ul>
+</li>
+<li>Then <span class="arithmatex">\(\tilde{z}^{[i]} = \gamma * z_{norm}^{[i]} + \beta\)</span><ul>
+<li>Make inputs belong to other distribution(with other mean and variance);</li>
+<li><span class="arithmatex">\(\gamma\)</span> and <span class="arithmatex">\(\beta\)</span> are learnable parameters of the model;</li>
+<li>Make the neural network learn the distribution of the outputs;</li>
+<li>Note: if <span class="arithmatex">\(\gamma = \sqrt{variance + epsilon}\)</span> and <span class="arithmatex">\(\beta = mean\)</span>, then <span class="arithmatex">\(\tilde{z}^{[i]} = z^{[i]}\)</span></li>
+</ul>
+</li>
+</ul>
+<h4 id="fitting-batch-normalization-into-a-neural-network">Fitting Batch normalization into a neural network<a class="headerlink" href="#fitting-batch-normalization-into-a-neural-network" title="Permanent link">&para;</a></h4>
+<p>Batch normalization is usually applied with mini-batches.
+If we use batch normalization parameters <span class="arithmatex">\(b^{[1]}, \cdots, b^{[l]}\)</span> doesn't count because they will be eliminated after mean subtraction step. So the parameters will be:</p>
+<ul>
+<li><span class="arithmatex">\(W^{[l]}\)</span>;</li>
+<li><span class="arithmatex">\(\beta^{[l]}\)</span>;</li>
+<li><span class="arithmatex">\(\alpha^{[l]}\)</span>.</li>
+</ul>
+<h4 id="why-does-batch-normalization-work">Why does batch normalization work?<a class="headerlink" href="#why-does-batch-normalization-work" title="Permanent link">&para;</a></h4>
+<ul>
+<li>The first reason is the same reason as why we normalize <span class="arithmatex">\(X\)</span>;</li>
+<li>The second reason is that batch normalization reduces the problem of input values changing(shifting);</li>
+<li>Batch normalization does some regularization:<ul>
+<li>Each mini-batch is scaled by the mean/variance computed of that mini-batch;</li>
+<li>This adds some noise to the value <span class="arithmatex">\(Z^{[l]}\)</span> within that mini-batch, so similar to dropout it adds some noise to each hidden layer's activation;</li>
+<li>This has a slight regularization effect;</li>
+<li>Using bigger size of the mini-batch you are reducing noise and therefore regularization effect;</li>
+<li>Don't rely on batch normalization as a regularization, it's intended for normalization of hidden units, activations and therefore speeding up learning. For regularization use other regularization techniques.</li>
+</ul>
+</li>
+</ul>
+<h4 id="batch-normalization-at-test-time">Batch normalization at test time<a class="headerlink" href="#batch-normalization-at-test-time" title="Permanent link">&para;</a></h4>
+<p>When we train a neural network with batch normalization, we compute the mean and the variance of the mini-batch. But in testing we might need to process examples one each time, whose mean and variance won't make sense. So we have to compute the average across the mini-batch, this is called <code>Running average</code>.</p>
+<h4 id="softmax-regression">Softmax Regression<a class="headerlink" href="#softmax-regression" title="Permanent link">&para;</a></h4>
+<p>The neural networks we trained so far are binary classifications, but there are a generalization of logistic regression called <code>Softmax regression</code> that is used for multiclass classification/regression. In the last layer of the neural network we use the <code>Softmax regression</code> activation instead of <code>sigmoid</code> to classify the classes.</p>
+<div class="arithmatex">\[
+t = e^{Z^{[L]}}
+\]</div>
+<div class="arithmatex">\[
+A_{[L]} = \frac{e^{Z^{[L]}}}{\sum{t}}
+\]</div>
+<h4 id="trainning-a-softmax-classifier">Trainning a Softmax classifier<a class="headerlink" href="#trainning-a-softmax-classifier" title="Permanent link">&para;</a></h4>
+<p>There is an activation called <code>hard max</code> which get <span class="arithmatex">\(1\)</span> for the maximum value and <span class="arithmatex">\(0\)</span> for others. The <code>softmax</code> named because it's not so <code>hard</code>, it can be values in <span class="arithmatex">\([0, 1]\)</span>.</p>
+<p>Softmax is a generalization of logistic activation function to <code>C</code> classes. If <code>C = 2</code> then <code>softmax</code> reduces to logistic regression.</p>
+<p>The loss function used which <code>softmax</code>:</p>
+<div class="arithmatex">\[
+L(y, \hat{y}) = - \sum_{j=0}^{C-1}(y^{[j]} * log(\hat{y}^{[j]}))
+\]</div>
+<p>The cost function used with <code>softmax</code>:</p>
+<div class="arithmatex">\[
+J(w^{[1]}, b^{[1]}, \cdots) = -\frac{1}{m} * \sum_{i=0}^{m}(L(y^{[i]}, \hat{y}^{[i]}))
+\]</div>
+<p>Back propagation with <code>softmax</code>:</p>
+<div class="arithmatex">\[
+dZ^{[L]} = \hat{Y} - Y
+\]</div>
+<p>The derivative of softmax is:</p>
+<div class="arithmatex">\[
+\hat{Y} * (1 - \hat{Y})
+\]</div>
+<p><img alt="example" src="https://github.com/mbadry1/DeepLearning.ai-Summary/raw/master/2-%20Improving%20Deep%20Neural%20Networks/Images/07-_softmax.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.top", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
