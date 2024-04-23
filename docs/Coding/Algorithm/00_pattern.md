@@ -1011,6 +1011,12 @@ void tarjan(int u) {
 
 ### Linear Dp
 
+#### Grid problems
+- [1](https://www.acwing.com/problem/content/1017/)
+- [2](https://www.acwing.com/problem/content/1020/)
+- [3](https://www.acwing.com/problem/content/1029/)
+- [4](https://www.acwing.com/problem/content/277/)
+
 - [Triangle](https://www.acwing.com/problem/content/900/)
 - [Longest Increasing Subsequence(LIS)](https://www.acwing.com/problem/content/897/)
 - [Longest Increasing Subsequence(optimal)](https://www.acwing.com/problem/content/898/)
